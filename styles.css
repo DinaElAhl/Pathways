@@ -4,6 +4,9 @@
   --bg:#f7f7fb; --bg-elev:#fff; --text:#0b1020; --text-muted:#4b5168;
   --border:#e7e8ef; --border-strong:#d4d7e2;
   --brand-1:#7c5cff; --brand-2:#00c2a8; --accent:#ff7a59;
+  /* Aliases for pages authored with a single-brand palette
+     (apps.html, frameworks.html). Override-able per-page if needed. */
+  --brand:#7c5cff; --brand-dark:#5a3fd6; --brand-light:#eef0ff;
   --grad:linear-gradient(135deg,#7c5cff 0%,#00c2a8 100%);
   --grad-soft:linear-gradient(135deg,rgba(124,92,255,.12),rgba(0,194,168,.12));
   --shadow-sm:0 1px 2px rgba(13,18,36,.06),0 1px 3px rgba(13,18,36,.04);
@@ -16,6 +19,7 @@
 [data-theme="dark"] {
   --bg:#0a0d1a; --bg-elev:#11162a; --text:#eef0f8; --text-muted:#a1a8c0;
   --border:#1c2240; --border-strong:#2a3158;
+  --brand:#a99cff; --brand-dark:#7c5cff; --brand-light:#1a1b3a;
   --grad-soft:linear-gradient(135deg,rgba(124,92,255,.18),rgba(0,194,168,.16));
   --shadow-md:0 8px 24px rgba(0,0,0,.35);
 }
@@ -23,6 +27,7 @@
   :root:not([data-theme="light"]) {
     --bg:#0a0d1a; --bg-elev:#11162a; --text:#eef0f8; --text-muted:#a1a8c0;
     --border:#1c2240; --border-strong:#2a3158;
+    --brand:#a99cff; --brand-dark:#7c5cff; --brand-light:#1a1b3a;
     --grad-soft:linear-gradient(135deg,rgba(124,92,255,.18),rgba(0,194,168,.16));
   }
 }
