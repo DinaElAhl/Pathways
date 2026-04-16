@@ -30,8 +30,11 @@
 .status-live{background:#d1fae5;color:#065f46}
 .status-beta{background:#fef3c7;color:#92400e}
 .status-soon{background:#f1f5f9;color:#64748b}
-.btn-add{margin-left:auto;background:var(--brand);color:#fff;border:none;padding:.4rem .9rem;border-radius:8px;font-size:.8rem;font-weight:600;cursor:pointer;transition:.15s}
+.btn-add{margin-left:auto;background:var(--brand);color:#fff;border:none;padding:.4rem .9rem;border-radius:8px;font-size:.8rem;font-weight:600;cursor:pointer;transition:.15s;text-decoration:none;display:inline-block}
 .btn-add:hover{background:var(--brand-dark)}
+.btn-open{margin-left:auto;background:#fff;color:var(--brand);border:1.5px solid var(--brand);padding:.35rem .8rem;border-radius:8px;font-size:.8rem;font-weight:700;cursor:pointer;transition:.15s;text-decoration:none;display:inline-block}
+.btn-open:hover{background:var(--brand-light)}
+.btn-open + .btn-add{margin-left:0}
 .section-heading{font-size:1.35rem;font-weight:800;margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem}
 .section-heading span{color:var(--text-muted);font-size:1rem;font-weight:500}
 .no-results{text-align:center;padding:3rem;color:var(--text-muted);grid-column:1/-1}
@@ -83,10 +86,16 @@
 </footer>
 
 <script>
+// E² flagship tools have a `url` field — they render an "Open ↗" button.
+// Local: path-builder.html. External (desktop-tutorial repo): the three E² apps.
+const DESKTOP_TUTORIAL = 'https://dinaelahl.github.io/desktop-tutorial';
+
 const APPS = [
-  {id:'lesson-loom',title:'LessonLoom',icon:'📝',desc:'AI-powered lesson planner built on the E² 5-part blueprint. Input any topic and get a Hook, Teach, Practice, Connect & Reflect structure in seconds.',tags:['planning','e2','ai'],status:'live',category:'planning',features:['E² blueprint','Differentiation tiers','PDF/Google Docs export',"Bloom's alignment"]},
+  {id:'path-builder',title:'Path Builder',icon:'🧭',desc:'The official Pathways visual builder. Drag, connect, and sequence apps and resources into a structured learning path — pre-loaded with the E² lesson blueprint.',tags:['e2','planning','flagship'],status:'live',category:'planning',url:'path-builder.html',features:['E² 5-part blueprint','Drag & drop nodes','Save & share paths','LTI 1.3 launch']},
+  {id:'e2-lesson-planner',title:'E² Lesson Planner',icon:'📝',desc:'Official E² lesson planner. Generates a complete 5-part blueprint (Hook → Teach → Practice → Connect → Reflect) with differentiation tiers and engagement levers.',tags:['planning','e2','ai','flagship'],status:'live',category:'planning',url:DESKTOP_TUTORIAL+'/e2-lesson-planner.html',features:['E² blueprint','Differentiation tiers','PDF/Google Docs export',"Bloom's alignment"]},
+  {id:'e2-blueprint-planner',title:'E² Blueprint Planner',icon:'🗺️',desc:'Plan a unit at the blueprint level: stack multiple E² lessons into a coherent week, term, or year. Surfaces gaps in modalities, levers, and Bloom coverage.',tags:['planning','e2','flagship'],status:'live',category:'planning',url:DESKTOP_TUTORIAL+'/e2-blueprint-planner.html',features:['Multi-lesson view','Bloom heatmap','Modality balance','Term-level export']},
+  {id:'e2-rubrics-assessment',title:'E² Rubrics & Assessment',icon:'📊',desc:'Build E²-aligned rubrics and formative assessments. QTI 2.2/3.0 export, standard alignment, and tiered tasks baked in. Replaces RubricRaft.',tags:['assessment','rubric','qti','e2','flagship'],status:'live',category:'assessment',url:DESKTOP_TUTORIAL+'/e2-rubrics-assessment.html',features:['QTI 2.2 / 3.0 export','Holistic & analytic','Standard alignment','Tiered task templates']},
   {id:'flip-studio',title:'FlipStudio',icon:'🎬',desc:'Paste any YouTube, website, or PDF link and FlipStudio converts it into a structured flipped lesson with comprehension questions and key vocab.',tags:['video','flipped','ai'],status:'live',category:'engagement',features:['Auto-transcription','Quiz generation','Timestamp markers','Accessibility captions']},
-  {id:'rubric-raft',title:'RubricRaft',icon:'📊',desc:'Drag-and-drop rubric builder with QTI export. Create holistic or analytic rubrics aligned to any standard or framework — import from Excel too.',tags:['assessment','rubric','qti'],status:'live',category:'assessment',features:['QTI 2.2 export','Holistic & analytic rubrics','Standard alignment','Peer assessment mode']},
   {id:'quiz-forge',title:'QuizForge',icon:'❓',desc:'Generate quizzes from any text, URL, or document. Multiple question types, auto-grading, and xAPI reporting to your LRS.',tags:['quiz','assessment','ai','xapi'],status:'live',category:'assessment',features:['10 question types','xAPI reporting','AI generation','Adaptive difficulty']},
   {id:'differentiate-it',title:'DifferentiateIt',icon:'🎯',desc:'Paste any task and get three auto-differentiated versions — struggling, on-level, and advanced — all keeping the same learning objective.',tags:['differentiation','udl','accessibility'],status:'live',category:'planning',features:['3 tiers auto-generated','UDL-aligned','Reading level adjustment','Vocabulary scaffolding']},
   {id:'exit-ticket',title:'ExitTicket',icon:'🚪',desc:'Quick formative check-ins that surface understanding in real time. 60-second polls, traffic lights, and open-ended prompts. Works on any device.',tags:['assessment','formative','engagement'],status:'live',category:'assessment',features:['Real-time results','10 prompt types','Class analytics','Anonymous mode']},
@@ -131,6 +140,7 @@ function renderApps() {
       <ul style="font-size:.8rem;color:var(--text-muted);padding-left:1.25rem;margin-bottom:.75rem">${(a.features||[]).map(f=>`<li>${f}</li>`).join('')}</ul>
       <div class="app-footer">
         <span class="app-status ${{live:'status-live',beta:'status-beta',soon:'status-soon'}[a.status]||'status-soon'}">${{live:'● Live',beta:'⚡ Beta',soon:'Coming soon'}[a.status]||'Coming soon'}</span>
+        ${a.url ? `<a class="btn-open" href="${a.url}"${a.url.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>Open ↗</a>` : ''}
         <button class="btn-add" onclick="addToPath('${a.id}')">+ Add to Path</button>
       </div>
     </div>
