@@ -144,6 +144,15 @@ button { font:inherit; cursor:pointer; }
 /* Sections */
 .section { padding:clamp(56px,7vw,96px) 0; }
 .section + .section { border-top:1px solid var(--border); }
+
+/* Sections that wrap an accordion get reduced padding — the accordion
+   summary card already provides its own internal padding for breathing
+   room. Without this, *closed* accordions sit inside ~96px of section
+   padding and produce huge visible gaps between sections. */
+.section:has(.accordion) { padding-block:clamp(20px,3vw,36px); }
+.section:has(.accordion:not([open])) { padding-block:clamp(6px,1vw,12px); }
+/* Don't double up borders: the accordion card itself is the divider. */
+.section:has(.accordion) + .section:has(.accordion) { border-top:none; }
 .section-feature { background:
   radial-gradient(900px 400px at 80% -10%, color-mix(in oklab,var(--brand-2) 16%,transparent), transparent 60%),
   radial-gradient(700px 360px at 0% 110%, color-mix(in oklab,var(--brand-1) 14%,transparent), transparent 60%); }
