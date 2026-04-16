@@ -153,6 +153,43 @@ button { font:inherit; cursor:pointer; }
   font-size:clamp(22px,2.4vw,28px); letter-spacing:-.01em; margin:32px 0 16px; }
 .pillars-heading { margin-top:40px; }
 
+/* E² Featured hero card */
+.e2-feature { display:grid; grid-template-columns:minmax(180px,260px) 1fr;
+  gap:clamp(20px,3vw,40px); align-items:center;
+  padding:clamp(28px,4vw,48px); margin-bottom:48px;
+  border:1px solid var(--border); border-radius:24px;
+  background:
+    radial-gradient(600px 280px at 0% 0%, color-mix(in oklab,var(--brand-1) 20%,transparent), transparent 60%),
+    radial-gradient(600px 280px at 100% 100%, color-mix(in oklab,var(--brand-2) 20%,transparent), transparent 60%),
+    var(--bg-elev);
+  box-shadow:var(--shadow-md); }
+@media (max-width: 720px) {
+  .e2-feature { grid-template-columns:1fr; text-align:left; }
+  .e2-feature-mark { justify-self:start; }
+}
+.e2-feature-mark { display:flex; align-items:center; justify-content:center;
+  aspect-ratio:1; width:100%; max-width:240px;
+  border-radius:24px; background:var(--grad);
+  box-shadow:0 20px 50px color-mix(in oklab,var(--brand-1) 35%,transparent),
+             inset 0 0 0 6px rgba(255,255,255,.18); }
+.e2-glyph { font-family:var(--font-display); font-weight:700; color:#fff;
+  font-size:clamp(72px,12vw,128px); line-height:1; letter-spacing:-.04em;
+  text-shadow:0 4px 16px rgba(0,0,0,.18); }
+.e2-glyph sup { font-size:.55em; vertical-align:super; margin-left:2px; }
+.e2-feature-body .section-title { margin-top:8px; font-size:clamp(28px,4vw,44px); }
+.e2-feature-body .section-lede { margin-bottom:18px; }
+.e2-mini-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
+  gap:8px; margin:0 0 22px; padding:14px;
+  background:color-mix(in oklab,var(--bg) 60%,var(--bg-elev));
+  border:1px dashed var(--border-strong); border-radius:14px; }
+.e2-mini-stats > div { padding:6px 10px; }
+.e2-mini-stats dt { font-size:11px; text-transform:uppercase; letter-spacing:.08em;
+  color:var(--text-muted); margin-bottom:2px; }
+.e2-mini-stats dd { margin:0; font-family:var(--font-display); font-size:24px;
+  font-weight:700; letter-spacing:-.02em;
+  background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.e2-cta { display:flex; flex-wrap:wrap; gap:10px; }
+
 /* Beliefs */
 .beliefs { padding:20px 22px; background:var(--bg-elev); border:1px solid var(--border);
   border-radius:var(--radius); box-shadow:var(--shadow-sm); margin-top:24px; }
