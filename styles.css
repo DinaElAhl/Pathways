@@ -244,6 +244,50 @@ button { font:inherit; cursor:pointer; }
   font-size:20px; margin:0 0 12px; display:flex; align-items:center; gap:10px; }
 .flag { font-size:22px; line-height:1; }
 
+/* Curricula */
+.curr-block + .curr-block { margin-top:36px; }
+.curr-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; }
+.curr-card { display:block; padding:16px 18px; background:var(--bg-elev);
+  border:1px solid var(--border); border-radius:12px;
+  text-decoration:none; color:var(--text); box-shadow:var(--shadow-sm);
+  transition:transform .15s, border-color .15s, box-shadow .15s; }
+.curr-card:hover, .curr-card:focus-visible { transform:translateY(-2px);
+  border-color:var(--brand-1); box-shadow:var(--shadow-md); }
+.curr-card h4 { font-family:var(--font-display); font-weight:700;
+  font-size:17px; letter-spacing:-.005em; margin:0 0 4px; }
+.curr-card p { margin:0; font-size:14px; color:var(--text-muted); }
+
+/* Arabic & Quran */
+.section-arabic { background:
+  radial-gradient(800px 400px at 100% 0%, color-mix(in oklab,#00c2a8 14%,transparent), transparent 60%),
+  radial-gradient(700px 360px at 0% 100%, color-mix(in oklab,#7c5cff 14%,transparent), transparent 60%),
+  var(--bg); }
+.arabic-word { font-family:"Amiri",var(--font-display),serif;
+  background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;
+  padding:0 .15em; }
+.ar-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
+.ar-card { padding:22px; background:var(--bg-elev);
+  border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow-sm); }
+.ar-card h3 { font-family:var(--font-display); font-weight:700;
+  font-size:20px; margin:0 0 14px; }
+.ar-card .bullets li em { font-style:italic; color:var(--text); }
+
+/* Where to start */
+.start-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:18px; margin-bottom:32px; }
+.start-card { padding:22px; background:var(--bg-elev);
+  border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow-sm); }
+.start-card h3 { font-family:var(--font-display); font-weight:700;
+  font-size:20px; margin:10px 0 8px; letter-spacing:-.01em; }
+.start-card p { margin:0; color:var(--text-muted); }
+.next-steps { margin-top:8px; padding-top:24px; border-top:1px dashed var(--border); }
+.next-steps a { color:var(--brand-1); font-weight:600; text-decoration-thickness:1.5px;
+  text-underline-offset:3px; }
+[data-theme="dark"] .next-steps a { color:#bcb1ff; }
+
+/* Active section nav */
+.nav-list a[aria-current="true"] { color:var(--text); background:var(--grad-soft); }
+
 /* Footer */
 .site-footer { border-top:1px solid var(--border); margin-top:64px; padding:28px 0; background:var(--bg-elev); }
 .footer-wrap { display:flex; flex-wrap:wrap; gap:8px 24px; align-items:center; justify-content:space-between; }
