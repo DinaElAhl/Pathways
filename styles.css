@@ -214,6 +214,42 @@ button { font:inherit; cursor:pointer; }
   background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; line-height:1; }
 .pillar p { margin:.25em 0 14px; color:var(--text-muted); }
 
+/* Wide pillar (spans whole pillar grid) */
+.pillar-wide { grid-column:1 / -1; }
+
+/* 5-part lesson blueprint flow */
+.flow { list-style:none; padding:0; margin:14px 0 0;
+  display:grid; grid-template-columns:repeat(5, 1fr); gap:10px;
+  position:relative; }
+.flow-step { position:relative; padding:18px 14px 16px; background:var(--bg-elev);
+  border:1px solid var(--border); border-radius:14px; box-shadow:var(--shadow-sm);
+  text-align:center; transition:transform .18s, box-shadow .18s, border-color .18s; }
+.flow-step:hover { transform:translateY(-3px); border-color:var(--brand-1); box-shadow:var(--shadow-md); }
+.flow-step + .flow-step::before {
+  content:""; position:absolute; left:-10px; top:50%; transform:translateY(-50%);
+  width:14px; height:14px; border-top:2px solid var(--brand-1); border-right:2px solid var(--brand-2);
+  rotate:45deg; opacity:.7; }
+.flow-num { display:inline-flex; align-items:center; justify-content:center;
+  width:28px; height:28px; border-radius:999px;
+  background:var(--grad); color:#fff; font-family:var(--font-display); font-weight:700;
+  font-size:14px; line-height:1; box-shadow:0 4px 12px color-mix(in oklab,var(--brand-1) 35%,transparent);
+  margin:0 auto 8px; }
+.flow-icon { font-size:30px; line-height:1; margin-bottom:6px; }
+.flow-name { font-family:var(--font-display); font-weight:700; font-size:18px; letter-spacing:-.01em; }
+.flow-time { display:inline-block; margin:6px 0 8px;
+  font-size:11px; font-weight:600; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--brand-1); padding:3px 10px; border-radius:999px; background:var(--grad-soft); }
+[data-theme="dark"] .flow-time { color:#bcb1ff; }
+.flow-desc { margin:0; font-size:13.5px; line-height:1.5; color:var(--text-muted); text-align:left; }
+
+@media (max-width: 880px) {
+  .flow { grid-template-columns:repeat(2, 1fr); }
+  .flow-step + .flow-step::before { display:none; }
+}
+@media (max-width: 520px) {
+  .flow { grid-template-columns:1fr; }
+}
+
 .phases, .bullets { padding-left:0; margin:0; list-style:none; display:grid; gap:10px; }
 .phases li, .bullets li { padding:10px 12px; border:1px solid var(--border); border-radius:10px;
   background:color-mix(in oklab,var(--bg) 70%,var(--bg-elev)); }
