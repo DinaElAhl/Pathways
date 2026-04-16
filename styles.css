@@ -203,6 +203,47 @@ button { font:inherit; cursor:pointer; }
   box-shadow:var(--shadow-sm); }
 .callout .h3 { margin-top:0; }
 
+/* Section variants */
+.section-tinted { background:
+  linear-gradient(180deg,
+    color-mix(in oklab,var(--brand-1) 4%,var(--bg)) 0%,
+    var(--bg) 100%); }
+
+/* Spec card grid (interoperability + accessibility) */
+.spec-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
+.spec-card { background:var(--bg-elev); border:1px solid var(--border); border-radius:var(--radius);
+  padding:22px; box-shadow:var(--shadow-sm);
+  transition:transform .2s, border-color .2s, box-shadow .2s; }
+.spec-card:hover { transform:translateY(-2px); border-color:var(--border-strong); box-shadow:var(--shadow-md); }
+.spec-card h3 { font-family:var(--font-display); font-weight:700;
+  font-size:22px; letter-spacing:-.01em; margin:8px 0 8px; }
+.spec-card p { margin:0; color:var(--text-muted); }
+.spec-card code { font-size:.92em; padding:2px 6px; border-radius:6px;
+  background:var(--grad-soft); color:var(--text); }
+.badge { display:inline-block; padding:4px 10px; border-radius:999px; font-size:11.5px;
+  font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  background:var(--grad-soft); color:var(--brand-1); }
+[data-theme="dark"] .badge { color:#bcb1ff; }
+
+/* Pedagogy chip grid */
+.chip-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+.chip { display:flex; flex-direction:column; gap:6px;
+  padding:16px 18px; border:1px solid var(--border); border-radius:14px;
+  background:var(--bg-elev); text-decoration:none; color:var(--text);
+  transition:transform .15s, border-color .15s, background .15s; }
+.chip:hover, .chip:focus-visible { transform:translateY(-2px); border-color:var(--brand-1);
+  background:linear-gradient(180deg, var(--bg-elev), color-mix(in oklab,var(--brand-1) 6%,var(--bg-elev))); }
+.chip strong { font-family:var(--font-display); font-size:18px; letter-spacing:-.01em; }
+.chip span { font-size:14px; color:var(--text-muted); }
+
+/* Region grid (compliance) */
+.region-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
+.region { padding:20px 22px; background:var(--bg-elev);
+  border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow-sm); }
+.region h3 { font-family:var(--font-display); font-weight:700;
+  font-size:20px; margin:0 0 12px; display:flex; align-items:center; gap:10px; }
+.flag { font-size:22px; line-height:1; }
+
 /* Footer */
 .site-footer { border-top:1px solid var(--border); margin-top:64px; padding:28px 0; background:var(--bg-elev); }
 .footer-wrap { display:flex; flex-wrap:wrap; gap:8px 24px; align-items:center; justify-content:space-between; }
