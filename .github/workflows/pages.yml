@@ -28,10 +28,7 @@ jobs:
       - name: Stage site files
         run: |
           mkdir -p _site
-          # Copy the static site (HTML/CSS/JS + favicon if present).
-          # README.md is intentionally excluded — the website is the README.
-          cp index.html styles.css script.js _site/
-          # Disable Jekyll processing on Pages (we ship plain static files).
+          cp *.html styles.css script.js _site/
           touch _site/.nojekyll
 
       - name: Upload artifact
