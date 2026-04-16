@@ -8,6 +8,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script src="data-frameworks.js"></script>
+<script src="data-apps.js"></script>
+<script src="data-resources.js"></script>
+<script src="data.js"></script>
 <style>
 /* ── Page-specific overrides ── */
 .page-hero{
@@ -172,9 +176,11 @@
 .exp-desc{font-size:.72rem;color:var(--text-muted);margin-top:.15rem}
 </style>
 </head>
-<body><header class="site-header" role="banner">
-    <div class="wrap header-wrap">
-      <a class="brand" href="#top" aria-label="Pathways home">
+<body>
+<script src="nav.js"></script>
+<a href="#main-content" class="skip-link-unused"></a>
+<!-- nav.js injects the header. Old inline header replaced. -->
+<span hidden><!-- old nav start
         <span class="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 64 64" width="28" height="28">
             <defs>
@@ -213,8 +219,7 @@
         </button>
       </div>
     </div>
-  </header>
-<a href="#main-content" class="skip-link">Skip to main content</a>
+old nav end --></span>
 
 <section class="page-hero" id="main-content">
   <p class="eyebrow"><span class="dot"></span>Path Builder</p>
@@ -713,5 +718,6 @@ function toast(msg,type){const t=document.getElementById('toast');t.textContent=
 /* ── MODAL CLOSE ON BG ── */
 document.getElementById('expModal').addEventListener('click',function(e){if(e.target===this)closeExport();});
 </script>
+<script src="builder-app.js"></script>
 </body>
 </html>
