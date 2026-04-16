@@ -84,18 +84,18 @@
 
 <script>
 const APPS = [
-  {id:'lesson-loom',title:'LessonLoom',icon:'📝',desc:'AI-powered lesson planner built on the E² 5-part blueprint. Input any topic and get a Hook, Teach, Practice, Connect & Reflect structure in seconds.',tags:['planning','e2','ai'],status:'live',category:'planning',features:['E² blueprint','Differentiation tiers','PDF/Google Docs export','Bloom's alignment']},
+  {id:'lesson-loom',title:'LessonLoom',icon:'📝',desc:'AI-powered lesson planner built on the E² 5-part blueprint. Input any topic and get a Hook, Teach, Practice, Connect & Reflect structure in seconds.',tags:['planning','e2','ai'],status:'live',category:'planning',features:['E² blueprint','Differentiation tiers','PDF/Google Docs export',"Bloom's alignment"]},
   {id:'flip-studio',title:'FlipStudio',icon:'🎬',desc:'Paste any YouTube, website, or PDF link and FlipStudio converts it into a structured flipped lesson with comprehension questions and key vocab.',tags:['video','flipped','ai'],status:'live',category:'engagement',features:['Auto-transcription','Quiz generation','Timestamp markers','Accessibility captions']},
   {id:'rubric-raft',title:'RubricRaft',icon:'📊',desc:'Drag-and-drop rubric builder with QTI export. Create holistic or analytic rubrics aligned to any standard or framework — import from Excel too.',tags:['assessment','rubric','qti'],status:'live',category:'assessment',features:['QTI 2.2 export','Holistic & analytic rubrics','Standard alignment','Peer assessment mode']},
   {id:'quiz-forge',title:'QuizForge',icon:'❓',desc:'Generate quizzes from any text, URL, or document. Multiple question types, auto-grading, and xAPI reporting to your LRS.',tags:['quiz','assessment','ai','xapi'],status:'live',category:'assessment',features:['10 question types','xAPI reporting','AI generation','Adaptive difficulty']},
   {id:'differentiate-it',title:'DifferentiateIt',icon:'🎯',desc:'Paste any task and get three auto-differentiated versions — struggling, on-level, and advanced — all keeping the same learning objective.',tags:['differentiation','udl','accessibility'],status:'live',category:'planning',features:['3 tiers auto-generated','UDL-aligned','Reading level adjustment','Vocabulary scaffolding']},
   {id:'exit-ticket',title:'ExitTicket',icon:'🚪',desc:'Quick formative check-ins that surface understanding in real time. 60-second polls, traffic lights, and open-ended prompts. Works on any device.',tags:['assessment','formative','engagement'],status:'live',category:'assessment',features:['Real-time results','10 prompt types','Class analytics','Anonymous mode']},
   {id:'vocab-vault',title:'VocabVault',icon:'📚',desc:'Spaced-repetition vocabulary sets for any subject. Upload a word list or generate one from a topic. CEFR-tagged for language classes.',tags:['vocabulary','spaced-rep','languages','cefr'],status:'live',category:'languages',features:['SM-2 algorithm','CEFR tagging','Audio pronunciation','Image association']},
-  {id:'hifz-helper',title:'HifzHelper',icon:'📿',desc:'Quran memorisation tracker with mutashabihat (similar-verse) hints, murajaah cycles, and ijazah teacher linking. Hafs 'an 'Asim default.',tags:['quran','hifz','arabic','islamic'],status:'live',category:'arabic',features:['Mutashabihat alerts','Murajaah scheduler','Tajweed notes','Progress charts']},
+  {id:'hifz-helper',title:'HifzHelper',icon:'📿',desc:"Quran memorisation tracker with mutashabihat (similar-verse) hints, murajaah cycles, and ijazah teacher linking. Hafs 'an 'Asim default.",tags:['quran','hifz','arabic','islamic'],status:'live',category:'arabic',features:['Mutashabihat alerts','Murajaah scheduler','Tajweed notes','Progress charts']},
   {id:'arabic-lab',title:'ArabicLab',icon:'ع',desc:'Arabic as a second language (ASL) studio with CEFR A1–C2 tracks, Fusha vs dialect switching, and integrated Al-Arabiyya Bayna Yadayk progression.',tags:['arabic','language','cefr','asl'],status:'live',category:'arabic',features:['CEFR A1–C2','Fusha & dialect','Grammar drills','Speaking practice']},
   {id:'project-pilot',title:'ProjectPilot',icon:'🚀',desc:'Full PBL project planner with timeline, collaboration tools, and a driving-question builder. Aligned to PBL Works Gold Standard.',tags:['pbl','project','collaboration'],status:'beta',category:'pbl',features:['Driving question builder','Milestone tracker','Peer collaboration','Exhibition planner']},
   {id:'timeline-pro',title:'TimelinePro',icon:'📅',desc:'Visual history and sequence timeline builder. Drag events, add images and sources, and embed into any lesson or assessment.',tags:['history','visual','social-studies'],status:'beta',category:'engagement',features:['Drag & drop events','Image embeds','Source citations','Interactive publish']},
-  {id:'data-dash',title:'DataDash',icon:'📈',desc:'Student progress analytics across all Pathways apps. Track class trends, identify struggling students early, and generate parent-friendly reports.',tags:['analytics','data','reporting'],status:'beta',category:'assessment',features:['Cross-app analytics','Early warning alerts','Parent reports','Bloom's distribution']},
+  {id:'data-dash',title:'DataDash',icon:'📈',desc:'Student progress analytics across all Pathways apps. Track class trends, identify struggling students early, and generate parent-friendly reports.',tags:['analytics','data','reporting'],status:'beta',category:'assessment',features:['Cross-app analytics','Early warning alerts','Parent reports',"Bloom's distribution"]},
   {id:'lesson-loom-arabic',title:'LessonLoom Arabic',icon:'📝',desc:'Arabic-language version of LessonLoom for content-area teaching in Arabic. Supports RTL layout and all major Arab world curricula.',tags:['arabic','planning','e2'],status:'soon',category:'arabic',features:['RTL interface','Arab curricula aligned','Arabic AI generation','Islamic calendar']},
   {id:'read-aloud',title:'ReadAloud Studio',icon:'🔊',desc:'Text-to-speech studio with natural-language Arabic and English voices. Uploads text or pastes from any app; exports as MP3 or embeds inline.',tags:['accessibility','udl','languages'],status:'soon',category:'languages',features:['Arabic TTS','English TTS','SSML support','Accessibility export']},
   {id:'gamify-it',title:'GamifyIt',icon:'🎮',desc:'Add points, badges, leaderboards, and quests to any Pathways lesson. One click — no coding. Turn mundane drills into classroom competitions.',tags:['gamification','engagement'],status:'soon',category:'engagement',features:['XP & badges','Leaderboard','Quest paths','Classroom teams']},
@@ -131,21 +131,22 @@ function renderApps() {
       <ul style="font-size:.8rem;color:var(--text-muted);padding-left:1.25rem;margin-bottom:.75rem">${(a.features||[]).map(f=>`<li>${f}</li>`).join('')}</ul>
       <div class="app-footer">
         <span class="app-status ${{live:'status-live',beta:'status-beta',soon:'status-soon'}[a.status]||'status-soon'}">${{live:'● Live',beta:'⚡ Beta',soon:'Coming soon'}[a.status]||'Coming soon'}</span>
-        <button class="btn-add" onclick="addToPath('${a.id}','${a.title.replace(/'/g,\"\\\"\")}')">+ Add to Path</button>
+        <button class="btn-add" onclick="addToPath('${a.id}')">+ Add to Path</button>
       </div>
     </div>
   `).join('');
 }
 
-function addToPath(id, title) {
+function addToPath(id) {
+  const app = APPS.find(a => a.id === id);
+  if (!app) return;
   const draft = JSON.parse(localStorage.getItem('pathways-draft') || '{"nodes":[]}');
-  if (!draft.nodes.find(n=>n.id===id)) {
-    const app = APPS.find(a=>a.id===id);
+  if (!draft.nodes.find(n => n.id === id)) {
     draft.nodes.push({id, title: app.title, desc: app.desc, icon: app.icon, tags: app.tags, nodeType:'app', type:'app'});
     localStorage.setItem('pathways-draft', JSON.stringify(draft));
-    alert(title + ' added to your path! Go to the Builder to see it.');
+    alert(app.title + ' added to your path! Go to the Builder to see it.');
   } else {
-    alert(title + ' is already in your path.');
+    alert(app.title + ' is already in your path.');
   }
 }
 
