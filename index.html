@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b1020" />
+  <title>Pathways — Frameworks &amp; Standards for Modern Teaching</title>
+  <meta name="description" content="Pathways is a navigator for modern teaching: the E² framework, interoperability standards, world curricula, Arabic and Quran studies, and more." />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237c5cff'/%3E%3Cstop offset='1' stop-color='%2300c2a8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Cpath d='M14 46c8-22 28-22 36 0' fill='none' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='22' r='5' fill='white'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-wrap">
+      <a class="brand" href="#top" aria-label="Pathways home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 64 64" width="28" height="28">
+            <defs>
+              <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#7c5cff" />
+                <stop offset="1" stop-color="#00c2a8" />
+              </linearGradient>
+            </defs>
+            <rect width="64" height="64" rx="14" fill="url(#bg)" />
+            <path d="M14 46c8-22 28-22 36 0" fill="none" stroke="white" stroke-width="5" stroke-linecap="round" />
+            <circle cx="32" cy="22" r="5" fill="white" />
+          </svg>
+        </span>
+        <span class="brand-text">Pathways</span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Primary">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="bars" aria-hidden="true"></span>
+        </button>
+        <ul id="nav-list" class="nav-list">
+          <li><a href="#e2">E² Framework</a></li>
+          <li><a href="#interoperability">Interoperability</a></li>
+          <li><a href="#pedagogy">Pedagogy</a></li>
+          <li><a href="#compliance">Compliance</a></li>
+          <li><a href="#accessibility">Accessibility</a></li>
+          <li><a href="#curricula">Curricula</a></li>
+          <li><a href="#arabic">Arabic &amp; Quran</a></li>
+          <li><a href="#start">Start</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button id="theme-toggle" class="ghost-btn" aria-label="Toggle color theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v3"/><path d="M12 19v3"/><path d="M2 12h3"/><path d="M19 12h3"/><path d="M4.5 4.5l2.1 2.1"/><path d="M17.4 17.4l2.1 2.1"/><path d="M4.5 19.5l2.1-2.1"/><path d="M17.4 6.6l2.1-2.1"/></g></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M21 13.5A8.5 8.5 0 0 1 10.5 3a7 7 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="top" class="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="grid-overlay"></div>
+      </div>
+
+      <div class="wrap hero-wrap">
+        <p class="eyebrow">
+          <span class="dot"></span>
+          A navigator for modern teaching
+        </p>
+        <h1 class="hero-title">
+          Frameworks &amp; standards,
+          <span class="grad-text">made navigable.</span>
+        </h1>
+        <p class="hero-sub">
+          Pathways is a navigator — not a tutorial. For each framework we explain
+          <em>what it is</em>, <em>when it applies</em>, and <em>where Pathways supports it</em>.
+          Follow the links for the authoritative specs.
+        </p>
+
+        <div class="hero-cta">
+          <a class="btn primary" href="#e2">
+            Explore the E² Framework
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn ghost" href="#curricula">Browse world curricula</a>
+        </div>
+
+        <dl class="hero-stats" aria-label="At a glance">
+          <div><dt>Pillars</dt><dd>4</dd></div>
+          <div><dt>Standards mapped</dt><dd>40+</dd></div>
+          <div><dt>Curricula covered</dt><dd>30+</dd></div>
+          <div><dt>WCAG target</dt><dd>2.2 AA</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ===================== E² Framework ===================== -->
+    <section id="e2" class="section section-feature" aria-labelledby="e2-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Featured framework</span>
+          <h2 id="e2-title" class="section-title">
+            The <span class="grad-text">E²</span> Teaching Framework
+          </h2>
+          <p class="section-lede">
+            <strong>E² — "Every Student Has the Right to Understand"</strong> — is an original teaching
+            framework by <strong>Dina El Ahl</strong>. It is the pedagogical spine behind every suggested
+            path and flipped-video slot on Pathways.
+          </p>
+          <p>
+            <a class="btn primary" href="#" aria-label="Open the official E² app">
+              Open the official E² app
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </p>
+        </div>
+
+        <div class="beliefs">
+          <h3 class="h3">Core beliefs</h3>
+          <ul class="belief-list" role="list">
+            <li>Every student has the right to understand.</li>
+            <li>Teacher adaptation comes first — not student blame.</li>
+            <li>Struggle signals a need for adjustment, not inability.</li>
+            <li>No student is unteachable.</li>
+            <li>Teachers modify materials and methods to meet learners.</li>
+            <li>Understanding is a fundamental right.</li>
+          </ul>
+        </div>
+
+        <h3 class="h3 pillars-heading">The four pillars</h3>
+        <div class="pillars" role="list">
+
+          <article class="pillar" role="listitem">
+            <header>
+              <span class="pillar-num">01</span>
+              <h4>Lesson Design <span class="muted">— 5-part blueprint</span></h4>
+            </header>
+            <p>Every strong lesson moves through five phases:</p>
+            <ol class="phases">
+              <li><strong>Hook</strong> <span class="time">2 min</span><br>Attention-grabbing opening that makes the lesson feel worth showing up for.</li>
+              <li><strong>Teach</strong> <span class="time">10–15 min</span><br>Chunked content delivery; one idea at a time, with worked examples.</li>
+              <li><strong>Practice</strong> <span class="time">15–20 min</span><br>Guided then independent work; students do the cognitive lifting.</li>
+              <li><strong>Connect</strong> <span class="time">5 min</span><br>Real-world relevance; answer "why does this matter to me?"</li>
+              <li><strong>Reflect</strong> <span class="time">5 min</span><br>Exit ticket that surfaces what was learned and what still isn't clear.</li>
+            </ol>
+          </article>
+
+          <article class="pillar" role="listitem">
+            <header>
+              <span class="pillar-num">02</span>
+              <h4>Differentiation</h4>
+            </header>
+            <p>Reach every learner, not just the average one:</p>
+            <ul class="bullets">
+              <li><strong>Modalities</strong> — auditory, visual, and kinesthetic entry points for every new concept.</li>
+              <li><strong>Tiered tasks</strong> — struggling, on-level, and advanced versions of the same core task.</li>
+              <li><strong>Cultural responsiveness</strong> — examples, names, and contexts that reflect every learner in the room.</li>
+              <li><strong>Student choice</strong> — genuine options in how students show what they know.</li>
+            </ul>
+          </article>
+
+          <article class="pillar" role="listitem">
+            <header>
+              <span class="pillar-num">03</span>
+              <h4>Engagement <span class="muted">— 6 levers</span></h4>
+            </header>
+            <p>Six deliberate levers you can pull to lift engagement:</p>
+            <ul class="bullets">
+              <li><strong>Curiosity</strong> — open with a question that begs an answer.</li>
+              <li><strong>Active participation</strong> — no passive watching; every student is doing something.</li>
+              <li><strong>Purpose</strong> — name why today's lesson matters beyond the test.</li>
+              <li><strong>Feedback</strong> — fast, specific, actionable — not just grades.</li>
+              <li><strong>Gamification</strong> — points, quests, or teams where it genuinely helps (not as decoration).</li>
+              <li><strong>Routine &amp; novelty balance</strong> — predictable structure, surprising moments inside it.</li>
+            </ul>
+          </article>
+
+          <article class="pillar" role="listitem">
+            <header>
+              <span class="pillar-num">04</span>
+              <h4>Classroom Culture</h4>
+            </header>
+            <p>None of the above lands if the room isn't safe to try in:</p>
+            <ul class="bullets">
+              <li><strong>Relationship-building</strong> — know your students as people first.</li>
+              <li><strong>Co-created norms</strong> — students shape the rules, so they own them.</li>
+              <li><strong>Restorative practices</strong> — repair harm; don't just punish.</li>
+              <li><strong>Welcoming environment</strong> — physical space, language, and tone all say "you belong here."</li>
+            </ul>
+          </article>
+        </div>
+
+        <aside class="callout" aria-label="Where E² shows up on Pathways">
+          <h3 class="h3">Where E² shows up on Pathways</h3>
+          <ul class="bullets">
+            <li>The <strong>Flipped Studio</strong> generates the 5-part blueprint automatically for any link.</li>
+            <li>Lesson-planning apps (<strong>LessonLoom</strong>, <strong>RubricRaft</strong>) use the E² structure as their default template.</li>
+            <li>The <strong>Path builder</strong> surfaces E² first when no other framework is specified.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================== Interoperability ===================== -->
+    <section id="interoperability" class="section" aria-labelledby="interop-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Plug in &amp; play</span>
+          <h2 id="interop-title" class="section-title">Interoperability</h2>
+          <p class="section-lede">
+            How Pathways speaks the language of LMSs, SISs, and assessment platforms — so your
+            tools, content, and rosters move with you.
+          </p>
+        </div>
+
+        <div class="spec-grid">
+          <article class="spec-card">
+            <span class="badge">LMS launch</span>
+            <h3>LTI 1.3</h3>
+            <p>The modern OAuth2 / OpenID-Connect spec for launching tools from an LMS — Canvas, Moodle, Blackboard, Brightspace, Google Classroom. Supports <strong>Deep Linking</strong>, <strong>Assignment &amp; Grade Services (AGS)</strong>, and <strong>Names &amp; Role Provisioning Services (NRPS)</strong>. Maintained by 1EdTech.</p>
+          </article>
+
+          <article class="spec-card">
+            <span class="badge">Learning data</span>
+            <h3>xAPI</h3>
+            <p>Records learning as <code>actor → verb → object</code> statements in a Learning Record Store (LRS). Works across devices, offline, and outside an LMS. Formerly Tin Can.</p>
+          </article>
+
+          <article class="spec-card">
+            <span class="badge">Legacy packaging</span>
+            <h3>SCORM 1.2 / 2004</h3>
+            <p>The legacy packaging standard for self-contained e-learning courses. Use xAPI for new work when possible.</p>
+          </article>
+
+          <article class="spec-card">
+            <span class="badge">xAPI profile</span>
+            <h3>cmi5</h3>
+            <p>The xAPI profile designed to replace SCORM for LMS-delivered content.</p>
+          </article>
+
+          <article class="spec-card">
+            <span class="badge">Assessment</span>
+            <h3>QTI</h3>
+            <p>Question &amp; Test Interoperability — exchange assessment items and tests between platforms. <strong>QuizForge</strong> and <strong>RubricRaft</strong> import/export QTI 2.2 and 3.0.</p>
+          </article>
+
+          <article class="spec-card">
+            <span class="badge">Rostering</span>
+            <h3>OneRoster</h3>
+            <p>Rostering data — classes, students, enrolments — between an SIS and learning platforms.</p>
+          </article>
+
+          <article class="spec-card">
+            <span class="badge">Analytics</span>
+            <h3>Caliper Analytics</h3>
+            <p>1EdTech's alternative to xAPI with a stricter profile model.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Pedagogy ===================== -->
+    <section id="pedagogy" class="section section-tinted" aria-labelledby="ped-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Pedagogy beyond E²</span>
+          <h2 id="ped-title" class="section-title">Frameworks teachers reach for</h2>
+          <p class="section-lede">
+            Established lenses for designing learning. Pathways tags every resource so you can
+            filter, mix, and match.
+          </p>
+        </div>
+
+        <div class="chip-grid">
+          <a class="chip" href="#"><strong>UDL 3.0</strong><span>Multiple means of engagement, representation, and action &amp; expression. By CAST.</span></a>
+          <a class="chip" href="#"><strong>Bloom's Taxonomy</strong><span>Six cognitive levels: remember, understand, apply, analyze, evaluate, create.</span></a>
+          <a class="chip" href="#"><strong>SAMR</strong><span>Evaluate tech use: Substitution, Augmentation, Modification, Redefinition.</span></a>
+          <a class="chip" href="#"><strong>TPACK</strong><span>Intersection of Technological, Pedagogical, and Content Knowledge.</span></a>
+          <a class="chip" href="#"><strong>5E Model</strong><span>Engage, Explore, Explain, Elaborate, Evaluate. Common in science teaching.</span></a>
+          <a class="chip" href="#"><strong>ADDIE</strong><span>Instructional design cycle: Analysis, Design, Development, Implementation, Evaluation.</span></a>
+          <a class="chip" href="#"><strong>Constructive Alignment</strong><span>Biggs — align intended outcomes, teaching, and assessment.</span></a>
+          <a class="chip" href="#"><strong>Montessori · Waldorf · Reggio Emilia</strong><span>Long-established alternative pedagogies with child-led, inquiry-driven traditions.</span></a>
+          <a class="chip" href="#"><strong>Project-Based Learning</strong><span>Extended, authentic projects as the core unit of instruction.</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Compliance & Privacy ===================== -->
+    <section id="compliance" class="section" aria-labelledby="comp-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Compliance &amp; privacy</span>
+          <h2 id="comp-title" class="section-title">Built for procurement</h2>
+          <p class="section-lede">
+            The legal and audit frameworks Pathways meets — or maps to — by region. Layer on
+            local rules as your context requires.
+          </p>
+        </div>
+
+        <div class="region-grid">
+          <article class="region">
+            <h3><span class="flag" aria-hidden="true">🇺🇸</span> United States</h3>
+            <ul class="bullets">
+              <li><strong>FERPA</strong> — protects the privacy of student education records at institutions receiving US federal funding.</li>
+              <li><strong>COPPA</strong> — restricts collection of personal information from children under 13.</li>
+            </ul>
+          </article>
+          <article class="region">
+            <h3><span class="flag" aria-hidden="true">🇪🇺</span> European Union</h3>
+            <ul class="bullets">
+              <li><strong>GDPR &amp; GDPR-K</strong> — baseline data-protection plus stricter rules for children (age threshold varies 13–16 by member state).</li>
+            </ul>
+          </article>
+          <article class="region">
+            <h3><span class="flag" aria-hidden="true">🌍</span> Worldwide equivalents</h3>
+            <ul class="bullets">
+              <li><strong>PIPEDA</strong> (Canada), <strong>APPI</strong> (Japan), <strong>POPIA</strong> (South Africa), <strong>LGPD</strong> (Brazil).</li>
+            </ul>
+          </article>
+          <article class="region">
+            <h3><span class="flag" aria-hidden="true">🕌</span> Arab world</h3>
+            <ul class="bullets">
+              <li><strong>PDPL</strong> (Saudi Arabia), <strong>UAE PDPL</strong>, <strong>Egyptian PDPL</strong> — personal-data-protection laws.</li>
+            </ul>
+          </article>
+          <article class="region">
+            <h3><span class="flag" aria-hidden="true">🛡️</span> Audits &amp; security</h3>
+            <ul class="bullets">
+              <li><strong>SOC 2 Type II</strong> — audit framework; common procurement requirement.</li>
+              <li><strong>ISO 27001</strong> — information security management.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Accessibility ===================== -->
+    <section id="accessibility" class="section section-tinted" aria-labelledby="a11y-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Accessibility</span>
+          <h2 id="a11y-title" class="section-title">Designed to be usable by everyone</h2>
+          <p class="section-lede">
+            "Every student has the right to understand" extends to the interface itself.
+            Pathways targets <strong>WCAG 2.2 AA</strong> across the product surface.
+          </p>
+        </div>
+
+        <div class="spec-grid">
+          <article class="spec-card">
+            <span class="badge">Baseline</span>
+            <h3>WCAG 2.2 (AA)</h3>
+            <p>The baseline for accessible web content — perceivable, operable, understandable, robust.</p>
+          </article>
+          <article class="spec-card">
+            <span class="badge">US procurement</span>
+            <h3>Section 508</h3>
+            <p>The US federal procurement rule referencing WCAG.</p>
+          </article>
+          <article class="spec-card">
+            <span class="badge">EU procurement</span>
+            <h3>EN 301 549</h3>
+            <p>The European accessibility standard for ICT procurement.</p>
+          </article>
+          <article class="spec-card">
+            <span class="badge">Patterns</span>
+            <h3>ARIA Authoring Practices</h3>
+            <p>WAI guidance on accessible rich-internet-application patterns.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== World Curricula ===================== -->
+    <section id="curricula" class="section" aria-labelledby="curr-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">World curricula</span>
+          <h2 id="curr-title" class="section-title">Mapped to every major curriculum</h2>
+          <p class="section-lede">
+            Pathways maps apps and resources to every major curriculum. Where possible,
+            resources link directly to the authoritative syllabus document.
+          </p>
+        </div>
+
+        <div class="curr-block">
+          <h3 class="h3">International &amp; national</h3>
+          <div class="curr-grid">
+            <a class="curr-card" href="#"><h4>IB</h4><p>International Baccalaureate PYP, MYP, DP, CP.</p></a>
+            <a class="curr-card" href="#"><h4>Cambridge International (CAIE)</h4><p>Primary, Lower Secondary, IGCSE, AS/A Level.</p></a>
+            <a class="curr-card" href="#"><h4>Common Core (US)</h4><p>ELA and Math, widely adopted in the US.</p></a>
+            <a class="curr-card" href="#"><h4>NGSS (US)</h4><p>Next Generation Science Standards — three-dimensional framework.</p></a>
+            <a class="curr-card" href="#"><h4>UK National Curriculum</h4><p>Key Stages 1–4 plus GCSE / A Level.</p></a>
+            <a class="curr-card" href="#"><h4>Scottish CfE</h4><p>Curriculum for Excellence.</p></a>
+            <a class="curr-card" href="#"><h4>ACARA · NZ Curriculum</h4><p>Australian and New Zealand national frameworks.</p></a>
+            <a class="curr-card" href="#"><h4>French Baccalauréat</h4><p>Ministère de l'Éducation nationale.</p></a>
+            <a class="curr-card" href="#"><h4>German Lehrplan / Abitur</h4><p>Per-Land plus KMK.</p></a>
+            <a class="curr-card" href="#"><h4>Italian Liceo</h4><p>Indicazioni Nazionali.</p></a>
+            <a class="curr-card" href="#"><h4>Spanish LOMLOE</h4><p>Current Spanish national framework.</p></a>
+            <a class="curr-card" href="#"><h4>Japanese MEXT</h4><p>National Courses of Study.</p></a>
+            <a class="curr-card" href="#"><h4>Chinese Gaokao</h4><p>National curriculum and university-entrance exam.</p></a>
+            <a class="curr-card" href="#"><h4>Korean National Curriculum</h4><p>K-12 framework.</p></a>
+            <a class="curr-card" href="#"><h4>Singapore MOE</h4><p>National syllabuses.</p></a>
+            <a class="curr-card" href="#"><h4>Indian CBSE · ICSE</h4><p>Plus state boards.</p></a>
+            <a class="curr-card" href="#"><h4>Russian FGOS</h4><p>Federal State Educational Standards.</p></a>
+            <a class="curr-card" href="#"><h4>Brazilian BNCC</h4><p>Base Nacional Comum Curricular.</p></a>
+            <a class="curr-card" href="#"><h4>South African CAPS</h4><p>Curriculum and Assessment Policy Statements.</p></a>
+          </div>
+        </div>
+
+        <div class="curr-block">
+          <h3 class="h3">Arab world</h3>
+          <div class="curr-grid">
+            <a class="curr-card" href="#"><h4>Egyptian National Curriculum 2.0</h4><p>The post-reform (2018+) competency-based curriculum.</p></a>
+            <a class="curr-card" href="#"><h4>Saudi MoE — Vision 2030</h4><p>Reformed curriculum aligned to Saudi Vision 2030 outcomes.</p></a>
+            <a class="curr-card" href="#"><h4>UAE MoE</h4><p>National curriculum plus Abu Dhabi ADEK supplements.</p></a>
+            <a class="curr-card" href="#"><h4>Gulf MoEs</h4><p>Qatari, Kuwaiti, Bahraini, and Omani Ministries of Education.</p></a>
+            <a class="curr-card" href="#"><h4>Levant MoEs</h4><p>Jordanian MoE, Lebanese MEHE, Palestinian MoE, Iraqi MoE.</p></a>
+            <a class="curr-card" href="#"><h4>Maghreb MENs</h4><p>Moroccan, Tunisian, Algerian, and Libyan Ministries of Education.</p></a>
+            <a class="curr-card" href="#"><h4>Al-Azhar curriculum</h4><p>The integrated Azhari stream — modern subjects with Quran, Arabic, and Islamic sciences.</p></a>
+          </div>
+        </div>
+
+        <div class="curr-block">
+          <h3 class="h3">Subject frameworks</h3>
+          <div class="chip-grid">
+            <a class="chip" href="#"><strong>ISTE Standards</strong><span>For students, educators, and education leaders on digital-age learning.</span></a>
+            <a class="chip" href="#"><strong>CSTA K-12 CS Standards</strong><span>The reference for computer-science scope &amp; sequence.</span></a>
+            <a class="chip" href="#"><strong>CEFR</strong><span>Common European Framework of Reference for Languages (A1–C2).</span></a>
+            <a class="chip" href="#"><strong>ACTFL Proficiency</strong><span>The US counterpart to CEFR.</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Arabic & Quran ===================== -->
+    <section id="arabic" class="section section-arabic" aria-labelledby="ar-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">First-class treatment</span>
+          <h2 id="ar-title" class="section-title">
+            Arabic language &amp; <span lang="ar" dir="rtl" class="arabic-word">القرآن</span> studies
+          </h2>
+          <p class="section-lede">
+            Pathways gives first-class treatment to Arabic-as-a-second-language and Quran studies —
+            with dedicated apps, resources, and path templates.
+          </p>
+        </div>
+
+        <div class="ar-grid">
+          <article class="ar-card">
+            <h3>Arabic for non-native speakers</h3>
+            <ul class="bullets">
+              <li><strong>CEFR mapping (A1–C2)</strong> — all non-native Arabic resources are tagged to CEFR levels.</li>
+              <li><strong>Al-Arabiyya Bayna Yadayk</strong> — the most widely used series for Arabic as a foreign language.</li>
+              <li><strong>Madinah Arabic Reader</strong> — the classic grammar-through-reading approach.</li>
+              <li><strong>ALPS / ACTFL-OPI</strong> — oral proficiency frameworks applicable to Arabic learners.</li>
+              <li><strong>Diglossia-aware instruction</strong> — when to teach Modern Standard Arabic (Fusha) vs. dialect (Levantine, Egyptian, Gulf, Maghrebi).</li>
+            </ul>
+          </article>
+
+          <article class="ar-card">
+            <h3>Quran studies</h3>
+            <ul class="bullets">
+              <li><strong>Hifz (memorization)</strong> — spaced-repetition strategies; traditional <em lang="ar-Latn">murajaah</em> cycles.</li>
+              <li><strong>Tajweed</strong> — rules for correct recitation; <em>Hafs 'an 'Asim</em> is the default reading on Pathways, with other <em lang="ar-Latn">qira'at</em> flagged.</li>
+              <li><strong>Tafsir</strong> — classical (Ibn Kathir, al-Tabari, al-Qurtubi) and modern pedagogical tafsir.</li>
+              <li><strong>Ijazah tradition</strong> — the authenticated teacher-to-student chain; Pathways tags tutors who hold <em lang="ar-Latn">ijazah</em> in their app profile.</li>
+              <li><strong>Mutashabihat</strong> — similar-verse hints for memorizers, surfaced by the <strong>HifzHelper</strong> app.</li>
+            </ul>
+          </article>
+
+          <article class="ar-card">
+            <h3>Islamic studies (beyond Quran)</h3>
+            <ul class="bullets">
+              <li><strong>Fiqh</strong> — Islamic jurisprudence; four Sunni madhahib + Ja'fari; level-tagged.</li>
+              <li><strong>Seerah</strong> — life of the Prophet ﷺ; age-banded for K-12 through adult.</li>
+              <li><strong>Aqeedah</strong> — theology / creed.</li>
+              <li><strong>Hadith sciences</strong> — methodology and the canonical collections.</li>
+              <li><strong>Adab &amp; akhlaq</strong> — manners and character development.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Where to Start ===================== -->
+    <section id="start" class="section section-feature" aria-labelledby="start-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Where to start</span>
+          <h2 id="start-title" class="section-title">A short opinionated path</h2>
+        </div>
+
+        <div class="start-grid">
+          <article class="start-card">
+            <span class="badge">If you teach or learn</span>
+            <h3>E² + UDL 3.0 + CEFR</h3>
+            <p>Covers most of the "how do I reach every learner?" question — pedagogy, accessibility of design, and language proficiency.</p>
+          </article>
+          <article class="start-card">
+            <span class="badge">If you build</span>
+            <h3>LTI 1.3 + xAPI + WCAG 2.2 AA</h3>
+            <p>Covers "will this plug in and be usable?" — LMS launch, learning data, and accessible UI.</p>
+          </article>
+          <article class="start-card">
+            <span class="badge">Then layer on</span>
+            <h3>Regional compliance</h3>
+            <p>Add FERPA, GDPR-K, PDPL, and the regional equivalents your context requires.</p>
+          </article>
+        </div>
+
+        <div class="next-steps">
+          <h3 class="h3">Next steps</h3>
+          <p class="muted">
+            Check the <a href="#">API reference</a> to see how Pathways exposes these frameworks
+            programmatically, or the <a href="#">FAQ</a> for common integration questions.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-wrap">
+      <p>© 2026 Pathways</p>
+      <p class="muted">Built around the E² framework by Dina El Ahl.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
