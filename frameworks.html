@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frameworks — Pathways</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.hero{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:#fff;padding:3rem 1.5rem;text-align:center}
+.hero h1{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:800;margin-bottom:.75rem}
+.hero p{font-size:1.1rem;opacity:.9;max-width:600px;margin:0 auto}
+.page-wrap{max-width:1100px;margin:0 auto;padding:2.5rem 1.5rem}
+.section{margin-bottom:3rem}
+.section-title{font-size:1.4rem;font-weight:800;margin-bottom:.35rem;display:flex;align-items:center;gap:.5rem}
+.section-sub{font-size:.925rem;color:var(--text-muted);margin-bottom:1.5rem;max-width:700px}
+.fw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.25rem}
+.fw-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.fw-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.09);border-color:var(--brand)}
+.fw-card.featured{border-color:#7c3aed;background:linear-gradient(135deg,#faf5ff,#f5f3ff)}
+.fw-badge{display:inline-block;padding:.2rem .6rem;border-radius:999px;font-size:.72rem;font-weight:700;margin-bottom:.75rem}
+.badge-featured{background:#7c3aed;color:#fff}
+.badge-pedagogy{background:#0891b2;color:#fff}
+.badge-compliance{background:#dc2626;color:#fff}
+.badge-interop{background:#059669;color:#fff}
+.badge-access{background:#d97706;color:#fff}
+.badge-curricula{background:#4f46e5;color:#fff}
+.fw-icon{font-size:1.75rem;margin-bottom:.5rem}
+.fw-title{font-weight:800;font-size:1.05rem;margin-bottom:.35rem}
+.fw-desc{font-size:.875rem;color:var(--text-muted);line-height:1.55;margin-bottom:.75rem}
+.fw-where{font-size:.8rem;background:#f8fafc;border-radius:8px;padding:.6rem .75rem;border-left:3px solid var(--brand)}
+.fw-where strong{color:var(--brand)}
+.e2-pillars{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:1rem}
+.pillar{background:#fff;border:1px solid var(--border);border-radius:10px;padding:.9rem}
+.pillar-num{font-size:.75rem;font-weight:700;color:var(--brand);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.2rem}
+.pillar-title{font-weight:700;font-size:.925rem;margin-bottom:.3rem}
+.pillar-desc{font-size:.8rem;color:var(--text-muted);line-height:1.45}
+.toc{background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:1.25rem;margin-bottom:2.5rem}
+.toc-title{font-weight:700;font-size:.925rem;margin-bottom:.75rem}
+.toc-links{display:flex;flex-wrap:wrap;gap:.5rem}
+.toc-link{background:#fff;border:1px solid var(--border);border-radius:8px;padding:.35rem .75rem;font-size:.8rem;color:var(--brand);font-weight:600;text-decoration:none;transition:.15s}
+.toc-link:hover{background:var(--brand);color:#fff;border-color:var(--brand)}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">🧭 Path<span>ways</span></a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="path-builder.html" class="nav-link">Builder</a>
+      <a href="apps.html" class="nav-link">Apps</a>
+      <a href="frameworks.html" class="nav-link active">Frameworks</a>
+      <a href="resources.html" class="nav-link">Resources</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <a href="path-builder.html" class="nav-cta">Build a Path</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>📐 Frameworks &amp; Standards</h1>
+  <p>This page is a navigator, not a tutorial. For each framework we explain what it is, when it applies, and where Pathways supports it.</p>
+</section>
+
+<div class="page-wrap">
+
+  <!-- TOC -->
+  <div class="toc">
+    <div class="toc-title">Jump to section</div>
+    <div class="toc-links">
+      <a class="toc-link" href="#e2">E² Teaching Framework</a>
+      <a class="toc-link" href="#pedagogy">Pedagogy</a>
+      <a class="toc-link" href="#interop">Interoperability</a>
+      <a class="toc-link" href="#compliance">Compliance &amp; Privacy</a>
+      <a class="toc-link" href="#accessibility">Accessibility</a>
+      <a class="toc-link" href="#curricula">World Curricula</a>
+      <a class="toc-link" href="#arabic">Arabic &amp; Quran</a>
+    </div>
+  </div>
+
+  <!-- E² Featured -->
+  <div class="section" id="e2">
+    <div class="section-title">⭐ E² Teaching Framework <span style="background:#7c3aed;color:#fff;font-size:.75rem;padding:.2rem .55rem;border-radius:999px;font-weight:700">Featured</span></div>
+    <div class="section-sub">E² — "Every Student Has the Right to Understand" — is an original teaching framework by Dina El Ahl. It is the pedagogical spine behind every suggested path and flipped-video slot on Pathways.</div>
+    <div class="fw-grid" style="grid-template-columns:1fr">
+      <div class="fw-card featured">
+        <span class="fw-badge badge-featured">Original Framework</span>
+        <div class="fw-icon">🎓</div>
+        <div class="fw-title">E² — Every Student Has the Right to Understand</div>
+        <div class="fw-desc">E² rests on six core beliefs: every student has the right to understand; teacher adaptation comes first — not student blame; struggle signals a need for adjustment, not inability; no student is unteachable; teachers modify materials and methods to meet learners; understanding is a fundamental right.</div>
+        <div class="e2-pillars">
+          <div class="pillar">
+            <div class="pillar-num">Pillar 1</div>
+            <div class="pillar-title">📋 Lesson Design</div>
+            <div class="pillar-desc">5-part blueprint: Hook (2 min) → Teach (10–15 min) → Practice (15–20 min) → Connect (5 min) → Reflect (5 min).</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">Pillar 2</div>
+            <div class="pillar-title">🎯 Differentiation</div>
+            <div class="pillar-desc">Modalities, tiered tasks, cultural responsiveness, and student choice to reach every learner.</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">Pillar 3</div>
+            <div class="pillar-title">⚡ Engagement</div>
+            <div class="pillar-desc">Six levers: curiosity, active participation, purpose, feedback, gamification, routine & novelty balance.</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">Pillar 4</div>
+            <div class="pillar-title">🏫 Classroom Culture</div>
+            <div class="pillar-desc">Relationship-building, co-created norms, restorative practices, welcoming environment.</div>
+          </div>
+        </div>
+        <div class="fw-where" style="margin-top:1rem"><strong>Where in Pathways:</strong> FlipStudio auto-generates the 5-part blueprint. LessonLoom and RubricRaft use E² as their default template. Path Builder surfaces E² first when no other framework is selected.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interoperability -->
+  <div class="section" id="interop">
+    <div class="section-title">🔗 Interoperability Standards</div>
+    <div class="section-sub">Standards that let Pathways plug into your LMS and learning record store without vendor lock-in.</div>
+    <div class="fw-grid">
+      <div class="fw-card"><span class="fw-badge badge-interop">Interop</span><div class="fw-title">LTI 1.3</div><div class="fw-desc">The modern OAuth2/OpenID-Connect spec for launching tools from an LMS (Canvas, Moodle, Blackboard, Brightspace, Google Classroom). Supports Deep Linking, AGS, and NRPS.</div><div class="fw-where"><strong>Pathways:</strong> All apps launch via LTI 1.3 with grade passback.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-interop">Interop</span><div class="fw-title">xAPI (Tin Can)</div><div class="fw-desc">Records learning as actor→verb→object statements in an LRS. Works across devices, offline, and outside an LMS. Preferred for new work over SCORM.</div><div class="fw-where"><strong>Pathways:</strong> QuizForge and ExitTicket emit xAPI statements to any conformant LRS.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-interop">Interop</span><div class="fw-title">SCORM 1.2 / 2004</div><div class="fw-desc">Legacy packaging standard for self-contained e-learning courses. Use xAPI for new builds; SCORM export is provided for legacy platforms.</div><div class="fw-where"><strong>Pathways:</strong> SCORM export available for compatibility.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-interop">Interop</span><div class="fw-title">QTI 2.2 &amp; 3.0</div><div class="fw-desc">Question and Test Interoperability — the spec for exchanging assessment items between platforms. Enables import from and export to other assessment tools.</div><div class="fw-where"><strong>Pathways:</strong> QuizForge and RubricRaft import/export QTI 2.2 and 3.0.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-interop">Interop</span><div class="fw-title">OneRoster</div><div class="fw-desc">Rostering data (classes, students, enrolments) between an SIS and learning platforms. Reduces admin burden and keeps class lists in sync.</div><div class="fw-where"><strong>Pathways:</strong> DataDash syncs rosters via OneRoster 1.2.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-interop">Interop</span><div class="fw-title">cmi5</div><div class="fw-desc">The xAPI profile designed to replace SCORM for LMS-delivered content. Adds launch, session management, and completion handling on top of xAPI.</div><div class="fw-where"><strong>Pathways:</strong> cmi5 launch profile supported for LMS packages.</div></div>
+    </div>
+  </div>
+
+  <!-- Pedagogy -->
+  <div class="section" id="pedagogy">
+    <div class="section-title">📚 Pedagogy</div>
+    <div class="section-sub">Established instructional-design and teaching frameworks that Pathways aligns to and maps into its tools.</div>
+    <div class="fw-grid">
+      <div class="fw-card"><span class="fw-badge badge-pedagogy">Pedagogy</span><div class="fw-title">UDL 3.0</div><div class="fw-desc">Universal Design for Learning — design instruction with multiple means of engagement, representation, and action &amp; expression. Maintained by CAST.</div><div class="fw-where"><strong>Pathways:</strong> DifferentiateIt generates UDL-compliant multi-modal task variants.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-pedagogy">Pedagogy</span><div class="fw-title">Bloom's Taxonomy (Revised)</div><div class="fw-desc">Six cognitive levels: Remember, Understand, Apply, Analyse, Evaluate, Create. Used to level learning objectives and assessment items.</div><div class="fw-where"><strong>Pathways:</strong> LessonLoom tags every objective and QuizForge aligns questions to Bloom's levels.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-pedagogy">Pedagogy</span><div class="fw-title">5E Instructional Model</div><div class="fw-desc">Engage, Explore, Explain, Elaborate, Evaluate. Common in science teaching; each phase has a distinct purpose and student action.</div><div class="fw-where"><strong>Pathways:</strong> Available as a path template in the Builder.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-pedagogy">Pedagogy</span><div class="fw-title">SAMR</div><div class="fw-desc">Substitution, Augmentation, Modification, Redefinition — a model for evaluating technology use in the classroom. Helps avoid "tech for tech's sake".</div><div class="fw-where"><strong>Pathways:</strong> Each app is tagged with its SAMR level.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-pedagogy">Pedagogy</span><div class="fw-title">Project-Based Learning (PBL)</div><div class="fw-desc">Extended, authentic projects as the core unit of instruction. Backed by PBL Works Gold Standard: driving question, student voice, reflection, and public product.</div><div class="fw-where"><strong>Pathways:</strong> ProjectPilot is built around PBL Works standards.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-pedagogy">Pedagogy</span><div class="fw-title">ADDIE</div><div class="fw-desc">Instructional design cycle: Analysis, Design, Development, Implementation, Evaluation. The backbone of formal course design.</div><div class="fw-where"><strong>Pathways:</strong> Path Builder wizard mirrors ADDIE stages.</div></div>
+    </div>
+  </div>
+
+  <!-- Compliance -->
+  <div class="section" id="compliance">
+    <div class="section-title">🔒 Compliance &amp; Privacy</div>
+    <div class="section-sub">Legal and regulatory frameworks that govern student data. Pathways is designed with privacy-by-default.</div>
+    <div class="fw-grid">
+      <div class="fw-card"><span class="fw-badge badge-compliance">Compliance</span><div class="fw-title">FERPA (US)</div><div class="fw-desc">Protects the privacy of student education records at institutions receiving US federal funding.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-compliance">Compliance</span><div class="fw-title">GDPR &amp; GDPR-K (EU)</div><div class="fw-desc">Baseline data protection plus stricter rules for children. Age threshold for consent varies 13–16 by member state.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-compliance">Compliance</span><div class="fw-title">COPPA (US)</div><div class="fw-desc">Restricts collection of personal information from children under 13 for US-facing services.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-compliance">Compliance</span><div class="fw-title">PDPL (Saudi Arabia)</div><div class="fw-desc">Saudi Arabia's Personal Data Protection Law — covers personal data collected or processed in the Kingdom.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-compliance">Compliance</span><div class="fw-title">UAE PDPL &amp; Egyptian PDPL</div><div class="fw-desc">Personal data protection laws across the UAE and Egypt. Pathways applies the strictest applicable standard when operating across multiple Arab jurisdictions.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-compliance">Compliance</span><div class="fw-title">LGPD (Brazil) &amp; PIPEDA (Canada)</div><div class="fw-desc">Regional data-protection equivalents for Latin America and Canada. Pathways maps privacy controls to these laws for schools in those jurisdictions.</div></div>
+    </div>
+  </div>
+
+  <!-- Accessibility -->
+  <div class="section" id="accessibility">
+    <div class="section-title">♿ Accessibility</div>
+    <div class="section-sub">Standards that ensure every learner, regardless of ability, can access Pathways tools.</div>
+    <div class="fw-grid">
+      <div class="fw-card"><span class="fw-badge badge-access">Accessibility</span><div class="fw-title">WCAG 2.2 (AA)</div><div class="fw-desc">Web Content Accessibility Guidelines — the baseline for accessible web content. All Pathways apps target AA conformance.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-access">Accessibility</span><div class="fw-title">Section 508 (US)</div><div class="fw-desc">US federal procurement rule referencing WCAG. Required for schools and districts using federal funds.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-access">Accessibility</span><div class="fw-title">EN 301 549 (EU)</div><div class="fw-desc">European accessibility standard for ICT procurement. Maps closely to WCAG 2.1 with additional mobile and software requirements.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-access">Accessibility</span><div class="fw-title">ARIA Authoring Practices</div><div class="fw-desc">WAI guidance on accessible rich-internet-application patterns. Used throughout the Pathways component library.</div></div>
+    </div>
+  </div>
+
+  <!-- World Curricula -->
+  <div class="section" id="curricula">
+    <div class="section-title">🌍 World Curricula</div>
+    <div class="section-sub">Pathways maps apps and resources to every major curriculum. Where possible, resources link to the authoritative syllabus document.</div>
+    <div class="fw-grid">
+      <div class="fw-card"><span class="fw-badge badge-curricula">International</span><div class="fw-title">IB PYP / MYP / DP / CP</div><div class="fw-desc">International Baccalaureate programmes from Primary Years through Diploma and Career-related.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-curricula">International</span><div class="fw-title">Cambridge International (CAIE)</div><div class="fw-desc">Primary, Lower Secondary, IGCSE, AS and A Level. One of the most globally recognised qualifications.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-curricula">International</span><div class="fw-title">Common Core &amp; NGSS (US)</div><div class="fw-desc">Common Core State Standards for ELA and Math; Next Generation Science Standards for three-dimensional science learning.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-curricula">International</span><div class="fw-title">UK National Curriculum</div><div class="fw-desc">Key Stages 1–4 plus GCSE and A Level specifications. Covers England; links to Scottish CfE and Welsh Curriculum.</div></div>
+      <div class="fw-card"><span class="fw-badge" style="background:#d97706;color:#fff">Arab World</span><div class="fw-title">Egyptian National Curriculum 2.0</div><div class="fw-desc">Post-2018 competency-based reform curriculum. Pathways gives first-class support with Arabic-language apps and resources.</div></div>
+      <div class="fw-card"><span class="fw-badge" style="background:#d97706;color:#fff">Arab World</span><div class="fw-title">Saudi MoE (Vision 2030)</div><div class="fw-desc">Reformed curriculum aligned to Saudi Vision 2030 outcomes — STEAM focus, critical thinking, and national identity.</div></div>
+      <div class="fw-card"><span class="fw-badge" style="background:#d97706;color:#fff">Arab World</span><div class="fw-title">UAE MoE &amp; ADEK</div><div class="fw-desc">UAE national curriculum with Abu Dhabi Education and Knowledge supplements. Bilingual Arabic/English pathways supported.</div></div>
+      <div class="fw-card"><span class="fw-badge" style="background:#d97706;color:#fff">Arab World</span><div class="fw-title">Al-Azhar Curriculum</div><div class="fw-desc">Integrated Azhari stream combining modern subjects with Quran, Arabic, and Islamic sciences. HifzHelper and ArabicLab are Al-Azhar aligned.</div></div>
+    </div>
+  </div>
+
+  <!-- Arabic & Quran -->
+  <div class="section" id="arabic">
+    <div class="section-title">📿 Arabic &amp; Quran Studies</div>
+    <div class="section-sub">Pathways gives first-class treatment to Arabic-as-a-second-language and Quran studies — with dedicated apps, resources, and path templates.</div>
+    <div class="fw-grid">
+      <div class="fw-card"><span class="fw-badge badge-featured">First-class</span><div class="fw-title">CEFR Mapping for Arabic (A1–C2)</div><div class="fw-desc">All non-native Arabic resources are tagged to CEFR levels. ArabicLab and VocabVault surface content appropriate to the learner's level.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-featured">First-class</span><div class="fw-title">Tajweed &amp; Hifz Standards</div><div class="fw-desc">Hafs 'an 'Asim is the default qira'ah on Pathways. HifzHelper includes mutashabihat alerts, murajaah cycle planning, and ijazah-holder tagging.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-featured">First-class</span><div class="fw-title">Islamic Studies Scope</div><div class="fw-desc">Fiqh (four Sunni madhahib + Ja'fari), Seerah, Aqeedah, Hadith sciences, Adab &amp; Akhlaq — all level-tagged for K-12 through adult learners.</div></div>
+      <div class="fw-card"><span class="fw-badge badge-featured">First-class</span><div class="fw-title">Diglossia-Aware Instruction</div><div class="fw-desc">Pathways distinguishes Modern Standard Arabic (Fusha) from regional dialects (Levantine, Egyptian, Gulf, Maghrebi) and supports switching between them in lesson plans.</div></div>
+    </div>
+  </div>
+
+</div>
+
+<footer style="background:#0f172a;color:#94a3b8;text-align:center;padding:2rem;margin-top:2rem;font-size:.875rem">
+  <p>© 2026 Pathways — Built with ❤️ and Claude by Dina El Ahl</p>
+  <p style="margin-top:.5rem"><a href="https://github.com/DinaElAhl/Pathways" style="color:#60a5fa">GitHub</a> &bull; <a href="apps.html" style="color:#60a5fa">Apps</a> &bull; <a href="path-builder.html" style="color:#60a5fa">Builder</a></p>
+</footer>
+</body>
+</html>
