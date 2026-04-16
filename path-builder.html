@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Builder — Pathways</title>
+<style>
+:root {
+  --brand: #2563eb;
+  --brand-dark: #1d4ed8;
+  --brand-light: #eff6ff;
+  --accent: #7c3aed;
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --bg: #f8fafc;
+  --white: #ffffff;
+  --radius: 12px;
+  --shadow: 0 1px 3px rgba(0,0,0,.1), 0 1px 2px rgba(0,0,0,.06);
+  --shadow-md: 0 4px 6px rgba(0,0,0,.07), 0 2px 4px rgba(0,0,0,.06);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,.1), 0 4px 6px rgba(0,0,0,.05);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+button{cursor:pointer;font-family:inherit}
+
+/* ── NAV ── */
+.nav{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;padding:0 1.5rem}
+.nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:1rem;height:60px}
+.nav-logo{font-weight:800;font-size:1.25rem;color:var(--brand);letter-spacing:-.5px;display:flex;align-items:center;gap:.4rem}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:.25rem;margin-left:.5rem}
+.nav-link{padding:.4rem .75rem;border-radius:8px;font-size:.875rem;font-weight:500;color:var(--text-muted);transition:background .15s,color .15s}
+.nav-link:hover,.nav-link.active{background:var(--brand-light);color:var(--brand);text-decoration:none}
+.nav-spacer{flex:1}
+.nav-cta{background:var(--brand);color:#fff;border:none;padding:.45rem 1rem;border-radius:8px;font-size:.875rem;font-weight:600;transition:background .15s}
+.nav-cta:hover{background:var(--brand-dark)}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 50%,#7c3aed 100%);color:#fff;padding:3rem 1.5rem;text-align:center}
+.hero h1{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:800;margin-bottom:.75rem;letter-spacing:-.5px}
+.hero p{font-size:1.1rem;opacity:.9;max-width:560px;margin:0 auto 1.5rem}
+.hero-chips{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
+.chip{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:.3rem .75rem;border-radius:999px;font-size:.8rem;font-weight:500}
+
+/* ── LAYOUT ── */
+.layout{max-width:1280px;margin:0 auto;padding:2rem 1.5rem;display:grid;grid-template-columns:340px 1fr;gap:2rem;align-items:start}
+@media(max-width:900px){.layout{grid-template-columns:1fr}}
+
+/* ── CARD ── */
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.card-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border);background:var(--bg)}
+.card-header h2{font-size:.95rem;font-weight:700;color:var(--text)}
+.card-header p{font-size:.8rem;color:var(--text-muted);margin-top:.2rem}
+.card-body{padding:1.25rem}
+
+/* ── FORM ── */
+.form-group{margin-bottom:1rem}
+.form-label{display:block;font-size:.8rem;font-weight:600;color:var(--text);margin-bottom:.35rem}
+.form-label .required{color:var(--danger)}
+.form-control{width:100%;padding:.55rem .75rem;border:1px solid var(--border);border-radius:8px;font-size:.875rem;color:var(--text);background:#fff;transition:border-color .15s,box-shadow .15s;font-family:inherit}
+.form-control:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+select.form-control{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .5rem center;background-size:1.25rem;padding-right:2.5rem}
+textarea.form-control{resize:vertical;min-height:80px}
+
+/* TAG INPUT */
+.tag-input-wrap{border:1px solid var(--border);border-radius:8px;padding:.4rem;display:flex;flex-wrap:wrap;gap:.35rem;background:#fff;cursor:text;min-height:42px;transition:border-color .15s,box-shadow .15s}
+.tag-input-wrap:focus-within{border-color:var(--brand);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.tag{background:var(--brand-light);color:var(--brand);border:1px solid #bfdbfe;border-radius:6px;padding:.15rem .5rem;font-size:.8rem;font-weight:500;display:flex;align-items:center;gap:.3rem}
+.tag button{background:none;border:none;color:var(--brand);opacity:.7;padding:0;line-height:1;font-size:1rem}
+.tag button:hover{opacity:1}
+.tag-input{border:none;outline:none;font-size:.875rem;min-width:80px;flex:1;color:var(--text);font-family:inherit;background:transparent}
+
+/* CHECKBOX LIST */
+.check-list{display:flex;flex-direction:column;gap:.4rem;max-height:180px;overflow-y:auto;padding:.1rem}
+.check-item{display:flex;align-items:center;gap:.6rem;padding:.35rem .5rem;border-radius:6px;cursor:pointer;transition:background .1s}
+.check-item:hover{background:var(--bg)}
+.check-item input[type=checkbox]{width:15px;height:15px;accent-color:var(--brand);cursor:pointer}
+.check-item label{font-size:.85rem;color:var(--text);cursor:pointer;flex:1}
+
+/* ── STEP WIZARD ── */
+.steps{display:flex;gap:0;margin-bottom:1.5rem}
+.step{flex:1;text-align:center;position:relative}
+.step:not(:last-child)::after{content:'';position:absolute;top:14px;left:50%;width:100%;height:2px;background:var(--border);z-index:0}
+.step.done::after{background:var(--brand)}
+.step-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto .35rem;font-size:.75rem;font-weight:700;position:relative;z-index:1;transition:.2s}
+.step.todo .step-dot{background:var(--border);color:var(--text-muted)}
+.step.active .step-dot{background:var(--brand);color:#fff;box-shadow:0 0 0 4px rgba(37,99,235,.2)}
+.step.done .step-dot{background:var(--success);color:#fff}
+.step-label{font-size:.7rem;font-weight:600;color:var(--text-muted)}
+.step.active .step-label{color:var(--brand)}
+.step.done .step-label{color:var(--success)}
+
+/* ── PATH CANVAS ── */
+.canvas-wrap{display:flex;flex-direction:column;gap:1rem}
+.path-node{background:var(--white);border:2px solid var(--border);border-radius:var(--radius);padding:1rem;position:relative;transition:border-color .2s,box-shadow .2s}
+.path-node:hover{border-color:var(--brand);box-shadow:var(--shadow-md)}
+.path-node.framework{border-color:#7c3aed;background:#faf5ff}
+.path-node.resource{border-color:#0891b2;background:#ecfeff}
+.path-node.assessment{border-color:#d97706;background:#fffbeb}
+.path-node.milestone{border-color:#059669;background:#ecfdf5}
+.node-header{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.5rem}
+.node-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.node-meta{flex:1}
+.node-title{font-weight:700;font-size:.95rem}
+.node-subtitle{font-size:.8rem;color:var(--text-muted)}
+.node-badges{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.5rem}
+.badge{padding:.15rem .55rem;border-radius:999px;font-size:.72rem;font-weight:600}
+.badge-blue{background:#dbeafe;color:#1d4ed8}
+.badge-purple{background:#ede9fe;color:#6d28d9}
+.badge-green{background:#d1fae5;color:#065f46}
+.badge-orange{background:#ffedd5;color:#9a3412}
+.badge-cyan{background:#cffafe;color:#0e7490}
+.node-actions{position:absolute;top:.75rem;right:.75rem;display:flex;gap:.3rem;opacity:0;transition:opacity .15s}
+.path-node:hover .node-actions{opacity:1}
+.btn-icon{background:none;border:1px solid var(--border);border-radius:6px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--text-muted);transition:.1s}
+.btn-icon:hover{background:var(--bg);color:var(--text)}
+.btn-icon.danger:hover{background:#fee2e2;color:var(--danger);border-color:#fca5a5}
+.connector{display:flex;align-items:center;justify-content:center;height:28px;gap:.5rem;color:var(--text-muted);font-size:.75rem}
+.connector::before,.connector::after{content:'';flex:1;height:1px;background:var(--border)}
+.connector-btn{background:var(--brand-light);border:1px dashed var(--brand);color:var(--brand);border-radius:8px;padding:.25rem .75rem;font-size:.8rem;font-weight:600;transition:.1s}
+.connector-btn:hover{background:var(--brand);color:#fff}
+
+/* ── EMPTY STATE ── */
+.empty-state{text-align:center;padding:3rem 1.5rem;color:var(--text-muted)}
+.empty-icon{font-size:3rem;margin-bottom:1rem;opacity:.5}
+.empty-state h3{font-size:1rem;font-weight:600;margin-bottom:.35rem}
+.empty-state p{font-size:.85rem}
+
+/* ── SUMMARY PANEL ── */
+.summary{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.25rem;margin-top:1rem;display:none}
+.summary.visible{display:block}
+.summary-title{font-weight:700;font-size:.95rem;margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.summary-stat{background:var(--bg);border-radius:8px;padding:.75rem;text-align:center}
+.summary-stat .val{font-size:1.5rem;font-weight:800;color:var(--brand)}
+.summary-stat .lbl{font-size:.75rem;color:var(--text-muted);margin-top:.1rem}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.55rem 1.1rem;border-radius:8px;font-size:.875rem;font-weight:600;border:none;transition:.15s;white-space:nowrap}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:var(--brand-dark)}
+.btn-secondary{background:var(--white);color:var(--text);border:1px solid var(--border)}
+.btn-secondary:hover{background:var(--bg)}
+.btn-success{background:var(--success);color:#fff}
+.btn-success:hover{background:#047857}
+.btn-sm{padding:.35rem .75rem;font-size:.8rem}
+.btn-group{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
+
+/* ── NOTIFICATION ── */
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--text);color:#fff;padding:.75rem 1.1rem;border-radius:10px;font-size:.875rem;font-weight:500;box-shadow:var(--shadow-lg);transform:translateY(4rem);opacity:0;transition:.25s;z-index:999;max-width:320px}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.success{background:var(--success)}
+.toast.error{background:var(--danger)}
+
+/* ── PROGRESS ── */
+.progress-bar{background:var(--border);border-radius:999px;height:6px;overflow:hidden;margin-top:.35rem}
+.progress-fill{background:linear-gradient(90deg,var(--brand),var(--accent));height:100%;border-radius:999px;transition:width .4s ease}
+
+/* ── TABS ── */
+.tab-bar{display:flex;gap:.1rem;border-bottom:2px solid var(--border);margin-bottom:1.25rem}
+.tab-btn{padding:.6rem 1rem;font-size:.85rem;font-weight:600;color:var(--text-muted);background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;transition:.15s}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--brand);border-bottom-color:var(--brand)}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+
+/* ── SEARCH ── */
+.search-wrap{position:relative}
+.search-icon{position:absolute;left:.65rem;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:.9rem;pointer-events:none}
+.search-wrap .form-control{padding-left:2.2rem}
+
+/* ── RESOURCE GRID ── */
+.resource-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.75rem;margin-top:.75rem}
+.resource-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:.9rem;cursor:pointer;transition:.15s;user-select:none}
+.resource-card:hover{border-color:var(--brand);background:var(--brand-light);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.resource-card.selected{border-color:var(--brand);background:var(--brand-light);box-shadow:0 0 0 2px var(--brand)}
+.resource-card-icon{font-size:1.5rem;margin-bottom:.4rem}
+.resource-card-title{font-weight:700;font-size:.875rem;margin-bottom:.2rem}
+.resource-card-desc{font-size:.75rem;color:var(--text-muted);line-height:1.4}
+
+/* ── EXPORT MODAL ── */
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;display:none;align-items:center;justify-content:center;padding:1rem}
+.modal-backdrop.open{display:flex}
+.modal{background:#fff;border-radius:16px;width:100%;max-width:560px;box-shadow:var(--shadow-lg);overflow:hidden;animation:modal-in .2s ease}
+@keyframes modal-in{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.modal-head{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.modal-head h2{font-size:1.1rem;font-weight:700}
+.modal-close{background:none;border:none;font-size:1.4rem;color:var(--text-muted);line-height:1}
+.modal-body{padding:1.5rem}
+.modal-foot{padding:1rem 1.5rem;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:.5rem}
+.export-options{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.export-opt{border:2px solid var(--border);border-radius:10px;padding:1rem;cursor:pointer;text-align:center;transition:.15s}
+.export-opt:hover,.export-opt.selected{border-color:var(--brand);background:var(--brand-light)}
+.export-opt-icon{font-size:1.75rem;margin-bottom:.5rem}
+.export-opt-title{font-weight:700;font-size:.875rem}
+.export-opt-desc{font-size:.75rem;color:var(--text-muted);margin-top:.2rem}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">🧭 Path<span>ways</span></a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="path-builder.html" class="nav-link active">Builder</a>
+      <a href="apps.html" class="nav-link">Apps</a>
+      <a href="frameworks.html" class="nav-link">Frameworks</a>
+      <a href="resources.html" class="nav-link">Resources</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <button class="nav-cta" onclick="openExport()">Export Path</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>🗺️ Path Builder</h1>
+  <p>Design personalised learning journeys in minutes. Add frameworks, apps, resources and milestones — then share or export.</p>
+  <div class="hero-chips">
+    <span class="chip">E² Teaching Framework</span>
+    <span class="chip">Bloom's Taxonomy</span>
+    <span class="chip">UDL 3.0</span>
+    <span class="chip">50+ Curricula</span>
+    <span class="chip">LTI 1.3 Export</span>
+  </div>
+</section>
+
+<!-- MAIN LAYOUT -->
+<div class="layout">
+
+  <!-- ─── LEFT PANEL: Build Form ─── -->
+  <aside>
+    <!-- Step wizard -->
+    <div class="card" style="margin-bottom:1rem">
+      <div class="card-body" style="padding:.9rem 1.25rem">
+        <div class="steps" id="stepWizard">
+          <div class="step active" id="step1">
+            <div class="step-dot">1</div>
+            <div class="step-label">Setup</div>
+          </div>
+          <div class="step todo" id="step2">
+            <div class="step-dot">2</div>
+            <div class="step-label">Content</div>
+          </div>
+          <div class="step todo" id="step3">
+            <div class="step-dot">3</div>
+            <div class="step-label">Review</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 1: Setup -->
+    <div id="pane1" class="card">
+      <div class="card-header">
+        <h2>📋 Path Setup</h2>
+        <p>Define who this path is for and what it covers.</p>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label class="form-label">Path Title <span class="required">*</span></label>
+          <input type="text" class="form-control" id="pathTitle" placeholder="e.g. Grade 5 Fractions — Term 3">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Subject / Discipline</label>
+          <select class="form-control" id="pathSubject">
+            <option value="">— Select —</option>
+            <optgroup label="Core">
+              <option>Mathematics</option><option>English / ELA</option>
+              <option>Science</option><option>History &amp; Geography</option>
+              <option>Arabic Language</option><option>Islamic Studies</option>
+              <option>Quran Studies</option>
+            </optgroup>
+            <optgroup label="Languages">
+              <option>English as a Second Language (ESL)</option>
+              <option>Arabic as a Second Language</option>
+              <option>French</option><option>Spanish</option>
+              <option>German</option><option>Mandarin</option>
+            </optgroup>
+            <optgroup label="Creative &amp; STEM">
+              <option>Computer Science</option><option>Design &amp; Technology</option>
+              <option>Art &amp; Music</option><option>Physical Education</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Curriculum / Standard</label>
+          <select class="form-control" id="pathCurriculum">
+            <option value="">— Select —</option>
+            <optgroup label="International">
+              <option>IB PYP</option><option>IB MYP</option><option>IB Diploma</option>
+              <option>Cambridge IGCSE</option><option>Cambridge A Level</option>
+              <option>Common Core (US)</option><option>NGSS (US)</option>
+              <option>UK National Curriculum</option>
+            </optgroup>
+            <optgroup label="Arab World">
+              <option>Egyptian National Curriculum 2.0</option>
+              <option>Saudi MoE (Vision 2030)</option>
+              <option>UAE MoE</option><option>Qatari MoE</option>
+              <option>Kuwaiti MoE</option><option>Jordanian MoE</option>
+              <option>Al-Azhar Curriculum</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Grade / Level</label>
+          <select class="form-control" id="pathGrade">
+            <option value="">— Select —</option>
+            <option>Pre-K / KG</option><option>Grade 1</option><option>Grade 2</option>
+            <option>Grade 3</option><option>Grade 4</option><option>Grade 5</option>
+            <option>Grade 6</option><option>Grade 7</option><option>Grade 8</option>
+            <option>Grade 9</option><option>Grade 10</option><option>Grade 11</option>
+            <option>Grade 12</option><option>Adult / Higher Ed</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Learning Frameworks</label>
+          <div class="check-list" id="frameworkList">
+            <div class="check-item"><input type="checkbox" id="fw-e2" checked><label for="fw-e2">E² Teaching Framework</label></div>
+            <div class="check-item"><input type="checkbox" id="fw-bloom"><label for="fw-bloom">Bloom's Taxonomy</label></div>
+            <div class="check-item"><input type="checkbox" id="fw-udl"><label for="fw-udl">UDL 3.0</label></div>
+            <div class="check-item"><input type="checkbox" id="fw-5e"><label for="fw-5e">5E Instructional Model</label></div>
+            <div class="check-item"><input type="checkbox" id="fw-samr"><label for="fw-samr">SAMR</label></div>
+            <div class="check-item"><input type="checkbox" id="fw-pbl"><label for="fw-pbl">Project-Based Learning (PBL)</label></div>
+            <div class="check-item"><input type="checkbox" id="fw-cefr"><label for="fw-cefr">CEFR (Language Levels)</label></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Target Audience</label>
+          <input type="text" class="form-control" id="pathAudience" placeholder="e.g. Year 5 mixed-ability, 25 students">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Learning Goals</label>
+          <textarea class="form-control" id="pathGoals" placeholder="What should learners know, understand, and be able to do by the end?"></textarea>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="goStep(2)">Next: Add Content →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: Content -->
+    <div id="pane2" class="card" style="display:none">
+      <div class="card-header">
+        <h2>📚 Add Content</h2>
+        <p>Choose apps and resources to include.</p>
+      </div>
+      <div class="card-body">
+        <div class="tab-bar">
+          <button class="tab-btn active" onclick="switchTab('apps')">Apps</button>
+          <button class="tab-btn" onclick="switchTab('types')">Node Types</button>
+          <button class="tab-btn" onclick="switchTab('quick')">Quick Add</button>
+        </div>
+        <div id="tab-apps" class="tab-pane active">
+          <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="form-control" id="appSearch" placeholder="Search apps…" oninput="filterApps()">
+          </div>
+          <div class="resource-grid" id="appGrid"></div>
+        </div>
+        <div id="tab-types" class="tab-pane">
+          <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:.75rem">Add a custom node to your path:</p>
+          <div class="form-group">
+            <label class="form-label">Node Type</label>
+            <select class="form-control" id="customType">
+              <option value="framework">📐 Framework</option>
+              <option value="resource">📖 Resource / Link</option>
+              <option value="assessment">📝 Assessment</option>
+              <option value="milestone">🏆 Milestone</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Title</label>
+            <input type="text" class="form-control" id="customTitle" placeholder="Node title">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <input type="text" class="form-control" id="customDesc" placeholder="Short description">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tags (press Enter)</label>
+            <div class="tag-input-wrap" id="tagWrap" onclick="document.getElementById('tagInput').focus()">
+              <input class="tag-input" id="tagInput" placeholder="Add tag…" onkeydown="handleTagKey(event)">
+            </div>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="addCustomNode()">Add to Path</button>
+        </div>
+        <div id="tab-quick" class="tab-pane">
+          <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:.75rem">One-click templates based on E² pillars:</p>
+          <div style="display:flex;flex-direction:column;gap:.5rem">
+            <button class="btn btn-secondary" onclick="quickAdd('hook')">⚡ Add Hook Phase</button>
+            <button class="btn btn-secondary" onclick="quickAdd('teach')">📖 Add Teach Phase</button>
+            <button class="btn btn-secondary" onclick="quickAdd('practice')">✏️ Add Practice Phase</button>
+            <button class="btn btn-secondary" onclick="quickAdd('connect')">🌍 Add Connect Phase</button>
+            <button class="btn btn-secondary" onclick="quickAdd('reflect')">🪞 Add Reflect &amp; Exit</button>
+            <button class="btn btn-secondary" onclick="quickAdd('assess')">📊 Add Formative Assessment</button>
+          </div>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-secondary btn-sm" onclick="goStep(1)">← Back</button>
+          <button class="btn btn-primary btn-sm" onclick="goStep(3)">Review →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: Review -->
+    <div id="pane3" class="card" style="display:none">
+      <div class="card-header">
+        <h2>✅ Review &amp; Export</h2>
+        <p>Check your path then export or share.</p>
+      </div>
+      <div class="card-body">
+        <div id="reviewContent"></div>
+        <div class="btn-group">
+          <button class="btn btn-secondary btn-sm" onclick="goStep(2)">← Back</button>
+          <button class="btn btn-success btn-sm" onclick="openExport()">🚀 Export Path</button>
+          <button class="btn btn-primary btn-sm" onclick="savePath()">💾 Save</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="summary" id="summary">
+      <div class="summary-title">📊 Path Summary</div>
+      <div class="summary-grid">
+        <div class="summary-stat"><div class="val" id="statNodes">0</div><div class="lbl">Nodes</div></div>
+        <div class="summary-stat"><div class="val" id="statApps">0</div><div class="lbl">Apps</div></div>
+        <div class="summary-stat"><div class="val" id="statFrameworks">0</div><div class="lbl">Frameworks</div></div>
+        <div class="summary-stat"><div class="val" id="statMins">0</div><div class="lbl">Est. mins</div></div>
+      </div>
+      <div style="margin-top:.75rem">
+        <div style="font-size:.8rem;font-weight:600;margin-bottom:.2rem;color:var(--text-muted)">Completion</div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ─── RIGHT PANEL: Canvas ─── -->
+  <main>
+    <div class="card">
+      <div class="card-header" style="display:flex;align-items:center;justify-content:space-between">
+        <div>
+          <h2 id="canvasTitle">📍 Your Path</h2>
+          <p id="canvasSubtitle">Nodes you add will appear here</p>
+        </div>
+        <div style="display:flex;gap:.5rem">
+          <button class="btn btn-secondary btn-sm" onclick="clearPath()">🗑 Clear</button>
+          <button class="btn btn-primary btn-sm" onclick="openExport()">Export</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="canvas-wrap" id="pathCanvas">
+          <div class="empty-state" id="emptyState">
+            <div class="empty-icon">🗺️</div>
+            <h3>Your path is empty</h3>
+            <p>Use the panel on the left to add frameworks, apps, and milestones.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<!-- EXPORT MODAL -->
+<div class="modal-backdrop" id="exportModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>🚀 Export Path</h2>
+      <button class="modal-close" onclick="closeExport()">×</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:.875rem;color:var(--text-muted);margin-bottom:1rem">Choose your export format:</p>
+      <div class="export-options" id="exportOptions">
+        <div class="export-opt selected" onclick="selectExport('json')">
+          <div class="export-opt-icon">📄</div>
+          <div class="export-opt-title">JSON</div>
+          <div class="export-opt-desc">Machine-readable, re-importable</div>
+        </div>
+        <div class="export-opt" onclick="selectExport('html')">
+          <div class="export-opt-icon">🌐</div>
+          <div class="export-opt-title">HTML Page</div>
+          <div class="export-opt-desc">Share a standalone web page</div>
+        </div>
+        <div class="export-opt" onclick="selectExport('pdf')">
+          <div class="export-opt-icon">📑</div>
+          <div class="export-opt-title">PDF Summary</div>
+          <div class="export-opt-desc">Print-friendly document</div>
+        </div>
+        <div class="export-opt" onclick="selectExport('lti')">
+          <div class="export-opt-icon">🔗</div>
+          <div class="export-opt-title">LTI Package</div>
+          <div class="export-opt-desc">Drop into Canvas / Moodle</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-secondary btn-sm" onclick="closeExport()">Cancel</button>
+      <button class="btn btn-primary btn-sm" onclick="doExport()">Download</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+<script>
+// ── DATA ──
+const APPS = [
+  {id:'lesson-loom',title:'LessonLoom',desc:'AI lesson planner using E² blueprint',icon:'📝',tags:['planning','e2','ai'],type:'app'},
+  {id:'flip-studio',title:'FlipStudio',desc:'Turn any link into a flipped lesson',icon:'🎬',tags:['video','flipped','ai'],type:'app'},
+  {id:'rubric-raft',title:'RubricRaft',desc:'Drag-and-drop rubric builder',icon:'📊',tags:['assessment','rubric'],type:'app'},
+  {id:'quiz-forge',title:'QuizForge',desc:'Generate quizzes from text or URL',icon:'❓',tags:['quiz','assessment','ai'],type:'app'},
+  {id:'differentiate-it',title:'DifferentiateIt',desc:'Auto-differentiate any task to 3 tiers',icon:'🎯',tags:['differentiation','udl'],type:'app'},
+  {id:'exit-ticket',title:'ExitTicket',desc:'Quick formative check-ins',icon:'🚪',tags:['assessment','formative'],type:'app'},
+  {id:'vocab-vault',title:'VocabVault',desc:'Vocabulary flashcard sets with spaced repetition',icon:'📚',tags:['vocabulary','spaced-rep'],type:'app'},
+  {id:'hifz-helper',title:'HifzHelper',desc:'Quran memorisation tracker with mutashabihat',icon:'📿',tags:['quran','hifz','arabic'],type:'app'},
+  {id:'arabic-lab',title:'ArabicLab',desc:'Arabic grammar and vocab for non-native speakers',icon:'ع',tags:['arabic','language','cefr'],type:'app'},
+  {id:'project-pilot',title:'ProjectPilot',desc:'PBL project planner and tracker',icon:'🚀',tags:['pbl','project'],type:'app'},
+  {id:'timeline-pro',title:'TimelinePro',desc:'Visual history timeline builder',icon:'📅',tags:['history','visual'],type:'app'},
+  {id:'data-dash',title:'DataDash',desc:'Student progress analytics dashboard',icon:'📈',tags:['analytics','data'],type:'app'},
+];
+
+const QUICK_NODES = {
+  hook:{type:'framework',icon:'⚡',title:'Hook Phase (2 min)',desc:'Attention-grabbing opening — makes the lesson worth showing up for.',tags:['e2','hook','engagement'],mins:2},
+  teach:{type:'framework',icon:'📖',title:'Teach Phase (10–15 min)',desc:'Chunked content delivery, one idea at a time with worked examples.',tags:['e2','teach','direct-instruction'],mins:12},
+  practice:{type:'framework',icon:'✏️',title:'Practice Phase (15–20 min)',desc:'Guided then independent work — students do the cognitive lifting.',tags:['e2','practice','application'],mins:18},
+  connect:{type:'framework',icon:'🌍',title:'Connect Phase (5 min)',desc:'Real-world relevance — answer "Why does this matter to me?"',tags:['e2','connect','relevance'],mins:5},
+  reflect:{type:'framework',icon:'🪞',title:'Reflect & Exit Ticket (5 min)',desc:'Exit ticket surfaces what was learned and what still is not clear.',tags:['e2','reflect','exit-ticket'],mins:5},
+  assess:{type:'assessment',icon:'📊',title:'Formative Assessment',desc:'Quick check-in: poll, quiz, or cold-call to gauge understanding.',tags:['formative','assessment','data'],mins:8},
+};
+
+let path = [];
+let selectedExport = 'json';
+let tags = [];
+
+// ── RENDER APPS ──
+function renderApps(list) {
+  const grid = document.getElementById('appGrid');
+  if (!list.length) { grid.innerHTML = '<p style="color:var(--text-muted);font-size:.85rem;grid-column:1/-1;text-align:center;padding:1rem">No apps found.</p>'; return; }
+  grid.innerHTML = list.map(a => `
+    <div class="resource-card ${path.find(n=>n.id===a.id)?'selected':''}" onclick="toggleApp('${a.id}')" id="appcard-${a.id}">
+      <div class="resource-card-icon">${a.icon}</div>
+      <div class="resource-card-title">${a.title}</div>
+      <div class="resource-card-desc">${a.desc}</div>
+    </div>`).join('');
+}
+
+function filterApps() {
+  const q = document.getElementById('appSearch').value.toLowerCase();
+  renderApps(q ? APPS.filter(a => a.title.toLowerCase().includes(q) || a.desc.toLowerCase().includes(q) || a.tags.some(t=>t.includes(q))) : APPS);
+}
+
+renderApps(APPS);
+
+function toggleApp(id) {
+  const app = APPS.find(a=>a.id===id);
+  if (!app) return;
+  const idx = path.findIndex(n=>n.id===id);
+  if (idx>=0) {
+    path.splice(idx,1);
+  } else {
+    path.push({...app, nodeType:'app'});
+  }
+  renderPath();
+  renderApps(APPS.filter(a => {
+    const q = document.getElementById('appSearch').value.toLowerCase();
+    return !q || a.title.toLowerCase().includes(q) || a.desc.toLowerCase().includes(q);
+  }));
+  updateSummary();
+}
+
+// ── QUICK ADD ──
+function quickAdd(key) {
+  const n = QUICK_NODES[key];
+  if (!n) return;
+  const node = {id: key+'-'+Date.now(), ...n, nodeType: n.type};
+  path.push(node);
+  renderPath();
+  updateSummary();
+  showToast('Added: '+n.title, 'success');
+}
+
+// ── CUSTOM NODE ──
+function addCustomNode() {
+  const title = document.getElementById('customTitle').value.trim();
+  if (!title) { showToast('Please enter a title', 'error'); return; }
+  const type = document.getElementById('customType').value;
+  const desc = document.getElementById('customDesc').value.trim();
+  const node = {id:'custom-'+Date.now(), type, title, desc, icon: typeIcon(type), tags:[...tags], nodeType:type};
+  path.push(node);
+  document.getElementById('customTitle').value='';
+  document.getElementById('customDesc').value='';
+  tags=[];
+  renderTags();
+  renderPath();
+  updateSummary();
+  showToast('Node added to path!','success');
+}
+
+function typeIcon(t){return{framework:'📐',resource:'📖',assessment:'📝',milestone:'🏆'}[t]||'📌';}
+
+// ── TAGS ──
+function handleTagKey(e){
+  if(e.key==='Enter'||e.key===','){
+    e.preventDefault();
+    const v=e.target.value.trim().replace(/,/g,'');
+    if(v&&!tags.includes(v)){tags.push(v);renderTags();}
+    e.target.value='';
+  }
+  if(e.key==='Backspace'&&!e.target.value&&tags.length){tags.pop();renderTags();}
+}
+function removeTag(i){tags.splice(i,1);renderTags();}
+function renderTags(){
+  const wrap=document.getElementById('tagWrap');
+  const input=document.getElementById('tagInput');
+  const chips=tags.map((t,i)=>`<span class="tag">${t}<button type="button" onclick="removeTag(${i})">×</button></span>`).join('');
+  wrap.innerHTML=chips;
+  wrap.appendChild(input);
+}
+
+// ── RENDER PATH ──
+function renderPath() {
+  const canvas = document.getElementById('pathCanvas');
+  const empty = document.getElementById('emptyState');
+  const title = document.getElementById('canvasTitle');
+  const pathTitle = document.getElementById('pathTitle').value;
+  title.textContent = pathTitle ? '📍 ' + pathTitle : '📍 Your Path';
+  if (!path.length) {
+    canvas.innerHTML='';
+    canvas.appendChild(empty);
+    return;
+  }
+  canvas.innerHTML = path.map((n,i) => `
+    ${i>0?'<div class="connector">↓</div>':''}
+    <div class="path-node ${n.type||n.nodeType||''}" id="node-${n.id}">
+      <div class="node-actions">
+        ${i>0?'<button class="btn-icon" onclick="moveNode(\''+n.id+'\',\'up\')" title="Move up">↑</button>':''}
+        ${i<path.length-1?'<button class="btn-icon" onclick="moveNode(\''+n.id+'\',\'down\')" title="Move down">↓</button>':''}
+        <button class="btn-icon danger" onclick="removeNode('${n.id}')" title="Remove">×</button>
+      </div>
+      <div class="node-header">
+        <div class="node-icon" style="background:${nodeColor(n)}">${n.icon||'📌'}</div>
+        <div class="node-meta">
+          <div class="node-title">${n.title}</div>
+          <div class="node-subtitle">${n.desc||''}</div>
+        </div>
+      </div>
+      ${(n.tags&&n.tags.length)?'<div class="node-badges">'+n.tags.map(t=>'<span class="badge badge-blue">'+t+'</span>').join('')+'</div>':''}
+      ${n.mins?'<div style="font-size:.75rem;color:var(--text-muted);margin-top:.4rem">⏱ '+n.mins+' min'+((n.mins!==1)?'s':'')+'</div>':''}
+    </div>`).join('');
+}
+
+function nodeColor(n){
+  const t=n.type||n.nodeType;
+  return{framework:'#ede9fe',resource:'#e0f2fe',assessment:'#fef9c3',milestone:'#d1fae5',app:'#dbeafe'}[t]||'#f1f5f9';
+}
+
+function removeNode(id){
+  path=path.filter(n=>n.id!==id);
+  renderPath();
+  updateSummary();
+}
+
+function moveNode(id,dir){
+  const i=path.findIndex(n=>n.id===id);
+  if(i<0)return;
+  if(dir==='up'&&i>0){[path[i-1],path[i]]=[path[i],path[i-1]];}
+  if(dir==='down'&&i<path.length-1){[path[i+1],path[i]]=[path[i],path[i+1]];}
+  renderPath();
+}
+
+// ── SUMMARY ──
+function updateSummary(){
+  const sum=document.getElementById('summary');
+  if(!path.length){sum.classList.remove('visible');return;}
+  sum.classList.add('visible');
+  document.getElementById('statNodes').textContent=path.length;
+  document.getElementById('statApps').textContent=path.filter(n=>n.nodeType==='app').length;
+  document.getElementById('statFrameworks').textContent=path.filter(n=>n.type==='framework'||n.nodeType==='framework').length;
+  const mins=path.reduce((a,n)=>a+(n.mins||0),0);
+  document.getElementById('statMins').textContent=mins;
+  const pct=Math.min(100,path.length*8+(mins>0?15:0)+(document.getElementById('pathTitle').value?10:0));
+  document.getElementById('progressFill').style.width=pct+'%';
+}
+
+// ── WIZARD ──
+function goStep(n){
+  [1,2,3].forEach(i=>{
+    document.getElementById('pane'+i).style.display=i===n?'':'none';
+    const s=document.getElementById('step'+i);
+    s.className='step '+(i<n?'done':i===n?'active':'todo');
+    if(i<n)s.querySelector('.step-dot').textContent='✓';
+    else s.querySelector('.step-dot').textContent=i;
+  });
+  if(n===3)renderReview();
+}
+
+function renderReview(){
+  const rc=document.getElementById('reviewContent');
+  const title=document.getElementById('pathTitle').value||'Untitled Path';
+  const subject=document.getElementById('pathSubject').value||'—';
+  const curriculum=document.getElementById('pathCurriculum').value||'—';
+  const grade=document.getElementById('pathGrade').value||'—';
+  const goals=document.getElementById('pathGoals').value||'Not specified';
+  const fws=[...document.querySelectorAll('#frameworkList input:checked')].map(i=>i.nextElementSibling.textContent).join(', ')||'None selected';
+  rc.innerHTML=`
+    <div style="background:var(--bg);border-radius:8px;padding:1rem;margin-bottom:1rem;font-size:.875rem">
+      <div style="font-weight:700;margin-bottom:.5rem">📋 ${title}</div>
+      <div style="color:var(--text-muted)">Subject: ${subject} &bull; Level: ${grade}</div>
+      <div style="color:var(--text-muted)">Curriculum: ${curriculum}</div>
+      <div style="color:var(--text-muted);margin-top:.4rem">Frameworks: ${fws}</div>
+      <div style="margin-top:.5rem;font-size:.8rem;border-top:1px solid var(--border);padding-top:.5rem;color:var(--text-muted)">Goals: ${goals}</div>
+    </div>
+    <div style="font-weight:600;font-size:.85rem;margin-bottom:.5rem">Path nodes (${path.length}):</div>
+    ${path.length?path.map((n,i)=>`<div style="display:flex;align-items:center;gap:.5rem;padding:.4rem 0;border-bottom:1px solid var(--border);font-size:.85rem"><span>${i+1}</span><span>${n.icon||'📌'}</span><span style="font-weight:600">${n.title}</span>${n.mins?'<span style="margin-left:auto;color:var(--text-muted);font-size:.75rem">'+n.mins+' min</span>':''}</div>`).join(''):'<p style="color:var(--text-muted);font-size:.85rem">No nodes added yet.</p>'}
+  `;
+}
+
+// ── TABS ──
+function switchTab(id){
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>{const tabs=['apps','types','quick'];b.classList.toggle('active',tabs[i]===id);});
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.toggle('active',p.id==='tab-'+id));
+}
+
+// ── EXPORT ──
+function openExport(){document.getElementById('exportModal').classList.add('open');}
+function closeExport(){document.getElementById('exportModal').classList.remove('open');}
+function selectExport(fmt){
+  selectedExport=fmt;
+  document.querySelectorAll('.export-opt').forEach(o=>o.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+}
+function doExport(){
+  const data={
+    meta:{title:document.getElementById('pathTitle').value||'Untitled',subject:document.getElementById('pathSubject').value,curriculum:document.getElementById('pathCurriculum').value,grade:document.getElementById('pathGrade').value,goals:document.getElementById('pathGoals').value,frameworks:[...document.querySelectorAll('#frameworkList input:checked')].map(i=>i.nextElementSibling.textContent),created:new Date().toISOString()},
+    nodes:path
+  };
+  if(selectedExport==='json'){
+    const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+    download(blob,(data.meta.title.replace(/\s+/g,'-').toLowerCase()||'path')+'.json');
+  } else if(selectedExport==='html'){
+    const html=buildHTMLExport(data);
+    const blob=new Blob([html],{type:'text/html'});
+    download(blob,(data.meta.title.replace(/\s+/g,'-').toLowerCase()||'path')+'.html');
+  } else if(selectedExport==='pdf'){
+    window.print();
+  } else {
+    showToast('LTI export coming soon!','');
+  }
+  closeExport();
+  showToast('Export ready!','success');
+}
+
+function buildHTMLExport(d){
+  const nodes=d.nodes.map((n,i)=>`<div style="border:1px solid #e2e8f0;border-radius:8px;padding:1rem;margin-bottom:.75rem"><strong>${i+1}. ${n.icon||''} ${n.title}</strong><br><span style="color:#64748b;font-size:.875rem">${n.desc||''}</span></div>`).join('');
+  return `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${d.meta.title} — Pathways</title></head><body style="font-family:system-ui;max-width:700px;margin:2rem auto;padding:1rem"><h1>${d.meta.title}</h1><p><strong>Subject:</strong> ${d.meta.subject||'—'} &bull; <strong>Level:</strong> ${d.meta.grade||'—'}</p><p><strong>Curriculum:</strong> ${d.meta.curriculum||'—'}</p><p><strong>Frameworks:</strong> ${(d.meta.frameworks||[]).join(', ')||'—'}</p><hr>${nodes}<p style="color:#64748b;font-size:.75rem">Generated by Pathways &bull; ${d.meta.created}</p></body></html>`;
+}
+
+function download(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();}
+
+// ── SAVE ──
+function savePath(){
+  const data={meta:{title:document.getElementById('pathTitle').value,subject:document.getElementById('pathSubject').value,curriculum:document.getElementById('pathCurriculum').value,grade:document.getElementById('pathGrade').value},nodes:path,saved:Date.now()};
+  localStorage.setItem('pathways-draft',JSON.stringify(data));
+  showToast('Path saved to browser!','success');
+}
+
+function loadSaved(){
+  const raw=localStorage.getItem('pathways-draft');
+  if(!raw)return;
+  try{
+    const d=JSON.parse(raw);
+    if(d.meta){
+      if(d.meta.title)document.getElementById('pathTitle').value=d.meta.title;
+      if(d.meta.subject)document.getElementById('pathSubject').value=d.meta.subject;
+      if(d.meta.curriculum)document.getElementById('pathCurriculum').value=d.meta.curriculum;
+      if(d.meta.grade)document.getElementById('pathGrade').value=d.meta.grade;
+    }
+    if(d.nodes&&d.nodes.length){path=d.nodes;renderPath();updateSummary();}
+  }catch(e){}
+}
+loadSaved();
+
+// ── CLEAR ──
+function clearPath(){if(!path.length)return;if(!confirm('Clear the entire path?'))return;path=[];renderPath();updateSummary();}
+
+// ── TOAST ──
+function showToast(msg,type=''){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.className='toast'+(type?' '+type:'');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+// ── PATH TITLE live update ──
+document.getElementById('pathTitle').addEventListener('input',()=>{renderPath();updateSummary();});
+
+// ── CLOSE MODAL ON BACKDROP ──
+document.getElementById('exportModal').addEventListener('click',function(e){if(e.target===this)closeExport();});
+</script>
+</body>
+</html>
