@@ -1,13 +1,26 @@
-/* data.js — master loader that combines all data modules.
-   Load after data-frameworks.js, data-apps.js, data-resources.js.
-   Usage in HTML:
-     <script src="data-frameworks.js"></script>
-     <script src="data-apps.js"></script>
-     <script src="data-resources.js"></script>
-     <script src="data.js"></script>
-   Then access: window.PW.frameworks, window.PW.apps, window.PW.resources
+/* data.js — master loader that combines all data modules + merges stages.
+   Load after data-frameworks.js, data-apps.js, data-resources.js,
+   data-frameworks-stages.js, data-apps-stages.js, then this file.
 */
 "use strict";
+
+// Merge stages + liveUrl overrides into base arrays
+(function () {
+  var fwStages = window.PW_FW_STAGES || {};
+  var appStages = window.PW_APP_STAGES || {};
+  function merge(arr, overrides) {
+    return (arr || []).map(function (item) {
+      var extra = overrides[item.id];
+      if (!extra) return item;
+      var merged = {};
+      for (var k in item) merged[k] = item[k];
+      for (var k2 in extra) merged[k2] = extra[k2];
+      return merged;
+    });
+  }
+  window.PW_FRAMEWORKS = merge(window.PW_FRAMEWORKS, fwStages);
+  window.PW_APPS = merge(window.PW_APPS, appStages);
+})();
 
 window.PW = {
   frameworks: window.PW_FRAMEWORKS || [],
