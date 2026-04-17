@@ -90,7 +90,10 @@
       var item = summary.closest(".app-item");
       var id = item.getAttribute("data-id");
       if (item.classList.contains("app-open")) { item.classList.remove("app-open"); summary.setAttribute("aria-expanded", "false"); var d = item.querySelector(".app-detail"); if (d) d.remove(); expandedId = null; }
-      else { expandedId = id; render(); }
+      else {
+        expandedId = id; render();
+        if (window.PWSidebar) { PWSidebar.track("app", id); PWSidebar.render("pw-sidebar-mount", "app", id); }
+      }
       return;
     }
     var addBtn = e.target.closest(".add-path-btn");
