@@ -77,6 +77,7 @@
       setTimeout(function () { document.querySelectorAll(".res-cb").forEach(function (c) { c.checked = true; }); }, 0);
     }
     if (step === 7) {
+      document.querySelectorAll(".res-cb").forEach(function (c) { c.checked = true; });
       state.resources = checked("res-cb");
       renderSummary();
       drawOrgChart();
@@ -95,16 +96,20 @@
   $("next-btn").addEventListener("click", function () { if (state.step < 7) goTo(state.step + 1); });
 
   // ---- Summary ----
+  function nameOf(list, id) { var it = list.find(function (x) { return x.id === id; }); return it ? (it.name || it.title || id) : id; }
   function renderSummary() {
     var org = CD.orgTypes.find(function (t) { return t.id === state.orgType; });
     var grade = CD.grades.find(function (g) { return g.id === state.grade; });
+    var fwNames = state.frameworks.map(function (id) { return nameOf(PW.frameworks, id); }).join(", ");
+    var appNames = state.apps.map(function (id) { return nameOf(PW.apps, id); }).join(", ");
+    var resNames = state.resources.map(function (id) { return nameOf(PW.resources, id); }).join(", ");
     $("curriculum-summary").innerHTML =
       "<p><strong>Organization:</strong> " + (org ? org.label : "\u2014") + "</p>" +
       "<p><strong>Grade/Level:</strong> " + (grade ? grade.label : "\u2014") + "</p>" +
       "<p><strong>Learning Outcomes:</strong> " + state.outcomes.length + " selected</p>" +
-      "<p><strong>Frameworks:</strong> " + state.frameworks.join(", ") + "</p>" +
-      "<p><strong>Apps:</strong> " + state.apps.join(", ") + "</p>" +
-      "<p><strong>Resources:</strong> " + state.resources.length + " matched</p>";
+      "<p><strong>Frameworks:</strong> " + (fwNames || "\u2014") + "</p>" +
+      "<p><strong>Apps:</strong> " + (appNames || "\u2014") + "</p>" +
+      "<p><strong>Resources:</strong> " + (resNames || "\u2014") + "</p>";
   }
 
   // ---- Org chart (canvas) ----
