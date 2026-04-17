@@ -9,6 +9,27 @@
     return Array.from(document.querySelectorAll("." + cls + ":checked")).map(function (c) { return c.value; });
   }
 
+  // ---- Persona pre-configuration ----
+  var personaMap = {
+    teacher:     { org: "school",     grade: null },
+    homeschool:  { org: "homeschool", grade: null },
+    institution: { org: "school",     grade: null },
+    learner:     { org: "university", grade: "undergrad" }
+  };
+  var urlParams = new URLSearchParams(location.search);
+  var persona = urlParams.get("persona");
+  if (persona && personaMap[persona]) {
+    var cfg = personaMap[persona];
+    state.orgType = cfg.org;
+    if (cfg.grade) { state.grade = cfg.grade; var g = CD.grades.find(function (x) { return x.id === cfg.grade; }); state.phase = g ? g.phase : null; }
+    var banner = document.createElement("div");
+    banner.className = "persona-banner";
+    banner.innerHTML = "Customised for <strong>" + persona.charAt(0).toUpperCase() + persona.slice(1) + "</strong>. " +
+      '<button onclick="this.parentElement.remove()" style="background:none;border:none;color:var(--brand-1);font-weight:700;cursor:pointer;text-decoration:underline;font-size:inherit">Dismiss</button>';
+    var container = $("curriculum-container");
+    if (container) container.insertBefore(banner, container.firstChild);
+  }
+
   // ---- Step 1: Org type ----
   var orgSel = $("org-type-select");
   CD.orgTypes.forEach(function (t) {
@@ -21,6 +42,7 @@
     if (type) { desc.textContent = "Roles: " + type.roles.join(" \u2192 "); desc.style.display = ""; }
     else { desc.style.display = "none"; }
   });
+  if (state.orgType) { orgSel.value = state.orgType; orgSel.dispatchEvent(new Event("change")); }
 
   // ---- Step 2: Grade ----
   var gradeSel = $("grade-select");
@@ -32,6 +54,7 @@
     var g = CD.grades.find(function (x) { return x.id === state.grade; });
     state.phase = g ? g.phase : null;
   });
+  if (state.grade) { gradeSel.value = state.grade; gradeSel.dispatchEvent(new Event("change")); }
 
   // ---- Render checkboxes helper ----
   function renderChecks(container, items, cls) {
