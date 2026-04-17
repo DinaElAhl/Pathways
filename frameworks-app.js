@@ -8,8 +8,15 @@
     { key: "arabic", label: "Arabic & Quran" }
   ];
 
-  var activeCat = "all";
-  var expandedId = new URLSearchParams(location.search).get("id");
+  var params = new URLSearchParams(location.search);
+  var activeCat = params.get("filter") || "all";
+  var expandedId = params.get("id");
+
+  function toast(msg) {
+    var t = document.createElement("div"); t.className = "toast"; t.textContent = msg;
+    document.body.appendChild(t); setTimeout(function () { t.classList.add("show"); }, 10);
+    setTimeout(function () { t.classList.remove("show"); setTimeout(function () { t.remove(); }, 300); }, 2200);
+  }
 
   function render() {
     var q = (document.getElementById("fw-search").value || "").toLowerCase();
@@ -50,8 +57,17 @@
       var r = PW.findResource(rid);
       return r ? '<a class="explore-pill" href="resources.html?id=' + r.id + '">' + r.title + "</a>" : "";
     }).join("");
+    var stages = (f.stages || []).map(function (st) {
+      var links = (st.resources || []).map(function (r) {
+        return '<a class="stage-link" href="' + r.url + '" target="_blank" rel="noopener">' + r.title + ' \u2197</a>';
+      }).join("");
+      return '<div class="stage-step"><div class="stage-step-num">' + st.stage + '</div>' +
+        '<div class="stage-step-body"><strong>' + st.title + '</strong><p>' + st.desc + '</p>' +
+        (links ? '<div class="stage-step-resources">' + links + '</div>' : '') + '</div></div>';
+    }).join("");
     return '<div class="fw-detail">' +
       (pillars ? '<h4>Components</h4>' + pillars : "") +
+      (stages ? '<h4>Learning Path</h4><div class="stage-timeline">' + stages + '</div>' : "") +
       (apps ? '<h4>Related apps</h4><div class="explore-apps">' + apps + "</div>" : "") +
       (res ? '<h4>Related resources</h4><div class="explore-apps">' + res + "</div>" : "") +
       '<button class="btn ghost add-path-btn" data-type="framework" data-id="' + f.id + '" data-name="' + f.name + '">+ Add to path</button>' +
@@ -72,7 +88,10 @@
     if (addBtn) {
       var path = []; try { path = JSON.parse(localStorage.getItem("pathways_path") || "[]"); } catch (err) { path = []; }
       var entry = { type: addBtn.dataset.type, id: addBtn.dataset.id, name: addBtn.dataset.name };
-      if (!path.find(function (p) { return p.id === entry.id; })) { path.push(entry); localStorage.setItem("pathways_path", JSON.stringify(path)); }
+      if (!path.find(function (p) { return p.id === entry.id; })) {
+        path.push(entry); localStorage.setItem("pathways_path", JSON.stringify(path));
+        toast("Added to your path \u2713");
+      } else { toast("Already in your path"); }
       addBtn.textContent = "Added \u2713"; addBtn.disabled = true;
     }
   });
@@ -80,7 +99,7 @@
   // ---- Filter tabs ----
   var bar = document.getElementById("fw-filters");
   bar.innerHTML = CATS.map(function (c) {
-    return '<button class="fpill' + (c.key === "all" ? " on" : "") + '" data-cat="' + c.key + '">' + c.label + "</button>";
+    return '<button class="fpill' + (c.key === activeCat ? " on" : "") + '" data-cat="' + c.key + '">' + c.label + "</button>";
   }).join("");
   bar.addEventListener("click", function (e) {
     var btn = e.target.closest(".fpill");
