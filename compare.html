@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Compare Frameworks — Pathways</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <script src="data-frameworks.js"></script><script src="data-apps.js"></script><script src="data-resources.js"></script>
+  <script src="data-apps-stages.js"></script><script src="data-frameworks-stages.js"></script><script src="data.js"></script>
+  <meta property="og:title" content="Compare Frameworks — Pathways"/>
+  <style>
+  .page-hero{padding:clamp(40px,6vw,72px) var(--gutter);text-align:center;background:var(--grad-soft);border-bottom:1px solid var(--border)}
+  .page-hero h1{font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;margin:0 0 .5rem}
+  .page-hero h1 em{font-style:italic;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .page-hero p{color:var(--text-muted);max-width:540px;margin:0 auto}
+  .cmp-wrap{max-width:var(--max);margin:0 auto;padding:2rem var(--gutter)}
+  .cmp-pick{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px;align-items:end}
+  .cmp-pick select{flex:1;min-width:200px;padding:10px;border:2px solid var(--border);border-radius:10px;font-size:15px;background:var(--bg-elev);color:var(--text)}
+  .cmp-pick select:focus{border-color:var(--brand-1);outline:none}
+  .cmp-table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+  .cmp-table th,.cmp-table td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--border);font-size:.88rem}
+  .cmp-table th{background:var(--bg);font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted)}
+  .cmp-table td:first-child{font-weight:700;color:var(--text);background:var(--bg);width:140px}
+  .cmp-table tr:last-child td{border-bottom:none}
+  .cmp-empty{text-align:center;padding:48px;color:var(--text-muted)}
+  .pill-list{display:flex;flex-wrap:wrap;gap:4px}
+  .pill-sm{display:inline-block;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:600;background:var(--grad-soft);color:var(--brand-1)}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <script src="nav.js"></script>
+  <section class="page-hero" id="main-content">
+    <h1>Compare <em>Frameworks</em></h1>
+    <p>Pick 2-3 frameworks and see them side by side — pillars, apps, resources, and stages.</p>
+  </section>
+  <div class="cmp-wrap">
+    <div class="cmp-pick">
+      <select id="cmp-a"><option value="">Framework A…</option></select>
+      <select id="cmp-b"><option value="">Framework B…</option></select>
+      <select id="cmp-c"><option value="">(Optional) C…</option></select>
+      <button class="btn primary" id="cmp-go">Compare</button>
+    </div>
+    <div id="cmp-result"><div class="cmp-empty">Select 2 or 3 frameworks above, then click <strong>Compare</strong>.</div></div>
+  </div>
+  <script>
+  "use strict";
+  (function(){
+    if(!window.PW) return;
+    var sels = ["cmp-a","cmp-b","cmp-c"];
+    sels.forEach(function(id){
+      var s = document.getElementById(id);
+      PW.frameworks.forEach(function(f){
+        var o = document.createElement("option"); o.value = f.id; o.textContent = f.name; s.appendChild(o);
+      });
+    });
+    document.getElementById("cmp-go").addEventListener("click",function(){
+      var ids = sels.map(function(id){return document.getElementById(id).value;}).filter(Boolean);
+      var fws = ids.map(function(id){return PW.findFramework(id);}).filter(Boolean);
+      if(fws.length<2){document.getElementById("cmp-result").innerHTML='<div class="cmp-empty">Please select at least 2 frameworks.</div>';return;}
+      var rows = [
+        {label:"Category",fn:function(f){return f.category;}},
+        {label:"Description",fn:function(f){return f.shortDesc;}},
+        {label:"Pillars / Components",fn:function(f){return(f.pillars||[]).map(function(p){return'<strong>'+p.name+'</strong>: '+p.desc;}).join('<br>')||'\u2014';}},
+        {label:"Related Apps",fn:function(f){return'<div class="pill-list">'+(f.relatedApps||[]).map(function(aid){var a=PW.findApp(aid);return a?'<span class="pill-sm">'+a.icon+' '+a.name+'</span>':'';}).join('')+'</div>'||'\u2014';}},
+        {label:"Stages",fn:function(f){return(f.stages||[]).map(function(s){return s.stage+'. '+s.title;}).join(', ')||'\u2014';}},
+        {label:"External Link",fn:function(f){return f.externalUrl&&f.externalUrl!=='#'?'<a href="'+f.externalUrl+'" target="_blank" rel="noopener">'+f.externalUrl.replace(/https?:\/\//,'').slice(0,40)+'\u2026</a>':'\u2014';}}
+      ];
+      var html='<table class="cmp-table"><thead><tr><th></th>'+fws.map(function(f){return'<th>'+f.name+'</th>';}).join('')+'</tr></thead><tbody>';
+      rows.forEach(function(r){
+        html+='<tr><td>'+r.label+'</td>'+fws.map(function(f){return'<td>'+r.fn(f)+'</td>';}).join('')+'</tr>';
+      });
+      html+='</tbody></table>';
+      document.getElementById("cmp-result").innerHTML=html;
+    });
+  })();
+  </script>
+</body>
+</html>
