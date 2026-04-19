@@ -48,6 +48,11 @@
   .btn-wiz.success{background:var(--brand-2);color:#fff}
   #org-chart-canvas{width:100%;max-width:800px;border:1px solid var(--border);border-radius:var(--radius);margin:16px 0;background:var(--bg-elev)}
   .export-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .saved-plans{margin-bottom:28px;padding:16px;background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--radius)}
+  .sp-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;margin:6px 0;font-size:.88rem}
+  .sp-item button{border:none;background:none;cursor:pointer;font-weight:700;padding:4px 8px;border-radius:6px;font-size:.82rem}
+  .sp-load{color:var(--brand-1)}.sp-load:hover{background:var(--grad-soft)}
+  .sp-del{color:var(--accent)}.sp-del:hover{background:rgba(255,122,89,.1)}
   </style>
 
   <meta property="og:type" content="website"/>
@@ -67,6 +72,11 @@
       <h1>Build Your <em>Curriculum</em></h1>
       <p class="step-counter">Step <span id="current-step">1</span> of 7</p>
       <div class="progress-bar"><div id="progress-fill" class="progress-fill" style="width:14%"></div></div>
+    </div>
+
+    <div id="saved-plans" class="saved-plans" style="display:none">
+      <h3 style="font-family:var(--font-display);margin:0 0 8px">Saved Plans</h3>
+      <div id="saved-plans-list"></div>
     </div>
 
     <div id="step-1" class="wiz-step active">
@@ -114,6 +124,7 @@
       <div class="export-row">
         <button id="export-chart" class="btn-wiz primary">Download Org Chart</button>
         <button id="export-json" class="btn-wiz success">Export JSON</button>
+        <button id="save-plan" class="btn-wiz primary">Save Plan</button>
         <button id="print-plan" class="btn-wiz secondary">Print Plan</button>
       </div>
     </div>
