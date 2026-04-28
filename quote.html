@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Request a Quote — Pathways</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <script src="data-frameworks.js"></script><script src="data-apps.js"></script><script src="data-resources.js"></script>
+  <script src="data-apps-stages.js"></script><script src="data-frameworks-stages.js"></script><script src="data.js"></script>
+  <meta property="og:title" content="Request a Quote — Pathways"/>
+  <style>
+  .quote-wrap{max-width:640px;margin:0 auto;padding:clamp(40px,6vw,80px) var(--gutter)}
+  .quote-wrap h1{font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;margin:0 0 8px}
+  .quote-wrap>p{color:var(--text-muted);margin:0 0 28px}
+  .qf{margin-bottom:18px}
+  .qf label{display:block;font-size:13px;font-weight:700;margin-bottom:5px;color:var(--text)}
+  .qf input,.qf select,.qf textarea{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;font:inherit;font-size:15px;background:var(--bg-elev);color:var(--text)}
+  .qf input:focus,.qf select:focus,.qf textarea:focus{border-color:var(--brand-1);outline:none;box-shadow:0 0 0 3px rgba(124,92,255,.14)}
+  .qf textarea{min-height:100px;resize:vertical}
+  .qf-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:520px){.qf-row{grid-template-columns:1fr}}
+  .qf-submit{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border:none;border-radius:10px;background:var(--grad);color:#fff;font-size:16px;font-weight:700;cursor:pointer;transition:transform .15s;box-shadow:0 4px 14px rgba(124,92,255,.3)}
+  .qf-submit:hover{transform:translateY(-1px)}
+  .qf-success{display:none;padding:20px;background:rgba(0,194,168,.1);border:1px solid var(--brand-2);border-radius:12px;text-align:center;color:var(--brand-2);font-weight:700}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#quote-form">Skip to main content</a>
+  <script src="nav.js"></script>
+
+  <div class="quote-wrap">
+    <h1>Request a Quote</h1>
+    <p>Tell us about your school or organisation and we'll send a custom pricing proposal within 48 hours.</p>
+
+    <form id="quote-form" onsubmit="return handleQuote(event)">
+      <div class="qf-row">
+        <div class="qf"><label>Your name *</label><input type="text" name="name" required></div>
+        <div class="qf"><label>Email *</label><input type="email" name="email" required></div>
+      </div>
+      <div class="qf-row">
+        <div class="qf"><label>Organisation name *</label><input type="text" name="org" required></div>
+        <div class="qf"><label>Your role</label><input type="text" name="role" placeholder="e.g. Principal, IT Director"></div>
+      </div>
+      <div class="qf-row">
+        <div class="qf">
+          <label>Organisation type *</label>
+          <select name="type" required>
+            <option value="">Select…</option>
+            <option>Public school</option>
+            <option>Private school</option>
+            <option>Charter school</option>
+            <option>International school</option>
+            <option>University / College</option>
+            <option>School district</option>
+            <option>Corporate training</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="qf">
+          <label>Number of educators *</label>
+          <select name="size" required>
+            <option value="">Select…</option>
+            <option>1-10</option>
+            <option>11-50</option>
+            <option>51-200</option>
+            <option>201-500</option>
+            <option>500+</option>
+          </select>
+        </div>
+      </div>
+      <div class="qf"><label>What are you looking to achieve?</label>
+        <textarea name="goals" placeholder="e.g. We need a curriculum planning tool for 30 teachers across K-8, aligned to IB PYP and MYP, with LMS integration..."></textarea>
+      </div>
+      <div class="qf"><label>Anything else we should know?</label>
+        <textarea name="notes" placeholder="Budget range, timeline, specific frameworks needed, etc."></textarea>
+      </div>
+      <button type="submit" class="qf-submit">Send Quote Request &rarr;</button>
+    </form>
+
+    <div class="qf-success" id="qf-success">
+      <p style="font-size:2rem;margin:0 0 8px">&#x2705;</p>
+      <p style="margin:0">Thank you! We'll send your custom quote within 48 hours.</p>
+      <p style="margin:8px 0 0;font-weight:500;color:var(--text-muted);font-size:14px">Check your inbox (and spam folder) for a response from Pathways.</p>
+    </div>
+  </div>
+
+  <script>
+  function handleQuote(e) {
+    e.preventDefault();
+    var form = document.getElementById("quote-form");
+    var data = new FormData(form);
+    var subject = encodeURIComponent("Pathways Quote Request — " + data.get("org"));
+    var body = encodeURIComponent(
+      "Name: " + data.get("name") + "\n" +
+      "Email: " + data.get("email") + "\n" +
+      "Organisation: " + data.get("org") + "\n" +
+      "Role: " + data.get("role") + "\n" +
+      "Type: " + data.get("type") + "\n" +
+      "Size: " + data.get("size") + " educators\n" +
+      "Goals: " + data.get("goals") + "\n" +
+      "Notes: " + data.get("notes")
+    );
+    window.open("mailto:pathways@example.com?subject=" + subject + "&body=" + body, "_blank");
+    form.style.display = "none";
+    document.getElementById("qf-success").style.display = "block";
+    return false;
+  }
+  </script>
+</body>
+</html>
