@@ -52,6 +52,25 @@
     }).join("");
   }
 
+  function escAttr(s) { return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+
+  function stagesBlock(stages) {
+    if (!stages || !stages.length) return "";
+    var cards = stages.map(function (s) {
+      var resList = (s.resources || []).map(function (r) {
+        return '<a class="stage-resource" href="' + escAttr(r.url) + '" target="_blank" rel="noopener">' + r.title + ' \u2197</a>';
+      }).join("");
+      return '<div class="stage-card">' +
+        '<div class="stage-number">' + s.stage + '</div>' +
+        '<div class="stage-body">' +
+        '<div class="stage-title">' + s.title + '</div>' +
+        '<p class="stage-desc">' + (s.desc || "") + '</p>' +
+        (resList ? '<div class="stage-resources">' + resList + '</div>' : "") +
+        '</div></div>';
+    }).join("");
+    return '<h4>How to implement it</h4><div class="stages-timeline">' + cards + '</div>';
+  }
+
   function detail(a) {
     var fws = (a.relatedFrameworks || []).map(function (fid) {
       var f = PW.findFramework(fid);
@@ -63,15 +82,17 @@
     }).join('');
     var steps = (a.demoSteps || []).map(function (s, i) { return '<li>' + s + '</li>'; }).join('');
     var feats = a.features.map(function (f) { return '<li>' + f + '</li>'; }).join('');
-    var openBtn = a.url && a.url !== '#' && a.status === 'live'
-      ? '<a class="btn primary" href="' + a.url + '" target="_blank" rel="noopener">Open \u2197</a>' : '';
+    var target = (a.liveUrl && a.liveUrl !== '#') ? a.liveUrl : (a.url && a.url !== '#' ? a.url : '');
+    var openBtn = target && a.status !== 'soon'
+      ? '<a class="btn primary" href="' + escAttr(target) + '" target="_blank" rel="noopener">Open \u2197</a>' : '';
     return '<div class="app-detail">' +
       '<h4>Features</h4><ul class="app-features">' + feats + '</ul>' +
       (steps ? '<h4>How it works</h4><ol class="app-steps">' + steps + '</ol>' : '') +
       (fws ? '<h4>Related frameworks</h4><div class="explore-apps">' + fws + '</div>' : '') +
       (res ? '<h4>Related resources</h4><div class="explore-apps">' + res + '</div>' : '') +
+      stagesBlock(a.stages) +
       '<div class="app-actions">' + openBtn +
-      '<button class="btn ghost add-path-btn" data-type="app" data-id="' + a.id + '" data-name="' + a.name + '">+ Add to path</button></div></div>';
+      '<button class="btn ghost add-path-btn" data-type="app" data-id="' + a.id + '" data-name="' + escAttr(a.name) + '">+ Add to path</button></div></div>';
   }
 
   // ---- Events ----
