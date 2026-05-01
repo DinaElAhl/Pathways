@@ -38,6 +38,25 @@
     }).join("");
   }
 
+  function escAttr(s) { return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+
+  function stagesBlock(stages) {
+    if (!stages || !stages.length) return "";
+    var cards = stages.map(function (s) {
+      var resList = (s.resources || []).map(function (r) {
+        return '<a class="stage-resource" href="' + escAttr(r.url) + '" target="_blank" rel="noopener">' + r.title + ' ↗</a>';
+      }).join("");
+      return '<div class="stage-card">' +
+        '<div class="stage-number">' + s.stage + '</div>' +
+        '<div class="stage-body">' +
+        '<div class="stage-title">' + s.title + '</div>' +
+        '<p class="stage-desc">' + (s.desc || "") + '</p>' +
+        (resList ? '<div class="stage-resources">' + resList + '</div>' : "") +
+        '</div></div>';
+    }).join("");
+    return '<h4>Learning path</h4><div class="stages-timeline">' + cards + '</div>';
+  }
+
   function detail(f) {
     var pillars = (f.pillars || []).map(function (p) {
       return '<details class="fw-pillar"><summary><strong>' + p.name + "</strong></summary><p>" + p.desc + "</p></details>";
@@ -50,11 +69,16 @@
       var r = PW.findResource(rid);
       return r ? '<a class="explore-pill" href="resources.html?id=' + r.id + '">' + r.title + "</a>" : "";
     }).join("");
+    var ext = f.externalUrl && f.externalUrl !== "#"
+      ? '<a class="btn primary" href="' + escAttr(f.externalUrl) + '" target="_blank" rel="noopener">Learn more ↗</a>'
+      : "";
     return '<div class="fw-detail">' +
       (pillars ? '<h4>Components</h4>' + pillars : "") +
+      stagesBlock(f.stages) +
       (apps ? '<h4>Related apps</h4><div class="explore-apps">' + apps + "</div>" : "") +
       (res ? '<h4>Related resources</h4><div class="explore-apps">' + res + "</div>" : "") +
-      '<button class="btn ghost add-path-btn" data-type="framework" data-id="' + f.id + '" data-name="' + f.name + '">+ Add to path</button>' +
+      '<div class="app-actions">' + ext +
+      '<button class="btn ghost add-path-btn" data-type="framework" data-id="' + f.id + '" data-name="' + escAttr(f.name) + '">+ Add to path</button></div>' +
       "</div>";
   }
 
