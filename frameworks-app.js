@@ -8,8 +8,10 @@
     { key: "arabic", label: "Arabic & Quran" }
   ];
 
-  var activeCat = "all";
-  var expandedId = new URLSearchParams(location.search).get("id");
+  var params = new URLSearchParams(location.search);
+  var filterParam = (params.get("filter") || "").toLowerCase();
+  var activeCat = CATS.some(function (c) { return c.key === filterParam; }) ? filterParam : "all";
+  var expandedId = params.get("id");
 
   function render() {
     var q = (document.getElementById("fw-search").value || "").toLowerCase();
@@ -104,7 +106,7 @@
   // ---- Filter tabs ----
   var bar = document.getElementById("fw-filters");
   bar.innerHTML = CATS.map(function (c) {
-    return '<button class="fpill' + (c.key === "all" ? " on" : "") + '" data-cat="' + c.key + '">' + c.label + "</button>";
+    return '<button class="fpill' + (c.key === activeCat ? " on" : "") + '" data-cat="' + c.key + '">' + c.label + "</button>";
   }).join("");
   bar.addEventListener("click", function (e) {
     var btn = e.target.closest(".fpill");
