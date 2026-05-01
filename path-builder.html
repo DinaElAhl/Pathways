@@ -293,16 +293,8 @@ old nav end --></span>
         </div>
         <div class="field">
           <label>Learning Frameworks</label>
-          <div class="check-grid" id="fwList">
-            <div class="check-row"><input type="checkbox" id="fw0" checked><label for="fw0">E² Teaching Framework</label></div>
-            <div class="check-row"><input type="checkbox" id="fw1"><label for="fw1">Bloom&apos;s Taxonomy</label></div>
-            <div class="check-row"><input type="checkbox" id="fw2"><label for="fw2">UDL 3.0</label></div>
-            <div class="check-row"><input type="checkbox" id="fw3"><label for="fw3">5E Instructional Model</label></div>
-            <div class="check-row"><input type="checkbox" id="fw4"><label for="fw4">SAMR</label></div>
-            <div class="check-row"><input type="checkbox" id="fw5"><label for="fw5">Project-Based Learning</label></div>
-            <div class="check-row"><input type="checkbox" id="fw6"><label for="fw6">CEFR (Language Levels)</label></div>
-            <div class="check-row"><input type="checkbox" id="fw7"><label for="fw7">ADDIE</label></div>
-          </div>
+          <div class="check-grid" id="fwList"><!-- populated from data-frameworks.js --></div>
+          <small style="color:var(--text-muted);font-size:.78rem">Pick the frameworks that anchor your path. A staged journey will generate in Step 2.</small>
         </div>
         <div class="field">
           <label for="pathGoals">Learning Goals</label>
@@ -323,6 +315,7 @@ old nav end --></span>
       <div class="panel-body">
         <div class="tab-bar">
           <button class="tab on" onclick="switchTab('apps')">Apps</button>
+          <button class="tab" onclick="switchTab('journey')">Journey</button>
           <button class="tab" onclick="switchTab('e2')">E² Phases</button>
           <button class="tab" onclick="switchTab('custom')">Custom</button>
         </div>
@@ -331,6 +324,12 @@ old nav end --></span>
         <div class="tab-pane on" id="tab-apps">
           <div class="srch-wrap"><span class="srch-ico">🔍</span><input class="input" id="appSearch" placeholder="Search apps…" oninput="filterApps()"></div>
           <div class="app-picks" id="appGrid"></div>
+        </div>
+
+        <!-- Journey tab -->
+        <div class="tab-pane" id="tab-journey">
+          <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:.6rem">A staged journey for the frameworks you picked in Step 1. Tick off stages as you complete them — progress is saved on this device.</p>
+          <div id="journeyOut" style="display:flex;flex-direction:column;gap:.5rem"></div>
         </div>
 
         <!-- E2 tab -->
@@ -404,7 +403,7 @@ old nav end --></span>
         <div class="stat"><div class="v" id="sNodes">0</div><div class="l">Nodes</div></div>
         <div class="stat"><div class="v" id="sApps">0</div><div class="l">Apps</div></div>
         <div class="stat"><div class="v" id="sFw">0</div><div class="l">Frameworks</div></div>
-        <div class="stat"><div class="v" id="sMins">0</div><div class="l">Est. mins</div></div>
+        <div class="stat"><div class="v" id="sStages">0/0</div><div class="l">Stages done</div></div>
       </div>
       <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
     </div>
@@ -660,7 +659,7 @@ function renderReview(){
   const curriculum=document.getElementById('pathCurriculum').value||'\u2014';
   const grade=document.getElementById('pathGrade').value||'\u2014';
   const goals=document.getElementById('pathGoals').value||'Not specified';
-  const fws=[...document.querySelectorAll('#fwList input:checked')].map(i=>i.nextElementSibling.textContent).join(', ')||'None';
+  const fws=[...document.querySelectorAll('#fwList input:checked')].map(i=>i.parentElement.querySelector('label').textContent).join(', ')||'None';
   r.innerHTML='<div style="background:var(--bg);border-radius:10px;padding:1rem;font-size:.875rem;margin-bottom:1rem">'
     +'<strong>'+title+'</strong><br><span style="color:var(--text-muted)">'+subject+' \u2022 '+grade+'</span><br>'
     +'<span style="color:var(--text-muted)">'+curriculum+'</span><br>'
@@ -672,8 +671,9 @@ function renderReview(){
 
 /* ── TABS ── */
 function switchTab(id){
-  document.querySelectorAll('.tab').forEach((b,i)=>{const ts=['apps','e2','custom'];b.classList.toggle('on',ts[i]===id);});
+  document.querySelectorAll('.tab').forEach((b,i)=>{const ts=['apps','journey','e2','custom'];b.classList.toggle('on',ts[i]===id);});
   document.querySelectorAll('.tab-pane').forEach(p=>p.classList.toggle('on',p.id==='tab-'+id));
+  if(id==='journey'&&typeof renderJourney==='function')renderJourney();
 }
 
 /* ── EXPORT ── */
@@ -681,7 +681,7 @@ function openExport(){document.getElementById('expModal').classList.add('on');}
 function closeExport(){document.getElementById('expModal').classList.remove('on');}
 function pickExp(fmt,el){selExp=fmt;document.querySelectorAll('.exp-opt').forEach(o=>o.classList.remove('on'));el.classList.add('on');}
 function doExport(){
-  const data={meta:{title:document.getElementById('pathTitle').value||'Untitled',subject:document.getElementById('pathSubject').value,curriculum:document.getElementById('pathCurriculum').value,grade:document.getElementById('pathGrade').value,goals:document.getElementById('pathGoals').value,frameworks:[...document.querySelectorAll('#fwList input:checked')].map(i=>i.nextElementSibling.textContent),created:new Date().toISOString()},nodes:path};
+  const data={meta:{title:document.getElementById('pathTitle').value||'Untitled',subject:document.getElementById('pathSubject').value,curriculum:document.getElementById('pathCurriculum').value,grade:document.getElementById('pathGrade').value,goals:document.getElementById('pathGoals').value,frameworks:[...document.querySelectorAll('#fwList input:checked')].map(i=>i.parentElement.querySelector('label').textContent),created:new Date().toISOString()},nodes:path};
   if(selExp==='json'){dl(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),(data.meta.title.replace(/\s+/g,'-').toLowerCase()||'path')+'.json');}
   else if(selExp==='html'){dl(new Blob([buildHTML(data)],{type:'text/html'}),(data.meta.title.replace(/\s+/g,'-').toLowerCase()||'path')+'.html');}
   else if(selExp==='pdf'){window.print();}
@@ -719,5 +719,6 @@ function toast(msg,type){const t=document.getElementById('toast');t.textContent=
 document.getElementById('expModal').addEventListener('click',function(e){if(e.target===this)closeExport();});
 </script>
 <script src="builder-app.js"></script>
+<script src="stages-builder.js"></script>
 </body>
 </html>
