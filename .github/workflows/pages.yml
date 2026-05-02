@@ -1,4 +1,4 @@
-name: Deploy site to GitHub Pages
+name: Deploy to GitHub Pages + Vercel
 
 on:
   push:
@@ -10,7 +10,6 @@ permissions:
   pages: write
   id-token: write
 
-# Allow only one in-flight deployment, and let new pushes cancel queued ones.
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -29,7 +28,22 @@ jobs:
         run: |
           mkdir -p _site
           cp *.html *.css *.js _site/
-          cp robots.txt sitemap.xml _site/ 2>/dev/null || true
+          cp robots.txt sitemap.xml vercel.json _site/ 2>/dev/null || true
+          cp -r public/* _site/ 2>/dev/null || true
+          # Create clean-URL redirect folders for GitHub Pages
+          for page in browse quote about pricing compare arabic curriculum-builder path-builder apps frameworks resources; do
+            if [ -f "_site/${page}.html" ] || [ "$page" = "browse" ]; then
+              mkdir -p "_site/${page}"
+              if [ "$page" = "browse" ]; then
+                dest="frameworks.html"
+              else
+                dest="${page}.html"
+              fi
+              cat > "_site/${page}/index.html" <<REDIR
+<!doctype html><html><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=../${dest}"><link rel="canonical" href="../${dest}"></head><body><a href="../${dest}">Redirecting…</a></body></html>
+REDIR
+            fi
+          done
           touch _site/.nojekyll
 
       - name: Upload artifact
@@ -37,7 +51,7 @@ jobs:
         with:
           path: _site
 
-  deploy:
+  deploy-pages:
     needs: build
     runs-on: ubuntu-latest
     environment:
@@ -47,3 +61,26 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  deploy-vercel:
+    needs: build
+    runs-on: ubuntu-latest
+    if: vars.VERCEL_PROJECT_ID != '' || secrets.VERCEL_TOKEN != ''
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Pull Vercel environment
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Deploy to Vercel (production)
+        run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
