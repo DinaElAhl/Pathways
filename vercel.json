@@ -1,4 +1,9 @@
 {
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/browse", "destination": "/frameworks.html" },
+    { "source": "/pathways", "destination": "/curriculum-builder.html" }
+  ],
   "headers": [
     {
       "source": "/(.*\\.js)",
@@ -14,7 +19,16 @@
     },
     {
       "source": "/sitemap.xml",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }]
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400" },
+        { "key": "Content-Type", "value": "application/xml" }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain" }
+      ]
     }
   ]
 }
