@@ -3,11 +3,12 @@
 "use strict";
 (function () {
   var LINKS = [
-    { href: "index.html",        label: "Home" },
-    { href: "path-builder.html", label: "Builder" },
-    { href: "apps.html",         label: "Apps" },
-    { href: "frameworks.html",   label: "Frameworks" },
-    { href: "resources.html",    label: "Resources" }
+    { href: "index.html",              label: "Home" },
+    { href: "path-builder.html",       label: "Builder" },
+    { href: "curriculum-builder.html",  label: "Curriculum" },
+    { href: "apps.html",               label: "Apps" },
+    { href: "frameworks.html",          label: "Frameworks" },
+    { href: "resources.html",           label: "Resources" }
   ];
 
   var page = location.pathname.split("/").pop() || "index.html";
