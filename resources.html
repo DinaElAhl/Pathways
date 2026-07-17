@@ -1,255 +1,63 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Resources — Pathways</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-<style>
-.page-hero{padding:clamp(48px,8vw,96px) var(--gutter) clamp(40px,6vw,72px);text-align:center;background:var(--grad-soft);border-bottom:1px solid var(--border)}
-.page-hero .eyebrow{justify-content:center;margin-bottom:.75rem}
-.page-hero h1{font-family:var(--font-display);font-size:clamp(2rem,5vw,3.25rem);font-weight:700;line-height:1.15;margin-bottom:.75rem}
-.page-hero h1 em{font-style:italic;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.page-hero p{color:var(--text-muted);font-size:clamp(.95rem,2vw,1.1rem);max-width:540px;margin:0 auto}
-.page-wrap{max-width:var(--max);margin:0 auto;padding:2rem var(--gutter)}
-.filter-bar{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem;align-items:center}
-.fpill{padding:.4rem 1rem;border-radius:999px;border:1.5px solid var(--border);background:var(--bg-elev);font-size:.82rem;font-weight:700;color:var(--text-muted);cursor:pointer;transition:.15s}
-.fpill:hover{border-color:var(--brand-2);color:var(--brand-2)}
-.fpill.on{background:var(--brand-2);color:#0a0d1a;border-color:transparent;box-shadow:0 4px 12px rgba(0,194,168,.25)}
-.srch-wrap{position:relative;margin-left:auto}
-.srch-ico{position:absolute;left:.7rem;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--text-muted)}
-.srch-inp{padding:.5rem .75rem .5rem 2.2rem;border:1.5px solid var(--border);border-radius:10px;font-size:.875rem;width:240px;outline:none;background:var(--bg-elev);color:var(--text);transition:.15s}
-.srch-inp:focus{border-color:var(--brand-2);box-shadow:0 0 0 3px rgba(0,194,168,.12)}
-.section-head{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem}
-.section-head h2{font-size:1.3rem;font-weight:800;color:var(--text)}
-.cnt-tag{background:rgba(0,194,168,.12);color:var(--brand-2);font-size:.8rem;font-weight:700;padding:.2rem .65rem;border-radius:999px}
-.res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.1rem}
-.res-card{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:.2s;display:flex;flex-direction:column;box-shadow:var(--shadow-sm)}
-.res-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:var(--brand-2)}
-.res-stripe{height:4px}
-.res-body{padding:1.2rem;flex:1;display:flex;flex-direction:column}
-.res-type{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);margin-bottom:.4rem}
-.res-title{font-weight:800;font-size:.9rem;color:var(--text);margin-bottom:.3rem;line-height:1.35}
-.res-desc{font-size:.83rem;color:var(--text-muted);line-height:1.55;flex:1;margin-bottom:.75rem}
-.res-tags{display:flex;flex-wrap:wrap;gap:.25rem;margin-bottom:.75rem}
-.res-tag{padding:.1rem .45rem;border-radius:999px;font-size:.7rem;font-weight:700;background:rgba(0,194,168,.1);color:var(--brand-2)}
-.res-foot{border-top:1px solid var(--border);padding-top:.65rem;display:flex;align-items:center;gap:.4rem;margin-top:auto}
-.level-tag{font-size:.72rem;font-weight:700;padding:.18rem .5rem;border-radius:6px;background:var(--grad-soft);color:var(--brand-1)}
-.add-btn{margin-left:auto;background:var(--brand-2);color:#0a0d1a;border:none;padding:.35rem .8rem;border-radius:9px;font-size:.8rem;font-weight:700;cursor:pointer;transition:.15s}
-.add-btn:hover{opacity:.85;transform:translateY(-1px)}
-.no-res{text-align:center;padding:3rem;color:var(--text-muted);grid-column:1/-1;font-size:.95rem}
-</style>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Resources — Pathways</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <script src="data-frameworks.js"></script>
+  <script src="data-apps.js"></script>
+  <script src="data-resources.js"></script>
+  <script src="data.js"></script>
+  <style>
+  .page-hero{padding:clamp(48px,8vw,96px) var(--gutter) clamp(40px,6vw,72px);text-align:center;background:var(--grad-soft);border-bottom:1px solid var(--border)}
+  .page-hero h1{font-family:var(--font-display);font-size:clamp(2rem,5vw,3.25rem);font-weight:700;line-height:1.15;margin:0 0 .75rem}
+  .page-hero h1 em{font-style:italic;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .page-hero p{color:var(--text-muted);font-size:clamp(.95rem,2vw,1.1rem);max-width:540px;margin:0 auto}
+  .page-wrap{max-width:var(--max);margin:0 auto;padding:2rem var(--gutter)}
+  .filter-bar{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.75rem;align-items:center}
+  .fpill{padding:.4rem 1rem;border-radius:999px;border:1.5px solid var(--border);background:var(--bg-elev);font-size:.82rem;font-weight:700;color:var(--text-muted);cursor:pointer;transition:.15s}
+  .fpill:hover{border-color:var(--brand-1);color:var(--brand-1)}
+  .fpill.on{background:var(--grad);color:#fff;border-color:transparent}
+  .srch-inp{padding:.5rem .75rem;border:1.5px solid var(--border);border-radius:10px;font-size:.875rem;width:220px;background:var(--bg-elev);color:var(--text)}
+  .srch-inp:focus{border-color:var(--brand-1);outline:none;box-shadow:0 0 0 3px rgba(124,92,255,.12)}
+  .res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+  .res-card{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;transition:border-color .15s}
+  .res-card:hover{border-color:var(--border-strong)}
+  .res-badges{display:flex;gap:6px;margin-bottom:8px}
+  .res-title{font-family:var(--font-display);font-weight:700;font-size:17px;margin:0}
+  .res-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:10px}
+  .app-tag{padding:.12rem .5rem;border-radius:999px;font-size:.72rem;font-weight:700;background:rgba(124,92,255,.1);color:var(--brand-1)}
+  .res-rel{font-size:13px;margin-bottom:8px}
+  .res-rel strong{color:var(--text);margin-right:4px}
+  .res-actions{margin-top:auto;padding-top:10px;border-top:1px solid var(--border)}
+  .count-tag{font-size:.82rem;font-weight:700;color:var(--brand-1)}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--text);color:var(--bg);padding:10px 22px;border-radius:999px;font-size:14px;font-weight:600;opacity:0;transition:opacity .3s,transform .3s;z-index:999;pointer-events:none}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  </style>
 </head>
 <body>
-<header class="site-header" role="banner">
-    <div class="wrap header-wrap">
-      <a class="brand" href="#top" aria-label="Pathways home">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 64 64" width="28" height="28">
-            <defs>
-              <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#7c5cff" />
-                <stop offset="1" stop-color="#00c2a8" />
-              </linearGradient>
-            </defs>
-            <rect width="64" height="64" rx="14" fill="url(#bg)" />
-            <path d="M14 46c8-22 28-22 36 0" fill="none" stroke="white" stroke-width="5" stroke-linecap="round" />
-            <circle cx="32" cy="22" r="5" fill="white" />
-          </svg>
-        </span>
-        <span class="brand-text">Pathways</span>
-      </a>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <script src="nav.js"></script>
 
-      <nav class="primary-nav" aria-label="Primary">
-        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="bars" aria-hidden="true"></span>
-        </button>
-        <ul id="nav-list" class="nav-list">
-          <li><a href="#e2">E² Framework</a></li>
-          <li><a href="path-builder.html">Builder</a></li>
-          <li><a href="apps.html">Apps</a></li>
-          <li><a href="frameworks.html">Frameworks</a></li>
-          <li><a href="resources.html" aria-current="page">Resources</a></li>
-          <li><a href="#arabic">Arabic &amp; Quran</a></li>
-        </ul>
-      </nav>
+  <section class="page-hero" id="main-content">
+    <h1>Guides, templates &amp; <em>resources</em></h1>
+    <p>Downloadable assets, reference cards, and video walkthroughs — tagged to frameworks and apps.</p>
+  </section>
 
-      <div class="header-actions">
-        <button id="theme-toggle" class="ghost-btn" aria-label="Toggle color theme">
-          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v3"/><path d="M12 19v3"/><path d="M2 12h3"/><path d="M19 12h3"/><path d="M4.5 4.5l2.1 2.1"/><path d="M17.4 17.4l2.1 2.1"/><path d="M4.5 19.5l2.1-2.1"/><path d="M17.4 6.6l2.1-2.1"/></g></svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M21 13.5A8.5 8.5 0 0 1 10.5 3a7 7 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
-        </button>
-      </div>
+  <div class="page-wrap">
+    <div class="filter-bar" id="type-filters"></div>
+    <div class="filter-bar" id="level-filters"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+      <input class="srch-inp" id="res-search" placeholder="Search resources…" type="search">
+      <span class="count-tag" id="res-count"></span>
     </div>
-  </header>
-<a href="#main-content" class="skip-link">Skip to main content</a>
-
-<section class="page-hero" id="main-content">
-  <p class="eyebrow"><span class="dot"></span>Resources</p>
-  <h1>Everything you need<br>to <em>teach better</em></h1>
-  <p>Curated guides, templates, videos, and research — all ready to add directly to your learning path.</p>
-</section>
-
-<div class="page-wrap">
-  <div class="filter-bar">
-    <button class="fpill on" onclick="filter('all',this)">All</button>
-    <button class="fpill" onclick="filter('guide',this)">Guides</button>
-    <button class="fpill" onclick="filter('template',this)">Templates</button>
-    <button class="fpill" onclick="filter('video',this)">Videos</button>
-    <button class="fpill" onclick="filter('research',this)">Research</button>
-    <button class="fpill" onclick="filter('arabic',this)">Arabic &amp; Quran</button>
-    <button class="fpill" onclick="filter('tool',this)">Tools</button>
-    <div class="srch-wrap">
-      <span class="srch-ico">🔍</span>
-      <input class="srch-inp" id="srch" placeholder="Search resources…" oninput="render()">
-    </div>
+    <div class="res-grid" id="res-grid"></div>
   </div>
-  <div class="section-head">
-    <h2>Resources</h2>
-    <span class="cnt-tag" id="cnt"></span>
-  </div>
-  <div class="res-grid" id="grid"></div>
-</div>
 
-<footer class="site-footer" role="contentinfo">
-    <div class="wrap footer-wrap">
-
-      <div class="footer-brand">
-        <a class="brand" href="index.html" aria-label="Pathways home">
-          <span class="brand-mark" aria-hidden="true">
-            <svg viewBox="0 0 64 64" width="28" height="28">
-              <defs><linearGradient id="fg" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#00c2a8"/>
-              </linearGradient></defs>
-              <rect width="64" height="64" rx="14" fill="url(#fg)"/>
-              <path d="M14 46c8-22 28-22 36 0" fill="none" stroke="white" stroke-width="5" stroke-linecap="round"/>
-              <circle cx="32" cy="22" r="5" fill="white"/>
-            </svg>
-          </span>
-          <span class="brand-text">Pathways</span>
-        </a>
-        <p class="footer-tag">
-          A navigator for modern teaching. Built around the
-          <strong>E² framework</strong> by <strong>Dina El Ahl</strong>.
-        </p>
-      </div>
-
-      <nav class="footer-nav" aria-label="Footer">
-        <div class="footer-col">
-          <h3>Product</h3>
-          <ul>
-            <li><a href="path-builder.html">Path Builder</a></li>
-            <li><a href="apps.html">Apps directory</a></li>
-            <li><a href="frameworks.html">Frameworks</a></li>
-            <li><a href="resources.html">Resources</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>The E² framework</h3>
-          <ul>
-            <li><a href="#e2">Overview</a></li>
-            <li><a href="#e2-pillars">Four pillars</a></li>
-            <li><a href="#arabic">Arabic &amp; Quran</a></li>
-            <li><a href="#start">Where to start</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>Specs Pathways speaks</h3>
-          <ul>
-            <li><a href="#interoperability">LTI 1.3 · xAPI · QTI</a></li>
-            <li><a href="#compliance">FERPA · GDPR · PDPL</a></li>
-            <li><a href="#accessibility">WCAG 2.2 AA</a></li>
-            <li><a href="#curricula">World curricula</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>Project</h3>
-          <ul>
-            <li><a href="https://github.com/DinaElAhl/Pathways" rel="noopener">GitHub repository</a></li>
-            <li><a href="https://github.com/DinaElAhl/Pathways/issues" rel="noopener">Report an issue</a></li>
-            <li><a href="https://github.com/DinaElAhl/Pathways/blob/main/README.md" rel="noopener">README</a></li>
-          </ul>
-        </div>
-      </nav>
-
-      <div class="footer-bottom">
-        <p>© 2026 Pathways. All rights reserved.</p>
-        <p class="muted">Made with care for every teacher and every learner.</p>
-      </div>
-    </div>
-  </footer>
-
-<script>
-const RES=[
-  {id:'e2-guide',title:'E² Teaching Framework — Complete Guide',type:'guide',desc:'The full E² framework documentation: four pillars, five-part lesson blueprint, differentiation strategies, and engagement levers. The official reference for all Pathways tools.',tags:['e2','lesson-design','differentiation'],color:'#7c5cff',level:'All',cat:'guide'},
-  {id:'e2-template',title:'E² 5-Part Lesson Plan Template',type:'template',desc:'A ready-to-use blank lesson plan aligned to Hook → Teach → Practice → Connect → Reflect. Available as Google Doc, Word, and PDF.',tags:['e2','lesson-plan','template'],color:'#7c5cff',level:'All',cat:'template'},
-  {id:'udl-cheat',title:'UDL 3.0 Quick Reference Card',type:'guide',desc:'One-page summary of all UDL 3.0 checkpoints across engagement, representation, and action & expression. Perfect for lesson-planning sessions.',tags:['udl','accessibility','differentiation'],color:'#00c2a8',level:'All',cat:'guide'},
-  {id:'bloom-matrix',title:'Bloom’s Taxonomy Question Stems Matrix',type:'template',desc:'Question-stem matrix for all six Bloom’s levels across subjects. Generate assessment items at any cognitive level in seconds.',tags:['bloom','assessment','questioning'],color:'#ff7a59',level:'All',cat:'template'},
-  {id:'hifz-tracker',title:'Hifz Progress Tracker (30 Juz)',type:'template',desc:'Printable and digital tracker for Quran memorisation across all 30 Juz. Includes murajaah log and daily target calculator.',tags:['quran','hifz','arabic'],color:'#00c2a8',level:'All',cat:'arabic'},
-  {id:'tajweed-rules',title:'Tajweed Rules Summary (Hafs ʿan ʿAsim)',type:'guide',desc:'Visual summary of all major Tajweed rules with audio examples and colour-coded Quran pages.',tags:['quran','tajweed','arabic'],color:'#00c2a8',level:'All',cat:'arabic'},
-  {id:'arabic-cefr',title:'Arabic CEFR Level Descriptors (A1–C2)',type:'guide',desc:'Can-do descriptors for Arabic as a second language, mapped to CEFR levels A1–C2. Distinguishes Fusha from dialect skills.',tags:['arabic','cefr','language'],color:'#00c2a8',level:'A1–C2',cat:'arabic'},
-  {id:'lti-setup',title:'LTI 1.3 Integration Guide',type:'guide',desc:'Step-by-step guide for integrating Pathways apps into Canvas, Moodle, Blackboard, and Google Classroom via LTI 1.3.',tags:['lti','integration','lms'],color:'#7c5cff',level:'Admin',cat:'tool'},
-  {id:'xapi-intro',title:'xAPI for Teachers — Plain English',type:'guide',desc:'Non-technical overview of xAPI: what it tracks, why it matters, and how to read data from DataDash. No coding required.',tags:['xapi','data','analytics'],color:'#7c5cff',level:'All',cat:'guide'},
-  {id:'pbl-rubric',title:'PBL Gold Standard Rubric',type:'template',desc:'Rubric based on the PBL Works Gold Standard Design Elements. Use in ProjectPilot or print for peer review sessions.',tags:['pbl','rubric','assessment'],color:'#ff7a59',level:'Grades 5–12',cat:'template'},
-  {id:'diff-menu',title:'Differentiation Menu Templates (3-Tier)',type:'template',desc:'Ready-to-customise three-tier task menus for Maths, English, and Science. Aligned to DifferentiateIt output format.',tags:['differentiation','udl','templates'],color:'#00c2a8',level:'All',cat:'template'},
-  {id:'exit-bank',title:'Exit Ticket Question Bank (200 prompts)',type:'template',desc:'200 ready-to-use exit ticket prompts across subjects and Bloom’s levels. Import directly into ExitTicket app.',tags:['exit-ticket','formative','assessment'],color:'#ff7a59',level:'All',cat:'template'},
-  {id:'ferpa',title:'FERPA Compliance Checklist for EdTech',type:'guide',desc:'Practical checklist for K-12 administrators evaluating edtech tools for FERPA compliance. Includes third-party vendor questions.',tags:['ferpa','compliance','privacy'],color:'#ff7a59',level:'Admin',cat:'tool'},
-  {id:'gdpr-k',title:'GDPR-K Student Data Guide',type:'guide',desc:'Plain-language guide for schools on GDPR requirements for student data, including the stricter children’s provisions.',tags:['gdpr','compliance','privacy'],color:'#ff7a59',level:'Admin',cat:'tool'},
-  {id:'flipped-video',title:'How to Make a Great Flipped Video',type:'video',desc:'15-minute screencast walking through the FlipStudio workflow: choose a source, auto-generate questions, add timecodes, publish.',tags:['flipped','video','flipstudio'],color:'#ff7a59',level:'All',cat:'video'},
-  {id:'e2-research',title:'Research Behind E²: 20 Key Studies',type:'research',desc:'Annotated bibliography of 20 peer-reviewed studies that underpin the E² framework — cognitive load, feedback, differentiation, and cultural responsiveness.',tags:['e2','research','evidence'],color:'#7c5cff',level:'Advanced',cat:'research'},
-  {id:'islamic-scope',title:'Islamic Studies Scope & Sequence (K-12)',type:'template',desc:'Full K-12 scope and sequence for Fiqh, Seerah, Aqeedah, Hadith, and Adab — four Sunni madhahib + Ja’fari. Download or copy to LessonLoom.',tags:['islamic','quran','arabic'],color:'#00c2a8',level:'K–12',cat:'arabic'},
-  {id:'getting-started',title:'Getting Started with Pathways',type:'guide',desc:'5-minute onboarding guide: create your first path, add apps, export and share. Includes video walkthrough and FAQ.',tags:['getting-started','onboarding'],color:'#7c5cff',level:'All',cat:'guide'},
-];
-const TYPE_ICONS={guide:'📋 Guide',template:'📄 Template',video:'🎬 Video',research:'🔬 Research',tool:'🛠 Tool'};
-
-let activeCat='all';
-function filter(cat,btn){
-  activeCat=cat;
-  document.querySelectorAll('.fpill').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');
-  render();
-}
-function render(){
-  const q=document.getElementById('srch').value.toLowerCase();
-  const items=RES.filter(r=>{
-    const mc=activeCat==='all'||r.cat===activeCat||r.tags.includes(activeCat);
-    const mq=!q||r.title.toLowerCase().includes(q)||r.desc.toLowerCase().includes(q)||r.tags.some(t=>t.includes(q));
-    return mc&&mq;
-  });
-  document.getElementById('cnt').textContent=items.length+' resource'+(items.length!==1?'s':'');
-  const g=document.getElementById('grid');
-  if(!items.length){g.innerHTML='<div class="no-res">No resources match. Try a different filter.</div>';return;}
-  g.innerHTML=items.map(r=>'<div class="res-card">'
-    +'<div class="res-stripe" style="background:'+r.color+'"></div>'
-    +'<div class="res-body">'
-    +'<div class="res-type">'+(TYPE_ICONS[r.type]||r.type)+'</div>'
-    +'<div class="res-title">'+r.title+'</div>'
-    +'<div class="res-desc">'+r.desc+'</div>'
-    +'<div class="res-tags">'+r.tags.map(t=>'<span class="res-tag">'+t+'</span>').join('')+'</div>'
-    +'<div class="res-foot"><span class="level-tag">'+r.level+'</span>'
-    +'<button class="add-btn" onclick="add(\''+r.id+'\')">+ Add to Path</button>'
-    +'</div></div></div>'
-  ).join('');
-}
-function add(id){
-  const r=RES.find(x=>x.id===id);if(!r)return;
-  const draft=JSON.parse(localStorage.getItem('pw-draft')||'{"nodes":[]}');
-  if(!draft.nodes)draft.nodes=[];
-  if(!draft.nodes.find(n=>n.id===id)){
-    draft.nodes.push({id,title:r.title,desc:r.desc,icon:'📋',tags:r.tags,nodeType:'resource',type:'resource'});
-    localStorage.setItem('pw-draft',JSON.stringify(draft));
-    const b=event.currentTarget;b.textContent='✓ Added';b.style.background='rgba(124,92,255,.15)';b.style.color='var(--brand-1)';
-    setTimeout(()=>{b.textContent='+ Add to Path';b.style.background='';b.style.color='';},2000);
-  } else {
-    const b=event.currentTarget;b.textContent='Already added';
-    setTimeout(()=>{b.textContent='+ Add to Path';},1500);
-  }
-}
-render();
-</script>
+  <script src="resources-app.js"></script>
 </body>
 </html>
