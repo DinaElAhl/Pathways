@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson Planner · Pathways Learn</title>
+<style>
+:root{
+  --indigo-600:#4f46e5;--indigo-700:#4338ca;--indigo-500:#6366f1;
+  --violet-600:#7c3aed;--violet-500:#8b5cf6;
+  --grad:linear-gradient(135deg,#4f46e5 0%,#7c3aed 100%);
+  --grad-soft:linear-gradient(135deg,#eef2ff 0%,#f5f3ff 100%);
+  --ink-900:#0f172a;--ink-700:#334155;--ink-500:#64748b;--ink-400:#94a3b8;
+  --line:#e2e8f0;--bg:#f8fafc;--surface:#fff;--surface-2:#f1f5f9;
+  --green-600:#16a34a;--green-50:#f0fdf4;--amber-500:#f59e0b;--amber-50:#fffbeb;
+  --red-600:#dc2626;--red-50:#fef2f2;--sky-600:#0284c7;
+  --child-layla:#db2777;--child-yusuf:#0891b2;--child-zayd:#ea580c;
+  --r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:24px;--r-full:999px;
+  --sh-sm:0 1px 2px rgba(15,23,42,.06);--sh-md:0 4px 12px rgba(15,23,42,.08);--sh-lg:0 12px 32px rgba(15,23,42,.12);
+  --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-8:48px;--maxw:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink-900);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+h1{font-size:28px;font-weight:700;letter-spacing:-.02em}
+h2{font-size:22px;font-weight:700;letter-spacing:-.01em}
+h3{font-size:18px;font-weight:600}h4{font-size:15px;font-weight:600}
+.small{font-size:13px}.tiny{font-size:12px;color:var(--ink-500)}
+a{color:var(--indigo-600);text-decoration:none}
+:focus-visible{outline:2px solid var(--indigo-600);outline-offset:2px;border-radius:6px}
+.display{font-size:clamp(32px,5vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border-radius:var(--r-md);font-size:14px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:.15s;font-family:inherit}
+.btn-primary{background:var(--indigo-600);color:#fff}.btn-primary:hover{background:var(--indigo-700)}
+.btn-grad{background:var(--grad);color:#fff}.btn-grad:hover{filter:brightness(1.05)}
+.btn-ghost{background:var(--surface);color:var(--ink-700);border-color:var(--line)}.btn-ghost:hover{background:var(--surface-2)}
+.btn-sm{height:32px;padding:0 12px;font-size:13px}.btn-lg{height:48px;padding:0 24px;font-size:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-sm);padding:var(--sp-5)}
+.card-hover{transition:.18s}.card-hover:hover{box-shadow:var(--sh-lg);transform:translateY(-2px)}
+.pill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:var(--r-full);font-size:12px;font-weight:600}
+.pill-green{background:var(--green-50);color:var(--green-600)}.pill-amber{background:var(--amber-50);color:var(--amber-500)}
+.pill-red{background:var(--red-50);color:var(--red-600)}.pill-indigo{background:#eef2ff;color:var(--indigo-600)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;padding:12px;color:var(--ink-500);font-size:12px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line)}
+td{padding:12px;border-bottom:1px solid var(--line)}tr:hover td{background:var(--surface-2)}
+.progress{height:8px;background:var(--surface-2);border-radius:var(--r-full);overflow:hidden}
+.progress>span{display:block;height:100%;background:var(--grad);border-radius:var(--r-full);transition:width .8s ease}
+.stat-card .num{font-size:28px;font-weight:700}.stat-card .lbl{font-size:13px;color:var(--ink-500)}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.grid{display:grid;gap:24px}.g-2{grid-template-columns:repeat(2,1fr)}.g-3{grid-template-columns:repeat(3,1fr)}.g-4{grid-template-columns:repeat(4,1fr)}
+.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:24px 0;border-bottom:1px solid var(--line);margin-bottom:24px;flex-wrap:wrap}
+.page-sub{color:var(--ink-500);font-size:14px;margin-top:4px}.page-actions{display:flex;gap:8px;flex-wrap:wrap}
+.app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+.sidebar{background:var(--surface);border-right:1px solid var(--line);padding:20px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:6px;overflow-y:auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;padding:8px}
+.brand .mark{width:32px;height:32px;border-radius:9px;background:var(--grad);flex:none}
+.nav-group-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-500);padding:12px 12px 4px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--r-md);color:var(--ink-700);font-weight:500;font-size:14px}
+.nav-item:hover{background:var(--surface-2)}.nav-item.active{background:#eef2ff;color:var(--indigo-600);font-weight:600}
+.nav-item .ico{width:18px;height:18px;flex:none}.nav-spacer{flex:1}
+.hh-card{margin-top:8px;padding:10px;border:1px solid var(--line);border-radius:var(--r-md);display:flex;align-items:center;gap:8px;font-size:13px}
+.topbar{display:flex;align-items:center;gap:16px;height:64px;padding:0 24px;background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.topbar .search{flex:1;max-width:360px;height:38px;border:1px solid var(--line);border-radius:var(--r-full);padding:0 14px;background:var(--surface-2);font-size:14px;font-family:inherit}
+.avatar{width:34px;height:34px;border-radius:var(--r-full);display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px;background:var(--indigo-600);flex:none}
+.main{min-width:0}.content{max-width:var(--maxw);margin:0 auto;padding:0 24px 48px}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;color:var(--ink-700)}
+.backdrop{position:fixed;inset:0;background:rgba(15,23,42,.4);z-index:40;display:none}.backdrop.show{display:block}
+.modal-wrap{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(15,23,42,.45)}
+.modal-wrap.show{display:flex}
+.modal-card{background:var(--surface);border-radius:var(--r-xl);box-shadow:var(--sh-lg);max-width:480px;width:100%;padding:24px;max-height:90vh;overflow-y:auto}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink-900);color:#fff;padding:12px 20px;border-radius:var(--r-full);font-size:14px;font-weight:500;opacity:0;pointer-events:none;transition:.3s;z-index:80}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:20px;overflow-x:auto}
+.tab{padding:10px 16px;font-size:14px;font-weight:600;color:var(--ink-500);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;font-family:inherit}
+.tab.active{color:var(--indigo-600);border-bottom-color:var(--indigo-600)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.field{margin-bottom:14px}.field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;height:40px;border:1px solid var(--line);border-radius:var(--r-md);padding:0 12px;font-size:14px;font-family:inherit;background:var(--surface)}
+.field textarea{height:auto;padding:10px 12px;min-height:72px}
+@media(max-width:768px){
+  .app{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;z-index:50;transform:translateX(-100%);transition:.25s;width:260px}
+  .sidebar.open{transform:none}.hamburger{display:inline-flex}
+  .g-2,.g-3,.g-4{grid-template-columns:1fr}
+  .page-head{align-items:flex-start}
+  table.responsive{display:block;overflow-x:auto;white-space:nowrap}
+}
+@media print{
+  .sidebar,.topbar,.hamburger,.no-print{display:none!important}
+  .app{display:block}.content{padding:0}body{background:#fff}
+}
+/* ===== PAGE STYLES ===== */
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;background:var(--surface)}
+.seg button{height:40px;padding:0 16px;border:none;background:var(--surface);color:var(--ink-700);font-weight:600;font-size:14px;cursor:pointer;font-family:inherit}
+.seg button.active{background:var(--indigo-600);color:#fff}
+.field-inline{display:flex;flex-direction:column;justify-content:flex-end}
+.field-inline select{height:40px;border:1px solid var(--line);border-radius:var(--r-md);padding:0 12px;font-size:14px;font-family:inherit;background:var(--surface);font-weight:600}
+.planner-layout{display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start}
+@media(max-width:900px){.planner-layout{grid-template-columns:1fr}}
+.cal-week{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.cal-col{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);min-height:420px;display:flex;flex-direction:column;overflow:hidden}
+.cal-col.today{border-color:var(--indigo-500);box-shadow:0 0 0 2px #eef2ff}
+.cal-col-head{padding:10px;text-align:center;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.cal-col.today .cal-col-head{background:var(--grad);color:#fff}
+.cal-col-head .dname{font-size:12px;text-transform:uppercase;letter-spacing:.05em;font-weight:700}
+.cal-col-head .ddate{font-size:12px;opacity:.85}
+.cal-col-body{padding:8px;display:flex;flex-direction:column;gap:8px;flex:1}
+.ev{border-left:3px solid var(--ink-400);border-radius:var(--r-sm);padding:8px 10px;background:var(--surface-2);cursor:default}
+.ev .ev-time{font-size:11px;font-weight:700;color:var(--ink-500)}
+.ev .ev-title{font-size:13px;font-weight:600;margin:2px 0 6px;line-height:1.25}
+.ev-layla{border-left-color:var(--child-layla);background:#fdf2f8}
+.ev-yusuf{border-left-color:var(--child-yusuf);background:#ecfeff}
+.ev-zayd{border-left-color:var(--child-zayd);background:#fff7ed}
+.ev-all{border-left-color:var(--violet-500);background:#f5f3ff}
+.ev-none{border-left-color:var(--ink-400);background:var(--surface-2)}
+.chip{display:inline-flex;align-items:center;font-size:11px;font-weight:700;padding:2px 8px;border-radius:var(--r-full)}
+.chip-layla{background:#fce7f3;color:var(--child-layla)}
+.chip-yusuf{background:#cffafe;color:var(--child-yusuf)}
+.chip-zayd{background:#ffedd5;color:var(--child-zayd)}
+.chip-all{background:#ede9fe;color:var(--violet-600)}
+.chip-none{background:var(--surface-2);color:var(--ink-500)}
+.cal-month{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.m-head{font-size:11px;text-transform:uppercase;letter-spacing:.05em;font-weight:700;color:var(--ink-500);text-align:center;padding:4px 0}
+.m-cell{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);min-height:88px;padding:6px;display:flex;flex-direction:column;gap:4px}
+.m-cell.muted{background:var(--surface-2);color:var(--ink-400)}
+.m-cell.today{border-color:var(--indigo-500);box-shadow:0 0 0 2px #eef2ff}
+.m-cell .mdate{font-size:12px;font-weight:600}
+.m-dots{display:flex;flex-wrap:wrap;gap:4px;margin-top:auto}
+.dot{width:8px;height:8px;border-radius:50%}
+.dot-layla{background:var(--child-layla)}.dot-yusuf{background:var(--child-yusuf)}.dot-zayd{background:var(--child-zayd)}.dot-all{background:var(--violet-500)}.dot-none{background:var(--ink-400)}
+.plan-card{border:1px solid var(--line);border-radius:var(--r-md);padding:12px;margin-bottom:10px;cursor:pointer;transition:.15s;border-left:3px solid var(--ink-400);background:var(--surface)}
+.plan-card:hover{box-shadow:var(--sh-md);transform:translateY(-1px)}
+.plan-card.ev-layla,.plan-card.ev-yusuf,.plan-card.ev-zayd{background:var(--surface)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin:0 0 16px;font-size:12px;color:var(--ink-500)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.hide{display:none!important}
+</style>
+</head>
+<body>
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <a href="dashboard.html" class="brand"><span class="mark"></span>Pathways Learn</a>
+    <div class="nav-group-label">Teach</div>
+    <a href="dashboard.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Dashboard</a>
+    <a href="child.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="8" r="2"/></svg>Children</a>
+    <a href="learn.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z M12 5v14"/></svg>Learn</a>
+    <a href="subjects.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Subjects</a>
+    <a href="planner.html" class="nav-item active"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>Planner</a>
+    <a href="gradebook.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8M20 12v7H4V5h11"/></svg>Gradebook</a>
+    <div class="nav-group-label">Records</div>
+    <a href="compliance.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Compliance <span class="pill pill-indigo" style="margin-left:auto;height:18px;padding:0 7px;font-size:10px">PA</span></a>
+    <a href="settings.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>Settings</a>
+    <div class="nav-spacer"></div>
+    <div class="hh-card"><span class="avatar" style="width:28px;height:28px;font-size:11px">RH</span><div><div style="font-weight:600">Rahman Household</div><div class="tiny">Pennsylvania</div></div></div>
+    <a href="index.html" class="nav-item" style="font-size:13px;color:var(--ink-500)">← Back to site</a>
+  </aside>
+  <main class="main">
+    <div class="topbar">
+      <button class="hamburger" aria-label="Open menu" onclick="toggleSidebar()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <input class="search" placeholder="Search lessons, children, records…" aria-label="Search">
+      <span style="flex:1"></span>
+      <button class="btn btn-ghost btn-sm" onclick="showToast('Attendance logged for today')">Log attendance</button>
+      <span class="avatar">AR</span>
+    </div>
+    <div class="content">
+      <div class="page-head">
+        <div>
+          <h1>Lesson Planner</h1>
+          <div class="page-sub">Rahman Home Academy · Pennsylvania · Week of Jul 13–17, 2026</div>
+        </div>
+        <div class="page-actions">
+          <div class="seg" role="group" aria-label="Calendar view">
+            <button id="btnWeek" class="active" onclick="setView('week')">Week</button>
+            <button id="btnMonth" onclick="setView('month')">Month</button>
+          </div>
+          <div class="field-inline">
+            <select id="childFilter" aria-label="Filter by child" onchange="applyFilter()">
+              <option value="all">All children</option>
+              <option value="layla">Layla</option>
+              <option value="yusuf">Yusuf</option>
+              <option value="zayd">Zayd</option>
+            </select>
+          </div>
+          <button class="btn btn-grad" onclick="openAdd()">+ Add lesson</button>
+        </div>
+      </div>
+
+      <div class="legend">
+        <span><i style="background:var(--child-layla)"></i> Layla</span>
+        <span><i style="background:var(--child-yusuf)"></i> Yusuf</span>
+        <span><i style="background:var(--child-zayd)"></i> Zayd</span>
+        <span><i style="background:var(--violet-500)"></i> Family</span>
+      </div>
+
+      <div class="planner-layout">
+        <div>
+          <!-- WEEK VIEW -->
+          <div id="weekView">
+            <div class="cal-week" id="calWeek"></div>
+          </div>
+          <!-- MONTH VIEW -->
+          <div id="monthView" class="hide">
+            <div class="card" style="padding:16px">
+              <h3 style="margin-bottom:12px">July 2026</h3>
+              <div class="cal-month" id="calMonthHead"></div>
+              <div class="cal-month" id="calMonth" style="margin-top:6px"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SIDE: TO PLAN -->
+        <aside class="card" style="padding:16px">
+          <h3 style="margin-bottom:4px">To plan</h3>
+          <p class="tiny" style="margin-bottom:14px">Unscheduled lessons — click to schedule.</p>
+          <div id="toPlanList"></div>
+        </aside>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ADD LESSON MODAL -->
+<div class="modal-wrap" id="addModal">
+  <div class="modal-card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <h2 id="addTitle">Add lesson</h2>
+      <button class="btn btn-ghost btn-sm" aria-label="Close" onclick="closeModal('addModal')">✕</button>
+    </div>
+    <div class="field">
+      <label for="fChild">Child</label>
+      <select id="fChild">
+        <option value="layla">Layla Rahman</option>
+        <option value="yusuf">Yusuf Rahman</option>
+        <option value="zayd">Zayd Rahman</option>
+        <option value="all">Family (all three)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="fSubject">Subject</label>
+      <input id="fSubject" placeholder="e.g. Algebra II">
+    </div>
+    <div class="field">
+      <label for="fTitle">Lesson title</label>
+      <input id="fTitle" placeholder="e.g. Quadratic Equations">
+    </div>
+    <div class="field">
+      <label for="fDate">Date</label>
+      <input id="fDate" type="date" value="2026-07-16">
+    </div>
+    <div class="grid g-2" style="gap:12px">
+      <div class="field">
+        <label for="fStart">Start time</label>
+        <input id="fStart" type="time" value="09:00">
+      </div>
+      <div class="field">
+        <label for="fEnd">End time</label>
+        <input id="fEnd" type="time" value="09:45">
+      </div>
+    </div>
+    <div class="field">
+      <label style="display:flex;align-items:center;gap:8px;font-weight:500;cursor:pointer">
+        <input type="checkbox" id="fAttendance" checked style="width:auto;height:auto">
+        Counts toward attendance hours
+      </label>
+    </div>
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+      <button class="btn btn-ghost" onclick="closeModal('addModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveLesson()">Save lesson</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== BLOCK C ===== */
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('backdrop').classList.toggle('show');}
+function openModal(id){document.getElementById(id).classList.add('show');}
+function closeModal(id){document.getElementById(id).classList.remove('show');}
+let _toastT;function showToast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.className='toast';document.body.appendChild(t);}t.textContent=msg;t.classList.add('show');clearTimeout(_toastT);_toastT=setTimeout(()=>t.classList.remove('show'),2500);}
+function initTabs(scope){(scope||document).querySelectorAll('[data-tabs]').forEach(function(group){var tabs=group.querySelectorAll('.tab');tabs.forEach(function(tab){tab.addEventListener('click',function(){var panelId=tab.getAttribute('data-tab');group.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');var host=group.getAttribute('data-panels')?document.getElementById(group.getAttribute('data-panels')):group.parentElement;host.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));var panel=document.getElementById(panelId);if(panel)panel.classList.add('active');});});});}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal-wrap.show').forEach(m=>m.classList.remove('show'));}});
+document.addEventListener('DOMContentLoaded',function(){initTabs();document.querySelectorAll('.progress>span').forEach(function(el){var w=el.style.width;el.style.width='0';setTimeout(()=>el.style.width=w,100);});});
+
+/* ===== BLOCK D ===== */
+const TODAY = "Thursday, Jul 16, 2026";
+const FAMILY = {
+  school:"Rahman Home Academy", state:"Pennsylvania", parent:"Aisha Rahman", parentInitials:"AR",
+  plan:"Family — $19/mo", daysLogged:118, daysRequired:180,
+  children:[
+    { id:"layla", name:"Layla Rahman", grade:"11th Grade", age:16, accent:"var(--child-layla)", initials:"LR",
+      avgLabel:"GPA 3.86", gpa:3.86, credits:18.5, creditsNeeded:24, attendance:96, hours:742, hoursReq:990,
+      subjects:["Algebra II (Honors)","English 11: American Literature","Chemistry","U.S. History","Arabic III","Qur'an Studies (Tajweed & Tafsir)","Studio Art"],
+      faith:"Memorizing Surah Ar-Rahman", streak:12, marksStyle:"letter" },
+    { id:"yusuf", name:"Yusuf Rahman", grade:"6th Grade", age:11, accent:"var(--child-yusuf)", initials:"YR",
+      avgLabel:"A- / 91%", attendance:96, hours:611, hoursReq:900,
+      subjects:["Math 6","Language Arts 6","Life Science","World History","Faith & Character","Arabic II","Qur'an Studies"],
+      faith:"6-day Qur'an reading streak", streak:6, marksStyle:"letter",
+      recentGrades:[["Ratios Quiz","Math","Jul 14","88","B+"],["Book Report: Ancient Egypt","Language Arts","Jul 10","95","A"],["Cells Lab","Life Science","Jul 9","90","A-"],["Mesopotamia Map","World History","Jul 7","100","A"],["Vocab Quiz Unit 3","Arabic II","Jul 3","85","B"],["Surah Al-Mulk recitation","Qur'an","Jul 1","—","Excellent"]],
+      today:[["8:30","Qur'an — Surah Al-Mulk review"],["9:15","Math 6 — Understanding Ratios"],["10:30","Language Arts — Descriptive Writing"],["1:00","Life Science — Cells"],["2:00","Arabic II — Vocabulary"]] },
+    { id:"zayd", name:"Zayd Rahman", grade:"2nd Grade", age:7, accent:"var(--child-zayd)", initials:"ZR",
+      avgLabel:"On track", attendance:94, hours:548, hoursReq:900,
+      subjects:["Math 2","Reading & Phonics","Science Explorers","Faith & Character (Stories of the Prophets)","Arabic I (Alphabet)","Qur'an (short surahs)"],
+      faith:"Learning Surah Al-Fatihah & Al-Ikhlas", streak:4, marksStyle:"standards" }
+  ]
+};
+
+/* ===== PLANNER LOGIC ===== */
+const DAYS = ["Mon","Tue","Wed","Thu","Fri"];
+const DATES = ["Jul 13","Jul 14","Jul 15","Jul 16","Jul 17"];
+const TODAY_COL = 3; // Thursday
+const CHILD_LABEL = {layla:"Layla", yusuf:"Yusuf", zayd:"Zayd", all:"Family", none:"General"};
+
+let curFilter = "all";
+let curView = "week";
+
+// day: 0=Mon..4=Fri ; s = start minutes
+let WEEK = [
+  {day:0,s:540,child:"zayd",subject:"Reading",title:"Reading & Phonics"},
+  {day:0,s:555,child:"yusuf",subject:"Math",title:"Math 6"},
+  {day:0,s:600,child:"layla",subject:"Chemistry",title:"Chemistry"},
+  {day:0,s:660,child:"layla",subject:"Arabic III",title:"Arabic III"},
+  {day:0,s:780,child:"yusuf",subject:"Qur'an",title:"Qur'an Studies"},
+
+  {day:1,s:540,child:"yusuf",subject:"Science",title:"Life Science"},
+  {day:1,s:570,child:"zayd",subject:"Math",title:"Math 2"},
+  {day:1,s:600,child:"layla",subject:"English 11",title:"English 11"},
+  {day:1,s:660,child:"layla",subject:"U.S. History",title:"U.S. History"},
+  {day:1,s:780,child:"zayd",subject:"Faith & Character",title:"Faith & Character"},
+
+  {day:2,s:540,child:"layla",subject:"Algebra II",title:"Algebra II"},
+  {day:2,s:570,child:"yusuf",subject:"Language Arts",title:"Language Arts 6"},
+  {day:2,s:630,child:"zayd",subject:"Arabic I",title:"Arabic I"},
+  {day:2,s:780,child:"yusuf",subject:"World History",title:"World History"},
+  {day:2,s:900,child:"all",subject:"Qur'an",title:"Family Qur'an circle"},
+
+  {day:3,s:510,child:"yusuf",subject:"Qur'an",title:"Qur'an — Surah Al-Mulk"},
+  {day:3,s:555,child:"yusuf",subject:"Math",title:"Math 6 — Ratios"},
+  {day:3,s:570,child:"zayd",subject:"Science",title:"Science Explorers"},
+  {day:3,s:660,child:"layla",subject:"Studio Art",title:"Studio Art"},
+  {day:3,s:780,child:"yusuf",subject:"Life Science",title:"Life Science — Cells"},
+  {day:3,s:840,child:"yusuf",subject:"Arabic",title:"Arabic II"},
+
+  {day:4,s:540,child:"layla",subject:"Qur'an Studies",title:"Qur'an Studies"},
+  {day:4,s:570,child:"yusuf",subject:"Arabic II",title:"Arabic II"},
+  {day:4,s:600,child:"zayd",subject:"Reading",title:"Reading & Phonics"},
+  {day:4,s:780,child:"none",subject:"Assessment",title:"Assessment / catch-up"}
+];
+
+const TO_PLAN = [
+  {child:"layla",subject:"U.S. History",title:"Reconstruction essay",start:"11:00",end:"12:00"},
+  {child:"yusuf",subject:"World History",title:"Ancient Rome reading",start:"13:00",end:"13:45"},
+  {child:"zayd",subject:"Math 2",title:"Skip counting practice",start:"09:30",end:"10:00"},
+  {child:"layla",subject:"Chemistry",title:"Lab: Reaction rates",start:"10:00",end:"11:00"}
+];
+
+function fmtTime(mins){
+  let h=Math.floor(mins/60), m=mins%60;
+  let ap=h>=12?"PM":"AM"; let hh=h%12; if(hh===0)hh=12;
+  return hh+":"+(m<10?"0"+m:m)+" "+ap;
+}
+function timeToMins(t){ // "09:00"
+  let p=t.split(":"); return parseInt(p[0],10)*60+parseInt(p[1],10);
+}
+
+function evMatches(child){
+  if(curFilter==="all") return true;
+  if(child==="all") return true;      // family events include everyone
+  if(child==="none") return false;    // general events hidden when filtering a child
+  return child===curFilter;
+}
+
+function renderWeek(){
+  const wrap=document.getElementById('calWeek');
+  wrap.innerHTML="";
+  for(let d=0;d<5;d++){
+    const col=document.createElement('div');
+    col.className="cal-col"+(d===TODAY_COL?" today":"");
+    col.innerHTML='<div class="cal-col-head"><div class="dname">'+DAYS[d]+'</div><div class="ddate">'+DATES[d]+(d===TODAY_COL?' · Today':'')+'</div></div>';
+    const body=document.createElement('div');
+    body.className="cal-col-body";
+    const items=WEEK.filter(e=>e.day===d).sort((a,b)=>a.s-b.s);
+    items.forEach(e=>{
+      const card=document.createElement('div');
+      card.className="ev ev-"+e.child;
+      if(!evMatches(e.child)) card.classList.add('hide');
+      card.innerHTML='<div class="ev-time">'+fmtTime(e.s)+'</div>'+
+        '<div class="ev-title">'+e.title+'</div>'+
+        '<span class="chip chip-'+e.child+'">'+CHILD_LABEL[e.child]+'</span>';
+      body.appendChild(card);
+    });
+    col.appendChild(body);
+    wrap.appendChild(col);
+  }
+}
+
+function renderMonth(){
+  const head=document.getElementById('calMonthHead');
+  head.innerHTML=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].map(d=>'<div class="m-head">'+d+'</div>').join("");
+  const grid=document.getElementById('calMonth');
+  grid.innerHTML="";
+  // July 2026: Jul 1 is a Wednesday. Grid starts Sun Jun 28.
+  // cell index 0..34 -> date offset. Jun28=idx0 ... Jul1=idx3.
+  const startOffset=-3; // Jun 28 relative to Jul 1 (idx0 = Jun 28)
+  for(let i=0;i<35;i++){
+    const dateNum=i+startOffset+1; // Jul date number (can be <=0 = June, >31 = Aug)
+    const cell=document.createElement('div');
+    const inJuly=dateNum>=1&&dateNum<=31;
+    cell.className="m-cell"+(inJuly?"":" muted")+(dateNum===16?" today":"");
+    let label;
+    if(dateNum<1) label="Jun "+(30+dateNum); // Jun 28,29,30
+    else if(dateNum>31) label="Aug "+(dateNum-31);
+    else label=""+dateNum;
+    let dotsHtml="";
+    if(inJuly){
+      const dow=(i%7); // 0=Sun..6=Sat
+      if(dow>=1&&dow<=5){ // weekday -> school day
+        // build representative dots from that weekday's WEEK schedule
+        const wd=dow-1; // Mon=0
+        const kids=[...new Set(WEEK.filter(e=>e.day===wd&&evMatches(e.child)).map(e=>e.child))];
+        dotsHtml='<div class="m-dots">'+kids.map(c=>'<span class="dot dot-'+c+'"></span>').join("")+'</div>';
+      }
+    }
+    cell.innerHTML='<div class="mdate">'+label+'</div>'+dotsHtml;
+    grid.appendChild(cell);
+  }
+}
+
+function renderToPlan(){
+  const list=document.getElementById('toPlanList');
+  list.innerHTML="";
+  TO_PLAN.forEach((p,i)=>{
+    const c=document.createElement('div');
+    c.className="plan-card ev-"+p.child;
+    c.style.borderLeftColor="var(--child-"+p.child+")";
+    c.setAttribute('role','button');c.setAttribute('tabindex','0');
+    c.innerHTML='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px"><span class="chip chip-'+p.child+'">'+CHILD_LABEL[p.child]+'</span><span class="tiny">'+p.subject+'</span></div>'+
+      '<div style="font-weight:600;font-size:14px">'+p.title+'</div>';
+    c.onclick=()=>openAdd(p);
+    c.onkeydown=(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openAdd(p);}};
+    list.appendChild(c);
+  });
+}
+
+function applyFilter(){
+  curFilter=document.getElementById('childFilter').value;
+  renderWeek();
+  renderMonth();
+}
+
+function setView(v){
+  curView=v;
+  document.getElementById('btnWeek').classList.toggle('active',v==='week');
+  document.getElementById('btnMonth').classList.toggle('active',v==='month');
+  document.getElementById('weekView').classList.toggle('hide',v!=='week');
+  document.getElementById('monthView').classList.toggle('hide',v!=='month');
+}
+
+function openAdd(prefill){
+  document.getElementById('addTitle').textContent = prefill ? "Schedule lesson" : "Add lesson";
+  document.getElementById('fChild').value = prefill ? prefill.child : "layla";
+  document.getElementById('fSubject').value = prefill ? prefill.subject : "";
+  document.getElementById('fTitle').value = prefill ? prefill.title : "";
+  document.getElementById('fDate').value = "2026-07-16";
+  document.getElementById('fStart').value = prefill ? prefill.start : "09:00";
+  document.getElementById('fEnd').value = prefill ? prefill.end : "09:45";
+  document.getElementById('fAttendance').checked = true;
+  openModal('addModal');
+}
+
+function saveLesson(){
+  const child=document.getElementById('fChild').value;
+  const subject=document.getElementById('fSubject').value.trim()||"Lesson";
+  const title=document.getElementById('fTitle').value.trim()||subject;
+  const dateStr=document.getElementById('fDate').value;
+  const start=document.getElementById('fStart').value||"09:00";
+  // Map date -> weekday column (Mon-Fri). Default to today (Thu) if weekend/out of range.
+  let col=TODAY_COL;
+  if(dateStr){
+    const dow=new Date(dateStr+"T00:00:00").getDay(); // 0=Sun..6=Sat
+    if(dow>=1&&dow<=5) col=dow-1;
+  }
+  WEEK.push({day:col,s:timeToMins(start),child:child,subject:subject,title:title});
+  if(curView!=='week') setView('week');
+  renderWeek();
+  renderMonth();
+  closeModal('addModal');
+  showToast("Lesson added");
+}
+
+renderWeek();
+renderMonth();
+renderToPlan();
+</script>
+</body>
+</html>

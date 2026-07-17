@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Science Curriculum · Pathways Academy</title>
+<style>
+:root{
+  --indigo-600:#4f46e5;--indigo-700:#4338ca;--indigo-500:#6366f1;
+  --violet-600:#7c3aed;--violet-500:#8b5cf6;
+  --grad:linear-gradient(135deg,#4f46e5 0%,#7c3aed 100%);
+  --grad-soft:linear-gradient(135deg,#eef2ff 0%,#f5f3ff 100%);
+  --ink-900:#0f172a;--ink-700:#334155;--ink-500:#64748b;--ink-400:#94a3b8;
+  --line:#e2e8f0;--bg:#f8fafc;--surface:#fff;--surface-2:#f1f5f9;
+  --green-600:#16a34a;--green-50:#f0fdf4;--amber-500:#f59e0b;--amber-50:#fffbeb;
+  --red-600:#dc2626;--red-50:#fef2f2;--sky-600:#0284c7;
+  --child-layla:#db2777;--child-yusuf:#0891b2;--child-zayd:#ea580c;
+  --r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:24px;--r-full:999px;
+  --sh-sm:0 1px 2px rgba(15,23,42,.06);--sh-md:0 4px 12px rgba(15,23,42,.08);--sh-lg:0 12px 32px rgba(15,23,42,.12);
+  --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-8:48px;--maxw:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink-900);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+h1{font-size:28px;font-weight:700;letter-spacing:-.02em}
+h2{font-size:22px;font-weight:700;letter-spacing:-.01em}
+h3{font-size:18px;font-weight:600}h4{font-size:15px;font-weight:600}
+.small{font-size:13px}.tiny{font-size:12px;color:var(--ink-500)}
+a{color:var(--indigo-600);text-decoration:none}
+:focus-visible{outline:2px solid var(--indigo-600);outline-offset:2px;border-radius:6px}
+.display{font-size:clamp(32px,5vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border-radius:var(--r-md);font-size:14px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:.15s;font-family:inherit}
+.btn-primary{background:var(--indigo-600);color:#fff}.btn-primary:hover{background:var(--indigo-700)}
+.btn-grad{background:var(--grad);color:#fff}.btn-grad:hover{filter:brightness(1.05)}
+.btn-ghost{background:var(--surface);color:var(--ink-700);border-color:var(--line)}.btn-ghost:hover{background:var(--surface-2)}
+.btn-sm{height:32px;padding:0 12px;font-size:13px}.btn-lg{height:48px;padding:0 24px;font-size:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-sm);padding:var(--sp-5)}
+.card-hover{transition:.18s}.card-hover:hover{box-shadow:var(--sh-lg);transform:translateY(-2px)}
+.pill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:var(--r-full);font-size:12px;font-weight:600}
+.pill-green{background:var(--green-50);color:var(--green-600)}.pill-amber{background:var(--amber-50);color:var(--amber-500)}
+.pill-red{background:var(--red-50);color:var(--red-600)}.pill-indigo{background:#eef2ff;color:var(--indigo-600)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;padding:12px;color:var(--ink-500);font-size:12px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line)}
+td{padding:12px;border-bottom:1px solid var(--line)}tr:hover td{background:var(--surface-2)}
+.progress{height:8px;background:var(--surface-2);border-radius:var(--r-full);overflow:hidden}
+.progress>span{display:block;height:100%;background:var(--grad);border-radius:var(--r-full);transition:width .8s ease}
+.stat-card .num{font-size:28px;font-weight:700}.stat-card .lbl{font-size:13px;color:var(--ink-500)}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.grid{display:grid;gap:24px}.g-2{grid-template-columns:repeat(2,1fr)}.g-3{grid-template-columns:repeat(3,1fr)}.g-4{grid-template-columns:repeat(4,1fr)}
+.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:24px 0;border-bottom:1px solid var(--line);margin-bottom:24px;flex-wrap:wrap}
+.page-sub{color:var(--ink-500);font-size:14px;margin-top:4px}.page-actions{display:flex;gap:8px;flex-wrap:wrap}
+.app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+.sidebar{background:var(--surface);border-right:1px solid var(--line);padding:20px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:6px;overflow-y:auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;padding:8px}
+.brand .mark{width:32px;height:32px;border-radius:9px;background:var(--grad);flex:none}
+.nav-group-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-400);padding:12px 12px 4px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--r-md);color:var(--ink-700);font-weight:500;font-size:14px}
+.nav-item:hover{background:var(--surface-2)}.nav-item.active{background:#eef2ff;color:var(--indigo-600);font-weight:600}
+.nav-item .ico{width:18px;height:18px;flex:none}.nav-spacer{flex:1}
+.hh-card{margin-top:8px;padding:10px;border:1px solid var(--line);border-radius:var(--r-md);display:flex;align-items:center;gap:8px;font-size:13px}
+.topbar{display:flex;align-items:center;gap:16px;height:64px;padding:0 24px;background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.topbar .search{flex:1;max-width:360px;height:38px;border:1px solid var(--line);border-radius:var(--r-full);padding:0 14px;background:var(--surface-2);font-size:14px;font-family:inherit}
+.avatar{width:34px;height:34px;border-radius:var(--r-full);display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px;background:var(--indigo-600);flex:none}
+.main{min-width:0}.content{max-width:var(--maxw);margin:0 auto;padding:0 24px 48px}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;color:var(--ink-700)}
+.backdrop{position:fixed;inset:0;background:rgba(15,23,42,.4);z-index:40;display:none}.backdrop.show{display:block}
+.modal-wrap{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(15,23,42,.45)}
+.modal-wrap.show{display:flex}
+.modal-card{background:var(--surface);border-radius:var(--r-xl);box-shadow:var(--sh-lg);max-width:480px;width:100%;padding:24px;max-height:90vh;overflow-y:auto}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink-900);color:#fff;padding:12px 20px;border-radius:var(--r-full);font-size:14px;font-weight:500;opacity:0;pointer-events:none;transition:.3s;z-index:80}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:20px;overflow-x:auto}
+.tab{padding:10px 16px;font-size:14px;font-weight:600;color:var(--ink-500);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;font-family:inherit}
+.tab.active{color:var(--indigo-600);border-bottom-color:var(--indigo-600)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.field{margin-bottom:14px}.field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;height:40px;border:1px solid var(--line);border-radius:var(--r-md);padding:0 12px;font-size:14px;font-family:inherit;background:var(--surface)}
+.field textarea{height:auto;padding:10px 12px;min-height:72px}
+@media(max-width:768px){
+  .app{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;z-index:50;transform:translateX(-100%);transition:.25s;width:260px}
+  .sidebar.open{transform:none}.hamburger{display:inline-flex}
+  .g-2,.g-3,.g-4{grid-template-columns:1fr}
+  .page-head{align-items:flex-start}
+  table.responsive{display:block;overflow-x:auto;white-space:nowrap}
+}
+@media print{
+  .sidebar,.topbar,.hamburger,.no-print{display:none!important}
+  .app{display:block}.content{padding:0}body{background:#fff}
+}
+/* ===== PAGE STYLES ===== */
+.hero-band{background:var(--grad-soft);border:1px solid var(--line);border-radius:var(--r-xl);padding:28px;margin-bottom:24px}
+.hero-band .eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--violet-600)}
+.hero-icon{width:56px;height:56px;border-radius:16px;background:var(--grad);display:grid;place-items:center;color:#fff;flex:none;margin-bottom:14px}
+.wonder{border-left:3px solid var(--violet-500);background:#faf7ff;padding:14px 16px;border-radius:0 var(--r-md) var(--r-md) 0;color:var(--ink-700);font-size:14px;margin-top:16px}
+.arc{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.arc .step{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--ink-700);background:var(--surface);border:1px solid var(--line);border-radius:var(--r-full);padding:6px 12px}
+.arc .arw{color:var(--ink-400)}
+.band-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.band-head .grade{font-size:13px;font-weight:600;color:var(--violet-600)}
+.courses-row{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 20px}
+.course-chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;background:#eef2ff;color:var(--indigo-700);border-radius:var(--r-full);padding:6px 12px}
+.unit{border:1px solid var(--line);border-radius:var(--r-md);padding:16px;background:var(--surface);margin-bottom:12px}
+.unit .u-top{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
+.unit .u-num{width:26px;height:26px;flex:none;border-radius:8px;background:var(--surface-2);display:grid;place-items:center;font-size:13px;font-weight:700;color:var(--indigo-600)}
+.unit .u-desc{color:var(--ink-700);font-size:14px;margin:2px 0 10px}
+.skills{display:flex;flex-wrap:wrap;gap:6px}
+.skill{font-size:12px;font-weight:500;color:var(--ink-700);background:var(--surface-2);border-radius:var(--r-full);padding:4px 10px}
+.lesson{border:1px solid var(--line);border-left:4px solid var(--violet-500);border-radius:var(--r-md);padding:18px;background:#fdfdff;margin-bottom:14px}
+.lesson.lab{border-left-color:var(--green-600);background:#f7fef9}
+.lesson h4{font-size:16px}
+.lesson .meta{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px}
+.lesson .l-block{margin-top:12px}
+.lesson .l-block .lab-el{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-500);margin-bottom:4px}
+.lesson ul,.lesson ol{margin:6px 0 0 20px;font-size:14px;color:var(--ink-700)}
+.lesson li{margin-bottom:4px}
+.mats{background:var(--surface-2);border-radius:var(--r-lg);padding:20px;margin-top:8px}
+.mats .g-4{gap:16px}
+.mat-tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:14px}
+.mat-tile .mt-ico{color:var(--violet-600);margin-bottom:8px}
+.chk-row{display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--line);border-radius:var(--r-md);margin-bottom:8px}
+.chk-row input{width:18px;height:18px;flex:none}
+.chk-av{width:30px;height:30px;border-radius:var(--r-full);display:grid;place-items:center;color:#fff;font-weight:700;font-size:12px;flex:none}
+.backlinks{display:flex;gap:16px;flex-wrap:wrap;margin-top:28px;padding-top:20px;border-top:1px solid var(--line)}
+.section-label{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-400);margin:22px 0 10px}
+</style>
+</head>
+<body>
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <a href="dashboard.html" class="brand"><span class="mark"></span>Pathways Learn</a>
+    <div class="nav-group-label">Teach</div>
+    <a href="dashboard.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Dashboard</a>
+    <a href="child.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="8" r="2"/></svg>Children</a>
+    <a href="learn.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z M12 5v14"/></svg>Learn</a>
+    <a href="subjects.html" class="nav-item active"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Subjects</a>
+    <a href="planner.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>Planner</a>
+    <a href="gradebook.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8M20 12v7H4V5h11"/></svg>Gradebook</a>
+    <div class="nav-group-label">Records</div>
+    <a href="compliance.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Compliance <span class="pill pill-indigo" style="margin-left:auto;height:18px;padding:0 7px;font-size:10px">PA</span></a>
+    <a href="settings.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>Settings</a>
+    <div class="nav-spacer"></div>
+    <div class="hh-card"><span class="avatar" style="width:28px;height:28px;font-size:11px">RH</span><div><div style="font-weight:600">Rahman Household</div><div class="tiny">Pennsylvania</div></div></div>
+    <a href="index.html" class="nav-item" style="font-size:13px;color:var(--ink-500)">← Back to site</a>
+  </aside>
+  <main class="main">
+    <div class="topbar">
+      <button class="hamburger" aria-label="Open menu" onclick="toggleSidebar()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <input class="search" placeholder="Search lessons, children, records…" aria-label="Search">
+      <span style="flex:1"></span>
+      <button class="btn btn-ghost btn-sm" onclick="showToast('Attendance logged for today')">Log attendance</button>
+      <span class="avatar">AR</span>
+    </div>
+    <div class="content">
+
+      <div class="page-head">
+        <div>
+          <div class="tiny" style="margin-bottom:4px"><a href="subjects.html">Subjects</a> <span style="color:var(--ink-400)">/</span> Science</div>
+          <h1>Science</h1>
+          <p class="page-sub">Observe carefully, ask good questions, test ideas — and marvel at an ordered, knowable world.</p>
+        </div>
+        <div class="page-actions">
+          <a href="subjects.html" class="btn btn-ghost">← All subjects</a>
+          <button class="btn btn-grad" onclick="openModal('addModal')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            Add to a child's plan
+          </button>
+        </div>
+      </div>
+
+      <!-- OVERVIEW BAND -->
+      <div class="hero-band">
+        <div class="hero-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6M10 3v5l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M7 15h10"/></svg>
+        </div>
+        <div class="eyebrow">K–12 · Standards-aligned · Hands-on labs</div>
+        <h2 style="margin:6px 0 8px">A curiosity-first path from the five senses to the AP-level lab bench</h2>
+        <p style="color:var(--ink-700);max-width:760px">Pathways Academy Science grows a learner from noticing the world with their own senses to reasoning about cells, atoms, forces, and galaxies. Every band centers on the practices real scientists use — <strong>observe, question, predict, test, measure, and explain with evidence</strong> — so children build habits of mind, not just facts to memorize. Units are sequenced so early wonder (plants, weather, magnets) becomes middle-grade models (cells, atoms, energy) and finally the discipline of high-school Biology, Chemistry, and Physics.</p>
+        <div class="arc">
+          <span class="step">Nature &amp; Senses</span><span class="arw">→</span>
+          <span class="step">Earth &amp; Life Science</span><span class="arw">→</span>
+          <span class="step">Physical Science &amp; Chemistry Basics</span><span class="arw">→</span>
+          <span class="step">Biology · Chemistry · Physics</span>
+        </div>
+        <div class="wonder">
+          <strong>A sense of wonder, woven in gently.</strong> Studying creation is treated as an invitation to attentiveness and gratitude — the more closely we look at a leaf's veins, a snowflake's symmetry, or the tilt that gives us seasons, the more there is to appreciate. Faith framing stays light and never replaces the science: learners still test, measure, and explain with evidence, and are encouraged to hold questions open with humility.
+        </div>
+      </div>
+
+      <div class="grid g-4" style="margin-bottom:24px">
+        <div class="card stat-card"><div class="num">4</div><div class="lbl">Grade bands, K–12</div></div>
+        <div class="card stat-card"><div class="num">24</div><div class="lbl">Scope-&amp;-sequence units</div></div>
+        <div class="card stat-card"><div class="num">40+</div><div class="lbl">Hands-on labs &amp; investigations</div></div>
+        <div class="card stat-card"><div class="num">NGSS</div><div class="lbl">-style objectives (aligned, not affiliated)</div></div>
+      </div>
+
+      <div class="card" style="margin-bottom:24px;background:var(--grad-soft);border:none">
+        <h3 style="margin-bottom:6px">Standards &amp; approach</h3>
+        <p class="small" style="color:var(--ink-700);max-width:820px">Units are written to mirror <strong>NGSS-style three-dimensional learning</strong> — pairing disciplinary core ideas (life, physical, earth &amp; space science) with science &amp; engineering practices and crosscutting concepts such as <em>patterns, cause &amp; effect, systems, energy &amp; matter, and structure &amp; function.</em> Objectives are aligned to these frameworks for planning and portfolio purposes; Pathways Academy is an independent curriculum and is not affiliated with or endorsed by NGSS, Achieve, or any state board. High-school courses are structured to satisfy typical lab-science graduation and college-admission expectations.</p>
+      </div>
+
+      <!-- GRADE-BAND TABS -->
+      <div class="tabs" data-tabs data-panels="bandPanels" role="tablist" aria-label="Science grade bands">
+        <button class="tab active" data-tab="k2">Primary K–2</button>
+        <button class="tab" data-tab="e35">Elementary 3–5</button>
+        <button class="tab" data-tab="m68">Middle 6–8</button>
+        <button class="tab" data-tab="h912">High School 9–12</button>
+      </div>
+
+      <div id="bandPanels">
+
+        <!-- ============ PRIMARY K-2 ============ -->
+        <div class="tab-panel active" id="k2">
+          <div class="band-head"><h2>Science Explorers</h2><span class="grade">Primary · Grades K–2</span></div>
+          <p style="color:var(--ink-700);max-width:760px">Young scientists use their five senses to sort, describe, and wonder about the living and non-living world around them. Lessons are short, playful, and hands-on — mostly outdoors, at the window, or at the kitchen table — building the vocabulary and observation habits everything else depends on.</p>
+          <div class="courses-row">
+            <span class="course-chip">Science Explorers K</span>
+            <span class="course-chip">Science Explorers 1</span>
+            <span class="course-chip">Science Explorers 2</span>
+          </div>
+
+          <div class="section-label">Scope &amp; sequence — 7 units</div>
+
+          <div class="unit"><div class="u-top"><span class="u-num">1</span><h4>Our Five Senses</h4></div>
+            <p class="u-desc">We learn about the world by seeing, hearing, smelling, tasting, and touching — and by describing carefully what we notice.</p>
+            <div class="skills"><span class="skill">Match sense to body part</span><span class="skill">Describe by texture, sound, smell</span><span class="skill">Mystery bag sorting</span><span class="skill">Safe vs. don't-taste rules</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">2</span><h4>Living &amp; Non-Living</h4></div>
+            <p class="u-desc">Living things grow, need food and water, and can make more of themselves; non-living things do not.</p>
+            <div class="skills"><span class="skill">Sort living / non-living / once-living</span><span class="skill">Needs of living things</span><span class="skill">Yes/no attribute charts</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">3</span><h4>Plants &amp; How They Grow</h4></div>
+            <p class="u-desc">Seeds need soil, water, light, and warmth to grow; plants have roots, stem, leaves, and flowers.</p>
+            <div class="skills"><span class="skill">Label plant parts</span><span class="skill">What a seed needs</span><span class="skill">Draw &amp; date a growth journal</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">4</span><h4>Animals &amp; Their Homes</h4></div>
+            <p class="u-desc">Animals have body parts that help them eat, move, and stay safe, and live in habitats that meet their needs.</p>
+            <div class="skills"><span class="skill">Match animal to habitat</span><span class="skill">Covering: fur, feathers, scales</span><span class="skill">What animals need to live</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">5</span><h4>Weather &amp; Seasons</h4></div>
+            <p class="u-desc">Weather changes day to day; the four seasons repeat in a pattern we can track and predict.</p>
+            <div class="skills"><span class="skill">Sunny/cloudy/rainy/windy</span><span class="skill">Daily weather calendar</span><span class="skill">Dress for the weather</span><span class="skill">Season patterns</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">6</span><h4>Materials All Around Us</h4></div>
+            <p class="u-desc">Everyday objects are made of materials — wood, metal, plastic, cloth, glass — each with properties we can test.</p>
+            <div class="skills"><span class="skill">Hard/soft, rough/smooth</span><span class="skill">Sink or float</span><span class="skill">Sort by material</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">7</span><h4>Sky, Day &amp; Night · Push &amp; Pull</h4></div>
+            <p class="u-desc">The sun lights our day and sets at night; things move when we give them a push or a pull, gently or hard.</p>
+            <div class="skills"><span class="skill">Day vs. night sky</span><span class="skill">Shadows change</span><span class="skill">Push, pull, faster, slower</span><span class="skill">Ramps &amp; rolling</span></div>
+          </div>
+
+          <div class="section-label">Sample lessons</div>
+
+          <div class="lesson">
+            <h4>Living or Non-Living? A Sorting Hunt</h4>
+            <div class="meta"><span class="pill pill-indigo">Unit 2</span><span class="pill pill-green">~20 min</span><span class="pill pill-amber">Grades K–1</span></div>
+            <div class="l-block"><div class="lab-el">Objective</div><p class="small">Sort objects into <em>living</em> and <em>non-living</em> and explain the sort using at least one need of living things (food, water, air, or growth).</p></div>
+            <div class="l-block"><div class="lab-el">Lesson</div><p class="small">Living things do three special jobs: they <strong>grow</strong>, they <strong>need food and water</strong>, and they can <strong>make more of themselves</strong> (a cat has kittens; a maple drops seeds). A rock, a spoon, and a toy never do any of those — they are non-living. Some things, like a fallen leaf or a wooden chair, were <em>once</em> living but are not alive now. We look closely and ask: "Does it eat? Does it grow? Could it have babies or seeds?"</p></div>
+            <div class="l-block"><div class="lab-el">Practice activity</div><p class="small">Take a basket on a 10-minute walk around the house or yard and collect 6 small safe items (a leaf, a pebble, a flower, a bottle cap…). Make two hoops on the floor labeled <em>Living</em> and <em>Non-Living</em>. Place each item and say one reason aloud. Bonus: start a third hoop for <em>Once-Living</em>. Draw your favorite living thing and write what it needs.</p></div>
+          </div>
+
+          <div class="lesson lab">
+            <h4>Lab: Will It Sink or Float?</h4>
+            <div class="meta"><span class="pill pill-green">Hands-on Lab</span><span class="pill pill-indigo">Unit 6</span><span class="pill pill-amber">Grades K–2</span></div>
+            <div class="l-block"><div class="lab-el">Objective</div><p class="small">Predict and test whether everyday objects sink or float, then look for a pattern in the results.</p></div>
+            <div class="l-block"><div class="lab-el">Materials</div><p class="small">A clear tub or sink of water, a towel, and 8 safe objects made of different materials: cork, spoon, crayon, coin, plastic lid, small rock, sponge, apple.</p></div>
+            <div class="l-block"><div class="lab-el">Do this</div>
+              <ol>
+                <li>Before testing each object, <strong>predict</strong>: point thumbs-up (float) or thumbs-down (sink).</li>
+                <li>Gently place the object on the water. Watch what happens.</li>
+                <li>Record on a two-column chart: <em>Float</em> / <em>Sink</em> (draw or place the item).</li>
+                <li>After all 8, look at your chart. What do the floaters have in common? The sinkers?</li>
+              </ol>
+            </div>
+            <div class="l-block"><div class="lab-el">Talk about it</div><p class="small">Which predictions were right? Were any surprising? (An apple floats even though it feels heavy!) Scientists change their minds when the water shows them something new — and that's a wonderful thing.</p></div>
+          </div>
+        </div>
+
+        <!-- ============ ELEMENTARY 3-5 ============ -->
+        <div class="tab-panel" id="e35">
+          <div class="band-head"><h2>Earth &amp; Life Science</h2><span class="grade">Elementary · Grades 3–5</span></div>
+          <p style="color:var(--ink-700);max-width:760px">Learners move from describing to explaining. They investigate life cycles and ecosystems, the states and properties of matter, forces and motion, Earth's systems, and energy — running fair tests, recording data in tables, and drawing evidence-based conclusions.</p>
+          <div class="courses-row">
+            <span class="course-chip">Science 3 · Life &amp; Matter</span>
+            <span class="course-chip">Science 4 · Earth &amp; Energy</span>
+            <span class="course-chip">Science 5 · Systems &amp; Motion</span>
+          </div>
+
+          <div class="section-label">Scope &amp; sequence — 7 units</div>
+
+          <div class="unit"><div class="u-top"><span class="u-num">1</span><h4>Life Cycles &amp; Ecosystems</h4></div>
+            <p class="u-desc">Living things follow life cycles and depend on one another; energy moves through food chains and webs.</p>
+            <div class="skills"><span class="skill">Metamorphosis vs. direct growth</span><span class="skill">Producers/consumers/decomposers</span><span class="skill">Build a food web</span><span class="skill">Adaptations &amp; habitats</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">2</span><h4>Matter &amp; Its States</h4></div>
+            <p class="u-desc">Matter has mass and volume and exists as solid, liquid, or gas; heating and cooling change its state.</p>
+            <div class="skills"><span class="skill">Properties &amp; measuring mass</span><span class="skill">Melting, freezing, evaporating</span><span class="skill">Mixtures vs. solutions</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">3</span><h4>Forces &amp; Motion</h4></div>
+            <p class="u-desc">Pushes and pulls change speed and direction; friction and gravity are forces we can observe and measure.</p>
+            <div class="skills"><span class="skill">Balanced vs. unbalanced forces</span><span class="skill">Friction on different surfaces</span><span class="skill">Measure distance &amp; speed</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">4</span><h4>Earth's Systems &amp; Weather</h4></div>
+            <p class="u-desc">Earth has land, water, air, and living things that interact; weather and climate follow patterns.</p>
+            <div class="skills"><span class="skill">Rocks, soil, landforms</span><span class="skill">Weathering &amp; erosion</span><span class="skill">Read a thermometer &amp; map</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">5</span><h4>The Water Cycle</h4></div>
+            <p class="u-desc">Water moves in a continuous cycle — evaporation, condensation, precipitation, and collection — powered by the sun.</p>
+            <div class="skills"><span class="skill">Label the cycle</span><span class="skill">Evaporation vs. condensation</span><span class="skill">Clouds &amp; precipitation types</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">6</span><h4>Energy &amp; Its Forms</h4></div>
+            <p class="u-desc">Energy comes in forms — light, heat, sound, motion, electrical — and can transfer from one object to another.</p>
+            <div class="skills"><span class="skill">Energy sources</span><span class="skill">Build a simple circuit</span><span class="skill">Sound &amp; vibration</span><span class="skill">Conductors vs. insulators</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">7</span><h4>Simple Machines</h4></div>
+            <p class="u-desc">Levers, pulleys, ramps, wheels, wedges, and screws help us do work with less effort.</p>
+            <div class="skills"><span class="skill">Identify the six simple machines</span><span class="skill">Effort vs. load</span><span class="skill">Design a machine to move a load</span></div>
+          </div>
+
+          <div class="section-label">Sample lessons</div>
+
+          <div class="lesson">
+            <h4>Following the Water Cycle</h4>
+            <div class="meta"><span class="pill pill-indigo">Unit 5</span><span class="pill pill-green">~35 min</span><span class="pill pill-amber">Grade 4</span></div>
+            <div class="l-block"><div class="lab-el">Objective</div><p class="small">Describe the four main stages of the water cycle and explain that the sun's energy drives it.</p></div>
+            <div class="l-block"><div class="lab-el">Lesson</div><p class="small">Water is always on the move. The <strong>sun</strong> heats oceans, lakes, and puddles, turning liquid water into invisible vapor — <strong>evaporation</strong>. High in the cooler sky, vapor turns back into tiny droplets — <strong>condensation</strong> — that gather into clouds. When droplets grow heavy, they fall as rain, snow, sleet, or hail — <strong>precipitation</strong>. That water flows into streams and rivers, or soaks into the ground — <strong>collection</strong> — and the cycle begins again. Not one drop is wasted; the same water has cycled through the Earth for ages.</p></div>
+            <div class="l-block"><div class="lab-el">Practice activity</div><p class="small">Draw and label the cycle in a circle with four arrows. Then write a "day in the life of a water droplet" story that visits all four stages at least once (start in the ocean, ride a cloud, fall as snow on a mountain, melt into a river). Underline each stage word in your story.</p></div>
+          </div>
+
+          <div class="lesson lab">
+            <h4>Lab: Build a Water Cycle in a Bag</h4>
+            <div class="meta"><span class="pill pill-green">Hands-on Lab</span><span class="pill pill-indigo">Unit 5</span><span class="pill pill-amber">Grades 3–5</span></div>
+            <div class="l-block"><div class="lab-el">Objective</div><p class="small">Model evaporation, condensation, and precipitation in a sealed bag and connect the model to the real water cycle.</p></div>
+            <div class="l-block"><div class="lab-el">Materials</div><p class="small">A zip-top sandwich bag, permanent marker, 3 tablespoons of water, a few drops of blue food coloring, tape, and a sunny window.</p></div>
+            <div class="l-block"><div class="lab-el">Do this</div>
+              <ol>
+                <li>With the marker, draw a sun, a cloud, and waves near the bottom of the bag.</li>
+                <li>Pour in the blue water, press out the air, and seal tightly.</li>
+                <li>Tape the bag to a sunny window and observe over the day.</li>
+                <li>Record what you see at 1 hour, 3 hours, and the next morning.</li>
+              </ol>
+            </div>
+            <div class="l-block"><div class="lab-el">What's happening</div><p class="small">The sun warms the water so it <em>evaporates</em> and rises as vapor. It <em>condenses</em> into droplets on the cool top of the bag, and when droplets get heavy they slide down like <em>precipitation</em>. Write a sentence matching each thing you saw to its water-cycle word.</p></div>
+            <div class="l-block"><div class="lab-el">Extend</div><p class="small">Fair-test question: does a bag in the shade cycle as fast as one in the sun? Set up both and compare — what does that tell you about the sun's role?</p></div>
+          </div>
+        </div>
+
+        <!-- ============ MIDDLE 6-8 ============ -->
+        <div class="tab-panel" id="m68">
+          <div class="band-head"><h2>Physical, Life &amp; Earth Science</h2><span class="grade">Middle · Grades 6–8</span></div>
+          <p style="color:var(--ink-700);max-width:760px">Middle-grade science moves into models and mechanisms: cells and body systems, ecology and energy flow, the particle model of matter and chemical reactions, forces and energy, Earth &amp; space, and an introduction to genetics. Learners design controlled investigations, handle real data, and reason with evidence. (Yusuf, Grade 6, currently takes <em>Life Science</em> in this band.)</p>
+          <div class="courses-row">
+            <span class="course-chip">Grade 6 · Life Science</span>
+            <span class="course-chip">Grade 7 · Physical &amp; Chemical Science</span>
+            <span class="course-chip">Grade 8 · Earth &amp; Space Science</span>
+          </div>
+
+          <div class="section-label">Scope &amp; sequence — 6 units</div>
+
+          <div class="unit"><div class="u-top"><span class="u-num">1</span><h4>Cells &amp; Body Systems</h4></div>
+            <p class="u-desc">Cells are the basic unit of life; specialized cells, tissues, and organs form systems that keep an organism alive.</p>
+            <div class="skills"><span class="skill">Plant vs. animal cell parts</span><span class="skill">Microscope skills</span><span class="skill">Digestive/circulatory/respiratory systems</span><span class="skill">Homeostasis</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">2</span><h4>Ecology &amp; Energy Flow</h4></div>
+            <p class="u-desc">Energy from the sun flows through ecosystems; matter cycles; populations respond to limiting factors.</p>
+            <div class="skills"><span class="skill">Food webs &amp; energy pyramids</span><span class="skill">Photosynthesis &amp; respiration</span><span class="skill">Carbon &amp; nitrogen cycles</span><span class="skill">Symbiosis &amp; competition</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">3</span><h4>Chemistry Basics: Atoms, Molecules &amp; Reactions</h4></div>
+            <p class="u-desc">All matter is made of atoms; elements combine into molecules and compounds; reactions rearrange atoms and conserve mass.</p>
+            <div class="skills"><span class="skill">Atomic structure &amp; the periodic table</span><span class="skill">Elements, compounds, mixtures</span><span class="skill">Physical vs. chemical change</span><span class="skill">Conservation of mass</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">4</span><h4>Forces &amp; Energy</h4></div>
+            <p class="u-desc">Newton's laws describe motion; energy transforms between kinetic, potential, thermal, and other forms.</p>
+            <div class="skills"><span class="skill">Net force &amp; acceleration</span><span class="skill">Speed–time graphs</span><span class="skill">Kinetic &amp; potential energy</span><span class="skill">Energy conservation</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">5</span><h4>Earth &amp; Space Science</h4></div>
+            <p class="u-desc">Plate tectonics shapes Earth's surface; the Earth–Moon–Sun system explains seasons, moon phases, and eclipses.</p>
+            <div class="skills"><span class="skill">Rock cycle &amp; plate boundaries</span><span class="skill">Seasons &amp; axial tilt</span><span class="skill">Moon phases &amp; tides</span><span class="skill">Scale of the solar system</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">6</span><h4>Introduction to Genetics</h4></div>
+            <p class="u-desc">Traits are passed from parents to offspring through genes; DNA carries the instructions for living things.</p>
+            <div class="skills"><span class="skill">Dominant &amp; recessive traits</span><span class="skill">Punnett squares</span><span class="skill">DNA &amp; chromosomes</span><span class="skill">Inherited vs. acquired traits</span></div>
+          </div>
+
+          <div class="section-label">Sample lessons</div>
+
+          <div class="lesson">
+            <h4>Predicting Traits with Punnett Squares</h4>
+            <div class="meta"><span class="pill pill-indigo">Unit 6</span><span class="pill pill-green">~45 min</span><span class="pill pill-amber">Grade 7–8</span></div>
+            <div class="l-block"><div class="lab-el">Objective</div><p class="small">Use a Punnett square to predict the probability of offspring traits for a single gene with dominant and recessive alleles.</p></div>
+            <div class="l-block"><div class="lab-el">Lesson</div><p class="small">Genes come in versions called <strong>alleles</strong>. A capital letter marks the <em>dominant</em> allele, a lowercase letter the <em>recessive</em>. If a pea plant has even one dominant allele for purple flowers (<strong>P</strong>), it shows purple; only <strong>pp</strong> shows white. Cross two <strong>Pp</strong> parents and set up a 2×2 grid with each parent's alleles along the sides. Fill each box by combining the row and column allele: you get PP, Pp, Pp, pp. That's a <strong>3:1 ratio</strong> — a 75% chance of purple, 25% chance of white. The square predicts <em>probability</em>, like flipping a coin, not a guarantee for any single seed.</p></div>
+            <div class="l-block"><div class="lab-el">Practice activity</div><p class="small">Work these crosses and give the phenotype ratio: (a) Tt × tt (tall is dominant), (b) Bb × Bb (brown eyes dominant), (c) RR × rr. For each, state the percent chance of the recessive trait appearing. Then explain in one sentence why two brown-eyed parents can still have a blue-eyed child.</p></div>
+          </div>
+
+          <div class="lesson lab">
+            <h4>Lab: Conservation of Mass in a Reaction</h4>
+            <div class="meta"><span class="pill pill-green">Hands-on Lab</span><span class="pill pill-indigo">Unit 3</span><span class="pill pill-amber">Grade 7</span></div>
+            <div class="l-block"><div class="lab-el">Objective</div><p class="small">Show that mass is conserved in a chemical reaction by massing the reactants and products in a closed system.</p></div>
+            <div class="l-block"><div class="lab-el">Materials</div><p class="small">A zip-top bag, baking soda (1 tsp), white vinegar (30 mL) in a small open cup or balloon, a kitchen scale (0.1 g), and safety goggles.</p></div>
+            <div class="l-block"><div class="lab-el">Do this</div>
+              <ol>
+                <li>Place the baking soda in the bag and the cup of vinegar upright inside the bag <em>without</em> spilling it. Seal the bag with air squeezed out.</li>
+                <li><strong>Measure and record</strong> the total mass of the sealed bag and contents (this is your reactant mass).</li>
+                <li>Without opening, tip the bag so the vinegar mixes with the baking soda. Observe the fizzing and the bag inflating.</li>
+                <li>After the reaction stops, mass the sealed bag again (product mass). Record.</li>
+              </ol>
+            </div>
+            <div class="l-block"><div class="lab-el">Analyze</div><p class="small">Compare before and after masses — they should match within measurement error, even though a gas (carbon dioxide) formed. Atoms were only <em>rearranged</em>, not created or destroyed. <strong>Predict:</strong> what would the scale show if you opened the bag and let the gas escape, then re-massed? Test it and explain.</p></div>
+            <div class="l-block"><div class="lab-el">Safety</div><p class="small">Wear goggles. The reaction is safe but the bag can inflate firmly — do not over-fill.</p></div>
+          </div>
+        </div>
+
+        <!-- ============ HIGH SCHOOL 9-12 ============ -->
+        <div class="tab-panel" id="h912">
+          <div class="band-head"><h2>Biology · Chemistry · Physics</h2><span class="grade">High School · Grades 9–12</span></div>
+          <p style="color:var(--ink-700);max-width:760px">A full college-preparatory lab-science sequence. Each course runs a year with regular labs, lab reports, and cumulative assessment. A typical path is Biology (9) → Chemistry (10) → Physics (11), with Environmental Science available as an elective or fourth-year course. (Layla, Grade 11, completed Biology and Physics and is taking Chemistry this year.)</p>
+          <div class="courses-row">
+            <span class="course-chip">Biology</span>
+            <span class="course-chip">Chemistry</span>
+            <span class="course-chip">Physics</span>
+            <span class="course-chip">Environmental Science (elective)</span>
+          </div>
+
+          <div class="section-label">Biology — unit sequence &amp; labs</div>
+          <div class="unit"><div class="u-top"><span class="u-num">1</span><h4>Biochemistry &amp; the Cell</h4></div>
+            <p class="u-desc">Water, macromolecules, cell structure, membranes, and transport.</p>
+            <div class="skills"><span class="skill">Macromolecule tests</span><span class="skill">Enzyme structure/function</span><span class="skill"><strong>Lab:</strong> osmosis in dialysis tubing / potato cores</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">2</span><h4>Energy: Photosynthesis &amp; Respiration</h4></div>
+            <p class="u-desc">How cells capture, store, and release energy.</p>
+            <div class="skills"><span class="skill">ATP &amp; electron transport</span><span class="skill"><strong>Lab:</strong> photosynthesis rate with pondweed/leaf disks</span><span class="skill">Fermentation</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">3</span><h4>Cell Division &amp; Genetics</h4></div>
+            <p class="u-desc">Mitosis, meiosis, Mendelian inheritance, and molecular genetics.</p>
+            <div class="skills"><span class="skill">Punnett squares &amp; dihybrid crosses</span><span class="skill"><strong>Lab:</strong> strawberry DNA extraction</span><span class="skill">Pedigree analysis</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">4</span><h4>Evolution &amp; Classification</h4></div>
+            <p class="u-desc">Natural selection, evidence, biodiversity, and taxonomy.</p>
+            <div class="skills"><span class="skill">Adaptation &amp; selection pressure</span><span class="skill"><strong>Lab:</strong> "bird beak" selection simulation</span><span class="skill">Cladograms</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">5</span><h4>Human Body Systems</h4></div>
+            <p class="u-desc">Structure and function of major systems and homeostasis.</p>
+            <div class="skills"><span class="skill">Feedback loops</span><span class="skill"><strong>Lab:</strong> heart rate &amp; recovery investigation</span><span class="skill">Dissection (virtual or specimen)</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">6</span><h4>Ecology &amp; Populations</h4></div>
+            <p class="u-desc">Energy flow, biogeochemical cycles, population dynamics, and stewardship.</p>
+            <div class="skills"><span class="skill">Quadrat sampling</span><span class="skill"><strong>Lab:</strong> yeast or duckweed population growth</span><span class="skill">Human impact case study</span></div>
+          </div>
+
+          <div class="section-label">Chemistry — unit sequence &amp; labs</div>
+          <div class="unit"><div class="u-top"><span class="u-num">1</span><h4>Matter, Measurement &amp; Atomic Structure</h4></div>
+            <p class="u-desc">Significant figures, density, atomic theory, isotopes, and electron configuration.</p>
+            <div class="skills"><span class="skill">Dimensional analysis</span><span class="skill"><strong>Lab:</strong> density of unknown metals</span><span class="skill">Flame tests</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">2</span><h4>Periodic Table &amp; Bonding</h4></div>
+            <p class="u-desc">Periodic trends, ionic and covalent bonding, and naming compounds.</p>
+            <div class="skills"><span class="skill">Lewis structures</span><span class="skill">Nomenclature &amp; formulas</span><span class="skill"><strong>Lab:</strong> conductivity of ionic vs. covalent</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">3</span><h4>Reactions &amp; Stoichiometry</h4></div>
+            <p class="u-desc">Balancing equations, reaction types, the mole, and mass–mole calculations.</p>
+            <div class="skills"><span class="skill">Balancing &amp; predicting products</span><span class="skill">Mole ratios</span><span class="skill"><strong>Lab:</strong> percent yield / limiting reactant</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">4</span><h4>Gases, Solutions &amp; Thermochemistry</h4></div>
+            <p class="u-desc">Gas laws, molarity, concentration, and energy in reactions.</p>
+            <div class="skills"><span class="skill">Ideal gas law</span><span class="skill">Molarity &amp; dilution</span><span class="skill"><strong>Lab:</strong> calorimetry — heat of a reaction</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">5</span><h4>Acids, Bases &amp; Equilibrium</h4></div>
+            <p class="u-desc">pH, neutralization, titration, and reversible reactions.</p>
+            <div class="skills"><span class="skill">pH &amp; indicators</span><span class="skill"><strong>Lab:</strong> acid–base titration to find concentration</span><span class="skill">Le Châtelier's principle</span></div>
+          </div>
+
+          <div class="section-label">Physics — unit sequence &amp; labs</div>
+          <div class="unit"><div class="u-top"><span class="u-num">1</span><h4>Kinematics</h4></div>
+            <p class="u-desc">Motion in one and two dimensions; graphs of position, velocity, and acceleration.</p>
+            <div class="skills"><span class="skill">Motion graphs</span><span class="skill">Projectile motion</span><span class="skill"><strong>Lab:</strong> measure <em>g</em> with a timed drop or ramp</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">2</span><h4>Forces &amp; Newton's Laws</h4></div>
+            <p class="u-desc">Free-body diagrams, friction, tension, and equilibrium.</p>
+            <div class="skills"><span class="skill">Net force problems</span><span class="skill"><strong>Lab:</strong> friction on an inclined plane</span><span class="skill">Newton's third law</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">3</span><h4>Energy, Work &amp; Momentum</h4></div>
+            <p class="u-desc">Work–energy theorem, conservation of energy and momentum, collisions.</p>
+            <div class="skills"><span class="skill">Conservation of energy</span><span class="skill"><strong>Lab:</strong> momentum in cart/marble collisions</span><span class="skill">Power calculations</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">4</span><h4>Waves, Sound &amp; Light</h4></div>
+            <p class="u-desc">Wave properties, the electromagnetic spectrum, reflection, and refraction.</p>
+            <div class="skills"><span class="skill">Frequency, wavelength, speed</span><span class="skill"><strong>Lab:</strong> speed of sound / refraction through a lens</span><span class="skill">Standing waves</span></div>
+          </div>
+          <div class="unit"><div class="u-top"><span class="u-num">5</span><h4>Electricity &amp; Magnetism</h4></div>
+            <p class="u-desc">Charge, current, Ohm's law, circuits, and electromagnetism.</p>
+            <div class="skills"><span class="skill">Series &amp; parallel circuits</span><span class="skill"><strong>Lab:</strong> verify Ohm's law with a breadboard</span><span class="skill">Build an electromagnet</span></div>
+          </div>
+
+          <div class="section-label">Environmental Science <span class="tiny" style="text-transform:none;letter-spacing:0">— elective / optional fourth-year lab science</span></div>
+          <div class="unit"><div class="u-top"><span class="u-num">•</span><h4>Systems, Ecology, Resources &amp; Stewardship</h4></div>
+            <p class="u-desc">Ecosystems &amp; biodiversity, biogeochemical cycles, population &amp; land use, energy resources, water &amp; air quality, climate, and sustainability — framed around responsible stewardship of a shared creation.</p>
+            <div class="skills"><span class="skill">Ecological footprint analysis</span><span class="skill"><strong>Lab:</strong> local water-quality testing (pH, turbidity, nitrates)</span><span class="skill">Energy audit project</span><span class="skill">Biodiversity survey</span></div>
+          </div>
+
+          <div class="section-label">Sample lessons</div>
+
+          <div class="lesson">
+            <h4>Balancing Equations &amp; the Mole (Chemistry, Unit 3)</h4>
+            <div class="meta"><span class="pill pill-indigo">Chemistry</span><span class="pill pill-green">~50 min</span><span class="pill pill-amber">Grade 10</span></div>
+            <div class="l-block"><div class="lab-el">Objective</div><p class="small">Balance a chemical equation and use mole ratios to calculate the mass of product formed from a given mass of reactant.</p></div>
+            <div class="l-block"><div class="lab-el">Lesson</div><p class="small">A balanced equation obeys conservation of mass: the same number of each atom appears on both sides. Take the combustion of methane: <strong>CH₄ + 2O₂ → CO₂ + 2H₂O.</strong> The coefficients are mole ratios — 1 mole CH₄ reacts with 2 moles O₂. To go from grams to grams, use the <em>mole map</em>: grams → moles (÷ molar mass) → moles of the other substance (× mole ratio) → grams (× molar mass). Molar mass comes from the periodic table (CH₄ ≈ 16.0 g/mol; CO₂ ≈ 44.0 g/mol).</p></div>
+            <div class="l-block"><div class="lab-el">Worked example</div><p class="small">How many grams of CO₂ form from 32.0 g of CH₄? 32.0 g ÷ 16.0 g/mol = 2.0 mol CH₄ → (1:1 ratio) → 2.0 mol CO₂ → × 44.0 g/mol = <strong>88.0 g CO₂.</strong></p></div>
+            <div class="l-block"><div class="lab-el">Practice</div><p class="small">Balance and solve: (1) H₂ + O₂ → H₂O — how many grams of water from 8.0 g H₂? (2) 2Al + 3CuCl₂ → 2AlCl₃ + 3Cu — moles of Cu from 4.0 mol Al? Show the mole map for each.</p></div>
+          </div>
+
+          <div class="lesson lab">
+            <h4>Lab: Measuring the Acceleration of Gravity (Physics, Unit 1)</h4>
+            <div class="meta"><span class="pill pill-green">Hands-on Lab</span><span class="pill pill-indigo">Physics</span><span class="pill pill-amber">Grade 11</span></div>
+            <div class="l-block"><div class="lab-el">Objective</div><p class="small">Experimentally determine <em>g</em>, the acceleration due to gravity, from the motion of a rolling ball or a falling object, and evaluate the result against the accepted 9.8 m/s².</p></div>
+            <div class="l-block"><div class="lab-el">Materials</div><p class="small">A smooth ramp or long board, a marble or steel ball, a meter stick, painter's tape, and a phone stopwatch (or a free video-analysis app for slow-motion frames).</p></div>
+            <div class="l-block"><div class="lab-el">Procedure</div>
+              <ol>
+                <li>Set the ramp at a fixed low angle and mark the start line. Measure the ramp length and angle θ.</li>
+                <li>Release the ball from rest and time how long it takes to travel measured distances (0.25 m, 0.50 m, 0.75 m, 1.00 m). Do <strong>3 trials each</strong> and average.</li>
+                <li>For each distance, use d = ½at² to solve for the ramp acceleration a = 2d / t².</li>
+                <li>Correct for the incline: g = a / sin θ. (On a ramp the ball accelerates at g·sin θ.)</li>
+              </ol>
+            </div>
+            <div class="l-block"><div class="lab-el">Analysis &amp; write-up</div>
+              <ul>
+                <li>Graph distance vs. time² — the slope equals ½a, a check on your calculation.</li>
+                <li>Compute percent error: |your g − 9.8| / 9.8 × 100%.</li>
+                <li>Identify two sources of error (reaction-time on the stopwatch, ramp friction) and state how each would push your value high or low.</li>
+              </ul>
+              <p class="small" style="margin-top:8px">Deliverable: a formal lab report — purpose, hypothesis, data table, calculations, graph, and a conclusion that discusses uncertainty.</p>
+            </div>
+          </div>
+
+          <div class="wonder" style="margin-top:4px">The same simple ratio that balances an equation, and the same steady 9.8 m/s² that pulls a marble, hold everywhere we have ever measured. High-school science invites the awe of that reliability — a universe consistent enough to be studied, questioned, and understood.</div>
+        </div>
+
+      </div>
+
+      <!-- MATERIALS & ASSESSMENTS -->
+      <h2 style="margin:32px 0 4px">Materials &amp; assessments</h2>
+      <p class="page-sub" style="margin-bottom:16px">What a learner actually does each week in Science.</p>
+      <div class="mats">
+        <div class="grid g-4">
+          <div class="mat-tile">
+            <div class="mt-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z M12 5v14"/></svg></div>
+            <h4>Lessons &amp; readings</h4>
+            <p class="tiny">Short guided lessons with diagrams, vocabulary, and real-world examples; leveled by band.</p>
+          </div>
+          <div class="mat-tile">
+            <div class="mt-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6M10 3v5l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/></svg></div>
+            <h4>Hands-on labs</h4>
+            <p class="tiny">40+ investigations using safe household or low-cost materials; older grades write formal lab reports.</p>
+          </div>
+          <div class="mat-tile">
+            <div class="mt-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L20 6M20 12v7H4V5h11"/></svg></div>
+            <h4>Practice &amp; quizzes</h4>
+            <p class="tiny">Skill checks, vocabulary practice, and auto-graded unit quizzes that flow to the Gradebook.</p>
+          </div>
+          <div class="mat-tile">
+            <div class="mt-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg></div>
+            <h4>Projects &amp; portfolio</h4>
+            <p class="tiny">Journals, science-fair projects, and lab write-ups collected for the PA portfolio &amp; evaluator review.</p>
+          </div>
+        </div>
+        <p class="small" style="color:var(--ink-700);margin-top:16px"><strong>Assessment mix:</strong> ongoing observation and lab notebooks in K–5; unit quizzes plus a project in 6–8; and quizzes, lab reports, a midterm/final, and a capstone or science-fair project in 9–12. Grades and standards coverage sync to the <a href="gradebook.html">Gradebook</a> and <a href="compliance.html">Compliance</a> records, satisfying Pennsylvania's science requirement.</p>
+      </div>
+
+      <div class="backlinks">
+        <a href="subjects.html" class="btn btn-ghost">← Back to all subjects</a>
+        <a href="learn.html" class="btn btn-primary">Go to Learn &amp; start a lesson →</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- ADD TO PLAN MODAL -->
+<div class="modal-wrap" id="addModal" role="dialog" aria-modal="true" aria-labelledby="addTitle">
+  <div class="modal-card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:6px">
+      <h3 id="addTitle">Add Science to a child's plan</h3>
+      <button class="btn btn-ghost btn-sm" aria-label="Close" onclick="closeModal('addModal')">✕</button>
+    </div>
+    <p class="tiny" style="margin-bottom:14px">Choose who should have Science added to their weekly plan. The right band is selected automatically by grade level.</p>
+    <label class="chk-row"><input type="checkbox" checked><span class="chk-av" style="background:var(--child-layla)">LR</span><div><div style="font-weight:600">Layla Rahman</div><div class="tiny">11th Grade · Chemistry (High School)</div></div></label>
+    <label class="chk-row"><input type="checkbox" checked><span class="chk-av" style="background:var(--child-yusuf)">YR</span><div><div style="font-weight:600">Yusuf Rahman</div><div class="tiny">6th Grade · Life Science (Middle)</div></div></label>
+    <label class="chk-row"><input type="checkbox"><span class="chk-av" style="background:var(--child-zayd)">ZR</span><div><div style="font-weight:600">Zayd Rahman</div><div class="tiny">2nd Grade · Science Explorers (Primary)</div></div></label>
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:18px">
+      <button class="btn btn-ghost" onclick="closeModal('addModal')">Cancel</button>
+      <button class="btn btn-grad" onclick="closeModal('addModal');showToast('Added to plan')">Add to plan</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('backdrop').classList.toggle('show');}
+function openModal(id){document.getElementById(id).classList.add('show');}
+function closeModal(id){document.getElementById(id).classList.remove('show');}
+let _toastT;function showToast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.className='toast';document.body.appendChild(t);}t.textContent=msg;t.classList.add('show');clearTimeout(_toastT);_toastT=setTimeout(()=>t.classList.remove('show'),2500);}
+function initTabs(scope){(scope||document).querySelectorAll('[data-tabs]').forEach(function(group){var tabs=group.querySelectorAll('.tab');tabs.forEach(function(tab){tab.addEventListener('click',function(){var panelId=tab.getAttribute('data-tab');group.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');var host=group.getAttribute('data-panels')?document.getElementById(group.getAttribute('data-panels')):group.parentElement;host.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));var panel=document.getElementById(panelId);if(panel)panel.classList.add('active');});});});}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal-wrap.show').forEach(m=>m.classList.remove('show'));}});
+document.addEventListener('DOMContentLoaded',function(){initTabs();document.querySelectorAll('.progress>span').forEach(function(el){var w=el.style.width;el.style.width='0';setTimeout(()=>el.style.width=w,100);});});
+</script>
+</body>
+</html>

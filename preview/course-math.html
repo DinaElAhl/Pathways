@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mathematics — Pathways Academy</title>
+<style>
+:root{
+  --indigo-600:#4f46e5;--indigo-700:#4338ca;--indigo-500:#6366f1;
+  --violet-600:#7c3aed;--violet-500:#8b5cf6;
+  --grad:linear-gradient(135deg,#4f46e5 0%,#7c3aed 100%);
+  --grad-soft:linear-gradient(135deg,#eef2ff 0%,#f5f3ff 100%);
+  --ink-900:#0f172a;--ink-700:#334155;--ink-500:#64748b;--ink-400:#94a3b8;
+  --line:#e2e8f0;--bg:#f8fafc;--surface:#fff;--surface-2:#f1f5f9;
+  --green-600:#16a34a;--green-50:#f0fdf4;--amber-500:#f59e0b;--amber-50:#fffbeb;
+  --red-600:#dc2626;--red-50:#fef2f2;--sky-600:#0284c7;
+  --child-layla:#db2777;--child-yusuf:#0891b2;--child-zayd:#ea580c;
+  --r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:24px;--r-full:999px;
+  --sh-sm:0 1px 2px rgba(15,23,42,.06);--sh-md:0 4px 12px rgba(15,23,42,.08);--sh-lg:0 12px 32px rgba(15,23,42,.12);
+  --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-8:48px;--maxw:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink-900);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+h1{font-size:28px;font-weight:700;letter-spacing:-.02em}
+h2{font-size:22px;font-weight:700;letter-spacing:-.01em}
+h3{font-size:18px;font-weight:600}h4{font-size:15px;font-weight:600}
+.small{font-size:13px}.tiny{font-size:12px;color:var(--ink-500)}
+a{color:var(--indigo-600);text-decoration:none}
+:focus-visible{outline:2px solid var(--indigo-600);outline-offset:2px;border-radius:6px}
+.display{font-size:clamp(32px,5vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border-radius:var(--r-md);font-size:14px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:.15s;font-family:inherit}
+.btn-primary{background:var(--indigo-600);color:#fff}.btn-primary:hover{background:var(--indigo-700)}
+.btn-grad{background:var(--grad);color:#fff}.btn-grad:hover{filter:brightness(1.05)}
+.btn-ghost{background:var(--surface);color:var(--ink-700);border-color:var(--line)}.btn-ghost:hover{background:var(--surface-2)}
+.btn-sm{height:32px;padding:0 12px;font-size:13px}.btn-lg{height:48px;padding:0 24px;font-size:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-sm);padding:var(--sp-5)}
+.card-hover{transition:.18s}.card-hover:hover{box-shadow:var(--sh-lg);transform:translateY(-2px)}
+.pill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:var(--r-full);font-size:12px;font-weight:600}
+.pill-green{background:var(--green-50);color:var(--green-600)}.pill-amber{background:var(--amber-50);color:var(--amber-500)}
+.pill-red{background:var(--red-50);color:var(--red-600)}.pill-indigo{background:#eef2ff;color:var(--indigo-600)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;padding:12px;color:var(--ink-500);font-size:12px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line)}
+td{padding:12px;border-bottom:1px solid var(--line)}tr:hover td{background:var(--surface-2)}
+.progress{height:8px;background:var(--surface-2);border-radius:var(--r-full);overflow:hidden}
+.progress>span{display:block;height:100%;background:var(--grad);border-radius:var(--r-full);transition:width .8s ease}
+.stat-card .num{font-size:28px;font-weight:700}.stat-card .lbl{font-size:13px;color:var(--ink-500)}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.grid{display:grid;gap:24px}.g-2{grid-template-columns:repeat(2,1fr)}.g-3{grid-template-columns:repeat(3,1fr)}.g-4{grid-template-columns:repeat(4,1fr)}
+.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:24px 0;border-bottom:1px solid var(--line);margin-bottom:24px;flex-wrap:wrap}
+.page-sub{color:var(--ink-500);font-size:14px;margin-top:4px}.page-actions{display:flex;gap:8px;flex-wrap:wrap}
+.app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+.sidebar{background:var(--surface);border-right:1px solid var(--line);padding:20px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:6px;overflow-y:auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;padding:8px}
+.brand .mark{width:32px;height:32px;border-radius:9px;background:var(--grad);flex:none}
+.nav-group-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-400);padding:12px 12px 4px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--r-md);color:var(--ink-700);font-weight:500;font-size:14px}
+.nav-item:hover{background:var(--surface-2)}.nav-item.active{background:#eef2ff;color:var(--indigo-600);font-weight:600}
+.nav-item .ico{width:18px;height:18px;flex:none}.nav-spacer{flex:1}
+.hh-card{margin-top:8px;padding:10px;border:1px solid var(--line);border-radius:var(--r-md);display:flex;align-items:center;gap:8px;font-size:13px}
+.topbar{display:flex;align-items:center;gap:16px;height:64px;padding:0 24px;background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.topbar .search{flex:1;max-width:360px;height:38px;border:1px solid var(--line);border-radius:var(--r-full);padding:0 14px;background:var(--surface-2);font-size:14px;font-family:inherit}
+.avatar{width:34px;height:34px;border-radius:var(--r-full);display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px;background:var(--indigo-600);flex:none}
+.main{min-width:0}.content{max-width:var(--maxw);margin:0 auto;padding:0 24px 48px}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;color:var(--ink-700)}
+.backdrop{position:fixed;inset:0;background:rgba(15,23,42,.4);z-index:40;display:none}.backdrop.show{display:block}
+.modal-wrap{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(15,23,42,.45)}
+.modal-wrap.show{display:flex}
+.modal-card{background:var(--surface);border-radius:var(--r-xl);box-shadow:var(--sh-lg);max-width:480px;width:100%;padding:24px;max-height:90vh;overflow-y:auto}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink-900);color:#fff;padding:12px 20px;border-radius:var(--r-full);font-size:14px;font-weight:500;opacity:0;pointer-events:none;transition:.3s;z-index:80}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:20px;overflow-x:auto}
+.tab{padding:10px 16px;font-size:14px;font-weight:600;color:var(--ink-500);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;font-family:inherit}
+.tab.active{color:var(--indigo-600);border-bottom-color:var(--indigo-600)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.field{margin-bottom:14px}.field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;height:40px;border:1px solid var(--line);border-radius:var(--r-md);padding:0 12px;font-size:14px;font-family:inherit;background:var(--surface)}
+.field textarea{height:auto;padding:10px 12px;min-height:72px}
+@media(max-width:768px){
+  .app{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;z-index:50;transform:translateX(-100%);transition:.25s;width:260px}
+  .sidebar.open{transform:none}.hamburger{display:inline-flex}
+  .g-2,.g-3,.g-4{grid-template-columns:1fr}
+  .page-head{align-items:flex-start}
+  table.responsive{display:block;overflow-x:auto;white-space:nowrap}
+}
+@media print{
+  .sidebar,.topbar,.hamburger,.no-print{display:none!important}
+  .app{display:block}.content{padding:0}body{background:#fff}
+}
+
+/* ===== PAGE STYLES ===== */
+.course-hero{background:var(--grad-soft);border:1px solid var(--line);border-radius:var(--r-xl);padding:28px;margin-bottom:24px}
+.course-hero .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--violet-600);margin-bottom:10px}
+.subject-icon{width:54px;height:54px;border-radius:14px;background:var(--grad);display:grid;place-items:center;color:#fff;flex:none;box-shadow:var(--sh-md)}
+.overview-grid{display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-bottom:8px}
+@media(max-width:768px){.overview-grid{grid-template-columns:1fr}}
+.value-note{background:var(--grad-soft);border:1px solid #ddd6fe;border-radius:var(--r-md);padding:14px 16px;font-size:14px;color:var(--ink-700)}
+.value-note strong{color:var(--violet-600)}
+.band-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.band-head .courses{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.chip{display:inline-flex;align-items:center;height:26px;padding:0 12px;border-radius:var(--r-full);background:var(--surface-2);border:1px solid var(--line);font-size:13px;font-weight:600;color:var(--ink-700)}
+.unit{border:1px solid var(--line);border-radius:var(--r-md);padding:16px;background:var(--surface);margin-bottom:12px}
+.unit-num{width:28px;height:28px;border-radius:8px;background:#eef2ff;color:var(--indigo-600);display:grid;place-items:center;font-weight:700;font-size:13px;flex:none}
+.unit-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.skills{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.skill-tag{font-size:12px;padding:3px 9px;border-radius:var(--r-full);background:var(--surface-2);color:var(--ink-700);border:1px solid var(--line)}
+.section-label{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-400);margin:24px 0 12px}
+.lesson{border:1px solid var(--line);border-left:3px solid var(--violet-500);border-radius:var(--r-md);padding:18px;background:var(--surface);margin-bottom:14px}
+.lesson h4{margin-bottom:2px}
+.lesson .obj{font-size:13px;color:var(--ink-500);margin-bottom:10px}
+.lesson p{font-size:14px;margin-bottom:10px;color:var(--ink-700)}
+.practice{background:var(--surface-2);border-radius:var(--r-sm);padding:12px 14px;font-size:13px}
+.practice .lbl{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--green-600);margin-bottom:6px}
+.mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;background:#fff;border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:13px}
+.check-row{display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--line);border-radius:var(--r-md);margin-bottom:8px}
+.check-row input{width:18px;height:18px;accent-color:var(--indigo-600)}
+.check-row .dot{width:10px;height:10px;border-radius:50%;flex:none}
+.mat-item{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line)}
+.mat-item:last-child{border-bottom:none}
+.mat-ico{width:34px;height:34px;border-radius:9px;background:#eef2ff;color:var(--indigo-600);display:grid;place-items:center;flex:none}
+</style>
+</head>
+<body>
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <a href="dashboard.html" class="brand"><span class="mark"></span>Pathways Learn</a>
+    <div class="nav-group-label">Teach</div>
+    <a href="dashboard.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Dashboard</a>
+    <a href="child.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="8" r="2"/></svg>Children</a>
+    <a href="learn.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z M12 5v14"/></svg>Learn</a>
+    <a href="subjects.html" class="nav-item active"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Subjects</a>
+    <a href="planner.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>Planner</a>
+    <a href="gradebook.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8M20 12v7H4V5h11"/></svg>Gradebook</a>
+    <div class="nav-group-label">Records</div>
+    <a href="compliance.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Compliance <span class="pill pill-indigo" style="margin-left:auto;height:18px;padding:0 7px;font-size:10px">PA</span></a>
+    <a href="settings.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>Settings</a>
+    <div class="nav-spacer"></div>
+    <div class="hh-card"><span class="avatar" style="width:28px;height:28px;font-size:11px">RH</span><div><div style="font-weight:600">Rahman Household</div><div class="tiny">Pennsylvania</div></div></div>
+    <a href="index.html" class="nav-item" style="font-size:13px;color:var(--ink-500)">← Back to site</a>
+  </aside>
+  <main class="main">
+    <div class="topbar">
+      <button class="hamburger" aria-label="Open menu" onclick="toggleSidebar()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <input class="search" placeholder="Search lessons, children, records…" aria-label="Search">
+      <span style="flex:1"></span>
+      <button class="btn btn-ghost btn-sm" onclick="showToast('Attendance logged for today')">Log attendance</button>
+      <span class="avatar">AR</span>
+    </div>
+    <div class="content">
+
+      <!-- PAGE HEAD -->
+      <div class="page-head">
+        <div>
+          <div class="tiny" style="margin-bottom:6px"><a href="subjects.html">Subjects</a> <span style="color:var(--ink-400)">/</span> Mathematics</div>
+          <h1>Mathematics</h1>
+          <p class="page-sub">From counting and number sense to reasoning, algebra, and higher math — one connected path, K through 12.</p>
+        </div>
+        <div class="page-actions">
+          <a href="learn.html" class="btn btn-ghost">Open in Learn</a>
+          <button class="btn btn-grad" onclick="openModal('planModal')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            Add to a child's plan
+          </button>
+        </div>
+      </div>
+
+      <!-- HERO -->
+      <div class="course-hero">
+        <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+          <div class="subject-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h6M7 4v6M14 6h6M14 14l6 6M20 14l-6 6M4 17h6"/></svg>
+          </div>
+          <div style="flex:1;min-width:240px">
+            <div class="eyebrow">Core Subject · Pathways Academy</div>
+            <h2 style="margin-bottom:6px">Numeracy → Reasoning → Higher Math</h2>
+            <p style="color:var(--ink-700);font-size:15px;max-width:64ch">A spiral curriculum that builds fluent, confident mathematicians. Learners move from counting and place value, through fractions, operations, and proportional reasoning, into algebra, geometry, and pre-calculus — always connecting new ideas back to what they already know.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+              <span class="pill pill-indigo">13 courses · K–12</span>
+              <span class="pill pill-green">Standards-aligned</span>
+              <span class="pill pill-amber">Hands-on &amp; visual</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OVERVIEW -->
+      <div class="overview-grid">
+        <div class="card">
+          <h3 style="margin-bottom:10px">What this subject builds, K → 12</h3>
+          <p style="font-size:14px;color:var(--ink-700);margin-bottom:12px">Math at Pathways is designed as a single, coherent staircase. Early grades build <strong>number sense</strong> — counting, cardinality, and place value — the foundation everything else stands on. The elementary years turn those numbers into <strong>fluent operations</strong> and open the door to <strong>fractions and decimals</strong>. Middle school shifts from computing answers to <strong>reasoning about relationships</strong>: ratios, proportions, negative numbers, and the first true algebraic thinking. High school formalizes that reasoning into <strong>Algebra, Geometry, and beyond</strong>, ending with Pre-Calculus and Statistics that prepare learners for college math and everyday quantitative life.</p>
+          <p style="font-size:14px;color:var(--ink-700)">Each course spirals: skills are introduced, practiced to fluency, then revisited at greater depth in later grades — so a fraction learned in 4th grade becomes a rational expression in Algebra II.</p>
+        </div>
+        <div>
+          <div class="card" style="margin-bottom:16px">
+            <h4 style="margin-bottom:8px">Standards alignment</h4>
+            <p class="small" style="color:var(--ink-700)">Units are written to Common Core-style objectives — the same scope and sequence families recognize from state math standards (counting &amp; cardinality, operations &amp; algebraic thinking, number &amp; operations, ratios &amp; proportional relationships, expressions &amp; equations, functions, geometry, statistics &amp; probability). We describe our alignment to these widely-used objectives; Pathways is an independent curriculum and does not claim official endorsement.</p>
+          </div>
+          <div class="value-note">
+            <strong>Precision &amp; stewardship.</strong> Math rewards care: checking your work, measuring honestly, and being patient with a hard problem. We treat accuracy and diligence as quiet habits worth building — a fair measure and an honest answer are small acts of good character.
+          </div>
+        </div>
+      </div>
+
+      <!-- GRADE BAND TABS -->
+      <h2 style="margin:32px 0 4px">Curriculum by grade band</h2>
+      <p class="page-sub" style="margin-bottom:16px">Select a band to see its courses, unit scope &amp; sequence, and sample lessons.</p>
+
+      <div class="tabs" data-tabs data-panels="mathPanels" role="tablist">
+        <button class="tab active" data-tab="band-k2">Primary · K–2</button>
+        <button class="tab" data-tab="band-35">Elementary · 3–5</button>
+        <button class="tab" data-tab="band-68">Middle · 6–8</button>
+        <button class="tab" data-tab="band-912">High School · 9–12</button>
+      </div>
+
+      <div id="mathPanels">
+
+        <!-- ==================== K-2 ==================== -->
+        <div class="tab-panel active" id="band-k2">
+          <div class="band-head">
+            <div style="flex:1;min-width:240px">
+              <h3>Primary Mathematics · Kindergarten – Grade 2</h3>
+              <p class="page-sub">Building number sense through counting, objects, and pictures. Learners see math everywhere — in blocks, clocks, coins, and shapes — before it ever looks like a worksheet.</p>
+              <div class="courses">
+                <span class="chip">Math K — Counting &amp; Shapes</span>
+                <span class="chip">Math 1 — Adding &amp; Place Value</span>
+                <span class="chip">Math 2 — Two-Digit Operations</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-label">Scope &amp; sequence — 6 units</div>
+
+          <div class="unit"><div class="unit-head"><span class="unit-num">1</span><h4>Counting &amp; Cardinality</h4></div>
+            <p class="small" style="color:var(--ink-700)">Count to 100 by ones and tens; understand that the last number said tells "how many."</p>
+            <div class="skills"><span class="skill-tag">Count to 100</span><span class="skill-tag">Count on from any number</span><span class="skill-tag">One-to-one correspondence</span><span class="skill-tag">Compare sets (more/fewer/equal)</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">2</span><h4>Place Value to 100</h4></div>
+            <p class="small" style="color:var(--ink-700)">See two-digit numbers as bundles of tens and leftover ones.</p>
+            <div class="skills"><span class="skill-tag">Tens &amp; ones with base-ten blocks</span><span class="skill-tag">Write &amp; read numbers to 120</span><span class="skill-tag">Compare with &lt;, &gt;, =</span><span class="skill-tag">Skip count by 2s, 5s, 10s</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">3</span><h4>Addition &amp; Subtraction Within 20</h4></div>
+            <p class="small" style="color:var(--ink-700)">Join and take apart quantities; build fact fluency using strategies, not just memorizing.</p>
+            <div class="skills"><span class="skill-tag">Make-ten strategy</span><span class="skill-tag">Doubles &amp; near-doubles</span><span class="skill-tag">Fact families</span><span class="skill-tag">Word problems (add to / take from)</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">4</span><h4>Adding &amp; Subtracting Within 100</h4></div>
+            <p class="small" style="color:var(--ink-700)">Extend strategies to two-digit numbers, with and without regrouping.</p>
+            <div class="skills"><span class="skill-tag">Add tens to a number</span><span class="skill-tag">Regroup (carry &amp; borrow)</span><span class="skill-tag">Number-line jumps</span><span class="skill-tag">Estimate a sum</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">5</span><h4>Shapes, Measurement &amp; Time</h4></div>
+            <p class="small" style="color:var(--ink-700)">Name and build 2-D and 3-D shapes; measure length; tell time to the half-hour.</p>
+            <div class="skills"><span class="skill-tag">Identify circle, triangle, rectangle, cube</span><span class="skill-tag">Measure with units</span><span class="skill-tag">Tell time to the hour &amp; half-hour</span><span class="skill-tag">Partition shapes into halves &amp; fourths</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">6</span><h4>Money &amp; Data</h4></div>
+            <p class="small" style="color:var(--ink-700)">Recognize and count coins; sort objects and read simple picture graphs.</p>
+            <div class="skills"><span class="skill-tag">Value of penny, nickel, dime, quarter</span><span class="skill-tag">Count mixed coins to $1</span><span class="skill-tag">Make a tally chart</span><span class="skill-tag">Read a picture graph</span></div>
+          </div>
+
+          <div class="section-label">Sample lessons</div>
+
+          <div class="lesson">
+            <h4>Making Ten to Add</h4>
+            <div class="obj">Objective: Add two single-digit numbers by first making a group of ten.</div>
+            <p>When we add numbers like <span class="mono">8 + 5</span>, it helps to make a friendly ten first. Ten is easy to add to. We ask: "How many does 8 need to reach 10?" It needs 2. So we borrow 2 from the 5, which leaves 3. Now the problem becomes <span class="mono">10 + 3 = 13</span>. We didn't change the total — we just rearranged it into a shape our brains like.</p>
+            <div class="practice">
+              <div class="lbl">Practice activity</div>
+              Use ten-frames and counters. Fill the first frame to make 10, then count the leftovers. Solve: <span class="mono">9 + 4</span>, <span class="mono">7 + 6</span>, <span class="mono">8 + 7</span>. Say each one aloud: "8 plus 7 — 8 needs 2 to make ten, 5 left over, so 10 and 5 is 15."
+            </div>
+          </div>
+
+          <div class="lesson">
+            <h4>Counting Coins to Buy a Snack</h4>
+            <div class="obj">Objective: Count a mixed set of coins and compare it to a price.</div>
+            <p>Each coin has its own value: a penny is 1¢, a nickel is 5¢, a dime is 10¢, and a quarter is 25¢. To count a handful of coins, we start with the biggest values and add on. If we have a quarter, two dimes, and a nickel, we count: 25… 35… 45… 50. That's 50¢ — enough for a 45¢ apple, with a nickel to spare.</p>
+            <div class="practice">
+              <div class="lbl">Practice activity</div>
+              Set out play coins. Count these three purses: (a) 3 dimes + 1 nickel, (b) 1 quarter + 4 pennies, (c) 2 quarters + 2 dimes. Which purse can buy a 60¢ juice box? Handling money carefully — counting twice before you pay — is a good habit to keep.
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 3-5 ==================== -->
+        <div class="tab-panel" id="band-35">
+          <div class="band-head">
+            <div style="flex:1;min-width:240px">
+              <h3>Elementary Mathematics · Grades 3 – 5</h3>
+              <p class="page-sub">Fluency and fractions. Learners master multiplication and division, work with multi-digit numbers, and meet fractions and decimals as real quantities — not just rules.</p>
+              <div class="courses">
+                <span class="chip">Math 3 — Multiplication &amp; Fractions</span>
+                <span class="chip">Math 4 — Multi-Digit Ops &amp; Fractions</span>
+                <span class="chip">Math 5 — Decimals &amp; Volume</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-label">Scope &amp; sequence — 7 units</div>
+
+          <div class="unit"><div class="unit-head"><span class="unit-num">1</span><h4>Multiplication &amp; Division Facts</h4></div>
+            <p class="small" style="color:var(--ink-700)">Understand multiplication as equal groups and arrays; reach fluency with facts through 12×12.</p>
+            <div class="skills"><span class="skill-tag">Equal groups &amp; arrays</span><span class="skill-tag">Skip-counting patterns</span><span class="skill-tag">Fact families &amp; fact triangles</span><span class="skill-tag">Division as sharing</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">2</span><h4>Multi-Digit Operations</h4></div>
+            <p class="small" style="color:var(--ink-700)">Add, subtract, multiply, and divide larger numbers using place-value strategies and the standard algorithm.</p>
+            <div class="skills"><span class="skill-tag">Standard algorithm for + / −</span><span class="skill-tag">Area model for multiplication</span><span class="skill-tag">Long division</span><span class="skill-tag">Estimate to check reasonableness</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">3</span><h4>Understanding Fractions</h4></div>
+            <p class="small" style="color:var(--ink-700)">See fractions as numbers on a line; find equivalent fractions and compare.</p>
+            <div class="skills"><span class="skill-tag">Fractions on a number line</span><span class="skill-tag">Equivalent fractions</span><span class="skill-tag">Compare with common denominators</span><span class="skill-tag">Whole numbers as fractions</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">4</span><h4>Fraction Operations</h4></div>
+            <p class="small" style="color:var(--ink-700)">Add, subtract, and multiply fractions; connect them to division and mixed numbers.</p>
+            <div class="skills"><span class="skill-tag">Add/subtract like &amp; unlike denominators</span><span class="skill-tag">Multiply a fraction by a whole</span><span class="skill-tag">Mixed numbers &amp; improper fractions</span><span class="skill-tag">Fraction word problems</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">5</span><h4>Decimals &amp; Place Value</h4></div>
+            <p class="small" style="color:var(--ink-700)">Extend place value to tenths and hundredths; relate decimals to fractions and money.</p>
+            <div class="skills"><span class="skill-tag">Read &amp; write decimals</span><span class="skill-tag">Compare &amp; round decimals</span><span class="skill-tag">Add/subtract decimals</span><span class="skill-tag">Decimal–fraction connection</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">6</span><h4>Area, Perimeter &amp; Volume</h4></div>
+            <p class="small" style="color:var(--ink-700)">Measure the space inside and around shapes; take the first step into volume of rectangular prisms.</p>
+            <div class="skills"><span class="skill-tag">Perimeter of polygons</span><span class="skill-tag">Area = length × width</span><span class="skill-tag">Volume with unit cubes</span><span class="skill-tag">V = l × w × h</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">7</span><h4>Data, Graphs &amp; the Coordinate Plane</h4></div>
+            <p class="small" style="color:var(--ink-700)">Collect data, display it, and plot points on the first quadrant.</p>
+            <div class="skills"><span class="skill-tag">Bar &amp; line graphs</span><span class="skill-tag">Line plots with fractions</span><span class="skill-tag">Plot (x, y) points</span><span class="skill-tag">Interpret a data table</span></div>
+          </div>
+
+          <div class="section-label">Sample lessons</div>
+
+          <div class="lesson">
+            <h4>Equivalent Fractions with a Number Line</h4>
+            <div class="obj">Objective: Show why two fractions that look different can name the same amount.</div>
+            <p>A fraction is a number, and every number has a spot on the number line. If we draw a line from 0 to 1 and split it into 2 equal parts, the mark in the middle is <span class="mono">1/2</span>. Now split the same line into 4 equal parts — the second mark lands in exactly the same place: <span class="mono">2/4</span>. Same spot, same value. We can make equivalents by multiplying the top and bottom by the same number: <span class="mono">1/2 = 2/4 = 3/6</span>, because we're just cutting each piece into more, smaller pieces.</p>
+            <div class="practice">
+              <div class="lbl">Practice activity</div>
+              Fold a strip of paper in halves, then fourths, then eighths. Mark where <span class="mono">1/2</span>, <span class="mono">2/4</span>, and <span class="mono">4/8</span> land — they should line up. Then find two fractions equivalent to <span class="mono">2/3</span> and prove it by multiplying top and bottom by the same number.
+            </div>
+          </div>
+
+          <div class="lesson">
+            <h4>Finding Volume with Unit Cubes</h4>
+            <div class="obj">Objective: Measure the volume of a rectangular prism by counting cubes and by using a formula.</div>
+            <p>Volume is how much space is inside a solid — how many unit cubes fit. If a box is 4 cubes long, 3 cubes wide, and 2 cubes tall, we could count all 24 cubes one at a time. But there's a shortcut: one layer has <span class="mono">4 × 3 = 12</span> cubes, and there are 2 layers, so <span class="mono">12 × 2 = 24</span>. That's why the formula is <span class="mono">V = l × w × h</span>. Volume is always measured in cubic units.</p>
+            <div class="practice">
+              <div class="lbl">Practice activity</div>
+              Build a 5 × 2 × 3 prism with blocks (or draw it). Predict the volume with the formula, then count to check. Find the volume of a box that is 6 cm × 4 cm × 5 cm. Careful measuring pays off — a small mistake in one edge changes the whole answer.
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 6-8 ==================== -->
+        <div class="tab-panel" id="band-68">
+          <div class="band-head">
+            <div style="flex:1;min-width:240px">
+              <h3>Middle School Mathematics · Grades 6 – 8</h3>
+              <p class="page-sub">From computing to reasoning. Learners work with ratios and proportions, meet negative numbers and variables, and build the algebraic thinking that Pre-Algebra hands off to high school.</p>
+              <div class="courses">
+                <span class="chip">Math 6 — Ratios &amp; Rational Numbers</span>
+                <span class="chip">Math 7 — Proportions &amp; Expressions</span>
+                <span class="chip">Math 8 / Pre-Algebra — Equations &amp; Functions</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-label">Scope &amp; sequence — 7 units</div>
+
+          <div class="unit"><div class="unit-head"><span class="unit-num">1</span><h4>Ratios &amp; Rates</h4></div>
+            <p class="small" style="color:var(--ink-700)">Compare quantities and find unit rates to solve real-world problems.</p>
+            <div class="skills"><span class="skill-tag">Write &amp; simplify ratios</span><span class="skill-tag">Unit rate &amp; unit price</span><span class="skill-tag">Ratio tables</span><span class="skill-tag">Equivalent ratios</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">2</span><h4>Proportional Relationships &amp; Percent</h4></div>
+            <p class="small" style="color:var(--ink-700)">Recognize proportions, graph them, and solve percent problems.</p>
+            <div class="skills"><span class="skill-tag">Constant of proportionality</span><span class="skill-tag">Cross-multiplication</span><span class="skill-tag">Percent of a number</span><span class="skill-tag">Tax, tip &amp; discount</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">3</span><h4>Negative Numbers &amp; the Number System</h4></div>
+            <p class="small" style="color:var(--ink-700)">Extend the number line below zero; operate on integers and rational numbers.</p>
+            <div class="skills"><span class="skill-tag">Integers on a number line</span><span class="skill-tag">Add/subtract negatives</span><span class="skill-tag">Multiply &amp; divide signed numbers</span><span class="skill-tag">Absolute value</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">4</span><h4>Expressions &amp; Equations</h4></div>
+            <p class="small" style="color:var(--ink-700)">Use variables to represent situations; write, simplify, and solve equations.</p>
+            <div class="skills"><span class="skill-tag">Combine like terms</span><span class="skill-tag">Distributive property</span><span class="skill-tag">Solve one- &amp; two-step equations</span><span class="skill-tag">Inequalities</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">5</span><h4>Geometry: Angles, Area &amp; Volume</h4></div>
+            <p class="small" style="color:var(--ink-700)">Reason about angles and measure area, surface area, and volume of solids.</p>
+            <div class="skills"><span class="skill-tag">Complementary &amp; supplementary angles</span><span class="skill-tag">Area of triangles &amp; circles</span><span class="skill-tag">Surface area of prisms</span><span class="skill-tag">Volume of cylinders</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">6</span><h4>Linear Functions (Pre-Algebra)</h4></div>
+            <p class="small" style="color:var(--ink-700)">Meet the coordinate plane fully; graph lines and understand slope and intercepts.</p>
+            <div class="skills"><span class="skill-tag">Slope as rate of change</span><span class="skill-tag">y = mx + b</span><span class="skill-tag">Graph from a table</span><span class="skill-tag">Systems by graphing</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">7</span><h4>Statistics &amp; Probability</h4></div>
+            <p class="small" style="color:var(--ink-700)">Summarize data and reason about chance.</p>
+            <div class="skills"><span class="skill-tag">Mean, median, mode, range</span><span class="skill-tag">Box plots &amp; histograms</span><span class="skill-tag">Simple &amp; compound probability</span><span class="skill-tag">Sampling &amp; bias</span></div>
+          </div>
+
+          <div class="section-label">Sample lessons</div>
+
+          <div class="lesson">
+            <h4>Understanding Unit Rate</h4>
+            <div class="obj">Objective: Find and use a unit rate to compare and make decisions.</div>
+            <p>A rate compares two different quantities — like miles and hours, or dollars and ounces. A <em>unit rate</em> tells us the amount for exactly one of something, which makes comparisons fair. If a 12-oz box of cereal costs $3.60 and an 18-oz box costs $4.86, which is the better deal? Divide to get price per ounce: <span class="mono">3.60 ÷ 12 = $0.30/oz</span> and <span class="mono">4.86 ÷ 18 = $0.27/oz</span>. The bigger box is cheaper per ounce. The unit rate cut through the confusion.</p>
+            <div class="practice">
+              <div class="lbl">Practice activity</div>
+              Find the unit rate: (a) 150 miles in 3 hours, (b) $5.00 for 4 apples, (c) 240 words typed in 6 minutes. Then decide: is 8 notebooks for $10 or 5 notebooks for $6 the better buy? Show the per-item price for each. An honest comparison — checking the real per-unit cost — is good stewardship of what you have.
+            </div>
+          </div>
+
+          <div class="lesson">
+            <h4>Solving Two-Step Equations</h4>
+            <div class="obj">Objective: Solve equations of the form <span class="mono">ax + b = c</span> by undoing operations in order.</div>
+            <p>An equation is a balance: whatever we do to one side, we must do to the other. To solve <span class="mono">3x + 5 = 20</span>, we undo the operations in reverse order. First subtract 5 from both sides: <span class="mono">3x = 15</span>. Then divide both sides by 3: <span class="mono">x = 5</span>. We can check by substituting back: <span class="mono">3(5) + 5 = 20</span>. ✓ The check is not optional — it's how we know we're right.</p>
+            <div class="practice">
+              <div class="lbl">Practice activity</div>
+              Solve and check each: <span class="mono">2x − 7 = 9</span>, <span class="mono">4x + 3 = 27</span>, <span class="mono">(x/2) + 6 = 10</span>. Then write an equation for this story and solve it: "A gym charges a $10 sign-up fee plus $4 per visit. How many visits cost $34?"
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 9-12 ==================== -->
+        <div class="tab-panel" id="band-912">
+          <div class="band-head">
+            <div style="flex:1;min-width:240px">
+              <h3>High School Mathematics · Grades 9 – 12</h3>
+              <p class="page-sub">The formal course sequence. Learners move through Algebra I, Geometry, and Algebra II, then choose Pre-Calculus and/or Statistics to finish — a path that meets typical college-prep and graduation requirements.</p>
+              <div class="courses">
+                <span class="chip">Algebra I</span>
+                <span class="chip">Geometry</span>
+                <span class="chip">Algebra II</span>
+                <span class="chip">Pre-Calculus</span>
+                <span class="chip">Statistics</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="background:var(--grad-soft);border-color:#ddd6fe;margin-bottom:20px">
+            <p class="small" style="color:var(--ink-700)">Typical pathway: <strong>Algebra I (9th) → Geometry (10th) → Algebra II (11th) → Pre-Calculus or Statistics (12th)</strong>. Honors tracks (as Layla takes with Algebra II Honors) add depth and pace. Each course below lists its full unit sequence.</p>
+          </div>
+
+          <div class="section-label">Algebra I — unit sequence</div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">1</span><h4>Expressions, Equations &amp; Inequalities</h4></div>
+            <p class="small" style="color:var(--ink-700)">Solve linear equations and inequalities in one variable, including with variables on both sides.</p>
+            <div class="skills"><span class="skill-tag">Multi-step equations</span><span class="skill-tag">Literal equations</span><span class="skill-tag">Compound inequalities</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">2</span><h4>Linear Functions &amp; Graphs</h4></div>
+            <p class="small" style="color:var(--ink-700)">Slope, forms of a line, and interpreting graphs of real situations.</p>
+            <div class="skills"><span class="skill-tag">Slope-intercept &amp; point-slope</span><span class="skill-tag">Parallel &amp; perpendicular lines</span><span class="skill-tag">Function notation</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">3</span><h4>Systems of Equations &amp; Inequalities</h4></div>
+            <p class="small" style="color:var(--ink-700)">Solve by graphing, substitution, and elimination; model with systems.</p>
+            <div class="skills"><span class="skill-tag">Substitution &amp; elimination</span><span class="skill-tag">Graphing inequalities</span><span class="skill-tag">Word-problem modeling</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">4</span><h4>Exponents &amp; Polynomials</h4></div>
+            <p class="small" style="color:var(--ink-700)">Exponent rules, scientific notation, and operations with polynomials.</p>
+            <div class="skills"><span class="skill-tag">Laws of exponents</span><span class="skill-tag">Add/subtract/multiply polynomials</span><span class="skill-tag">Factoring</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">5</span><h4>Quadratic Functions</h4></div>
+            <p class="small" style="color:var(--ink-700)">Graph parabolas and solve quadratics several ways.</p>
+            <div class="skills"><span class="skill-tag">Factoring to solve</span><span class="skill-tag">Quadratic formula</span><span class="skill-tag">Completing the square</span><span class="skill-tag">Vertex &amp; axis of symmetry</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">6</span><h4>Exponential Functions &amp; Data</h4></div>
+            <p class="small" style="color:var(--ink-700)">Growth and decay, plus fitting lines to data.</p>
+            <div class="skills"><span class="skill-tag">Exponential growth/decay</span><span class="skill-tag">Line of best fit</span><span class="skill-tag">Correlation</span></div>
+          </div>
+
+          <div class="section-label">Geometry — unit sequence</div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">1</span><h4>Foundations &amp; Reasoning</h4></div>
+            <p class="small" style="color:var(--ink-700)">Points, lines, planes, and the logic of proof.</p>
+            <div class="skills"><span class="skill-tag">Definitions &amp; postulates</span><span class="skill-tag">Conditional statements</span><span class="skill-tag">Two-column proofs</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">2</span><h4>Lines, Angles &amp; Triangles</h4></div>
+            <p class="small" style="color:var(--ink-700)">Parallel lines, angle relationships, and triangle congruence.</p>
+            <div class="skills"><span class="skill-tag">Transversals &amp; angle pairs</span><span class="skill-tag">SSS, SAS, ASA, AAS</span><span class="skill-tag">Triangle inequality</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">3</span><h4>Similarity &amp; Right Triangles</h4></div>
+            <p class="small" style="color:var(--ink-700)">Similar figures, the Pythagorean theorem, and trigonometry basics.</p>
+            <div class="skills"><span class="skill-tag">Similar triangles</span><span class="skill-tag">Pythagorean theorem</span><span class="skill-tag">Sine, cosine, tangent</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">4</span><h4>Quadrilaterals &amp; Polygons</h4></div>
+            <p class="small" style="color:var(--ink-700)">Properties of special quadrilaterals and interior/exterior angles.</p>
+            <div class="skills"><span class="skill-tag">Parallelogram properties</span><span class="skill-tag">Polygon angle sums</span><span class="skill-tag">Coordinate proofs</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">5</span><h4>Circles</h4></div>
+            <p class="small" style="color:var(--ink-700)">Arcs, chords, inscribed angles, and equations of circles.</p>
+            <div class="skills"><span class="skill-tag">Central &amp; inscribed angles</span><span class="skill-tag">Arc length &amp; sector area</span><span class="skill-tag">Circle equations</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">6</span><h4>Area, Surface Area &amp; Volume</h4></div>
+            <p class="small" style="color:var(--ink-700)">Measure 2-D and 3-D figures, including composite solids.</p>
+            <div class="skills"><span class="skill-tag">Prisms, cylinders, cones, spheres</span><span class="skill-tag">Composite figures</span><span class="skill-tag">Transformations &amp; symmetry</span></div>
+          </div>
+
+          <div class="section-label">Algebra II — unit sequence</div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">1</span><h4>Functions &amp; Systems Revisited</h4></div>
+            <p class="small" style="color:var(--ink-700)">Function families, transformations, and systems in three variables.</p>
+            <div class="skills"><span class="skill-tag">Parent functions</span><span class="skill-tag">Transformations</span><span class="skill-tag">3-variable systems</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">2</span><h4>Quadratics &amp; Complex Numbers</h4></div>
+            <p class="small" style="color:var(--ink-700)">Deepen quadratics and introduce imaginary and complex numbers.</p>
+            <div class="skills"><span class="skill-tag">Imaginary unit i</span><span class="skill-tag">Complex arithmetic</span><span class="skill-tag">Discriminant</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">3</span><h4>Polynomial Functions</h4></div>
+            <p class="small" style="color:var(--ink-700)">Higher-degree polynomials, roots, and end behavior.</p>
+            <div class="skills"><span class="skill-tag">Factoring &amp; the Factor Theorem</span><span class="skill-tag">Rational Root Theorem</span><span class="skill-tag">Graphing polynomials</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">4</span><h4>Rational &amp; Radical Functions</h4></div>
+            <p class="small" style="color:var(--ink-700)">Operate on rational expressions and solve radical equations.</p>
+            <div class="skills"><span class="skill-tag">Simplify rational expressions</span><span class="skill-tag">Asymptotes</span><span class="skill-tag">Rational exponents</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">5</span><h4>Exponential &amp; Logarithmic Functions</h4></div>
+            <p class="small" style="color:var(--ink-700)">Inverse relationship of exponentials and logs; applications.</p>
+            <div class="skills"><span class="skill-tag">Logarithm properties</span><span class="skill-tag">Solving exponential equations</span><span class="skill-tag">Compound interest</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">6</span><h4>Sequences, Series &amp; Trigonometry</h4></div>
+            <p class="small" style="color:var(--ink-700)">Arithmetic/geometric sequences and an introduction to trig functions.</p>
+            <div class="skills"><span class="skill-tag">Arithmetic &amp; geometric series</span><span class="skill-tag">Unit circle</span><span class="skill-tag">Trig graphs</span></div>
+          </div>
+
+          <div class="section-label">Pre-Calculus — unit sequence</div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">1</span><h4>Advanced Functions &amp; Their Graphs</h4></div>
+            <p class="small" style="color:var(--ink-700)">Composition, inverses, and piecewise functions.</p>
+            <div class="skills"><span class="skill-tag">Composite &amp; inverse functions</span><span class="skill-tag">Piecewise functions</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">2</span><h4>Trigonometric Functions &amp; Identities</h4></div>
+            <p class="small" style="color:var(--ink-700)">Radian measure, the full unit circle, and proving identities.</p>
+            <div class="skills"><span class="skill-tag">Radians &amp; unit circle</span><span class="skill-tag">Graphing sine/cosine/tangent</span><span class="skill-tag">Sum &amp; difference identities</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">3</span><h4>Trig Applications &amp; Vectors</h4></div>
+            <p class="small" style="color:var(--ink-700)">Laws of sines and cosines, plus vectors.</p>
+            <div class="skills"><span class="skill-tag">Law of Sines &amp; Cosines</span><span class="skill-tag">Polar coordinates</span><span class="skill-tag">Vector operations</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">4</span><h4>Conic Sections &amp; Systems</h4></div>
+            <p class="small" style="color:var(--ink-700)">Parabolas, ellipses, and hyperbolas; matrices.</p>
+            <div class="skills"><span class="skill-tag">Conic equations</span><span class="skill-tag">Matrix operations</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">5</span><h4>Limits &amp; Intro to Calculus</h4></div>
+            <p class="small" style="color:var(--ink-700)">An on-ramp to calculus: limits, continuity, and rates of change.</p>
+            <div class="skills"><span class="skill-tag">Limits</span><span class="skill-tag">Continuity</span><span class="skill-tag">Average vs. instantaneous rate</span></div>
+          </div>
+
+          <div class="section-label">Statistics — unit sequence</div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">1</span><h4>Exploring &amp; Summarizing Data</h4></div>
+            <p class="small" style="color:var(--ink-700)">Describe distributions with graphs and numerical summaries.</p>
+            <div class="skills"><span class="skill-tag">Center, spread &amp; shape</span><span class="skill-tag">Standard deviation</span><span class="skill-tag">Z-scores</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">2</span><h4>Collecting Data</h4></div>
+            <p class="small" style="color:var(--ink-700)">Sampling methods and designing fair experiments.</p>
+            <div class="skills"><span class="skill-tag">Random sampling</span><span class="skill-tag">Bias</span><span class="skill-tag">Experiments vs. observational studies</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">3</span><h4>Probability</h4></div>
+            <p class="small" style="color:var(--ink-700)">Rules of probability and random variables.</p>
+            <div class="skills"><span class="skill-tag">Addition &amp; multiplication rules</span><span class="skill-tag">Conditional probability</span><span class="skill-tag">Expected value</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">4</span><h4>Distributions</h4></div>
+            <p class="small" style="color:var(--ink-700)">Normal and binomial distributions.</p>
+            <div class="skills"><span class="skill-tag">Normal distribution</span><span class="skill-tag">Empirical rule</span><span class="skill-tag">Binomial settings</span></div>
+          </div>
+          <div class="unit"><div class="unit-head"><span class="unit-num">5</span><h4>Inference</h4></div>
+            <p class="small" style="color:var(--ink-700)">Confidence intervals and significance tests.</p>
+            <div class="skills"><span class="skill-tag">Sampling distributions</span><span class="skill-tag">Confidence intervals</span><span class="skill-tag">Hypothesis testing</span></div>
+          </div>
+
+          <div class="section-label">Sample lessons</div>
+
+          <div class="lesson">
+            <h4>Solving Quadratics with the Quadratic Formula (Algebra I)</h4>
+            <div class="obj">Objective: Solve any quadratic equation using the quadratic formula.</div>
+            <p>Not every quadratic factors nicely, so we need a tool that always works. For any equation in the form <span class="mono">ax² + bx + c = 0</span>, the solutions are <span class="mono">x = (−b ± √(b² − 4ac)) / (2a)</span>. Take <span class="mono">x² + 3x − 10 = 0</span>: here a = 1, b = 3, c = −10. The discriminant is <span class="mono">b² − 4ac = 9 + 40 = 49</span>, and √49 = 7. So <span class="mono">x = (−3 ± 7) / 2</span>, giving <span class="mono">x = 2</span> or <span class="mono">x = −5</span>. The ± sign is why a quadratic can have two solutions.</p>
+            <div class="practice">
+              <div class="lbl">Practice activity</div>
+              Solve with the formula: <span class="mono">x² − 5x + 6 = 0</span>, <span class="mono">2x² + 4x − 6 = 0</span>, <span class="mono">x² + 2x − 5 = 0</span> (leave in radical form). For each, compute the discriminant first and predict how many real solutions there are.
+            </div>
+          </div>
+
+          <div class="lesson">
+            <h4>The Normal Distribution &amp; the Empirical Rule (Statistics)</h4>
+            <div class="obj">Objective: Use the 68–95–99.7 rule to reason about normally distributed data.</div>
+            <p>Many real measurements — heights, test scores, measurement errors — pile up in a symmetric, bell-shaped curve. For any normal distribution, about <strong>68%</strong> of values fall within 1 standard deviation of the mean, about <strong>95%</strong> within 2, and about <strong>99.7%</strong> within 3. If adult heights have a mean of 170 cm and a standard deviation of 8 cm, then roughly 95% of people are between <span class="mono">170 − 16 = 154</span> cm and <span class="mono">170 + 16 = 186</span> cm. The rule turns a vague "most people" into a defensible estimate.</p>
+            <div class="practice">
+              <div class="lbl">Practice activity</div>
+              A test has mean 500 and standard deviation 100. What score range holds the middle 68%? The middle 95%? Roughly what percent of scores are above 700? Sketch the curve and label the standard-deviation marks before answering.
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /mathPanels -->
+
+      <!-- MATERIALS & ASSESSMENTS -->
+      <h2 style="margin:36px 0 4px">Materials &amp; assessments</h2>
+      <p class="page-sub" style="margin-bottom:16px">What a learner actually does in a Mathematics course.</p>
+      <div class="grid g-2">
+        <div class="card">
+          <div class="mat-item">
+            <div class="mat-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z M12 5v14"/></svg></div>
+            <div><h4>Guided lessons</h4><p class="small" style="color:var(--ink-700)">Short interactive lessons with worked examples, visuals, and manipulatives (ten-frames, fraction strips, number lines) delivered through the Learn player.</p></div>
+          </div>
+          <div class="mat-item">
+            <div class="mat-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8M20 12v7H4V5h11"/></svg></div>
+            <div><h4>Practice sets</h4><p class="small" style="color:var(--ink-700)">Auto-checked practice that builds fluency, with hints and step-by-step feedback. Learners practice to mastery before moving on.</p></div>
+          </div>
+          <div class="mat-item">
+            <div class="mat-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5h6M9 5a2 2 0 01-4 0M5 5v14a2 2 0 002 2h10a2 2 0 002-2V5"/><path d="M9 12h6M9 16h4"/></svg></div>
+            <div><h4>Quizzes &amp; unit checks</h4><p class="small" style="color:var(--ink-700)">End-of-unit quizzes (like Math 6's Ratios quiz) confirm understanding and feed the Gradebook automatically.</p></div>
+          </div>
+          <div class="mat-item">
+            <div class="mat-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+            <div><h4>Projects &amp; applications</h4><p class="small" style="color:var(--ink-700)">Real-world tasks — a grocery budget, a scale drawing, a data survey — that show math outside the workbook and build a portfolio for compliance.</p></div>
+          </div>
+        </div>
+        <div>
+          <div class="card" style="margin-bottom:16px">
+            <h4 style="margin-bottom:8px">Assessment &amp; mastery</h4>
+            <p class="small" style="color:var(--ink-700);margin-bottom:12px">Grades combine practice, quizzes, unit tests, and projects. Younger learners (K–2) are assessed on standards-based checkpoints; upper grades earn letter grades and high-school credit that flow to the transcript.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <span class="pill pill-indigo">Practice 30%</span>
+              <span class="pill pill-indigo">Quizzes 25%</span>
+              <span class="pill pill-indigo">Unit tests 30%</span>
+              <span class="pill pill-indigo">Projects 15%</span>
+            </div>
+          </div>
+          <div class="card">
+            <h4 style="margin-bottom:10px">Keep exploring</h4>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <a href="subjects.html" class="btn btn-ghost" style="justify-content:flex-start">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to all Subjects
+              </a>
+              <a href="learn.html" class="btn btn-ghost" style="justify-content:flex-start">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z M12 5v14"/></svg>
+                Open a lesson in Learn
+              </a>
+              <button class="btn btn-grad" onclick="openModal('planModal')" style="justify-content:flex-start">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                Add Mathematics to a plan
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </main>
+</div>
+
+<!-- ADD TO PLAN MODAL -->
+<div class="modal-wrap" id="planModal" role="dialog" aria-modal="true" aria-labelledby="planModalTitle">
+  <div class="modal-card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+      <h3 id="planModalTitle">Add Mathematics to a plan</h3>
+      <button class="btn btn-ghost btn-sm" aria-label="Close" onclick="closeModal('planModal')">✕</button>
+    </div>
+    <p class="small" style="color:var(--ink-500);margin-bottom:16px">Choose which children should have Mathematics added to their learning plan.</p>
+    <label class="check-row"><input type="checkbox" checked><span class="dot" style="background:var(--child-layla)"></span><span><strong>Layla Rahman</strong> · 11th Grade — Algebra II (Honors)</span></label>
+    <label class="check-row"><input type="checkbox" checked><span class="dot" style="background:var(--child-yusuf)"></span><span><strong>Yusuf Rahman</strong> · 6th Grade — Math 6</span></label>
+    <label class="check-row"><input type="checkbox"><span class="dot" style="background:var(--child-zayd)"></span><span><strong>Zayd Rahman</strong> · 2nd Grade — Math 2</span></label>
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:18px">
+      <button class="btn btn-ghost" onclick="closeModal('planModal')">Cancel</button>
+      <button class="btn btn-grad" onclick="closeModal('planModal');showToast('Added to plan')">Add to plan</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('backdrop').classList.toggle('show');}
+function openModal(id){document.getElementById(id).classList.add('show');}
+function closeModal(id){document.getElementById(id).classList.remove('show');}
+let _toastT;function showToast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.className='toast';document.body.appendChild(t);}t.textContent=msg;t.classList.add('show');clearTimeout(_toastT);_toastT=setTimeout(()=>t.classList.remove('show'),2500);}
+function initTabs(scope){(scope||document).querySelectorAll('[data-tabs]').forEach(function(group){var tabs=group.querySelectorAll('.tab');tabs.forEach(function(tab){tab.addEventListener('click',function(){var panelId=tab.getAttribute('data-tab');group.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');var host=group.getAttribute('data-panels')?document.getElementById(group.getAttribute('data-panels')):group.parentElement;host.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));var panel=document.getElementById(panelId);if(panel)panel.classList.add('active');});});});}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal-wrap.show').forEach(m=>m.classList.remove('show'));}});
+document.addEventListener('DOMContentLoaded',function(){initTabs();document.querySelectorAll('.progress>span').forEach(function(el){var w=el.style.width;el.style.width='0';setTimeout(()=>el.style.width=w,100);});});
+</script>
+</body>
+</html>

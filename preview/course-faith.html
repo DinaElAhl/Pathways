@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faith Studies · Pathways Academy</title>
+<style>
+:root{
+  --indigo-600:#4f46e5;--indigo-700:#4338ca;--indigo-500:#6366f1;
+  --violet-600:#7c3aed;--violet-500:#8b5cf6;
+  --grad:linear-gradient(135deg,#4f46e5 0%,#7c3aed 100%);
+  --grad-soft:linear-gradient(135deg,#eef2ff 0%,#f5f3ff 100%);
+  --ink-900:#0f172a;--ink-700:#334155;--ink-500:#64748b;--ink-400:#94a3b8;
+  --line:#e2e8f0;--bg:#f8fafc;--surface:#fff;--surface-2:#f1f5f9;
+  --green-600:#16a34a;--green-50:#f0fdf4;--amber-500:#f59e0b;--amber-50:#fffbeb;
+  --red-600:#dc2626;--red-50:#fef2f2;--sky-600:#0284c7;
+  --child-layla:#db2777;--child-yusuf:#0891b2;--child-zayd:#ea580c;
+  --r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:24px;--r-full:999px;
+  --sh-sm:0 1px 2px rgba(15,23,42,.06);--sh-md:0 4px 12px rgba(15,23,42,.08);--sh-lg:0 12px 32px rgba(15,23,42,.12);
+  --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-8:48px;--maxw:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink-900);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+h1{font-size:28px;font-weight:700;letter-spacing:-.02em}
+h2{font-size:22px;font-weight:700;letter-spacing:-.01em}
+h3{font-size:18px;font-weight:600}h4{font-size:15px;font-weight:600}
+.small{font-size:13px}.tiny{font-size:12px;color:var(--ink-500)}
+a{color:var(--indigo-600);text-decoration:none}
+:focus-visible{outline:2px solid var(--indigo-600);outline-offset:2px;border-radius:6px}
+.display{font-size:clamp(32px,5vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border-radius:var(--r-md);font-size:14px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:.15s;font-family:inherit}
+.btn-primary{background:var(--indigo-600);color:#fff}.btn-primary:hover{background:var(--indigo-700)}
+.btn-grad{background:var(--grad);color:#fff}.btn-grad:hover{filter:brightness(1.05)}
+.btn-ghost{background:var(--surface);color:var(--ink-700);border-color:var(--line)}.btn-ghost:hover{background:var(--surface-2)}
+.btn-sm{height:32px;padding:0 12px;font-size:13px}.btn-lg{height:48px;padding:0 24px;font-size:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-sm);padding:var(--sp-5)}
+.card-hover{transition:.18s}.card-hover:hover{box-shadow:var(--sh-lg);transform:translateY(-2px)}
+.pill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:var(--r-full);font-size:12px;font-weight:600}
+.pill-green{background:var(--green-50);color:var(--green-600)}.pill-amber{background:var(--amber-50);color:var(--amber-500)}
+.pill-red{background:var(--red-50);color:var(--red-600)}.pill-indigo{background:#eef2ff;color:var(--indigo-600)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;padding:12px;color:var(--ink-500);font-size:12px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line)}
+td{padding:12px;border-bottom:1px solid var(--line)}tr:hover td{background:var(--surface-2)}
+.progress{height:8px;background:var(--surface-2);border-radius:var(--r-full);overflow:hidden}
+.progress>span{display:block;height:100%;background:var(--grad);border-radius:var(--r-full);transition:width .8s ease}
+.stat-card .num{font-size:28px;font-weight:700}.stat-card .lbl{font-size:13px;color:var(--ink-500)}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.grid{display:grid;gap:24px}.g-2{grid-template-columns:repeat(2,1fr)}.g-3{grid-template-columns:repeat(3,1fr)}.g-4{grid-template-columns:repeat(4,1fr)}
+.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:24px 0;border-bottom:1px solid var(--line);margin-bottom:24px;flex-wrap:wrap}
+.page-sub{color:var(--ink-500);font-size:14px;margin-top:4px}.page-actions{display:flex;gap:8px;flex-wrap:wrap}
+.app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+.sidebar{background:var(--surface);border-right:1px solid var(--line);padding:20px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:6px;overflow-y:auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;padding:8px}
+.brand .mark{width:32px;height:32px;border-radius:9px;background:var(--grad);flex:none}
+.nav-group-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-400);padding:12px 12px 4px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--r-md);color:var(--ink-700);font-weight:500;font-size:14px}
+.nav-item:hover{background:var(--surface-2)}.nav-item.active{background:#eef2ff;color:var(--indigo-600);font-weight:600}
+.nav-item .ico{width:18px;height:18px;flex:none}.nav-spacer{flex:1}
+.hh-card{margin-top:8px;padding:10px;border:1px solid var(--line);border-radius:var(--r-md);display:flex;align-items:center;gap:8px;font-size:13px}
+.topbar{display:flex;align-items:center;gap:16px;height:64px;padding:0 24px;background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.topbar .search{flex:1;max-width:360px;height:38px;border:1px solid var(--line);border-radius:var(--r-full);padding:0 14px;background:var(--surface-2);font-size:14px;font-family:inherit}
+.avatar{width:34px;height:34px;border-radius:var(--r-full);display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px;background:var(--indigo-600);flex:none}
+.main{min-width:0}.content{max-width:var(--maxw);margin:0 auto;padding:0 24px 48px}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;color:var(--ink-700)}
+.backdrop{position:fixed;inset:0;background:rgba(15,23,42,.4);z-index:40;display:none}.backdrop.show{display:block}
+.modal-wrap{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(15,23,42,.45)}
+.modal-wrap.show{display:flex}
+.modal-card{background:var(--surface);border-radius:var(--r-xl);box-shadow:var(--sh-lg);max-width:480px;width:100%;padding:24px;max-height:90vh;overflow-y:auto}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink-900);color:#fff;padding:12px 20px;border-radius:var(--r-full);font-size:14px;font-weight:500;opacity:0;pointer-events:none;transition:.3s;z-index:80}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:20px;overflow-x:auto}
+.tab{padding:10px 16px;font-size:14px;font-weight:600;color:var(--ink-500);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;font-family:inherit}
+.tab.active{color:var(--indigo-600);border-bottom-color:var(--indigo-600)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.field{margin-bottom:14px}.field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;height:40px;border:1px solid var(--line);border-radius:var(--r-md);padding:0 12px;font-size:14px;font-family:inherit;background:var(--surface)}
+.field textarea{height:auto;padding:10px 12px;min-height:72px}
+@media(max-width:768px){
+  .app{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;z-index:50;transform:translateX(-100%);transition:.25s;width:260px}
+  .sidebar.open{transform:none}.hamburger{display:inline-flex}
+  .g-2,.g-3,.g-4{grid-template-columns:1fr}
+  .page-head{align-items:flex-start}
+  table.responsive{display:block;overflow-x:auto;white-space:nowrap}
+}
+@media print{
+  .sidebar,.topbar,.hamburger,.no-print{display:none!important}
+  .app{display:block}.content{padding:0}body{background:#fff}
+}
+/* ===== PAGE STYLES ===== */
+.faith-hero{position:relative;overflow:hidden;background:var(--grad);color:#fff;border-radius:var(--r-xl);padding:36px 32px;margin-bottom:28px}
+.faith-hero h1{color:#fff;font-size:clamp(26px,3.4vw,36px)}
+.faith-hero p{color:rgba(255,255,255,.9);max-width:640px;margin-top:10px;font-size:15px;line-height:1.65}
+.faith-hero .hero-actions{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap}
+.faith-hero .btn-ghost{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.28)}
+.faith-hero .btn-ghost:hover{background:rgba(255,255,255,.22)}
+.faith-hero .btn-white{background:#fff;color:var(--indigo-700)}
+.hero-motif{position:absolute;right:-20px;top:-20px;width:260px;height:260px;opacity:.16;pointer-events:none}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.24);border-radius:var(--r-full);padding:5px 12px;font-size:12px;font-weight:600;letter-spacing:.02em;margin-bottom:14px}
+.crescent{width:16px;height:16px;flex:none}
+.strand-nav{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+.strand-chip{flex:1;min-width:220px;display:flex;gap:12px;align-items:flex-start;padding:16px;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);box-shadow:var(--sh-sm);transition:.18s;cursor:pointer}
+.strand-chip:hover{box-shadow:var(--sh-lg);transform:translateY(-2px)}
+.strand-chip .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;color:#fff;flex:none}
+.strand-chip .ic.arabic{background:linear-gradient(135deg,#4f46e5,#6366f1)}
+.strand-chip .ic.quran{background:linear-gradient(135deg,#0891b2,#0284c7)}
+.strand-chip .ic.islamic{background:linear-gradient(135deg,#7c3aed,#8b5cf6)}
+.strand-chip h4{margin-bottom:2px}
+.strand-chip .arc{font-size:12px;color:var(--ink-500);line-height:1.5}
+.section-label{display:flex;align-items:center;gap:10px;margin:8px 0 6px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--indigo-600)}
+.section-label .crescent{color:var(--violet-600)}
+.strand-block{margin-bottom:40px;scroll-margin-top:80px}
+.strand-head{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+.strand-head .ic{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;color:#fff;flex:none}
+.strand-head .ic.arabic{background:linear-gradient(135deg,#4f46e5,#6366f1)}
+.strand-head .ic.quran{background:linear-gradient(135deg,#0891b2,#0284c7)}
+.strand-head .ic.islamic{background:linear-gradient(135deg,#7c3aed,#8b5cf6)}
+.arabic-word{font-size:20px;font-weight:700}
+.unit{border:1px solid var(--line);border-radius:var(--r-md);padding:14px 16px;background:var(--surface);margin-bottom:12px}
+.unit .u-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.unit .u-num{font-size:12px;font-weight:700;color:var(--indigo-600);background:#eef2ff;border-radius:var(--r-full);padding:2px 9px;flex:none}
+.unit h4{font-size:15px}
+.unit .u-desc{color:var(--ink-700);font-size:13.5px;margin:6px 0 8px}
+.skills{display:flex;flex-wrap:wrap;gap:6px}
+.skill{font-size:12px;background:var(--surface-2);color:var(--ink-700);border-radius:var(--r-sm);padding:4px 9px}
+.lesson-card{border:1px solid var(--line);border-left:4px solid var(--violet-500);border-radius:var(--r-md);background:linear-gradient(180deg,#faf9ff,#fff);padding:18px 20px;margin-top:14px}
+.lesson-card .lesson-tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--violet-600);margin-bottom:6px}
+.lesson-card h4{font-size:16px;margin-bottom:8px}
+.lesson-card .meta{font-size:12px;color:var(--ink-500);margin-bottom:10px}
+.lesson-card p{font-size:14px;color:var(--ink-700);line-height:1.65;margin-bottom:10px}
+.lesson-card .obj{background:#eef2ff;border-radius:var(--r-sm);padding:10px 12px;font-size:13px;margin-bottom:12px}
+.lesson-card .obj b{color:var(--indigo-700)}
+.activity{background:var(--surface-2);border-radius:var(--r-sm);padding:12px 14px;font-size:13px}
+.activity b{display:block;margin-bottom:4px;color:var(--ink-900)}
+.activity ol,.activity ul{margin:6px 0 0 18px}.activity li{margin-bottom:4px}
+.band-note{font-size:13px;color:var(--ink-500);margin-bottom:16px}
+.band-levels{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.band-levels .pill-indigo{height:26px}
+.overview-grid{display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-bottom:12px}
+@media(max-width:768px){.overview-grid{grid-template-columns:1fr}}
+.woven{background:var(--grad-soft);border:1px solid #e0dafc;border-radius:var(--r-lg);padding:18px 20px}
+.woven h4{color:var(--violet-600);margin-bottom:8px}
+.woven ul{margin:0 0 0 18px}.woven li{font-size:13.5px;color:var(--ink-700);margin-bottom:6px}
+.habit-band{display:grid;grid-template-columns:1fr;gap:16px}
+.habit-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.habit-chip{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:var(--r-md);padding:10px 14px;background:var(--surface);flex:1;min-width:180px}
+.habit-chip .dot{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:#fff;flex:none}
+.week-dots{display:flex;gap:5px;margin-top:4px}
+.week-dots span{width:16px;height:16px;border-radius:5px;background:var(--surface-2);display:grid;place-items:center;font-size:9px;color:var(--ink-400);font-weight:700}
+.week-dots span.done{background:var(--green-600);color:#fff}
+.arabic-strip{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 4px}
+.arabic-strip span{font-size:22px;font-weight:700;background:var(--surface-2);border-radius:var(--r-sm);padding:4px 12px;color:var(--indigo-700)}
+.callout{display:flex;gap:12px;align-items:flex-start;background:var(--amber-50);border:1px solid #fde68a;border-radius:var(--r-md);padding:14px 16px;font-size:13.5px;color:var(--ink-700)}
+.callout svg{flex:none;color:var(--amber-500);margin-top:2px}
+.mats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:768px){.mats-grid{grid-template-columns:1fr 1fr}}
+.mat{border:1px solid var(--line);border-radius:var(--r-md);padding:14px;background:var(--surface)}
+.mat .ic{width:32px;height:32px;border-radius:9px;background:#eef2ff;color:var(--indigo-600);display:grid;place-items:center;margin-bottom:8px}
+.mat h4{font-size:14px;margin-bottom:4px}.mat p{font-size:12.5px;color:var(--ink-500);line-height:1.5}
+.checkrow{display:flex;align-items:center;gap:10px;padding:9px 4px;border-bottom:1px solid var(--line)}
+.checkrow:last-child{border-bottom:none}
+.checkrow input{width:18px;height:18px;flex:none;accent-color:var(--indigo-600)}
+.backlinks{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <a href="dashboard.html" class="brand"><span class="mark"></span>Pathways Learn</a>
+    <div class="nav-group-label">Teach</div>
+    <a href="dashboard.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Dashboard</a>
+    <a href="child.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="8" r="2"/></svg>Children</a>
+    <a href="learn.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z M12 5v14"/></svg>Learn</a>
+    <a href="subjects.html" class="nav-item active"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Subjects</a>
+    <a href="planner.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>Planner</a>
+    <a href="gradebook.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8M20 12v7H4V5h11"/></svg>Gradebook</a>
+    <div class="nav-group-label">Records</div>
+    <a href="compliance.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Compliance <span class="pill pill-indigo" style="margin-left:auto;height:18px;padding:0 7px;font-size:10px">PA</span></a>
+    <a href="settings.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>Settings</a>
+    <div class="nav-spacer"></div>
+    <div class="hh-card"><span class="avatar" style="width:28px;height:28px;font-size:11px">RH</span><div><div style="font-weight:600">Rahman Household</div><div class="tiny">Pennsylvania</div></div></div>
+    <a href="index.html" class="nav-item" style="font-size:13px;color:var(--ink-500)">← Back to site</a>
+  </aside>
+  <main class="main">
+    <div class="topbar">
+      <button class="hamburger" aria-label="Open menu" onclick="toggleSidebar()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <input class="search" placeholder="Search lessons, children, records…" aria-label="Search">
+      <span style="flex:1"></span>
+      <button class="btn btn-ghost btn-sm" onclick="showToast('Attendance logged for today')">Log attendance</button>
+      <span class="avatar">AR</span>
+    </div>
+    <div class="content">
+
+      <!-- BREADCRUMB -->
+      <div class="tiny" style="padding:16px 0 0"><a href="subjects.html">Subjects</a> · <a href="subjects.html">Faith Studies</a> · <span style="color:var(--ink-700)">Faith Studies curriculum</span></div>
+
+      <!-- PAGE HEAD -->
+      <div class="page-head">
+        <div>
+          <h1>Faith Studies</h1>
+          <div class="page-sub">Nurturing faith, character, and a lifelong connection to the Qur'an and the Arabic language — K through 12.</div>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-ghost" onclick="window.location.href='learn.html'">Open in Learn</button>
+          <button class="btn btn-grad" onclick="openModal('planModal')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            Add to a child's plan
+          </button>
+        </div>
+      </div>
+
+      <!-- HERO -->
+      <div class="faith-hero">
+        <svg class="hero-motif" viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="1.4">
+          <path d="M62 22a30 30 0 1 0 0 56 24 24 0 1 1 0-56z" fill="#fff" stroke="none"/>
+          <path d="M78 40l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="#fff" stroke="none"/>
+        </svg>
+        <span class="hero-tag">
+          <svg class="crescent" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3a9 9 0 1 0 0 18 7 7 0 1 1 0-18z"/></svg>
+          Faith Studies · a flagship program at Pathways Academy
+        </span>
+        <h1>Learn the language, love the Book, live the character.</h1>
+        <p>Three connected strands grow together across every grade band — <b>Arabic</b> gives learners the key to the words, <b>Qur'an</b> builds recitation, memorization, and understanding, and <b>Islamic Studies</b> roots it all in belief, history, and beautiful character (akhlaq). Adab — good manners and mindfulness of Allah — is woven through every lesson.</p>
+        <div class="hero-actions">
+          <button class="btn btn-white" onclick="document.getElementById('strand-arabic').scrollIntoView()">Explore the strands</button>
+          <button class="btn btn-ghost" onclick="document.getElementById('habits').scrollIntoView()">Character &amp; habits</button>
+        </div>
+      </div>
+
+      <!-- STRAND QUICK-NAV -->
+      <div class="strand-nav">
+        <div class="strand-chip" onclick="document.getElementById('strand-arabic').scrollIntoView()" role="button" tabindex="0">
+          <span class="ic arabic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h10M4 17h7"/></svg></span>
+          <div><h4>Arabic</h4><div class="arc">Alphabet → Reading &amp; vocabulary → Nahw &amp; Sarf → Conversation &amp; texts</div></div>
+        </div>
+        <div class="strand-chip" onclick="document.getElementById('strand-quran').scrollIntoView()" role="button" tabindex="0">
+          <span class="ic quran"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h7v14H4zM13 5h7v14h-7zM11 5v14"/></svg></span>
+          <div><h4>Qur'an</h4><div class="arc">Short surahs &amp; memorization → Recitation → Tajweed → Tafsir</div></div>
+        </div>
+        <div class="strand-chip" onclick="document.getElementById('strand-islamic').scrollIntoView()" role="button" tabindex="0">
+          <span class="ic islamic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/></svg></span>
+          <div><h4>Islamic Studies</h4><div class="arc">Prophets &amp; pillars → Seerah → Fiqh basics → Aqeedah &amp; history</div></div>
+        </div>
+      </div>
+
+      <!-- OVERVIEW -->
+      <div class="section-label"><svg class="crescent" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3a9 9 0 1 0 0 18 7 7 0 1 1 0-18z"/></svg> How the program works</div>
+      <div class="overview-grid">
+        <div class="card">
+          <h3 style="margin-bottom:10px">One program, three strands that grow together</h3>
+          <p class="small" style="color:var(--ink-700);line-height:1.7;margin-bottom:12px">Faith Studies is designed so the strands reinforce one another. In the early years a child <b>hears and memorizes short surahs</b> in Qur'an, <b>learns the letters that spell them</b> in Arabic, and <b>meets the Prophet ﷺ and the prophets before him</b> in Islamic Studies. As learners mature, Arabic reading unlocks direct engagement with the Qur'an, Tajweed refines their recitation, and Tafsir and Aqeedah help them understand and live what they read.</p>
+          <p class="small" style="color:var(--ink-700);line-height:1.7">Each grade band builds on the last: <b>Primary (K–2)</b> centers wonder, sound, and story; <b>Elementary (3–5)</b> builds fluency and the Seerah; <b>Middle (6–8)</b> introduces grammar, Tajweed rules, and Fiqh; and <b>High School (9–12)</b> reaches comprehension of classical texts, Tafsir, Aqeedah, and contemporary ethics. Objectives are written as clear, measurable skills so families can track mastery and keep records for their state.</p>
+        </div>
+        <div class="woven">
+          <h4>Adab &amp; character, woven throughout</h4>
+          <ul>
+            <li>Every lesson opens with intention (niyyah) and the basmala.</li>
+            <li>Respect for the mushaf, teachers, parents, and classmates is modeled and practiced.</li>
+            <li>Du'as for daily life are learned alongside their meanings.</li>
+            <li>Character traits — honesty, gratitude, patience (sabr), kindness — are named, discussed, and tracked as habits.</li>
+            <li>The tone is warm and invitational, never fear-based; love of Allah and His Messenger ﷺ comes first.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout" style="margin-bottom:34px">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+        <div><b>A note on families &amp; madhhab.</b> Fiqh is taught with the core, agreed-upon practices first, and points of scholarly difference are presented respectfully. Families can align pronunciation, memorization pace, and jurisprudential detail to their own tradition in Settings — the curriculum is a flexible scaffold, not a replacement for a family's teacher or imam.</div>
+      </div>
+
+      <!-- ===================== STRAND 1: ARABIC ===================== -->
+      <div class="strand-block" id="strand-arabic">
+        <div class="strand-head">
+          <span class="ic arabic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h10M4 17h7"/></svg></span>
+          <div>
+            <h2>Arabic <span class="arabic-word" dir="rtl" lang="ar">اللغة العربية</span></h2>
+            <div class="page-sub">From the alphabet to reading, grammar, and conversation with classical and modern texts.</div>
+          </div>
+        </div>
+        <div class="band-levels">
+          <span class="pill pill-indigo">Arabic I · Alphabet (K–2)</span>
+          <span class="pill pill-indigo">Arabic II · Reading &amp; Vocabulary (3–5)</span>
+          <span class="pill pill-indigo">Arabic III · Nahw &amp; Sarf (6–8)</span>
+          <span class="pill pill-indigo">Arabic IV · Conversation &amp; Texts (9–12)</span>
+        </div>
+
+        <div class="tabs" data-tabs data-panels="arabicPanels">
+          <button class="tab active" data-tab="ar-k2">Primary K–2</button>
+          <button class="tab" data-tab="ar-35">Elementary 3–5</button>
+          <button class="tab" data-tab="ar-68">Middle 6–8</button>
+          <button class="tab" data-tab="ar-912">High School 9–12</button>
+        </div>
+        <div id="arabicPanels">
+
+          <!-- ARABIC K-2 -->
+          <div class="tab-panel active" id="ar-k2">
+            <div class="band-note"><b>Arabic I — The Alphabet.</b> Learners meet all 28 letters by sight and sound, learn short vowels (harakat), and begin joining letters into simple words. Goal: recognize and write every letter in its forms and blend letters into three-letter words.</div>
+            <div class="arabic-strip" dir="rtl" lang="ar"><span>ا</span><span>ب</span><span>ت</span><span>ث</span><span>ج</span><span>ح</span><span>خ</span></div>
+
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 1</span><h4>Meet the 28 letters</h4></div>
+              <div class="u-desc">Letter names and shapes from alif to yaa, grouped by similar forms (baa/taa/thaa; jeem/haa/khaa).</div>
+              <div class="skills"><span class="skill">Name each letter</span><span class="skill">Match shape to name</span><span class="skill">Sort look-alike letters</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 2</span><h4>Letter sounds (makhraj basics)</h4></div>
+              <div class="u-desc">The distinct sound each letter makes, with playful practice for the throat letters (ح خ ع غ) and heavy letters (ص ض ط ظ).</div>
+              <div class="skills"><span class="skill">Produce each sound</span><span class="skill">Hear &amp; point</span><span class="skill">Heavy vs. light letters</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 3</span><h4>Short vowels — the harakat</h4></div>
+              <div class="u-desc">Fatha, kasra, and damma change a letter's sound: بَ / بِ / بُ. Reading single vowelled letters aloud.</div>
+              <div class="skills"><span class="skill">ba–bi–bu drill</span><span class="skill">Read vowelled letters</span><span class="skill">Sukoon (no vowel)</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 4</span><h4>Letter forms — start, middle, end</h4></div>
+              <div class="u-desc">Most letters change shape by position. Which letters connect and which never join to the letter after them (ا د ذ ر ز و).</div>
+              <div class="skills"><span class="skill">Initial/medial/final forms</span><span class="skill">Non-connecting letters</span><span class="skill">Trace &amp; copy</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 5</span><h4>Joining letters into words</h4></div>
+              <div class="u-desc">Blending letters to build simple three-letter words like بَاب (door), قَلَم (pen), and أُمّ (mother).</div>
+              <div class="skills"><span class="skill">Blend 3 letters</span><span class="skill">Read simple nouns</span><span class="skill">Copy words neatly</span></div>
+            </div>
+
+            <div class="lesson-card">
+              <span class="lesson-tag"><svg class="crescent" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3a9 9 0 1 0 0 18 7 7 0 1 1 0-18z"/></svg> Sample lesson · Arabic I</span>
+              <h4>Reading the family of baa: بَ بِ بُ</h4>
+              <div class="meta">Primary K–2 · Unit 3 · ~20 minutes</div>
+              <div class="obj"><b>Objective:</b> Learners read the letter <span dir="rtl" lang="ar">ب</span> with each of the three short vowels and blend it with <span dir="rtl" lang="ar">ت</span> to read a first word.</div>
+              <p>We begin with the basmala. The teacher shows the bare letter <span dir="rtl" lang="ar">ب</span> (baa) and reminds learners it makes a "b" sound. Then a fatha appears above it — <span dir="rtl" lang="ar">بَ</span> — "ba, like the start of <i>bāb</i>." A kasra below gives <span dir="rtl" lang="ar">بِ</span> "bi," and a damma above gives <span dir="rtl" lang="ar">بُ</span> "bu." Learners echo each three times, watching where the little marks sit.</p>
+              <div class="activity"><b>Practice activity — "Vowel hop"</b>
+                <ol>
+                  <li>Point to <span dir="rtl" lang="ar">بَ / بِ / بُ</span> in random order; the child says the sound.</li>
+                  <li>Add the letter taa: read <span dir="rtl" lang="ar">بَ + تَ</span> and blend to say the word for "she stayed" — <span dir="rtl" lang="ar">بَتَّ</span> (keep it playful, focus on the blend).</li>
+                  <li>Write <span dir="rtl" lang="ar">بَ</span>, <span dir="rtl" lang="ar">بِ</span>, <span dir="rtl" lang="ar">بُ</span> once each, placing the vowel in the right spot.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <!-- ARABIC 3-5 -->
+          <div class="tab-panel" id="ar-35">
+            <div class="band-note"><b>Arabic II — Reading &amp; Vocabulary.</b> Learners move from decoding to fluent reading of fully vowelled text, build a core vocabulary of everyday words, and read and write simple sentences. Goal: read a short vowelled passage aloud and understand common nouns, verbs, and adjectives.</div>
+
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 1</span><h4>Fluent decoding with long vowels</h4></div>
+              <div class="u-desc">Reading with alif, waw, and yaa as long vowels (مَـا / نُـور / كِـتَـاب); tanween and shadda in words.</div>
+              <div class="skills"><span class="skill">Long vs. short vowels</span><span class="skill">Read shadda &amp; tanween</span><span class="skill">Read vowelled sentences</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 2</span><h4>Core vocabulary — home &amp; family</h4></div>
+              <div class="u-desc">Everyday nouns: family members, house items, food, colors, numbers 1–20.</div>
+              <div class="skills"><span class="skill">50+ everyday nouns</span><span class="skill">Numbers ١–٢٠</span><span class="skill">Colors &amp; opposites</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 3</span><h4>Nouns, gender &amp; the definite article</h4></div>
+              <div class="u-desc">Masculine and feminine nouns (taa marbuta), and "al-" (ال) that means "the," including sun and moon letters.</div>
+              <div class="skills"><span class="skill">Masculine/feminine</span><span class="skill">Add ال correctly</span><span class="skill">Sun vs. moon letters</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 4</span><h4>Simple sentences (jumla)</h4></div>
+              <div class="u-desc">Building noun sentences: "This is a…" and "The house is big." Subject + adjective agreement.</div>
+              <div class="skills"><span class="skill">هذا / هذه (this)</span><span class="skill">Noun + adjective</span><span class="skill">Read &amp; write a sentence</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 5</span><h4>Everyday phrases &amp; greetings</h4></div>
+              <div class="u-desc">Salaam and replies, please/thank you, classroom phrases, and useful du'as as vocabulary.</div>
+              <div class="skills"><span class="skill">Greet &amp; reply</span><span class="skill">Ask "what is this?"</span><span class="skill">Polite phrases</span></div>
+            </div>
+
+            <div class="lesson-card">
+              <span class="lesson-tag"><svg class="crescent" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3a9 9 0 1 0 0 18 7 7 0 1 1 0-18z"/></svg> Sample lesson · Arabic II</span>
+              <h4>"Al-" and the sun &amp; moon letters</h4>
+              <div class="meta">Elementary 3–5 · Unit 3 · ~30 minutes</div>
+              <div class="obj"><b>Objective:</b> Learners add the definite article ال to a noun and read it correctly, distinguishing moon letters (where the "l" is pronounced) from sun letters (where it assimilates).</div>
+              <p>The article <span dir="rtl" lang="ar">ال</span> means "the." With <b>moon letters</b> we hear the "l": <span dir="rtl" lang="ar">القَمَر</span> is read <i>al-qamar</i> (the moon). With <b>sun letters</b> the "l" is silent and the next letter doubles: <span dir="rtl" lang="ar">الشَّمس</span> is read <i>ash-shams</i> (the sun), not <i>al-shams</i>. Learners feel the shadda that appears on sun letters.</p>
+              <div class="activity"><b>Practice activity — "Sun or moon?"</b>
+                <ul>
+                  <li>Sort ten words into two columns by their first letter: sun (ت ث د ذ ر ز س ش ص ض ط ظ ل ن) or moon (the rest).</li>
+                  <li>Read each with ال: <span dir="rtl" lang="ar">البَاب</span> (al-bāb), <span dir="rtl" lang="ar">الرَّجُل</span> (ar-rajul), <span dir="rtl" lang="ar">الكِتَاب</span> (al-kitāb), <span dir="rtl" lang="ar">النُّور</span> (an-nūr).</li>
+                  <li>Write one sentence: "The house is big" — <span dir="rtl" lang="ar">البَيتُ كَبِيرٌ</span>.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- ARABIC 6-8 -->
+          <div class="tab-panel" id="ar-68">
+            <div class="band-note"><b>Arabic III — Grammar (Nahw) &amp; Morphology (Sarf).</b> Learners study how Arabic sentences are built and how verbs are formed and change. Goal: parse a simple sentence, conjugate the past and present tense across persons, and recognize the three main verb tenses.</div>
+
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 1</span><h4>The two sentence types</h4></div>
+              <div class="u-desc">Nominal sentence (jumla ismiyya: mubtada + khabar) vs. verbal sentence (jumla fi'liyya: fi'l + fa'il).</div>
+              <div class="skills"><span class="skill">Mubtada &amp; khabar</span><span class="skill">Fi'l &amp; fa'il</span><span class="skill">Identify sentence type</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 2</span><h4>The three cases &amp; harakat endings</h4></div>
+              <div class="u-desc">Introduction to i'rab: raf' (damma), nasb (fatha), jarr (kasra) and what causes each ending.</div>
+              <div class="skills"><span class="skill">Nominative/accusative/genitive</span><span class="skill">Read case endings</span><span class="skill">Prepositions cause jarr</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 3</span><h4>The past tense (al-madi)</h4></div>
+              <div class="u-desc">The root system and conjugating <span dir="rtl" lang="ar">فَعَلَ</span> across all pronouns (he/she/they/you/I/we).</div>
+              <div class="skills"><span class="skill">3-letter roots</span><span class="skill">Conjugate al-madi</span><span class="skill">Pronoun endings</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 4</span><h4>The present tense (al-mudari') &amp; the imperative (al-amr)</h4></div>
+              <div class="u-desc">The prefix letters أنيت, forming commands, and the negative "laa."</div>
+              <div class="skills"><span class="skill">Conjugate al-mudari'</span><span class="skill">Form al-amr</span><span class="skill">Negation with لا / ما</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 5</span><h4>Sarf: verb forms &amp; patterns</h4></div>
+              <div class="u-desc">The measured patterns (awzan) — Form I <span dir="rtl" lang="ar">فَعَلَ</span>, Form II <span dir="rtl" lang="ar">فَعَّلَ</span>, Form IV <span dir="rtl" lang="ar">أَفْعَلَ</span> — and how meaning shifts.</div>
+              <div class="skills"><span class="skill">Recognize awzan</span><span class="skill">Derive nouns from roots</span><span class="skill">Active/passive participle</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 6</span><h4>Idafa &amp; the possessive</h4></div>
+              <div class="u-desc">Possessive construction (<span dir="rtl" lang="ar">كِتَابُ الوَلَدِ</span> — "the boy's book") and attached pronouns.</div>
+              <div class="skills"><span class="skill">Build an idafa</span><span class="skill">Attached pronouns</span><span class="skill">Translate short phrases</span></div>
+            </div>
+
+            <div class="lesson-card">
+              <span class="lesson-tag"><svg class="crescent" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3a9 9 0 1 0 0 18 7 7 0 1 1 0-18z"/></svg> Sample lesson · Arabic III</span>
+              <h4>Conjugating the past tense: the pattern of <span dir="rtl" lang="ar">فَعَلَ</span></h4>
+              <div class="meta">Middle 6–8 · Unit 3 · ~40 minutes</div>
+              <div class="obj"><b>Objective:</b> Learners conjugate a sound three-letter verb in the past tense across the six most common pronouns and translate each form.</div>
+              <p>Arabic verbs grow from a root of (usually) three letters. The teaching verb <span dir="rtl" lang="ar">فَعَلَ</span> (fa-'a-la, "he did") is the model on which grammarians describe every pattern. In the past tense the base form <span dir="rtl" lang="ar">فَعَلَ</span> means "he did." We change the ending to change who did it: <span dir="rtl" lang="ar">فَعَلَتْ</span> (she did), <span dir="rtl" lang="ar">فَعَلُوا</span> (they did), <span dir="rtl" lang="ar">فَعَلْتَ</span> (you did, m.), <span dir="rtl" lang="ar">فَعَلْتُ</span> (I did), <span dir="rtl" lang="ar">فَعَلْنَا</span> (we did).</p>
+              <div class="activity"><b>Practice activity — conjugation table</b>
+                <ol>
+                  <li>Take the real root ك-ت-ب ("writing") and build the same six forms: <span dir="rtl" lang="ar">كَتَبَ / كَتَبَتْ / كَتَبُوا / كَتَبْتَ / كَتَبْتُ / كَتَبْنَا</span>.</li>
+                  <li>Translate each into English.</li>
+                  <li>Write one full sentence using a conjugated verb + subject, e.g. <span dir="rtl" lang="ar">كَتَبَ الوَلَدُ الدَّرْسَ</span> ("The boy wrote the lesson") and label the fi'l, fa'il, and object.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <!-- ARABIC 9-12 -->
+          <div class="tab-panel" id="ar-912">
+            <div class="band-note"><b>Arabic IV — Conversation, Comprehension &amp; Texts.</b> Learners hold everyday conversations, read and comprehend both Modern Standard Arabic passages and short classical texts, and analyze how Qur'anic Arabic works. Goal: converse on familiar topics, summarize an unvowelled MSA article, and translate a short classical passage with attention to grammar.</div>
+
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 1</span><h4>Conversation &amp; expression</h4></div>
+              <div class="u-desc">Introducing yourself, discussing daily routine, opinions, and needs; question words and connectors for fluent speech.</div>
+              <div class="skills"><span class="skill">Sustain a dialogue</span><span class="skill">Express opinion &amp; reason</span><span class="skill">Listening comprehension</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 2</span><h4>Reading unvowelled MSA</h4></div>
+              <div class="u-desc">Reading news snippets, stories, and essays without harakat; using context and grammar to supply endings.</div>
+              <div class="skills"><span class="skill">Read without harakat</span><span class="skill">Skim &amp; scan for meaning</span><span class="skill">Summarize a passage</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 3</span><h4>Advanced grammar &amp; broken plurals</h4></div>
+              <div class="u-desc">Jussive &amp; subjunctive moods, conditional sentences, the many broken-plural patterns, and the derived verb forms V–X.</div>
+              <div class="skills"><span class="skill">Moods of the verb</span><span class="skill">Broken plurals</span><span class="skill">Verb forms V–X</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 4</span><h4>Classical texts &amp; Qur'anic Arabic</h4></div>
+              <div class="u-desc">Reading selections of adab, hadith, and short surahs with a grammatical eye; how classical and modern differ.</div>
+              <div class="skills"><span class="skill">Parse a classical line</span><span class="skill">Qur'anic vocabulary</span><span class="skill">Classical vs. modern</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 5</span><h4>Composition &amp; translation</h4></div>
+              <div class="u-desc">Writing a structured paragraph in Arabic and translating both directions with attention to nuance.</div>
+              <div class="skills"><span class="skill">Write a paragraph</span><span class="skill">Translate AR↔EN</span><span class="skill">Proofread i'rab</span></div>
+            </div>
+
+            <div class="lesson-card">
+              <span class="lesson-tag"><svg class="crescent" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3a9 9 0 1 0 0 18 7 7 0 1 1 0-18z"/></svg> Sample lesson · Arabic IV</span>
+              <h4>Reading Qur'anic Arabic: parsing a verse of Surah Al-'Asr</h4>
+              <div class="meta">High School 9–12 · Unit 4 · ~45 minutes</div>
+              <div class="obj"><b>Objective:</b> Learners read <span dir="rtl" lang="ar">وَالْعَصْرِ ۝ إِنَّ الْإِنسَانَ لَفِي خُسْرٍ</span>, identify each word's role, and explain how grammar carries the meaning.</div>
+              <p>Surah Al-'Asr is short but grammatically rich. <span dir="rtl" lang="ar">وَالْعَصْرِ</span> opens with the "waw of oath" (Allah swears by time), which puts <span dir="rtl" lang="ar">العصر</span> in the genitive (jarr) — hence the kasra ending. <span dir="rtl" lang="ar">إِنَّ</span> ("indeed") is one of the sisters of inna: it makes the following noun accusative, so <span dir="rtl" lang="ar">الإنسان</span> takes a fatha as its subject (ism inna). The <span dir="rtl" lang="ar">لَـ</span> in <span dir="rtl" lang="ar">لَفِي</span> is the "laam of emphasis," and <span dir="rtl" lang="ar">فِي خُسْرٍ</span> ("in loss") is a prepositional phrase serving as the predicate.</p>
+              <div class="activity"><b>Practice activity — parse &amp; render</b>
+                <ol>
+                  <li>Label every word: oath particle, noun in jarr, emphatic particle, ism inna, laam, preposition, noun in jarr.</li>
+                  <li>Explain why <span dir="rtl" lang="ar">الإنسان</span> is accusative and <span dir="rtl" lang="ar">العصر</span> is genitive.</li>
+                  <li>Write two English translations — one literal, one natural — and note what the grammar emphasizes that a loose translation might miss.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================== STRAND 2: QUR'AN ===================== -->
+      <div class="strand-block" id="strand-quran">
+        <div class="strand-head">
+          <span class="ic quran"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h7v14H4zM13 5h7v14h-7zM11 5v14"/></svg></span>
+          <div>
+            <h2>Qur'an <span class="arabic-word" dir="rtl" lang="ar">القُرآن الكَريم</span></h2>
+            <div class="page-sub">Memorization (hifdh), correct recitation (tilawah), the science of Tajweed, and understanding (Tafsir).</div>
+          </div>
+        </div>
+        <div class="band-levels">
+          <span class="pill pill-indigo">Short Surahs &amp; Memorization (K–2)</span>
+          <span class="pill pill-indigo">Recitation &amp; Makharij (3–5)</span>
+          <span class="pill pill-indigo">Tajweed (6–8)</span>
+          <span class="pill pill-indigo">Tafsir &amp; Advanced Tajweed (9–12)</span>
+        </div>
+
+        <div class="tabs" data-tabs data-panels="quranPanels">
+          <button class="tab active" data-tab="qr-k2">Primary K–2</button>
+          <button class="tab" data-tab="qr-35">Elementary 3–5</button>
+          <button class="tab" data-tab="qr-68">Middle 6–8</button>
+          <button class="tab" data-tab="qr-912">High School 9–12</button>
+        </div>
+        <div id="quranPanels">
+
+          <!-- QURAN K-2 -->
+          <div class="tab-panel active" id="qr-k2">
+            <div class="band-note"><b>Short Surahs &amp; First Memorization.</b> Learners memorize the shortest surahs by listening and repeating (talqin), learn what each one is about, and begin reciting with a clear voice. Goal: recite Al-Fatihah, Al-Ikhlas, Al-Falaq, and An-Nas from memory with care.</div>
+
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 1</span><h4>Surah Al-Fatihah — the Opening</h4></div>
+              <div class="u-desc">The 7 verses we recite in every prayer; memorized a verse at a time with meaning ("Guide us to the straight path").</div>
+              <div class="skills"><span class="skill">Recite all 7 ayat</span><span class="skill">Say the basmala</span><span class="skill">Know why we read it in salah</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 2</span><h4>Surah Al-Ikhlas — Sincerity</h4></div>
+              <div class="u-desc">Four short verses about the Oneness of Allah (tawhid); great reward for reading it.</div>
+              <div class="skills"><span class="skill">Recite 4 ayat</span><span class="skill">"Allah is One"</span><span class="skill">Repeat with a clear voice</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 3</span><h4>Surah Al-Falaq — the Daybreak</h4></div>
+              <div class="u-desc">Seeking Allah's protection at the break of dawn; one of the two "protection" surahs (al-mu'awwidhatayn).</div>
+              <div class="skills"><span class="skill">Recite 5 ayat</span><span class="skill">Asking Allah to protect us</span><span class="skill">When to read it</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 4</span><h4>Surah An-Nas — Mankind</h4></div>
+              <div class="u-desc">The final surah of the Qur'an; seeking refuge with the Lord of the people. Paired with Al-Falaq for protection at bedtime.</div>
+              <div class="skills"><span class="skill">Recite 6 ayat</span><span class="skill">Bedtime du'a routine</span><span class="skill">Recite the pair together</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 5</span><h4>Careful recitation &amp; adab of the Qur'an</h4></div>
+              <div class="u-desc">Sitting nicely, clean hands, listening quietly, and reciting slowly and clearly (tartil at a beginner level).</div>
+              <div class="skills"><span class="skill">Respect for the mushaf</span><span class="skill">Recite slowly</span><span class="skill">Listen &amp; follow along</span></div>
+            </div>
+
+            <div class="lesson-card">
+              <span class="lesson-tag"><svg class="crescent" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3a9 9 0 1 0 0 18 7 7 0 1 1 0-18z"/></svg> Sample lesson · Qur'an K–2</span>
+              <h4>Memorizing Surah Al-Ikhlas, verse by verse</h4>
+              <div class="meta">Primary K–2 · Unit 2 · ~20 minutes</div>
+              <div class="obj"><b>Objective:</b> Learners recite the first two verses of Surah Al-Ikhlas from memory and can say in their own words that the surah is about Allah being One.</div>
+              <p>We begin with clean hands and the words <i>a'udhu billahi min ash-shaytan ir-rajim</i>, then the basmala. The teacher recites the first verse — <span dir="rtl" lang="ar">قُلْ هُوَ اللَّهُ أَحَدٌ</span> ("Say: He is Allah, the One") — clearly and slowly. The child repeats it three times. Then the second verse — <span dir="rtl" lang="ar">اللَّهُ الصَّمَدُ</span> ("Allah, the Eternal, the Absolute") — the same way. Finally the two are joined. We talk gently about what it means: there is only one Allah, and He needs nothing while everything needs Him.</p>
+              <div class="activity"><b>Practice activity — "Echo &amp; keep"</b>
+                <ul>
+                  <li>Teacher recites a verse; child echoes it three times, then says it alone.</li>
+                  <li>Join verse 1 + verse 2 and recite them together twice.</li>
+                  <li>Mark today's Qur'an habit in the tracker; recite again for a parent before bed.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- QURAN 3-5 -->
+          <div class="tab-panel" id="qr-35">
+            <div class="band-note"><b>More Surahs &amp; Correct Pronunciation (Makharij).</b> Learners add more short surahs from Juz 'Amma and learn to pronounce letters from their correct points of articulation. Goal: recite several surahs accurately and produce the letters that are commonly confused (ح/ه, ق/ك, س/ص, ت/ط).</div>
+
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 1</span><h4>Juz 'Amma surahs — building the repertoire</h4></div>
+              <div class="u-desc">Al-Kawthar, Al-Ma'un, Quraysh, Al-Fil, and Al-Kafirun, with a sentence of meaning for each.</div>
+              <div class="skills"><span class="skill">Memorize 5 new surahs</span><span class="skill">Know each surah's theme</span><span class="skill">Review earlier surahs</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 2</span><h4>Points of articulation (makharij)</h4></div>
+              <div class="u-desc">Where each letter is made: the throat, the tongue, and the lips; distinguishing look-alike sounds.</div>
+              <div class="skills"><span class="skill">Throat letters ح خ ع غ ه ء</span><span class="skill">ق vs. ك</span><span class="skill">Heavy ص ض ط ظ</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 3</span><h4>Reading from the mushaf</h4></div>
+              <div class="u-desc">Following the printed text of Juz 'Amma; the stop signs and the small symbols; keeping one's place.</div>
+              <div class="skills"><span class="skill">Read, not only recall</span><span class="skill">Recognize stop marks</span><span class="skill">Find a surah by name</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 4</span><h4>Tartil — measured recitation</h4></div>
+              <div class="u-desc">Reciting at a calm, even pace; not rushing; pausing at the ends of verses.</div>
+              <div class="skills"><span class="skill">Steady pace</span><span class="skill">Pause at verse ends</span><span class="skill">Clear, unhurried voice</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 5</span><h4>Revision &amp; retention</h4></div>
+              <div class="u-desc">A simple review cycle so memorized surahs stay strong; reciting to a parent or teacher.</div>
+              <div class="skills"><span class="skill">Weekly review plan</span><span class="skill">Self-correct mistakes</span><span class="skill">Recite for feedback</span></div>
+            </div>
+
+            <div class="lesson-card">
+              <span class="lesson-tag"><svg class="crescent" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3a9 9 0 1 0 0 18 7 7 0 1 1 0-18z"/></svg> Sample lesson · Qur'an 3–5</span>
+              <h4>Getting the letters right: ح versus ه</h4>
+              <div class="meta">Elementary 3–5 · Unit 2 · ~30 minutes</div>
+              <div class="obj"><b>Objective:</b> Learners produce the letters <span dir="rtl" lang="ar">ح</span> (haa) and <span dir="rtl" lang="ar">ه</span> (haa') from their correct points and read them accurately inside words from Surah Al-Fatihah.</div>
+              <p>Both letters sound like "h" to a new reader, but they come from different places. <span dir="rtl" lang="ar">ح</span> is made from the <b>middle of the throat</b> — a warm, breathy "H," like fogging a mirror on a cold day. <span dir="rtl" lang="ar">ه</span> is made from the <b>deepest part of the throat</b> — a softer, lighter "h." Getting these right matters: in <span dir="rtl" lang="ar">الرَّحْمَٰن</span> (Ar-Rahman) the letter is <span dir="rtl" lang="ar">ح</span>, while in <span dir="rtl" lang="ar">اهْدِنَا</span> (guide us) it is <span dir="rtl" lang="ar">ه</span>.</p>
+              <div class="activity"><b>Practice activity — "Mirror &amp; word hunt"</b>
+                <ol>
+                  <li>Practice each sound alone five times, feeling where it starts in the throat.</li>
+                  <li>Read these Fatihah words aloud, naming which "h" each uses: <span dir="rtl" lang="ar">الرَّحْمَٰن</span>, <span dir="rtl" lang="ar">الرَّحِيم</span>, <span dir="rtl" lang="ar">اهْدِنَا</span>.</li>
+                  <li>Recite Al-Fatihah once, slowing down on every ح and ه, and have a parent check.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <!-- QURAN 6-8 -->
+          <div class="tab-panel" id="qr-68">
+            <div class="band-note"><b>Tajweed — the Rules of Recitation.</b> Learners study the formal rules that beautify and protect recitation. Goal: correctly apply the rules of noon sakinah &amp; tanween, meem sakinah, and the types of madd while reading from the mushaf.</div>
+
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 1</span><h4>Noon sakinah &amp; tanween</h4></div>
+              <div class="u-desc">The four rules: idhar (clear), idgham (merging), iqlab (converting to meem), and ikhfa (concealing).</div>
+              <div class="skills"><span class="skill">Idhar with throat letters</span><span class="skill">Idgham (with/without ghunnah)</span><span class="skill">Iqlab &amp; ikhfa</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 2</span><h4>Meem sakinah</h4></div>
+              <div class="u-desc">Three rules: ikhfa shafawi (before ب), idgham shafawi (before م), and idhar shafawi (all others).</div>
+              <div class="skills"><span class="skill">Meem before baa</span><span class="skill">Meem before meem</span><span class="skill">Clear meem</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 3</span><h4>The madd (elongation)</h4></div>
+              <div class="u-desc">Natural madd (2 counts) and the secondary madds; when to stretch a vowel 2, 4, or 6 counts.</div>
+              <div class="skills"><span class="skill">Madd tabee'i</span><span class="skill">Madd muttasil &amp; munfasil</span><span class="skill">Counting the harakat</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 4</span><h4>Qalqalah, ghunnah &amp; shadda</h4></div>
+              <div class="u-desc">The "bouncing" letters (ق ط ب ج د), the nasal sound (ghunnah), and doubled letters.</div>
+              <div class="skills"><span class="skill">Qalqalah letters</span><span class="skill">Ghunnah on ن and م</span><span class="skill">Read shadda correctly</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 5</span><h4>Heavy &amp; light letters (tafkheem &amp; tarqeeq)</h4></div>
+              <div class="u-desc">Which letters are always heavy, always light, and when the raa and the laam of "Allah" change.</div>
+              <div class="skills"><span class="skill">Always-heavy letters</span><span class="skill">Rules of raa</span><span class="skill">Laam in "Allah"</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 6</span><h4>Rules of stopping (waqf) &amp; ongoing hifdh</h4></div>
+              <div class="u-desc">The stop symbols in the mushaf, how endings change when you stop, and continued memorization goals.</div>
+              <div class="skills"><span class="skill">Read waqf marks</span><span class="skill">Stop on a sukoon</span><span class="skill">Memorization plan</span></div>
+            </div>
+
+            <div class="lesson-card">
+              <span class="lesson-tag"><svg class="crescent" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3a9 9 0 1 0 0 18 7 7 0 1 1 0-18z"/></svg> Sample lesson · Qur'an 6–8</span>
+              <h4>Noon Sakinah, part 1: Idhar, Idgham, Iqlab, Ikhfa</h4>
+              <div class="meta">Middle 6–8 · Unit 1 · ~45 minutes</div>
+              <div class="obj"><b>Objective:</b> Learners identify a noon sakinah (نْ) or tanween in the text and apply the correct one of the four rules based on the letter that follows.</div>
+              <p>A <b>noon sakinah</b> is a noon with a sukoon (نْ); a <b>tanween</b> is the doubled ending (ً ٍ ٌ) that sounds like a noon. What we do with that "n" sound depends entirely on the next letter:</p>
+              <div class="activity" style="margin-bottom:12px"><b>The four rules</b>
+                <ul>
+                  <li><b>Idhar</b> (make it clear): before a throat letter (ء ه ع ح غ خ) — pronounce the noon plainly. Example: <span dir="rtl" lang="ar">مِنْ عِلْمٍ</span>.</li>
+                  <li><b>Idgham</b> (merge): before ي ر م ل و ن — the noon melts into the next letter (with ghunnah for ينمو, without for ل ر). Example: <span dir="rtl" lang="ar">مِنْ رَبِّهِمْ</span>.</li>
+                  <li><b>Iqlab</b> (convert): before ب — the noon becomes a hidden meem with ghunnah. Example: <span dir="rtl" lang="ar">مِنْ بَعْدِ</span>.</li>
+                  <li><b>Ikhfa</b> (conceal): before the remaining 15 letters — a light nasal "n" held for two counts. Example: <span dir="rtl" lang="ar">مِنْ قَبْلُ</span>.</li>
+                </ul>
+              </div>
+              <div class="activity"><b>Practice activity — rule spotting</b>
+                <ol>
+                  <li>In a short passage, circle every noon sakinah and tanween.</li>
+                  <li>Write which rule applies to each and why (name the following letter).</li>
+                  <li>Recite the passage applying each rule; a parent or teacher checks against the four rules. (This pairs with the "Tajweed: Rules of Noon Sakinah" lesson in Learn.)</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <!-- QURAN 9-12 -->
+          <div class="tab-panel" id="qr-912">
+            <div class="band-note"><b>Tafsir &amp; Advanced Tajweed.</b> Learners study the meaning and context of the Qur'an (Tafsir), refine recitation to a mastery level, and set serious memorization goals. Goal: explain the meaning and occasion of revelation of selected surahs, recite with full Tajweed, and complete a personal hifdh target.</div>
+
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 1</span><h4>Introduction to Tafsir &amp; 'Ulum al-Qur'an</h4></div>
+              <div class="u-desc">How the Qur'an was revealed and preserved, Makki vs. Madani surahs, and the sciences that support interpretation.</div>
+              <div class="skills"><span class="skill">Revelation &amp; compilation</span><span class="skill">Makki vs. Madani</span><span class="skill">Sources of Tafsir</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 2</span><h4>Tafsir of selected surahs</h4></div>
+              <div class="u-desc">Close study of Al-Fatihah, Al-Kahf (themes), Al-Hujurat (manners), and Ar-Rahman with context (asbab an-nuzul).</div>
+              <div class="skills"><span class="skill">Verse-by-verse meaning</span><span class="skill">Occasion of revelation</span><span class="skill">Draw out lessons</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 3</span><h4>Themes of the Qur'an</h4></div>
+              <div class="u-desc">Tawhid, the prophets, the Hereafter, and guidance for character and society across surahs.</div>
+              <div class="skills"><span class="skill">Trace a theme</span><span class="skill">Connect related verses</span><span class="skill">Apply to daily life</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 4</span><h4>Advanced Tajweed &amp; tilawah</h4></div>
+              <div class="u-desc">Mastering all rules in flowing recitation, subtle madd cases, and the etiquette (adab) of reciting beautifully.</div>
+              <div class="skills"><span class="skill">Full-Tajweed recitation</span><span class="skill">Rare madd cases</span><span class="skill">Beautify the voice</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 5</span><h4>Hifdh goals &amp; personal project</h4></div>
+              <div class="u-desc">A structured plan toward a memorization target (e.g., Juz 'Amma, then Al-Mulk, Ya-Sin, Al-Kahf) with strong revision.</div>
+              <div class="skills"><span class="skill">Set a hifdh target</span><span class="skill">Structured review</span><span class="skill">Present a surah with meaning</span></div>
+            </div>
+
+            <div class="lesson-card">
+              <span class="lesson-tag"><svg class="crescent" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3a9 9 0 1 0 0 18 7 7 0 1 1 0-18z"/></svg> Sample lesson · Qur'an 9–12</span>
+              <h4>Tafsir of Surah Al-'Asr: three verses, a whole way of life</h4>
+              <div class="meta">High School 9–12 · Unit 2 · ~50 minutes</div>
+              <div class="obj"><b>Objective:</b> Learners explain the meaning of Surah Al-'Asr, the significance of Allah swearing by time, and the four qualities that save a person from loss — and connect them to their own life.</div>
+              <p>Imam ash-Shafi'i said that if people reflected only on this surah, it would be enough to guide them. Allah swears <span dir="rtl" lang="ar">وَالْعَصْرِ</span> — "By time" — because time is the one resource every person spends and cannot recover. The verdict is sweeping: <span dir="rtl" lang="ar">إِنَّ الْإِنسَانَ لَفِي خُسْرٍ</span> — "Indeed, mankind is in loss." Then comes the exception (istithna) that rescues us: except those who (1) <b>believe</b>, (2) <b>do righteous deeds</b>, (3) <b>counsel one another to truth</b>, and (4) <b>counsel one another to patience</b>. Faith and action are personal; the two counsels are social — a community that reminds one another.</p>
+              <div class="activity"><b>Practice activity — reflect &amp; apply</b>
+                <ol>
+                  <li>Explain in writing why an oath by "time" fits a surah about loss.</li>
+                  <li>List the four saving qualities and give one concrete example of each from your week.</li>
+                  <li>Short reflection: how does "counseling to patience" show up at home or with friends? Recite the surah with full Tajweed to close.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================== STRAND 3: ISLAMIC STUDIES ===================== -->
+      <div class="strand-block" id="strand-islamic">
+        <div class="strand-head">
+          <span class="ic islamic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/></svg></span>
+          <div>
+            <h2>Islamic Studies <span class="arabic-word" dir="rtl" lang="ar">الدِّراسات الإسلامية</span></h2>
+            <div class="page-sub">Belief, the life of the Prophet ﷺ, worship and jurisprudence, history, and beautiful character.</div>
+          </div>
+        </div>
+        <div class="band-levels">
+          <span class="pill pill-indigo">Prophets, Pillars &amp; Adab (K–2)</span>
+          <span class="pill pill-indigo">Seerah &amp; Pillars in Depth (3–5)</span>
+          <span class="pill pill-indigo">Fiqh, History &amp; Akhlaq (6–8)</span>
+          <span class="pill pill-indigo">Aqeedah, Fiqh &amp; Ethics (9–12)</span>
+        </div>
+
+        <div class="tabs" data-tabs data-panels="islamicPanels">
+          <button class="tab active" data-tab="is-k2">Primary K–2</button>
+          <button class="tab" data-tab="is-35">Elementary 3–5</button>
+          <button class="tab" data-tab="is-68">Middle 6–8</button>
+          <button class="tab" data-tab="is-912">High School 9–12</button>
+        </div>
+        <div id="islamicPanels">
+
+          <!-- ISLAMIC K-2 -->
+          <div class="tab-panel active" id="is-k2">
+            <div class="band-note"><b>Allah, the Prophet ﷺ, the Pillars &amp; good manners.</b> Learners build a warm foundation: who Allah is, love for the Prophet ﷺ, the five pillars in simple terms, favorite stories of the prophets, and everyday adab. Goal: name the five pillars, retell a prophet's story, and practice daily manners and du'as.</div>
+
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 1</span><h4>Knowing Allah</h4></div>
+              <div class="u-desc">Allah is our Creator who loves and cares for us; a few of the beautiful names (Ar-Rahman, Ar-Razzaq) through everyday examples.</div>
+              <div class="skills"><span class="skill">Allah is One</span><span class="skill">Allah made everything</span><span class="skill">Say "alhamdulillah"</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 2</span><h4>Our beloved Prophet Muhammad ﷺ</h4></div>
+              <div class="u-desc">Who the Prophet ﷺ was, his kindness and honesty (Al-Amin), and how we send salawat upon him.</div>
+              <div class="skills"><span class="skill">Say the salawat</span><span class="skill">He was truthful &amp; kind</span><span class="skill">Follow his example</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 3</span><h4>The Five Pillars — a first look</h4></div>
+              <div class="u-desc">Shahadah, Salah, Zakat, Sawm, and Hajj introduced simply, with pictures and actions.</div>
+              <div class="skills"><span class="skill">Name the 5 pillars</span><span class="skill">Say the shahadah</span><span class="skill">Count prayers in a day</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 4</span><h4>Stories of the Prophets</h4></div>
+              <div class="u-desc">Adam, Nuh and the ark, Ibrahim, and Yunus and the whale — with the lesson each story teaches.</div>
+              <div class="skills"><span class="skill">Retell a story</span><span class="skill">Name the lesson</span><span class="skill">Prophets guide us to Allah</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 5</span><h4>Manners (adab) &amp; little du'as</h4></div>
+              <div class="u-desc">Bismillah before eating, saying salaam, du'as for sleeping and waking, honoring parents, and being kind.</div>
+              <div class="skills"><span class="skill">Du'a before/after eating</span><span class="skill">Greet with salaam</span><span class="skill">Kindness &amp; sharing</span></div>
+            </div>
+
+            <div class="lesson-card">
+              <span class="lesson-tag"><svg class="crescent" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3a9 9 0 1 0 0 18 7 7 0 1 1 0-18z"/></svg> Sample lesson · Islamic Studies K–2</span>
+              <h4>The Five Pillars on one hand</h4>
+              <div class="meta">Primary K–2 · Unit 3 · ~25 minutes</div>
+              <div class="obj"><b>Objective:</b> Learners name the five pillars of Islam in order and say, in a simple sentence, what each one is.</div>
+              <p>The five pillars are the five most important things a Muslim does — like five strong pillars that hold up a house. We count them on the five fingers of one hand: (1) <b>Shahadah</b> — saying and believing "There is no god but Allah, and Muhammad is His Messenger"; (2) <b>Salah</b> — praying five times a day; (3) <b>Zakat</b> — giving to those in need; (4) <b>Sawm</b> — fasting in the month of Ramadan; (5) <b>Hajj</b> — visiting the Ka'bah in Makkah once in a lifetime if we are able.</p>
+              <div class="activity"><b>Practice activity — "Five fingers"</b>
+                <ul>
+                  <li>Trace your hand and label each finger with a pillar; color it in.</li>
+                  <li>Touch each finger and say the pillar's name and one thing about it.</li>
+                  <li>Which pillar do we do five times every day? Mark today's Salah in the habit tracker.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- ISLAMIC 3-5 -->
+          <div class="tab-panel" id="is-35">
+            <div class="band-note"><b>Seerah, the Pillars in depth &amp; du'as.</b> Learners follow the life of the Prophet ﷺ as a story, learn how to actually perform wudu and salah, and build a repertoire of daily du'as. Goal: sequence the main events of the Seerah, describe each pillar in more detail, and perform wudu and the prayer's steps.</div>
+
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 1</span><h4>Seerah I — before prophethood</h4></div>
+              <div class="u-desc">Makkah and the Ka'bah, the Prophet's ﷺ birth and childhood, his honesty and marriage to Khadijah (RA).</div>
+              <div class="skills"><span class="skill">Life in early Makkah</span><span class="skill">"Al-Amin" the trustworthy</span><span class="skill">Sequence early events</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 2</span><h4>Seerah II — the first revelation &amp; Makkan years</h4></div>
+              <div class="u-desc">The cave of Hira and Jibril, the first Muslims, patience through hardship, and the Hijrah to Madinah.</div>
+              <div class="skills"><span class="skill">First revelation</span><span class="skill">Early companions</span><span class="skill">Why the Hijrah mattered</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 3</span><h4>The Pillars in depth</h4></div>
+              <div class="u-desc">The meaning and conditions of each pillar; the five daily prayers by name and how zakat and fasting work.</div>
+              <div class="skills"><span class="skill">Name the 5 prayers</span><span class="skill">Who gives zakat</span><span class="skill">Basics of fasting</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 4</span><h4>Wudu &amp; salah, step by step</h4></div>
+              <div class="u-desc">Performing ablution in order, the positions of prayer, and what we say in each (a first level).</div>
+              <div class="skills"><span class="skill">Steps of wudu</span><span class="skill">Positions of salah</span><span class="skill">Learn key phrases of prayer</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 5</span><h4>Du'as for every day</h4></div>
+              <div class="u-desc">Du'as for entering/leaving home, travel, before study, and difficulty — with meanings.</div>
+              <div class="skills"><span class="skill">10 daily du'as</span><span class="skill">Understand the meaning</span><span class="skill">Make du'a in your words</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 6</span><h4>Character from the Seerah</h4></div>
+              <div class="u-desc">Drawing traits from the Prophet's ﷺ life: mercy, forgiveness, keeping promises, caring for neighbors.</div>
+              <div class="skills"><span class="skill">Name a trait &amp; a story</span><span class="skill">Apply it this week</span><span class="skill">Kindness to neighbors</span></div>
+            </div>
+
+            <div class="lesson-card">
+              <span class="lesson-tag"><svg class="crescent" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3a9 9 0 1 0 0 18 7 7 0 1 1 0-18z"/></svg> Sample lesson · Islamic Studies 3–5</span>
+              <h4>Wudu in order: preparing to stand before Allah</h4>
+              <div class="meta">Elementary 3–5 · Unit 4 · ~35 minutes</div>
+              <div class="obj"><b>Objective:</b> Learners perform the steps of wudu in the correct order and explain why we make wudu before salah.</div>
+              <p>Before we pray, we clean ourselves with water — this is <b>wudu</b>. It prepares the body and the heart to stand before Allah. We begin by saying <i>Bismillah</i> and making the intention. The order is: wash the <b>hands</b>, rinse the <b>mouth</b>, rinse the <b>nose</b>, wash the <b>face</b>, wash the <b>arms</b> to the elbows (right then left), wipe the <b>head</b>, wipe the <b>ears</b>, and wash the <b>feet</b> to the ankles (right then left). Most parts are done three times.</p>
+              <div class="activity"><b>Practice activity — "Order it &amp; do it"</b>
+                <ol>
+                  <li>Put picture cards of the wudu steps in the correct order.</li>
+                  <li>Perform wudu with a parent watching, saying Bismillah first.</li>
+                  <li>Answer: which side do we wash first, right or left? Why do we make wudu before we pray?</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <!-- ISLAMIC 6-8 -->
+          <div class="tab-panel" id="is-68">
+            <div class="band-note"><b>Fiqh basics, Islamic history &amp; akhlaq.</b> Learners study the rules of worship (purity, prayer, fasting), the sweep of Islamic history including the Golden Age, and character development. Goal: explain the conditions and steps of salah and fasting, outline major periods of Islamic history, and reflect on personal character.</div>
+
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 1</span><h4>Fiqh of purity (Taharah)</h4></div>
+              <div class="u-desc">Types of water, wudu &amp; ghusl, what breaks wudu, and tayammum when water isn't available.</div>
+              <div class="skills"><span class="skill">Conditions of wudu</span><span class="skill">What nullifies it</span><span class="skill">When to do ghusl/tayammum</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 2</span><h4>Fiqh of Salah</h4></div>
+              <div class="u-desc">Conditions and pillars of the prayer, the number of rak'ahs, sujud as-sahw, and the Friday prayer (Jumu'ah).</div>
+              <div class="skills"><span class="skill">Pillars vs. sunnahs</span><span class="skill">Rak'ahs of each prayer</span><span class="skill">Jumu'ah basics</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 3</span><h4>Fiqh of Fasting (Sawm)</h4></div>
+              <div class="u-desc">Who must fast, what breaks the fast, Ramadan and its virtues, and making up missed fasts.</div>
+              <div class="skills"><span class="skill">Conditions of fasting</span><span class="skill">What invalidates a fast</span><span class="skill">Virtues of Ramadan</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 4</span><h4>The Rightly-Guided Caliphs &amp; early history</h4></div>
+              <div class="u-desc">Abu Bakr, Umar, Uthman, and Ali (RA); the spread of Islam and the building of community.</div>
+              <div class="skills"><span class="skill">The four caliphs</span><span class="skill">Key events &amp; qualities</span><span class="skill">Early expansion</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 5</span><h4>The Islamic Golden Age</h4></div>
+              <div class="u-desc">Scholarship in Baghdad and Cordoba; contributions in mathematics (al-Khwarizmi), medicine (Ibn Sina), and more.</div>
+              <div class="skills"><span class="skill">Centers of learning</span><span class="skill">Muslim scholars &amp; inventions</span><span class="skill">Faith &amp; knowledge together</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 6</span><h4>Akhlaq — building character</h4></div>
+              <div class="u-desc">Sincerity, honesty, controlling anger, gratitude, and guarding the tongue, grounded in Qur'an and hadith.</div>
+              <div class="skills"><span class="skill">Study a hadith on character</span><span class="skill">Set a character goal</span><span class="skill">Self-reflection (muhasabah)</span></div>
+            </div>
+
+            <div class="lesson-card">
+              <span class="lesson-tag"><svg class="crescent" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3a9 9 0 1 0 0 18 7 7 0 1 1 0-18z"/></svg> Sample lesson · Islamic Studies 6–8</span>
+              <h4>Fiqh of Salah: the pillars (arkan) versus the sunnahs</h4>
+              <div class="meta">Middle 6–8 · Unit 2 · ~45 minutes</div>
+              <div class="obj"><b>Objective:</b> Learners distinguish the essential pillars of the prayer (which invalidate salah if left out) from the recommended sunnah acts, and explain sujud as-sahw.</div>
+              <p>Not every part of the prayer carries the same weight. The <b>pillars (arkan)</b> are essential — leaving one out means that part of the prayer must be repeated. They include standing (for those able), the opening takbir, reciting Al-Fatihah, ruku', sujud, sitting for the final tashahhud, and the closing salaam. The <b>sunnahs</b> are recommended acts the Prophet ﷺ did regularly — like raising the hands at the takbir or reciting a surah after Al-Fatihah — which bring reward but do not invalidate the prayer if missed. When someone forgets an obligatory (wajib) part, they perform <b>sujud as-sahw</b> — two prostrations to make up for forgetfulness.</p>
+              <div class="activity"><b>Practice activity — sort &amp; decide</b>
+                <ol>
+                  <li>Sort a list of prayer actions into "pillar" and "sunnah."</li>
+                  <li>Case: someone forgets to sit for the first tashahhud and remembers after standing — what should they do?</li>
+                  <li>Explain in two sentences the difference between a rukn and a sunnah, and when sujud as-sahw is made.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <!-- ISLAMIC 9-12 -->
+          <div class="tab-panel" id="is-912">
+            <div class="band-note"><b>Aqeedah, Fiqh, history &amp; contemporary ethics.</b> Learners study creed with evidence, deepen jurisprudence, trace Islamic civilization to the present, and reason through modern ethical questions. Goal: articulate core beliefs with evidence, apply fiqh principles to real cases, and discuss contemporary issues with an Islamic ethical framework.</div>
+
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 1</span><h4>Aqeedah — the six articles of faith</h4></div>
+              <div class="u-desc">Belief in Allah (tawhid and His names &amp; attributes), the angels, the books, the messengers, the Last Day, and divine decree (qadar).</div>
+              <div class="skills"><span class="skill">Three categories of tawhid</span><span class="skill">Evidence for belief</span><span class="skill">Understanding qadar</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 2</span><h4>Usul al-Fiqh — how rulings are derived</h4></div>
+              <div class="u-desc">The sources — Qur'an, Sunnah, ijma', qiyas — the five categories of rulings, and respecting the four madhhabs.</div>
+              <div class="skills"><span class="skill">Sources of law</span><span class="skill">The five ahkam</span><span class="skill">Why scholars differ</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 3</span><h4>Applied Fiqh for life</h4></div>
+              <div class="u-desc">Fiqh of transactions (halal earning, avoiding riba), zakat calculation, and family &amp; social ethics.</div>
+              <div class="skills"><span class="skill">Halal &amp; haram in money</span><span class="skill">Calculate zakat</span><span class="skill">Rights &amp; responsibilities</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 4</span><h4>Islamic history to the modern era</h4></div>
+              <div class="u-desc">Umayyads and Abbasids, Andalusia, the Ottomans, colonial disruption, and Muslim communities today.</div>
+              <div class="skills"><span class="skill">Major dynasties</span><span class="skill">Rise, decline &amp; revival</span><span class="skill">Muslims in the modern world</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 5</span><h4>Contemporary ethics</h4></div>
+              <div class="u-desc">Reasoning through bioethics, environment (khilafah/stewardship), media &amp; technology, and justice with an Islamic lens.</div>
+              <div class="skills"><span class="skill">Frame an ethical question</span><span class="skill">Weigh benefit &amp; harm (maslahah)</span><span class="skill">Respectful disagreement</span></div>
+            </div>
+            <div class="unit"><div class="u-top"><span class="u-num">Unit 6</span><h4>Faith &amp; identity capstone</h4></div>
+              <div class="u-desc">A reflective project connecting belief, character, and living confidently as a Muslim in a diverse society.</div>
+              <div class="skills"><span class="skill">Research &amp; present</span><span class="skill">Cite Qur'an &amp; Sunnah</span><span class="skill">Articulate one's values</span></div>
+            </div>
+
+            <div class="lesson-card">
+              <span class="lesson-tag"><svg class="crescent" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3a9 9 0 1 0 0 18 7 7 0 1 1 0-18z"/></svg> Sample lesson · Islamic Studies 9–12</span>
+              <h4>Aqeedah: the three categories of Tawhid</h4>
+              <div class="meta">High School 9–12 · Unit 1 · ~50 minutes</div>
+              <div class="obj"><b>Objective:</b> Learners define the three categories of tawhid, give an example of each, and explain why this framework matters for belief and worship.</div>
+              <p>Tawhid — affirming the Oneness of Allah — is the heart of Islamic creed. Scholars describe it in three connected categories. <b>Tawhid ar-Rububiyyah</b> (Lordship): Allah alone creates, sustains, and controls all things. <b>Tawhid al-Uluhiyyah</b> (Worship): therefore Allah alone deserves our worship — prayer, du'a, sacrifice, hope, and fear are directed to Him. <b>Tawhid al-Asma' wa-s-Sifat</b> (Names &amp; Attributes): we affirm the beautiful names and attributes Allah affirmed for Himself in the Qur'an and Sunnah, without distortion, denial, or likening Him to creation (<span dir="rtl" lang="ar">لَيْسَ كَمِثْلِهِ شَيْءٌ</span> — "There is nothing like unto Him"). The key insight: even those who accept Allah as Creator (rububiyyah) have not fulfilled tawhid until they worship Him alone (uluhiyyah).</p>
+              <div class="activity"><b>Practice activity — categorize &amp; defend</b>
+                <ol>
+                  <li>Match statements to the correct category (e.g., "Allah gives life and death" → Rububiyyah; "We pray only to Allah" → Uluhiyyah; "Ar-Rahman is one of His names" → Asma' wa Sifat).</li>
+                  <li>Cite one Qur'anic verse that supports each category.</li>
+                  <li>Short essay: why did the Qur'an argue from rububiyyah (which most people accepted) toward uluhiyyah (worshiping Allah alone)?</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHARACTER & HABITS -->
+      <div class="strand-block" id="habits">
+        <div class="section-label"><svg class="crescent" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3a9 9 0 1 0 0 18 7 7 0 1 1 0-18z"/></svg> Character &amp; habits</div>
+        <div class="card">
+          <div class="overview-grid" style="margin-bottom:0">
+            <div>
+              <h3 style="margin-bottom:8px">Faith becomes character through daily habits</h3>
+              <p class="small" style="color:var(--ink-700);line-height:1.7;margin-bottom:14px">Faith Studies isn't only knowledge — it's practice. The strands connect directly to the app's <b>habit tracker</b> on the Dashboard and each child's page, so small, consistent actions turn into lasting character. Learners and parents track three faith-and-character habits each day. Streaks are celebrated gently — the aim is steadiness (istiqamah), not pressure.</p>
+              <div class="habit-band">
+                <div class="habit-row">
+                  <div class="habit-chip">
+                    <span class="dot" style="background:linear-gradient(135deg,#4f46e5,#6366f1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/></svg></span>
+                    <div><h4 style="font-size:14px">Salah</h4><div class="tiny">Five daily prayers</div>
+                      <div class="week-dots"><span class="done">M</span><span class="done">T</span><span class="done">W</span><span class="done">T</span><span>F</span><span>S</span><span>S</span></div>
+                    </div>
+                  </div>
+                  <div class="habit-chip">
+                    <span class="dot" style="background:linear-gradient(135deg,#0891b2,#0284c7)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg></span>
+                    <div><h4 style="font-size:14px">Qur'an reading</h4><div class="tiny">Recite or review daily</div>
+                      <div class="week-dots"><span class="done">M</span><span class="done">T</span><span class="done">W</span><span class="done">T</span><span>F</span><span>S</span><span>S</span></div>
+                    </div>
+                  </div>
+                  <div class="habit-chip">
+                    <span class="dot" style="background:linear-gradient(135deg,#7c3aed,#8b5cf6)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 8.4c0-2-1.6-3.4-3.5-3.4-1.4 0-2.6.8-3.2 2-.6-1.2-1.8-2-3.2-2C8.2 5 6.6 6.4 6.6 8.4 6.6 12 12 16 12 16s8-4 8-7.6z"/></svg></span>
+                    <div><h4 style="font-size:14px">Kindness</h4><div class="tiny">A good deed / chore</div>
+                      <div class="week-dots"><span class="done">M</span><span class="done">T</span><span class="done">W</span><span class="done">T</span><span>F</span><span>S</span><span>S</span></div>
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-ghost btn-sm" style="align-self:flex-start" onclick="window.location.href='dashboard.html'">Open the habit tracker →</button>
+              </div>
+            </div>
+            <div class="woven">
+              <h4>Adab practiced, not just taught</h4>
+              <ul>
+                <li><b>Intention &amp; gratitude:</b> begin with Bismillah, end with alhamdulillah.</li>
+                <li><b>Honesty (sidq):</b> the trait of "Al-Amin," practiced and noticed.</li>
+                <li><b>Patience (sabr) &amp; steadiness:</b> the aim of every habit streak.</li>
+                <li><b>Respect:</b> for the mushaf, for parents and teachers, for one another.</li>
+                <li><b>Muhasabah:</b> a short weekly self-check — "how was my character this week?"</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MATERIALS & ASSESSMENTS -->
+      <div class="strand-block">
+        <div class="section-label"><svg class="crescent" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3a9 9 0 1 0 0 18 7 7 0 1 1 0-18z"/></svg> Materials &amp; assessments</div>
+        <div class="mats-grid" style="margin-bottom:20px">
+          <div class="mat">
+            <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z M12 5v14"/></svg></span>
+            <h4>Lessons</h4><p>Short, guided lessons with audio recitation, letter animations, and meanings — delivered in Learn.</p>
+          </div>
+          <div class="mat">
+            <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8M20 12v7H4V5h11"/></svg></span>
+            <h4>Practice &amp; quizzes</h4><p>Letter drills, vocabulary checks, Tajweed rule-spotting, and short comprehension quizzes with instant feedback.</p>
+          </div>
+          <div class="mat">
+            <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v14M5 10l7 7 7-7M5 21h14"/></svg></span>
+            <h4>Recitation &amp; hifdh log</h4><p>Recite to a parent or teacher; memorization is tracked and reviewed on a spaced schedule. Marked "Excellent / Good / Review."</p>
+          </div>
+          <div class="mat">
+            <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H4z M8 20h8M12 16v4"/></svg></span>
+            <h4>Projects &amp; reflection</h4><p>Seerah timelines, Tafsir reflections, and a high-school capstone — recorded in the Gradebook toward credit.</p>
+          </div>
+        </div>
+        <div class="card">
+          <h4 style="margin-bottom:10px">How mastery is recorded</h4>
+          <p class="small" style="color:var(--ink-700);line-height:1.7;margin-bottom:12px">Younger learners are assessed with <b>standards-based checkpoints</b> (Beginning · Developing · Secure) so growth is visible without grades. From Middle school up, work earns <b>letter grades and course credit</b> that flow into the Gradebook and, for high school, the transcript in Compliance. Qur'an memorization and recitation are logged separately with a review cycle, and character habits are tracked daily rather than graded. Objectives are written as clear skills so families can align them to their state's record-keeping. Note: this curriculum is faith-integrated and is offered <i>in addition to</i> the state's required subjects, not in place of them.</p>
+          <div class="backlinks">
+            <a class="btn btn-primary btn-sm" href="subjects.html">← Back to all Subjects</a>
+            <a class="btn btn-ghost btn-sm" href="learn.html">Go to Learn (lessons &amp; quizzes)</a>
+            <a class="btn btn-ghost btn-sm" href="gradebook.html">View Gradebook</a>
+            <a class="btn btn-ghost btn-sm" href="compliance.html">Records &amp; transcript</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </main>
+</div>
+
+<!-- ADD TO PLAN MODAL -->
+<div class="modal-wrap" id="planModal">
+  <div class="modal-card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:6px">
+      <div>
+        <h3>Add Faith Studies to a child's plan</h3>
+        <div class="tiny" style="margin-top:4px">Choose who to enroll. You can pick the strand and level next in the Planner.</div>
+      </div>
+      <button class="btn btn-ghost btn-sm" aria-label="Close" onclick="closeModal('planModal')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+
+    <div style="margin:14px 0">
+      <label class="checkrow"><input type="checkbox" id="pc-layla"><span><b>Layla Rahman</b> · 11th Grade <span class="tiny">— Arabic IV, Qur'an (Tajweed &amp; Tafsir), Aqeedah</span></span></label>
+      <label class="checkrow"><input type="checkbox" id="pc-yusuf" checked><span><b>Yusuf Rahman</b> · 6th Grade <span class="tiny">— Arabic III (Nahw), Qur'an (Tajweed), Fiqh basics</span></span></label>
+      <label class="checkrow"><input type="checkbox" id="pc-zayd"><span><b>Zayd Rahman</b> · 2nd Grade <span class="tiny">— Arabic I (Alphabet), short surahs, Prophets &amp; pillars</span></span></label>
+    </div>
+
+    <div class="field">
+      <label for="planStrand">Start with strand</label>
+      <select id="planStrand">
+        <option>All three strands</option>
+        <option>Arabic</option>
+        <option>Qur'an</option>
+        <option>Islamic Studies</option>
+      </select>
+    </div>
+
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+      <button class="btn btn-ghost" onclick="closeModal('planModal')">Cancel</button>
+      <button class="btn btn-grad" onclick="addToPlan()">Add to plan</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('backdrop').classList.toggle('show');}
+function openModal(id){document.getElementById(id).classList.add('show');}
+function closeModal(id){document.getElementById(id).classList.remove('show');}
+let _toastT;function showToast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.className='toast';document.body.appendChild(t);}t.textContent=msg;t.classList.add('show');clearTimeout(_toastT);_toastT=setTimeout(()=>t.classList.remove('show'),2500);}
+function initTabs(scope){(scope||document).querySelectorAll('[data-tabs]').forEach(function(group){var tabs=group.querySelectorAll('.tab');tabs.forEach(function(tab){tab.addEventListener('click',function(){var panelId=tab.getAttribute('data-tab');group.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');var host=group.getAttribute('data-panels')?document.getElementById(group.getAttribute('data-panels')):group.parentElement;host.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));var panel=document.getElementById(panelId);if(panel)panel.classList.add('active');});});});}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal-wrap.show').forEach(m=>m.classList.remove('show'));}});
+document.addEventListener('DOMContentLoaded',function(){initTabs();document.querySelectorAll('.progress>span').forEach(function(el){var w=el.style.width;el.style.width='0';setTimeout(()=>el.style.width=w,100);});});
+
+// Page-specific: add-to-plan
+function addToPlan(){
+  var picks=[];
+  if(document.getElementById('pc-layla').checked) picks.push('Layla');
+  if(document.getElementById('pc-yusuf').checked) picks.push('Yusuf');
+  if(document.getElementById('pc-zayd').checked) picks.push('Zayd');
+  var strand=document.getElementById('planStrand').value;
+  closeModal('planModal');
+  if(picks.length===0){ showToast('Select at least one child to add Faith Studies'); return; }
+  var who = picks.length===1 ? picks[0] : (picks.slice(0,-1).join(', ')+' & '+picks.slice(-1));
+  showToast('Faith Studies ('+strand+') added to '+who+"'s plan");
+}
+// Keyboard access for strand quick-nav chips
+document.querySelectorAll('.strand-chip[role="button"]').forEach(function(c){
+  c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();c.click();}});
+});
+</script>
+</body>
+</html>

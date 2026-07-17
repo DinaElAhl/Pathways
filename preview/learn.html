@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn · Pathways Learn</title>
+<style>
+:root{
+  --indigo-600:#4f46e5;--indigo-700:#4338ca;--indigo-500:#6366f1;
+  --violet-600:#7c3aed;--violet-500:#8b5cf6;
+  --grad:linear-gradient(135deg,#4f46e5 0%,#7c3aed 100%);
+  --grad-soft:linear-gradient(135deg,#eef2ff 0%,#f5f3ff 100%);
+  --ink-900:#0f172a;--ink-700:#334155;--ink-500:#64748b;--ink-400:#94a3b8;
+  --line:#e2e8f0;--bg:#f8fafc;--surface:#fff;--surface-2:#f1f5f9;
+  --green-600:#16a34a;--green-50:#f0fdf4;--amber-500:#f59e0b;--amber-50:#fffbeb;
+  --red-600:#dc2626;--red-50:#fef2f2;--sky-600:#0284c7;
+  --child-layla:#db2777;--child-yusuf:#0891b2;--child-zayd:#ea580c;
+  --r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:24px;--r-full:999px;
+  --sh-sm:0 1px 2px rgba(15,23,42,.06);--sh-md:0 4px 12px rgba(15,23,42,.08);--sh-lg:0 12px 32px rgba(15,23,42,.12);
+  --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-8:48px;--maxw:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink-900);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+h1{font-size:28px;font-weight:700;letter-spacing:-.02em}
+h2{font-size:22px;font-weight:700;letter-spacing:-.01em}
+h3{font-size:18px;font-weight:600}h4{font-size:15px;font-weight:600}
+.small{font-size:13px}.tiny{font-size:12px;color:var(--ink-500)}
+a{color:var(--indigo-600);text-decoration:none}
+:focus-visible{outline:2px solid var(--indigo-600);outline-offset:2px;border-radius:6px}
+.display{font-size:clamp(32px,5vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border-radius:var(--r-md);font-size:14px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:.15s;font-family:inherit}
+.btn-primary{background:var(--indigo-600);color:#fff}.btn-primary:hover{background:var(--indigo-700)}
+.btn-grad{background:var(--grad);color:#fff}.btn-grad:hover{filter:brightness(1.05)}
+.btn-ghost{background:var(--surface);color:var(--ink-700);border-color:var(--line)}.btn-ghost:hover{background:var(--surface-2)}
+.btn-sm{height:32px;padding:0 12px;font-size:13px}.btn-lg{height:48px;padding:0 24px;font-size:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-sm);padding:var(--sp-5)}
+.card-hover{transition:.18s}.card-hover:hover{box-shadow:var(--sh-lg);transform:translateY(-2px)}
+.pill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:var(--r-full);font-size:12px;font-weight:600}
+.pill-green{background:var(--green-50);color:var(--green-600)}.pill-amber{background:var(--amber-50);color:var(--amber-500)}
+.pill-red{background:var(--red-50);color:var(--red-600)}.pill-indigo{background:#eef2ff;color:var(--indigo-600)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;padding:12px;color:var(--ink-500);font-size:12px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line)}
+td{padding:12px;border-bottom:1px solid var(--line)}tr:hover td{background:var(--surface-2)}
+.progress{height:8px;background:var(--surface-2);border-radius:var(--r-full);overflow:hidden}
+.progress>span{display:block;height:100%;background:var(--grad);border-radius:var(--r-full);transition:width .8s ease}
+.stat-card .num{font-size:28px;font-weight:700}.stat-card .lbl{font-size:13px;color:var(--ink-500)}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.grid{display:grid;gap:24px}.g-2{grid-template-columns:repeat(2,1fr)}.g-3{grid-template-columns:repeat(3,1fr)}.g-4{grid-template-columns:repeat(4,1fr)}
+.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:24px 0;border-bottom:1px solid var(--line);margin-bottom:24px;flex-wrap:wrap}
+.page-sub{color:var(--ink-500);font-size:14px;margin-top:4px}.page-actions{display:flex;gap:8px;flex-wrap:wrap}
+.app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+.sidebar{background:var(--surface);border-right:1px solid var(--line);padding:20px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:6px;overflow-y:auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;padding:8px}
+.brand .mark{width:32px;height:32px;border-radius:9px;background:var(--grad);flex:none}
+.nav-group-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-500);padding:12px 12px 4px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--r-md);color:var(--ink-700);font-weight:500;font-size:14px}
+.nav-item:hover{background:var(--surface-2)}.nav-item.active{background:#eef2ff;color:var(--indigo-600);font-weight:600}
+.nav-item .ico{width:18px;height:18px;flex:none}.nav-spacer{flex:1}
+.hh-card{margin-top:8px;padding:10px;border:1px solid var(--line);border-radius:var(--r-md);display:flex;align-items:center;gap:8px;font-size:13px}
+.topbar{display:flex;align-items:center;gap:16px;height:64px;padding:0 24px;background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.topbar .search{flex:1;max-width:360px;height:38px;border:1px solid var(--line);border-radius:var(--r-full);padding:0 14px;background:var(--surface-2);font-size:14px;font-family:inherit}
+.avatar{width:34px;height:34px;border-radius:var(--r-full);display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px;background:var(--indigo-600);flex:none}
+.main{min-width:0}.content{max-width:var(--maxw);margin:0 auto;padding:0 24px 48px}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;color:var(--ink-700)}
+.backdrop{position:fixed;inset:0;background:rgba(15,23,42,.4);z-index:40;display:none}.backdrop.show{display:block}
+.modal-wrap{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(15,23,42,.45)}
+.modal-wrap.show{display:flex}
+.modal-card{background:var(--surface);border-radius:var(--r-xl);box-shadow:var(--sh-lg);max-width:480px;width:100%;padding:24px;max-height:90vh;overflow-y:auto}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink-900);color:#fff;padding:12px 20px;border-radius:var(--r-full);font-size:14px;font-weight:500;opacity:0;pointer-events:none;transition:.3s;z-index:80}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:20px;overflow-x:auto}
+.tab{padding:10px 16px;font-size:14px;font-weight:600;color:var(--ink-500);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;font-family:inherit}
+.tab.active{color:var(--indigo-600);border-bottom-color:var(--indigo-600)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.field{margin-bottom:14px}.field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;height:40px;border:1px solid var(--line);border-radius:var(--r-md);padding:0 12px;font-size:14px;font-family:inherit;background:var(--surface)}
+.field textarea{height:auto;padding:10px 12px;min-height:72px}
+@media(max-width:768px){
+  .app{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;z-index:50;transform:translateX(-100%);transition:.25s;width:260px}
+  .sidebar.open{transform:none}.hamburger{display:inline-flex}
+  .g-2,.g-3,.g-4{grid-template-columns:1fr}
+  .page-head{align-items:flex-start}
+  table.responsive{display:block;overflow-x:auto;white-space:nowrap}
+}
+@media print{
+  .sidebar,.topbar,.hamburger,.no-print{display:none!important}
+  .app{display:block}.content{padding:0}body{background:#fff}
+}
+/* ===== PAGE STYLES ===== */
+.learn-layout{display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start}
+@media(max-width:960px){.learn-layout{grid-template-columns:1fr}}
+.plan-strip{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 12px;margin-bottom:24px}
+.plan-block{flex:none;min-width:190px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:12px 14px;cursor:pointer;font-family:inherit;transition:.15s}
+.plan-block:hover{box-shadow:var(--sh-md)}
+.plan-block.current{border-color:var(--indigo-600);box-shadow:0 0 0 2px #eef2ff}
+.plan-block .pb-top{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.pb-dot{width:10px;height:10px;border-radius:50%;flex:none}
+.pb-dot.done{background:var(--green-600)}.pb-dot.current{background:var(--indigo-600)}.pb-dot.upcoming{background:var(--ink-400)}
+.plan-block .pb-time{font-size:12px;font-weight:700;color:var(--ink-500)}
+.plan-block .pb-title{font-size:13px;font-weight:600;color:var(--ink-900)}
+.plan-block .pb-status{font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-top:6px}
+.breadcrumb{font-size:13px;color:var(--ink-500);display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.breadcrumb .sep{color:var(--ink-400)}
+.video-box{position:relative;border-radius:var(--r-lg);height:280px;display:grid;place-items:center;overflow:hidden;margin:16px 0}
+.video-box .playbtn{width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,.92);border:none;display:grid;place-items:center;cursor:pointer;box-shadow:var(--sh-lg);transition:.15s}
+.video-box .playbtn:hover{transform:scale(1.06)}
+.video-box .playbtn svg{width:30px;height:30px;color:var(--indigo-600);margin-left:4px}
+.video-box .vlabel{position:absolute;left:16px;bottom:14px;color:#fff;font-size:13px;font-weight:600;text-shadow:0 1px 4px rgba(0,0,0,.3)}
+.lesson-body p{margin-bottom:14px;color:var(--ink-700)}
+.quiz{margin-top:8px}
+.q-item{border:1px solid var(--line);border-radius:var(--r-md);padding:16px;margin-bottom:14px}
+.q-item.correct{border-color:var(--green-600);background:var(--green-50)}
+.q-item.incorrect{border-color:var(--red-600);background:var(--red-50)}
+.q-text{font-weight:600;margin-bottom:12px}
+.q-num{color:var(--indigo-600)}
+.opt{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--line);border-radius:var(--r-sm);margin-bottom:8px;cursor:pointer;background:var(--surface);font-size:14px}
+.opt:hover{background:var(--surface-2)}
+.opt input{width:16px;height:16px;accent-color:var(--indigo-600)}
+.opt.key{border-color:var(--green-600);background:var(--green-50);font-weight:600}
+.opt.chosen-wrong{border-color:var(--red-600);background:var(--red-50)}
+.opt .tag{margin-left:auto;font-size:12px;font-weight:700}
+.score-head{padding:14px 18px;border-radius:var(--r-md);font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.score-head.pass{background:var(--green-50);color:var(--green-600)}
+.score-head.fail{background:var(--amber-50);color:var(--amber-500)}
+.badge-complete{display:none;align-items:center;gap:8px;margin-top:12px;color:var(--green-600);font-weight:700;font-size:14px}
+.badge-complete.show{display:inline-flex}
+.rail-card h4{margin-bottom:12px}
+.upnext-item{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.upnext-item:last-child{border-bottom:none}
+.upnext-ic{width:34px;height:34px;border-radius:var(--r-sm);display:grid;place-items:center;color:#fff;flex:none}
+.nudge{background:var(--grad-soft);border:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <a href="dashboard.html" class="brand"><span class="mark"></span>Pathways Learn</a>
+    <div class="nav-group-label">Teach</div>
+    <a href="dashboard.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Dashboard</a>
+    <a href="child.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="8" r="2"/></svg>Children</a>
+    <a href="learn.html" class="nav-item active"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z M12 5v14"/></svg>Learn</a>
+    <a href="subjects.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Subjects</a>
+    <a href="planner.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>Planner</a>
+    <a href="gradebook.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8M20 12v7H4V5h11"/></svg>Gradebook</a>
+    <div class="nav-group-label">Records</div>
+    <a href="compliance.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Compliance <span class="pill pill-indigo" style="margin-left:auto;height:18px;padding:0 7px;font-size:10px">PA</span></a>
+    <a href="settings.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>Settings</a>
+    <div class="nav-spacer"></div>
+    <div class="hh-card"><span class="avatar" style="width:28px;height:28px;font-size:11px">RH</span><div><div style="font-weight:600">Rahman Household</div><div class="tiny">Pennsylvania</div></div></div>
+    <a href="index.html" class="nav-item" style="font-size:13px;color:var(--ink-500)">← Back to site</a>
+  </aside>
+  <main class="main">
+    <div class="topbar">
+      <button class="hamburger" aria-label="Open menu" onclick="toggleSidebar()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <input class="search" placeholder="Search lessons, children, records…" aria-label="Search">
+      <span style="flex:1"></span>
+      <button class="btn btn-ghost btn-sm" onclick="showToast('Attendance logged for today')">Log attendance</button>
+      <span class="avatar">AR</span>
+    </div>
+    <div class="content">
+      <div class="page-head">
+        <div>
+          <h1>Yusuf's Day</h1>
+          <div class="page-sub">Thursday, Jul 16 · Student mode</div>
+        </div>
+        <div class="page-actions">
+          <span class="pill pill-green">1 of 5 blocks done</span>
+          <a class="btn btn-ghost" href="child.html">Parent view</a>
+        </div>
+      </div>
+
+      <h3 style="margin-bottom:10px">Today's Plan</h3>
+      <div class="plan-strip" id="planStrip"></div>
+
+      <div class="learn-layout">
+        <div>
+          <div class="card">
+            <div class="breadcrumb" id="bcrumb"></div>
+            <h2 id="lessonTitle"></h2>
+            <div class="video-box" id="videoBox">
+              <button class="playbtn" id="playBtn" aria-label="Play lesson video" onclick="showToast('Playing lesson video')">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </button>
+              <span class="vlabel" id="vlabel"></span>
+            </div>
+            <div class="lesson-body" id="lessonBody"></div>
+            <div style="margin-top:8px">
+              <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px">
+                <span style="font-weight:600">Lesson progress</span>
+                <span id="progPct" class="tiny">40%</span>
+              </div>
+              <div class="progress"><span id="lessonProg" style="width:40%"></span></div>
+              <div class="badge-complete" id="completeBadge">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                Lesson complete
+                <button class="btn btn-grad btn-sm" style="margin-left:8px" onclick="nextLesson()">Next lesson</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:24px">
+            <h3 id="quizTitle" style="margin-bottom:4px">Check Your Understanding</h3>
+            <p class="tiny" id="quizSub" style="margin-bottom:16px"></p>
+            <div id="scoreHead"></div>
+            <form class="quiz" id="quizForm" onsubmit="return submitQuiz(event)">
+              <div id="quizItems"></div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap" id="quizActions">
+                <button type="submit" class="btn btn-primary" id="submitBtn">Submit answers</button>
+                <button type="button" class="btn btn-ghost" id="retryBtn" style="display:none" onclick="retryQuiz()">Retry</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div>
+          <div class="card rail-card" style="margin-bottom:24px">
+            <h4>Up Next</h4>
+            <div id="upNext"></div>
+          </div>
+          <div class="card rail-card nudge">
+            <h4 style="display:flex;align-items:center;gap:8px">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--child-yusuf)" stroke-width="2"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 16.5 7.1 18.2 8 12.7l-4-3.9 5.5-.8z"/></svg>
+              Character Nudge
+            </h4>
+            <p class="small" style="color:var(--ink-700)">You've kept your Qur'an reading streak <strong>6 days</strong> — masha'Allah! Consistency is a beautiful habit. Read a few ayat today to reach day 7.</p>
+            <div style="margin-top:12px"><span class="pill pill-green">6-day streak</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+/* ===== BLOCK C — shared helpers ===== */
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('backdrop').classList.toggle('show');}
+function openModal(id){document.getElementById(id).classList.add('show');}
+function closeModal(id){document.getElementById(id).classList.remove('show');}
+let _toastT;function showToast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.className='toast';document.body.appendChild(t);}t.textContent=msg;t.classList.add('show');clearTimeout(_toastT);_toastT=setTimeout(()=>t.classList.remove('show'),2500);}
+function initTabs(scope){(scope||document).querySelectorAll('[data-tabs]').forEach(function(group){var tabs=group.querySelectorAll('.tab');tabs.forEach(function(tab){tab.addEventListener('click',function(){var panelId=tab.getAttribute('data-tab');group.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');var host=group.getAttribute('data-panels')?document.getElementById(group.getAttribute('data-panels')):group.parentElement;host.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));var panel=document.getElementById(panelId);if(panel)panel.classList.add('active');});});});}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal-wrap.show').forEach(m=>m.classList.remove('show'));}});
+document.addEventListener('DOMContentLoaded',function(){initTabs();document.querySelectorAll('.progress>span').forEach(function(el){var w=el.style.width;el.style.width='0';setTimeout(()=>el.style.width=w,100);});});
+
+/* ===== BLOCK D — FAMILY data ===== */
+const TODAY = "Thursday, Jul 16, 2026";
+const FAMILY = {
+  school:"Rahman Home Academy", state:"Pennsylvania", parent:"Aisha Rahman", parentInitials:"AR",
+  plan:"Family — $19/mo", daysLogged:118, daysRequired:180,
+  children:[
+    { id:"layla", name:"Layla Rahman", grade:"11th Grade", age:16, accent:"var(--child-layla)", initials:"LR",
+      avgLabel:"GPA 3.86", gpa:3.86, credits:18.5, creditsNeeded:24, attendance:96, hours:742, hoursReq:990,
+      subjects:["Algebra II (Honors)","English 11: American Literature","Chemistry","U.S. History","Arabic III","Qur'an Studies (Tajweed & Tafsir)","Studio Art"],
+      faith:"Memorizing Surah Ar-Rahman", streak:12, marksStyle:"letter" },
+    { id:"yusuf", name:"Yusuf Rahman", grade:"6th Grade", age:11, accent:"var(--child-yusuf)", initials:"YR",
+      avgLabel:"A- / 91%", attendance:96, hours:611, hoursReq:900,
+      subjects:["Math 6","Language Arts 6","Life Science","World History","Faith & Character","Arabic II","Qur'an Studies"],
+      faith:"6-day Qur'an reading streak", streak:6, marksStyle:"letter",
+      recentGrades:[["Ratios Quiz","Math","Jul 14","88","B+"],["Book Report: Ancient Egypt","Language Arts","Jul 10","95","A"],["Cells Lab","Life Science","Jul 9","90","A-"],["Mesopotamia Map","World History","Jul 7","100","A"],["Vocab Quiz Unit 3","Arabic II","Jul 3","85","B"],["Surah Al-Mulk recitation","Qur'an","Jul 1","—","Excellent"]],
+      today:[["8:30","Qur'an — Surah Al-Mulk review"],["9:15","Math 6 — Understanding Ratios"],["10:30","Language Arts — Descriptive Writing"],["1:00","Life Science — Cells"],["2:00","Arabic II — Vocabulary"]] },
+    { id:"zayd", name:"Zayd Rahman", grade:"2nd Grade", age:7, accent:"var(--child-zayd)", initials:"ZR",
+      avgLabel:"On track", attendance:94, hours:548, hoursReq:900,
+      subjects:["Math 2","Reading & Phonics","Science Explorers","Faith & Character (Stories of the Prophets)","Arabic I (Alphabet)","Qur'an (short surahs)"],
+      faith:"Learning Surah Al-Fatihah & Al-Ikhlas", streak:4, marksStyle:"standards" }
+  ]
+};
+// PA compliance: elementary 900 hrs / secondary 990 hrs, 180 days; affidavit due Aug 1 2026; portfolio eval by Jun 30; testing years 3/5/8.
+
+/* ===== LESSON + QUIZ DATA ===== */
+var YUSUF = FAMILY.children.find(c=>c.id==='yusuf');
+
+var LESSONS = {
+  ratios:{
+    breadcrumb:["Math 6","Unit 4: Ratios & Proportions","Understanding Ratios"],
+    title:"Math 6 — Understanding Ratios",
+    grad:"linear-gradient(135deg,#0891b2 0%,#4f46e5 100%)",
+    vlabel:"Video · Understanding Ratios (6:40)",
+    body:[
+      "A <strong>ratio</strong> is a way to compare two quantities. When a recipe calls for 2 cups of flour and 3 cups of water, we say the ratio of flour to water is 2 to 3, written 2:3. The order matters — flour comes first, water second.",
+      "We can write ratios three ways: with a colon (2:3), with the word \"to\" (2 to 3), or as a fraction (2/3). All three mean the same comparison. Ratios can also be <strong>simplified</strong> just like fractions. The ratio 8:12 both divide by 4, so it simplifies to 2:3.",
+      "Two ratios are <strong>equivalent</strong> if they represent the same relationship. 1:2 and 3:6 are equivalent because you can multiply both parts of 1:2 by 3 to get 3:6. Understanding equivalent ratios helps us scale recipes, read maps, and solve everyday problems."
+    ],
+    startProgress:40,
+    quizTitle:"Ratios Quiz",
+    quizSub:"4 questions · Pass with 3 or more correct.",
+    pass:3,
+    questions:[
+      {q:"A recipe uses 2 cups flour to 3 cups water. What is the ratio of flour to water?", options:["2:3","3:2","2:5","5:3"], answer:0},
+      {q:"Simplify the ratio 8:12.", options:["2:3","4:6","8:12","3:2"], answer:0},
+      {q:"True or False: The ratios 1:2 and 3:6 are equivalent.", options:["True","False"], answer:0},
+      {q:"There are 4 apples for every 2 oranges. How many apples are there for 6 oranges?", options:["12","8","10","6"], answer:0}
+    ]
+  },
+  tajweed:{
+    breadcrumb:["Qur'an Studies","Unit 2: Tajweed","Rules of Noon Sakinah"],
+    title:"Qur'an — Tajweed: Rules of Noon Sakinah",
+    grad:"linear-gradient(135deg,#7c3aed 0%,#0891b2 100%)",
+    vlabel:"Video · Rules of Noon Sakinah (5:12)",
+    body:[
+      "<strong>Noon Sakinah</strong> is the letter noon (ن) carrying a sukoon — a resting mark with no vowel sound. Tanween (the doubled vowel signs) follows the same rules. When we recite, the way we pronounce this noon changes depending on the letter that comes right after it.",
+      "There are four rules. <strong>Idhar</strong> (clear pronunciation) happens when noon sakinah is followed by one of the throat letters (ء ه ع ح غ خ) — we say the noon clearly. <strong>Idgham</strong> (merging) happens with the letters ي ر م ل و ن, where the noon merges into the next letter.",
+      "<strong>Ikhfa</strong> (hiding) is a light nasal sound made when noon sakinah meets one of the fifteen remaining letters — the noon is neither fully clear nor fully merged. <strong>Iqlab</strong> is the fourth rule, where noon before the letter ب turns into a hidden meem sound. Careful practice makes our recitation beautiful and correct."
+    ],
+    startProgress:0,
+    quizTitle:"Tajweed Check",
+    quizSub:"3 questions · Pass with 2 or more correct.",
+    pass:2,
+    questions:[
+      {q:"What does 'Idhar' mean when applied to Noon Sakinah?", options:["Pronounce the noon clearly","Merge the noon into the next letter","Hide the noon with a nasal sound","Change the noon into a meem"], answer:0},
+      {q:"Idgham (merging) occurs when Noon Sakinah is followed by which letters?", options:["ي ر م ل و ن","The throat letters","The letter ب","Any letter with a shaddah"], answer:0},
+      {q:"Ikhfa is best described as which kind of sound?", options:["A light, hidden nasal sound","A clear, sharp sound","A silent pause","A doubled emphatic sound"], answer:0}
+    ]
+  }
+};
+
+// Map plan blocks (Yusuf.today) to lessons where a real lesson exists.
+var PLAN_LESSON = {0:'tajweed', 1:'ratios'};
+var PLAN_STATUS = ['done','done','current','upcoming','upcoming'];
+// override: block 1 (Math ratios) is the active/current lesson, block 0 done
+PLAN_STATUS = ['done','current','upcoming','upcoming','upcoming'];
+
+var currentLesson='ratios';
+var lessonState={ratios:{completed:false},tajweed:{completed:false}};
+
+function renderPlan(activeIdx){
+  var host=document.getElementById('planStrip');
+  host.innerHTML='';
+  YUSUF.today.forEach(function(t,i){
+    var status=PLAN_STATUS[i]||'upcoming';
+    var mappedLesson=PLAN_LESSON[i];
+    var b=document.createElement('button');
+    b.className='plan-block'+(i===activeIdx?' current':'');
+    b.setAttribute('type','button');
+    var statusColor= status==='done'?'var(--green-600)':(status==='current'?'var(--indigo-600)':'var(--ink-400)');
+    var statusText= status==='done'?'Done':(status==='current'?'In progress':'Upcoming');
+    b.innerHTML='<div class="pb-top"><span class="pb-dot '+status+'"></span><span class="pb-time">'+t[0]+'</span></div>'+
+      '<div class="pb-title">'+t[1]+'</div>'+
+      '<div class="pb-status" style="color:'+statusColor+'">'+statusText+'</div>';
+    b.onclick=function(){
+      if(mappedLesson){ loadLesson(mappedLesson, i); }
+      else { showToast('This block opens in your planner'); }
+    };
+    host.appendChild(b);
+  });
+}
+
+function highlightPlanFor(lessonKey){
+  var idx = lessonKey==='ratios'?1:(lessonKey==='tajweed'?0:-1);
+  renderPlan(idx);
+}
+
+function loadLesson(key, planIdx){
+  currentLesson=key;
+  var L=LESSONS[key];
+  document.getElementById('bcrumb').innerHTML = L.breadcrumb.map(function(b,i){
+    return (i>0?'<span class="sep">›</span>':'')+'<span>'+b+'</span>';
+  }).join(' ');
+  document.getElementById('lessonTitle').textContent=L.title;
+  var vb=document.getElementById('videoBox');vb.style.background=L.grad;
+  document.getElementById('vlabel').textContent=L.vlabel;
+  document.getElementById('lessonBody').innerHTML=L.body.map(p=>'<p>'+p+'</p>').join('');
+  // progress reflects completion state
+  var pct = lessonState[key].completed?100:L.startProgress;
+  setProgress(pct);
+  document.getElementById('completeBadge').classList.toggle('show', lessonState[key].completed);
+  // quiz
+  document.getElementById('quizTitle').textContent=L.quizTitle;
+  document.getElementById('quizSub').textContent=L.quizSub;
+  buildQuiz(L);
+  if(lessonState[key].completed){ /* keep completed state visible but allow retry */ }
+  highlightPlanFor(key);
+}
+
+function setProgress(pct){
+  var bar=document.getElementById('lessonProg');
+  bar.style.width='0';
+  setTimeout(()=>bar.style.width=pct+'%',60);
+  document.getElementById('progPct').textContent=pct+'%';
+}
+
+function buildQuiz(L){
+  var host=document.getElementById('quizItems');
+  host.innerHTML=L.questions.map(function(q,qi){
+    var opts=q.options.map(function(o,oi){
+      return '<label class="opt"><input type="radio" name="q'+qi+'" value="'+oi+'"><span>'+o+'</span></label>';
+    }).join('');
+    return '<div class="q-item" id="qitem'+qi+'"><div class="q-text"><span class="q-num">Q'+(qi+1)+'.</span> '+q.q+'</div>'+opts+'</div>';
+  }).join('');
+  // reset UI
+  document.getElementById('scoreHead').innerHTML='';
+  document.getElementById('submitBtn').style.display='';
+  document.getElementById('retryBtn').style.display='none';
+}
+
+function submitQuiz(e){
+  e.preventDefault();
+  var L=LESSONS[currentLesson];
+  var score=0, unanswered=false;
+  L.questions.forEach(function(q,qi){
+    var chosen=document.querySelector('input[name="q'+qi+'"]:checked');
+    if(!chosen)unanswered=true;
+  });
+  if(unanswered){ showToast('Please answer every question'); return false; }
+  L.questions.forEach(function(q,qi){
+    var item=document.getElementById('qitem'+qi);
+    var chosen=document.querySelector('input[name="q'+qi+'"]:checked');
+    var chosenIdx=chosen?parseInt(chosen.value):-1;
+    var labels=item.querySelectorAll('.opt');
+    labels.forEach(function(lab,oi){
+      var input=lab.querySelector('input');
+      input.disabled=true;
+      if(oi===q.answer){ lab.classList.add('key'); lab.innerHTML+='<span class="tag" style="color:var(--green-600)">Correct</span>'; }
+      if(oi===chosenIdx && chosenIdx!==q.answer){ lab.classList.add('chosen-wrong'); lab.innerHTML+='<span class="tag" style="color:var(--red-600)">Your answer</span>'; }
+    });
+    if(chosenIdx===q.answer){ score++; item.classList.add('correct'); }
+    else { item.classList.add('incorrect'); }
+  });
+  var total=L.questions.length;
+  var passed=score>=L.pass;
+  var sh=document.getElementById('scoreHead');
+  sh.innerHTML='<div class="score-head '+(passed?'pass':'fail')+'">'+
+    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">'+(passed?'<path d="M20 6L9 17l-5-5"/>':'<path d="M12 8v5M12 16h.01"/><circle cx="12" cy="12" r="9"/>')+'</svg>'+
+    'You scored '+score+' / '+total+' — '+(passed?'Great work!':'Review and try again')+'</div>';
+  document.getElementById('submitBtn').style.display='none';
+  document.getElementById('retryBtn').style.display='';
+  if(passed){
+    lessonState[currentLesson].completed=true;
+    setProgress(100);
+    document.getElementById('completeBadge').classList.add('show');
+    showToast('Lesson complete — masha\'Allah!');
+  }
+  return false;
+}
+
+function retryQuiz(){
+  var L=LESSONS[currentLesson];
+  buildQuiz(L);
+  // scroll quiz into view
+  document.getElementById('quizTitle').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function nextLesson(){
+  // advance from ratios -> tajweed as a demo of progression
+  if(currentLesson==='ratios'){ loadLesson('tajweed',0); }
+  else { showToast('That was the last lesson for today — great job!'); }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderUpNext(){
+  var items=[
+    ["Language Arts — Descriptive Writing","10:30 AM","var(--indigo-600)","M4 5h16v14H4z"],
+    ["Life Science — Cells","1:00 PM","var(--green-600)","M12 3v18M3 12h18"],
+    ["Arabic II — Vocabulary","2:00 PM","var(--child-zayd)","M6 4v16M6 4h9l-2 4 2 4H6"]
+  ];
+  document.getElementById('upNext').innerHTML=items.map(function(it){
+    return '<div class="upnext-item"><span class="upnext-ic" style="background:'+it[2]+'">'+
+      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="'+it[3]+'"/></svg></span>'+
+      '<div><div style="font-weight:600;font-size:14px">'+it[0]+'</div><div class="tiny">'+it[1]+'</div></div></div>';
+  }).join('');
+}
+
+renderUpNext();
+loadLesson('ratios',1);
+</script>
+</body>
+</html>
