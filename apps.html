@@ -1,254 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apps — Pathways</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-<style>
-.page-hero{padding:clamp(48px,8vw,96px) var(--gutter) clamp(40px,6vw,72px);text-align:center;background:var(--grad-soft);border-bottom:1px solid var(--border)}
-.page-hero .eyebrow{justify-content:center;margin-bottom:.75rem}
-.page-hero h1{font-family:var(--font-display);font-size:clamp(2rem,5vw,3.25rem);font-weight:700;line-height:1.15;margin-bottom:.75rem}
-.page-hero h1 em{font-style:italic;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.page-hero p{color:var(--text-muted);font-size:clamp(.95rem,2vw,1.1rem);max-width:540px;margin:0 auto}
-.page-wrap{max-width:var(--max);margin:0 auto;padding:2rem var(--gutter)}
-.filter-bar{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem;align-items:center}
-.fpill{padding:.4rem 1rem;border-radius:999px;border:1.5px solid var(--border);background:var(--bg-elev);font-size:.82rem;font-weight:700;color:var(--text-muted);cursor:pointer;transition:.15s}
-.fpill:hover{border-color:var(--brand-1);color:var(--brand-1)}
-.fpill.on{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(124,92,255,.25)}
-.srch-wrap{position:relative;margin-left:auto}
-.srch-ico{position:absolute;left:.7rem;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--text-muted)}
-.srch-inp{padding:.5rem .75rem .5rem 2.2rem;border:1.5px solid var(--border);border-radius:10px;font-size:.875rem;width:240px;outline:none;background:var(--bg-elev);color:var(--text);transition:.15s}
-.srch-inp:focus{border-color:var(--brand-1);box-shadow:0 0 0 3px rgba(124,92,255,.12)}
-.section-head{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem}
-.section-head h2{font-size:1.3rem;font-weight:800;color:var(--text)}
-.count-tag{background:var(--grad-soft);color:var(--brand-1);font-size:.8rem;font-weight:700;padding:.2rem .65rem;border-radius:999px}
-.apps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
-.app-card{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem;transition:.2s;display:flex;flex-direction:column;box-shadow:var(--shadow-sm)}
-.app-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:var(--brand-1)}
-.app-icon{font-size:2rem;width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:14px;background:var(--grad-soft);margin-bottom:.75rem}
-.app-name{font-weight:800;font-size:1rem;margin-bottom:.3rem;color:var(--text)}
-.app-desc{font-size:.85rem;color:var(--text-muted);line-height:1.55;flex:1;margin-bottom:.9rem}
-.app-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.9rem}
-.app-tag{padding:.12rem .5rem;border-radius:999px;font-size:.72rem;font-weight:700;background:rgba(124,92,255,.1);color:var(--brand-1)}
-.app-features{font-size:.8rem;color:var(--text-muted);padding-left:1.1rem;margin-bottom:.9rem}
-.app-features li{margin-bottom:.2rem}
-.app-footer{border-top:1px solid var(--border);padding-top:.75rem;display:flex;align-items:center;gap:.5rem;margin-top:auto}
-.status-live{background:rgba(0,194,168,.12);color:var(--brand-2);font-size:.72rem;font-weight:700;padding:.2rem .55rem;border-radius:999px}
-.status-beta{background:rgba(255,122,89,.1);color:var(--accent);font-size:.72rem;font-weight:700;padding:.2rem .55rem;border-radius:999px}
-.status-soon{background:var(--grad-soft);color:var(--text-muted);font-size:.72rem;font-weight:700;padding:.2rem .55rem;border-radius:999px}
-.add-btn{margin-left:auto;background:var(--grad);color:#fff;border:none;padding:.38rem .85rem;border-radius:9px;font-size:.8rem;font-weight:700;cursor:pointer;transition:.15s}
-.add-btn:hover{opacity:.88;transform:translateY(-1px)}
-.no-results{text-align:center;padding:3rem;color:var(--text-muted);grid-column:1/-1;font-size:.95rem}
-</style>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Apps — Pathways</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <script src="data-frameworks.js"></script>
+  <script src="data-apps.js"></script>
+  <script src="data-resources.js"></script>
+  <script src="data.js"></script>
+  <style>
+  .page-hero{padding:clamp(48px,8vw,96px) var(--gutter) clamp(40px,6vw,72px);text-align:center;background:var(--grad-soft);border-bottom:1px solid var(--border)}
+  .page-hero h1{font-family:var(--font-display);font-size:clamp(2rem,5vw,3.25rem);font-weight:700;line-height:1.15;margin:0 0 .75rem}
+  .page-hero h1 em{font-style:italic;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .page-hero p{color:var(--text-muted);font-size:clamp(.95rem,2vw,1.1rem);max-width:540px;margin:0 auto}
+  .page-wrap{max-width:var(--max);margin:0 auto;padding:2rem var(--gutter)}
+  .filter-bar{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem;align-items:center}
+  .fpill{padding:.4rem 1rem;border-radius:999px;border:1.5px solid var(--border);background:var(--bg-elev);font-size:.82rem;font-weight:700;color:var(--text-muted);cursor:pointer;transition:.15s}
+  .fpill:hover{border-color:var(--brand-1);color:var(--brand-1)}
+  .fpill.on{background:var(--grad);color:#fff;border-color:transparent}
+  .srch-inp{padding:.5rem .75rem;border:1.5px solid var(--border);border-radius:10px;font-size:.875rem;width:220px;background:var(--bg-elev);color:var(--text);margin-left:auto}
+  .srch-inp:focus{border-color:var(--brand-1);outline:none;box-shadow:0 0 0 3px rgba(124,92,255,.12)}
+  .app-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+  .app-item{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);transition:border-color .15s}
+  .app-item:hover{border-color:var(--border-strong)}
+  .app-summary{display:flex;align-items:start;gap:14px;padding:18px;cursor:pointer}
+  .app-summary .acc-chevron{flex:none;margin-top:4px;transition:transform .2s}
+  .app-open .acc-chevron{transform:rotate(180deg);color:var(--brand-1)}
+  .app-icon{font-size:2rem;width:48px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:var(--grad-soft);flex:none}
+  .app-meta{min-width:0;flex:1}
+  .app-name{font-weight:800;font-size:1rem;color:var(--text)}
+  .app-tags{display:flex;flex-wrap:wrap;gap:.3rem}
+  .app-tag{padding:.12rem .5rem;border-radius:999px;font-size:.72rem;font-weight:700;background:rgba(124,92,255,.1);color:var(--brand-1)}
+  .status-live{background:rgba(0,194,168,.12);color:var(--brand-2);font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:999px;margin-left:8px}
+  .status-beta{background:rgba(255,122,89,.1);color:var(--accent);font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:999px;margin-left:8px}
+  .status-soon{background:var(--grad-soft);color:var(--text-muted);font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:999px;margin-left:8px}
+  .app-detail{padding:0 18px 18px;border-top:1px solid var(--border);animation:accFade .2s ease}
+  .app-detail h4{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin:16px 0 8px}
+  .app-features,.app-steps{font-size:.85rem;color:var(--text-muted);padding-left:1.2rem;margin:0 0 12px}
+  .app-features li,.app-steps li{margin-bottom:4px}
+  .app-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+  .count-tag{font-size:.82rem;font-weight:700;color:var(--brand-1)}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+    background:var(--text);color:var(--bg);padding:10px 22px;border-radius:999px;font-size:14px;
+    font-weight:600;opacity:0;transition:opacity .3s,transform .3s;z-index:999;pointer-events:none}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  </style>
 </head>
 <body>
-<header class="site-header" role="banner">
-    <div class="wrap header-wrap">
-      <a class="brand" href="#top" aria-label="Pathways home">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 64 64" width="28" height="28">
-            <defs>
-              <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#7c5cff" />
-                <stop offset="1" stop-color="#00c2a8" />
-              </linearGradient>
-            </defs>
-            <rect width="64" height="64" rx="14" fill="url(#bg)" />
-            <path d="M14 46c8-22 28-22 36 0" fill="none" stroke="white" stroke-width="5" stroke-linecap="round" />
-            <circle cx="32" cy="22" r="5" fill="white" />
-          </svg>
-        </span>
-        <span class="brand-text">Pathways</span>
-      </a>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <script src="nav.js"></script>
 
-      <nav class="primary-nav" aria-label="Primary">
-        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="bars" aria-hidden="true"></span>
-        </button>
-        <ul id="nav-list" class="nav-list">
-          <li><a href="#e2">E² Framework</a></li>
-          <li><a href="path-builder.html">Builder</a></li>
-          <li><a href="apps.html" aria-current="page">Apps</a></li>
-          <li><a href="frameworks.html">Frameworks</a></li>
-          <li><a href="resources.html">Resources</a></li>
-          <li><a href="#arabic">Arabic &amp; Quran</a></li>
-        </ul>
-      </nav>
+  <section class="page-hero" id="main-content">
+    <h1>Every tool a <em>teacher needs</em></h1>
+    <p>Built around the E² Framework. Add any app to your learning path.</p>
+  </section>
 
-      <div class="header-actions">
-        <button id="theme-toggle" class="ghost-btn" aria-label="Toggle color theme">
-          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v3"/><path d="M12 19v3"/><path d="M2 12h3"/><path d="M19 12h3"/><path d="M4.5 4.5l2.1 2.1"/><path d="M17.4 17.4l2.1 2.1"/><path d="M4.5 19.5l2.1-2.1"/><path d="M17.4 6.6l2.1-2.1"/></g></svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M21 13.5A8.5 8.5 0 0 1 10.5 3a7 7 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
-        </button>
-      </div>
+  <div class="page-wrap">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+      <span class="count-tag" id="path-counter"></span>
+      <span class="count-tag" id="app-count"></span>
     </div>
-  </header>
-<a href="#main-content" class="skip-link">Skip to main content</a>
-
-<section class="page-hero" id="main-content">
-  <p class="eyebrow"><span class="dot"></span>Apps</p>
-  <h1>Every tool a <em>teacher needs</em></h1>
-  <p>Built around the E² Framework. Add any app directly to your learning path.</p>
-</section>
-
-<div class="page-wrap">
-  <div class="filter-bar">
-    <button class="fpill on" onclick="filter('all',this)">All</button>
-    <button class="fpill" onclick="filter('planning',this)">Planning</button>
-    <button class="fpill" onclick="filter('assessment',this)">Assessment</button>
-    <button class="fpill" onclick="filter('engagement',this)">Engagement</button>
-    <button class="fpill" onclick="filter('arabic',this)">Arabic &amp; Quran</button>
-    <button class="fpill" onclick="filter('languages',this)">Languages</button>
-    <button class="fpill" onclick="filter('pbl',this)">PBL</button>
-    <div class="srch-wrap">
-      <span class="srch-ico">🔍</span>
-      <input class="srch-inp" id="srch" placeholder="Search apps…" oninput="render()">
-    </div>
+    <div class="filter-bar" id="app-filters"></div>
+    <input class="srch-inp" id="app-search" placeholder="Search apps…" type="search" style="margin-bottom:16px">
+    <div class="app-grid" id="app-grid"></div>
   </div>
-  <div class="section-head">
-    <h2>All Apps</h2>
-    <span class="count-tag" id="cnt"></span>
-  </div>
-  <div class="apps-grid" id="grid"></div>
-</div>
 
-<footer class="site-footer" role="contentinfo">
-    <div class="wrap footer-wrap">
-
-      <div class="footer-brand">
-        <a class="brand" href="index.html" aria-label="Pathways home">
-          <span class="brand-mark" aria-hidden="true">
-            <svg viewBox="0 0 64 64" width="28" height="28">
-              <defs><linearGradient id="fg" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#00c2a8"/>
-              </linearGradient></defs>
-              <rect width="64" height="64" rx="14" fill="url(#fg)"/>
-              <path d="M14 46c8-22 28-22 36 0" fill="none" stroke="white" stroke-width="5" stroke-linecap="round"/>
-              <circle cx="32" cy="22" r="5" fill="white"/>
-            </svg>
-          </span>
-          <span class="brand-text">Pathways</span>
-        </a>
-        <p class="footer-tag">
-          A navigator for modern teaching. Built around the
-          <strong>E² framework</strong> by <strong>Dina El Ahl</strong>.
-        </p>
-      </div>
-
-      <nav class="footer-nav" aria-label="Footer">
-        <div class="footer-col">
-          <h3>Product</h3>
-          <ul>
-            <li><a href="path-builder.html">Path Builder</a></li>
-            <li><a href="apps.html">Apps directory</a></li>
-            <li><a href="frameworks.html">Frameworks</a></li>
-            <li><a href="resources.html">Resources</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>The E² framework</h3>
-          <ul>
-            <li><a href="#e2">Overview</a></li>
-            <li><a href="#e2-pillars">Four pillars</a></li>
-            <li><a href="#arabic">Arabic &amp; Quran</a></li>
-            <li><a href="#start">Where to start</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>Specs Pathways speaks</h3>
-          <ul>
-            <li><a href="#interoperability">LTI 1.3 · xAPI · QTI</a></li>
-            <li><a href="#compliance">FERPA · GDPR · PDPL</a></li>
-            <li><a href="#accessibility">WCAG 2.2 AA</a></li>
-            <li><a href="#curricula">World curricula</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>Project</h3>
-          <ul>
-            <li><a href="https://github.com/DinaElAhl/Pathways" rel="noopener">GitHub repository</a></li>
-            <li><a href="https://github.com/DinaElAhl/Pathways/issues" rel="noopener">Report an issue</a></li>
-            <li><a href="https://github.com/DinaElAhl/Pathways/blob/main/README.md" rel="noopener">README</a></li>
-          </ul>
-        </div>
-      </nav>
-
-      <div class="footer-bottom">
-        <p>© 2026 Pathways. All rights reserved.</p>
-        <p class="muted">Made with care for every teacher and every learner.</p>
-      </div>
-    </div>
-  </footer>
-
-<script>
-const APPS=[
-  {id:'lesson-loom',title:'LessonLoom',icon:'📝',desc:'AI-powered lesson planner built on the E² 5-part blueprint. Input any topic and get a Hook, Teach, Practice, Connect & Reflect structure in seconds.',tags:['planning','e2','ai'],status:'live',cat:'planning',features:['E² blueprint','Differentiation tiers','PDF/Google Docs export','Bloom’s alignment']},
-  {id:'flip-studio',title:'FlipStudio',icon:'🎬',desc:'Paste any YouTube, website, or PDF link and FlipStudio converts it into a structured flipped lesson with comprehension questions and key vocab.',tags:['video','flipped','ai'],status:'live',cat:'engagement',features:['Auto-transcription','Quiz generation','Timestamp markers','Accessibility captions']},
-  {id:'rubric-raft',title:'RubricRaft',icon:'📊',desc:'Drag-and-drop rubric builder with QTI export. Create holistic or analytic rubrics aligned to any standard or framework.',tags:['assessment','rubric','qti'],status:'live',cat:'assessment',features:['QTI 2.2 export','Holistic & analytic','Standard alignment','Peer assessment']},
-  {id:'quiz-forge',title:'QuizForge',icon:'❓',desc:'Generate quizzes from any text, URL, or document. Multiple question types, auto-grading, and xAPI reporting to your LRS.',tags:['quiz','assessment','ai','xapi'],status:'live',cat:'assessment',features:['10 question types','xAPI reporting','AI generation','Adaptive difficulty']},
-  {id:'differentiate-it',title:'DifferentiateIt',icon:'🎯',desc:'Paste any task and get three auto-differentiated versions — struggling, on-level, and advanced — all keeping the same learning objective.',tags:['differentiation','udl'],status:'live',cat:'planning',features:['3 tiers auto-generated','UDL-aligned','Reading level adjustment','Vocabulary scaffolding']},
-  {id:'exit-ticket',title:'ExitTicket',icon:'🚪',desc:'Quick formative check-ins that surface understanding in real time. 60-second polls, traffic lights, and open-ended prompts.',tags:['assessment','formative','engagement'],status:'live',cat:'assessment',features:['Real-time results','10 prompt types','Class analytics','Anonymous mode']},
-  {id:'vocab-vault',title:'VocabVault',icon:'📚',desc:'Spaced-repetition vocabulary sets for any subject. Upload a word list or generate one from a topic. CEFR-tagged for language classes.',tags:['vocabulary','spaced-rep','languages','cefr'],status:'live',cat:'languages',features:['SM-2 algorithm','CEFR tagging','Audio pronunciation','Image association']},
-  {id:'hifz-helper',title:'HifzHelper',icon:'📿',desc:'Quran memorisation tracker with mutashabihat (similar-verse) hints, murajaah cycles, and ijazah teacher linking.',tags:['quran','hifz','arabic','islamic'],status:'live',cat:'arabic',features:['Mutashabihat alerts','Murajaah scheduler','Tajweed notes','Progress charts']},
-  {id:'arabic-lab',title:'ArabicLab',icon:'ع',desc:'Arabic as a second language (ASL) studio with CEFR A1–C2 tracks, Fusha vs dialect switching.',tags:['arabic','cefr','languages'],status:'live',cat:'arabic',features:['CEFR A1–C2','Fusha & dialect','Grammar drills','Speaking practice']},
-  {id:'project-pilot',title:'ProjectPilot',icon:'🚀',desc:'Full PBL project planner with timeline, collaboration tools, and a driving-question builder. PBL Works Gold Standard aligned.',tags:['pbl','project'],status:'beta',cat:'pbl',features:['Driving question builder','Milestone tracker','Peer collaboration','Exhibition planner']},
-  {id:'data-dash',title:'DataDash',icon:'📈',desc:'Student progress analytics across all Pathways apps. Track class trends, identify struggling students early, and generate parent-friendly reports.',tags:['analytics','data'],status:'beta',cat:'assessment',features:['Cross-app analytics','Early warning alerts','Parent reports','Bloom’s distribution']},
-  {id:'timeline-pro',title:'TimelinePro',icon:'📅',desc:'Visual history and sequence timeline builder. Drag events, add images and sources, and embed into any lesson.',tags:['history','visual'],status:'beta',cat:'engagement',features:['Drag & drop events','Image embeds','Source citations','Interactive publish']},
-  {id:'read-aloud',title:'ReadAloud Studio',icon:'🔊',desc:'Text-to-speech studio with natural Arabic and English voices. Exports as MP3 or embeds inline.',tags:['accessibility','udl','languages'],status:'soon',cat:'languages',features:['Arabic TTS','English TTS','SSML support','Accessibility export']},
-  {id:'gamify-it',title:'GamifyIt',icon:'🎮',desc:'Add points, badges, leaderboards, and quests to any Pathways lesson. One click — no coding.',tags:['gamification','engagement'],status:'soon',cat:'engagement',features:['XP & badges','Leaderboard','Quest paths','Classroom teams']},
-  {id:'arabic-lesson-loom',title:'LessonLoom Arabic',icon:'📝',desc:'Arabic-language version of LessonLoom for content-area teaching in Arabic. RTL layout and all major Arab world curricula.',tags:['arabic','planning','e2'],status:'soon',cat:'arabic',features:['RTL interface','Arab curricula','Arabic AI generation','Islamic calendar']},
-];
-
-let activeCat='all';
-function filter(cat,btn){
-  activeCat=cat;
-  document.querySelectorAll('.fpill').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');
-  render();
-}
-function render(){
-  const q=document.getElementById('srch').value.toLowerCase();
-  const items=APPS.filter(a=>{
-    const mc=activeCat==='all'||a.cat===activeCat||a.tags.includes(activeCat);
-    const mq=!q||a.title.toLowerCase().includes(q)||a.desc.toLowerCase().includes(q)||a.tags.some(t=>t.includes(q));
-    return mc&&mq;
-  });
-  document.getElementById('cnt').textContent=items.length+' app'+(items.length!==1?'s':'');
-  const g=document.getElementById('grid');
-  if(!items.length){g.innerHTML='<div class="no-results">No apps match. Try a different filter.</div>';return;}
-  const statusMap={live:['status-live','● Live'],beta:['status-beta','⚡ Beta'],soon:['status-soon','Coming soon']};
-  g.innerHTML=items.map(a=>{
-    const [sc,sl]=statusMap[a.status]||['status-soon','Coming soon'];
-    return '<div class="app-card"><div class="app-icon">'+a.icon+'</div>'
-      +'<div class="app-name">'+a.title+'</div>'
-      +'<div class="app-desc">'+a.desc+'</div>'
-      +'<div class="app-tags">'+a.tags.map(t=>'<span class="app-tag">'+t+'</span>').join('')+'</div>'
-      +'<ul class="app-features">'+a.features.map(f=>'<li>'+f+'</li>').join('')+'</ul>'
-      +'<div class="app-footer"><span class="'+sc+'">'+sl+'</span>'
-      +'<button class="add-btn" onclick="addToPath(\''+a.id+'\')">+ Add to Path</button></div></div>';
-  }).join('');
-}
-function addToPath(id){
-  const app=APPS.find(a=>a.id===id);
-  if(!app)return;
-  const draft=JSON.parse(localStorage.getItem('pw-draft')||'{"nodes":[]}');
-  if(!draft.nodes)draft.nodes=[];
-  if(!draft.nodes.find(n=>n.id===id)){
-    draft.nodes.push({id,title:app.title,desc:app.desc,icon:app.icon,tags:app.tags,nodeType:'app',type:'app'});
-    localStorage.setItem('pw-draft',JSON.stringify(draft));
-    const b=event.currentTarget;b.textContent='✓ Added';b.style.background='rgba(0,194,168,.2)';b.style.color='var(--brand-2)';
-    setTimeout(()=>{b.textContent='+ Add to Path';b.style.background='';b.style.color='';},2000);
-  } else {
-    const b=event.currentTarget;b.textContent='Already added';
-    setTimeout(()=>{b.textContent='+ Add to Path';},1500);
-  }
-}
-render();
-</script>
+  <script src="apps-app.js"></script>
 </body>
 </html>
