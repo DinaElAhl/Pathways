@@ -13,7 +13,7 @@ window.PW_APP_STAGES = {
     { stage: 4, title: "Mastery", desc: "Analyse path completion data and iterate on design.", resources: [
       { title: "xAPI Data Analysis", url: "https://xapi.com/overview/" }] }
   ] },
-  "e2-lesson-planner": { liveUrl: "https://claude.ai", stages: [
+  "e2-lesson-planner": { liveUrl: "https://dinaelahl.github.io/desktop-tutorial/index.html", stages: [
     { stage: 1, title: "Awareness", desc: "Learn the E\u00b2 5-part blueprint.", resources: [
       { title: "E\u00b2 Framework Overview", url: "https://www.edutopia.org/article/lesson-planning-strategies" },
       { title: "Lesson Planning Best Practices", url: "https://www.youtube.com/results?search_query=lesson+planning+best+practices" }] },
@@ -26,7 +26,7 @@ window.PW_APP_STAGES = {
     { stage: 4, title: "Mastery", desc: "Teach, collect exit-ticket data, and refine.", resources: [
       { title: "Using Exit Tickets", url: "https://www.edutopia.org/article/using-exit-tickets" }] }
   ] },
-  "e2-blueprint-planner": { liveUrl: "https://claude.ai", stages: [
+  "e2-blueprint-planner": { liveUrl: "https://dinaelahl.github.io/desktop-tutorial/index.html", stages: [
     { stage: 1, title: "Awareness", desc: "Understand unit-level planning with Bloom\u2019s coverage.", resources: [
       { title: "Backward Design (UbD)", url: "https://www.edutopia.org/article/understanding-by-design" }] },
     { stage: 2, title: "Practice", desc: "Stack 5 E\u00b2 lessons into a one-week blueprint.", resources: [
@@ -36,7 +36,7 @@ window.PW_APP_STAGES = {
     { stage: 4, title: "Mastery", desc: "Export a full-term plan and share with your department.", resources: [
       { title: "Collaborative Planning", url: "https://www.edutopia.org/article/collaborative-planning-teachers" }] }
   ] },
-  "e2-rubrics-assessment": { liveUrl: "https://claude.ai", stages: [
+  "e2-rubrics-assessment": { liveUrl: "https://dinaelahl.github.io/desktop-tutorial/index.html", stages: [
     { stage: 1, title: "Awareness", desc: "Learn holistic vs analytic rubric types.", resources: [
       { title: "Rubric Basics", url: "https://www.edutopia.org/article/rubrics-for-formative-assessment" },
       { title: "QTI Standard", url: "https://www.imsglobal.org/question/index.html" }] },

@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electives &amp; Specials · Pathways Academy</title>
+<style>
+:root{
+  --indigo-600:#4f46e5;--indigo-700:#4338ca;--indigo-500:#6366f1;
+  --violet-600:#7c3aed;--violet-500:#8b5cf6;
+  --grad:linear-gradient(135deg,#4f46e5 0%,#7c3aed 100%);
+  --grad-soft:linear-gradient(135deg,#eef2ff 0%,#f5f3ff 100%);
+  --ink-900:#0f172a;--ink-700:#334155;--ink-500:#64748b;--ink-400:#94a3b8;
+  --line:#e2e8f0;--bg:#f8fafc;--surface:#fff;--surface-2:#f1f5f9;
+  --green-600:#16a34a;--green-50:#f0fdf4;--amber-500:#f59e0b;--amber-50:#fffbeb;
+  --red-600:#dc2626;--red-50:#fef2f2;--sky-600:#0284c7;
+  --child-layla:#db2777;--child-yusuf:#0891b2;--child-zayd:#ea580c;
+  --r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:24px;--r-full:999px;
+  --sh-sm:0 1px 2px rgba(15,23,42,.06);--sh-md:0 4px 12px rgba(15,23,42,.08);--sh-lg:0 12px 32px rgba(15,23,42,.12);
+  --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-8:48px;--maxw:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink-900);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+h1{font-size:28px;font-weight:700;letter-spacing:-.02em}
+h2{font-size:22px;font-weight:700;letter-spacing:-.01em}
+h3{font-size:18px;font-weight:600}h4{font-size:15px;font-weight:600}
+.small{font-size:13px}.tiny{font-size:12px;color:var(--ink-500)}
+a{color:var(--indigo-600);text-decoration:none}
+:focus-visible{outline:2px solid var(--indigo-600);outline-offset:2px;border-radius:6px}
+.display{font-size:clamp(32px,5vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border-radius:var(--r-md);font-size:14px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:.15s;font-family:inherit}
+.btn-primary{background:var(--indigo-600);color:#fff}.btn-primary:hover{background:var(--indigo-700)}
+.btn-grad{background:var(--grad);color:#fff}.btn-grad:hover{filter:brightness(1.05)}
+.btn-ghost{background:var(--surface);color:var(--ink-700);border-color:var(--line)}.btn-ghost:hover{background:var(--surface-2)}
+.btn-sm{height:32px;padding:0 12px;font-size:13px}.btn-lg{height:48px;padding:0 24px;font-size:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-sm);padding:var(--sp-5)}
+.card-hover{transition:.18s}.card-hover:hover{box-shadow:var(--sh-lg);transform:translateY(-2px)}
+.pill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:var(--r-full);font-size:12px;font-weight:600}
+.pill-green{background:var(--green-50);color:var(--green-600)}.pill-amber{background:var(--amber-50);color:var(--amber-500)}
+.pill-red{background:var(--red-50);color:var(--red-600)}.pill-indigo{background:#eef2ff;color:var(--indigo-600)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;padding:12px;color:var(--ink-500);font-size:12px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line)}
+td{padding:12px;border-bottom:1px solid var(--line)}tr:hover td{background:var(--surface-2)}
+.progress{height:8px;background:var(--surface-2);border-radius:var(--r-full);overflow:hidden}
+.progress>span{display:block;height:100%;background:var(--grad);border-radius:var(--r-full);transition:width .8s ease}
+.stat-card .num{font-size:28px;font-weight:700}.stat-card .lbl{font-size:13px;color:var(--ink-500)}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.grid{display:grid;gap:24px}.g-2{grid-template-columns:repeat(2,1fr)}.g-3{grid-template-columns:repeat(3,1fr)}.g-4{grid-template-columns:repeat(4,1fr)}
+.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:24px 0;border-bottom:1px solid var(--line);margin-bottom:24px;flex-wrap:wrap}
+.page-sub{color:var(--ink-500);font-size:14px;margin-top:4px}.page-actions{display:flex;gap:8px;flex-wrap:wrap}
+.app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+.sidebar{background:var(--surface);border-right:1px solid var(--line);padding:20px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:6px;overflow-y:auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;padding:8px}
+.brand .mark{width:32px;height:32px;border-radius:9px;background:var(--grad);flex:none}
+.nav-group-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-400);padding:12px 12px 4px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--r-md);color:var(--ink-700);font-weight:500;font-size:14px}
+.nav-item:hover{background:var(--surface-2)}.nav-item.active{background:#eef2ff;color:var(--indigo-600);font-weight:600}
+.nav-item .ico{width:18px;height:18px;flex:none}.nav-spacer{flex:1}
+.hh-card{margin-top:8px;padding:10px;border:1px solid var(--line);border-radius:var(--r-md);display:flex;align-items:center;gap:8px;font-size:13px}
+.topbar{display:flex;align-items:center;gap:16px;height:64px;padding:0 24px;background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.topbar .search{flex:1;max-width:360px;height:38px;border:1px solid var(--line);border-radius:var(--r-full);padding:0 14px;background:var(--surface-2);font-size:14px;font-family:inherit}
+.avatar{width:34px;height:34px;border-radius:var(--r-full);display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px;background:var(--indigo-600);flex:none}
+.main{min-width:0}.content{max-width:var(--maxw);margin:0 auto;padding:0 24px 48px}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;color:var(--ink-700)}
+.backdrop{position:fixed;inset:0;background:rgba(15,23,42,.4);z-index:40;display:none}.backdrop.show{display:block}
+.modal-wrap{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(15,23,42,.45)}
+.modal-wrap.show{display:flex}
+.modal-card{background:var(--surface);border-radius:var(--r-xl);box-shadow:var(--sh-lg);max-width:480px;width:100%;padding:24px;max-height:90vh;overflow-y:auto}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink-900);color:#fff;padding:12px 20px;border-radius:var(--r-full);font-size:14px;font-weight:500;opacity:0;pointer-events:none;transition:.3s;z-index:80}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:20px;overflow-x:auto}
+.tab{padding:10px 16px;font-size:14px;font-weight:600;color:var(--ink-500);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;font-family:inherit}
+.tab.active{color:var(--indigo-600);border-bottom-color:var(--indigo-600)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.field{margin-bottom:14px}.field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;height:40px;border:1px solid var(--line);border-radius:var(--r-md);padding:0 12px;font-size:14px;font-family:inherit;background:var(--surface)}
+.field textarea{height:auto;padding:10px 12px;min-height:72px}
+@media(max-width:768px){
+  .app{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;z-index:50;transform:translateX(-100%);transition:.25s;width:260px}
+  .sidebar.open{transform:none}.hamburger{display:inline-flex}
+  .g-2,.g-3,.g-4{grid-template-columns:1fr}
+  .page-head{align-items:flex-start}
+  table.responsive{display:block;overflow-x:auto;white-space:nowrap}
+}
+@media print{
+  .sidebar,.topbar,.hamburger,.no-print{display:none!important}
+  .app{display:block}.content{padding:0}body{background:#fff}
+}
+/* ===== PAGE STYLES ===== */
+.overview{background:var(--grad-soft);border:1px solid var(--line);border-radius:var(--r-xl);padding:var(--sp-6);margin-bottom:var(--sp-6)}
+.overview h2{margin-bottom:8px}
+.overview p{color:var(--ink-700);max-width:70ch;font-size:15px}
+.ov-points{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+.ov-points .card{padding:16px;background:var(--surface)}
+.ov-points h4{margin-bottom:4px}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:var(--sp-6)}
+.jump a{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid var(--line);border-radius:var(--r-full);background:var(--surface);color:var(--ink-700);font-size:13px;font-weight:600}
+.jump a:hover{border-color:var(--indigo-500);color:var(--indigo-600);box-shadow:var(--sh-sm)}
+.subj{margin-bottom:var(--sp-8);scroll-margin-top:80px}
+.subj-head{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+.subj-icon{width:46px;height:46px;border-radius:var(--r-md);display:grid;place-items:center;color:#fff;flex:none;background:var(--grad)}
+.subj-icon svg{width:24px;height:24px}
+.subj-desc{color:var(--ink-500);font-size:14px;margin:0 0 20px 60px}
+.bands{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
+.band{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-sm);padding:16px;display:flex;flex-direction:column}
+.band-tag{display:inline-flex;align-self:flex-start;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:3px 9px;border-radius:var(--r-full);margin-bottom:4px}
+.band-tag.b1{background:#eef2ff;color:var(--indigo-600)}
+.band-tag.b2{background:var(--green-50);color:var(--green-600)}
+.band-tag.b3{background:var(--amber-50);color:var(--amber-500)}
+.band-tag.b4{background:#f5f3ff;color:var(--violet-600)}
+.band h4{font-size:14px;margin-bottom:10px;color:var(--ink-700)}
+.band ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.band li{font-size:13px;color:var(--ink-700);padding-left:16px;position:relative;line-height:1.35}
+.band li::before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:2px;background:var(--indigo-500)}
+.band li b{font-weight:600;color:var(--ink-900)}
+.lesson{border:1px solid var(--line);border-left:4px solid var(--violet-500);border-radius:var(--r-md);background:var(--grad-soft);padding:18px 20px}
+.lesson .lesson-kicker{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--violet-600);margin-bottom:4px}
+.lesson h4{font-size:16px;margin-bottom:10px}
+.lesson dt{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-500);margin-top:12px}
+.lesson dt:first-of-type{margin-top:0}
+.lesson dd{font-size:14px;color:var(--ink-700);margin-top:4px}
+.lesson dd b{color:var(--ink-900)}
+.subj-body{display:grid;grid-template-columns:1fr;gap:16px}
+.materials{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);padding:var(--sp-6)}
+.materials ul{margin:12px 0 0 18px;color:var(--ink-700);font-size:14px}
+.materials li{margin-bottom:6px}
+.backlinks{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.chk-row{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:var(--r-md);margin-bottom:8px;cursor:pointer}
+.chk-row:hover{background:var(--surface-2)}
+.chk-row input{width:18px;height:18px;accent-color:var(--indigo-600)}
+.chk-dot{width:26px;height:26px;border-radius:var(--r-full);display:grid;place-items:center;color:#fff;font-size:11px;font-weight:700;flex:none}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.icon-btn{background:none;border:none;cursor:pointer;color:var(--ink-500);padding:4px;border-radius:6px}
+.icon-btn:hover{background:var(--surface-2)}
+@media(max-width:768px){.bands{grid-template-columns:1fr}.ov-points{grid-template-columns:1fr}.subj-desc{margin-left:0}}
+@media(max-width:1080px){.bands{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <a href="dashboard.html" class="brand"><span class="mark"></span>Pathways Learn</a>
+    <div class="nav-group-label">Teach</div>
+    <a href="dashboard.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Dashboard</a>
+    <a href="child.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="8" r="2"/></svg>Children</a>
+    <a href="learn.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z M12 5v14"/></svg>Learn</a>
+    <a href="subjects.html" class="nav-item active"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Subjects</a>
+    <a href="planner.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>Planner</a>
+    <a href="gradebook.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8M20 12v7H4V5h11"/></svg>Gradebook</a>
+    <div class="nav-group-label">Records</div>
+    <a href="compliance.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Compliance <span class="pill pill-indigo" style="margin-left:auto;height:18px;padding:0 7px;font-size:10px">PA</span></a>
+    <a href="settings.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>Settings</a>
+    <div class="nav-spacer"></div>
+    <div class="hh-card"><span class="avatar" style="width:28px;height:28px;font-size:11px">RH</span><div><div style="font-weight:600">Rahman Household</div><div class="tiny">Pennsylvania</div></div></div>
+    <a href="index.html" class="nav-item" style="font-size:13px;color:var(--ink-500)">← Back to site</a>
+  </aside>
+  <main class="main">
+    <div class="topbar">
+      <button class="hamburger" aria-label="Open menu" onclick="toggleSidebar()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <input class="search" placeholder="Search lessons, children, records…" aria-label="Search">
+      <span style="flex:1"></span>
+      <button class="btn btn-ghost btn-sm" onclick="showToast('Attendance logged for today')">Log attendance</button>
+      <span class="avatar">AR</span>
+    </div>
+    <div class="content">
+
+      <div class="page-head">
+        <div>
+          <div class="tiny" style="margin-bottom:6px"><a href="subjects.html">Subjects</a> · Electives &amp; Specials</div>
+          <h1>Electives &amp; Specials</h1>
+          <p class="page-sub">A well-rounded education — creativity, body, technology, language, and life skills — nurturing the whole child.</p>
+        </div>
+        <div class="page-actions">
+          <a href="subjects.html" class="btn btn-ghost">← All subjects</a>
+          <button class="btn btn-grad" onclick="openModal('planModal')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            Add to a child's plan
+          </button>
+        </div>
+      </div>
+
+      <!-- OVERVIEW BAND -->
+      <section class="overview">
+        <span class="pill pill-indigo" style="margin-bottom:10px">6 subjects · K–12 · standards-aligned</span>
+        <h2>The whole child, well rounded</h2>
+        <p>Beyond the core, Pathways Academy specials give every learner room to create, move, build, communicate, and grow in character. Skills spiral from playful K–2 exposure to real high-school competency: a first crayon becomes a color-theory palette; a Scratch cat becomes a Python program; "please and thank you" becomes a budget and a life plan. Objectives are written in the spirit of national arts, physical-education, CSTA, ACTFL, and life-readiness standards (aligned in spirit — we describe, we don't claim official endorsement). Faith and character are woven in naturally where it fits — Islamic geometric art, respectful nasheed and vocal traditions, gratitude for the body as an <i>amanah</i> (trust), honesty online, and stewardship of time and money — never preachy, always practical.</p>
+        <div class="ov-points">
+          <div class="card">
+            <h4>Create &amp; express</h4>
+            <p class="small" style="color:var(--ink-500)">Art and Music build craft, taste, and confidence — from color mixing to music theory.</p>
+          </div>
+          <div class="card">
+            <h4>Move &amp; thrive</h4>
+            <p class="small" style="color:var(--ink-500)">PE &amp; Health grow strong bodies, healthy habits, and lifelong wellness.</p>
+          </div>
+          <div class="card">
+            <h4>Build &amp; connect</h4>
+            <p class="small" style="color:var(--ink-500)">Computer Science, Spanish, and Life Skills ready learners for a real, wide world.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- JUMP NAV -->
+      <nav class="jump" aria-label="Jump to subject">
+        <a href="#art">🎨 Art</a>
+        <a href="#music">🎵 Music</a>
+        <a href="#pe">🏃 PE &amp; Health</a>
+        <a href="#cs">💻 Computer Science</a>
+        <a href="#spanish">🗣️ Spanish</a>
+        <a href="#life">🌱 Life Skills</a>
+      </nav>
+
+      <!-- ============ ART ============ -->
+      <section class="subj" id="art">
+        <div class="subj-head">
+          <span class="subj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a9 9 0 100 18c1 0 1.5-.8 1.5-1.6 0-.5-.3-1-.3-1.5 0-.7.5-1.4 1.4-1.4H16a5 5 0 005-5c0-4.4-4-8-9-8z"/><circle cx="7.5" cy="10.5" r="1"/><circle cx="12" cy="7.5" r="1"/><circle cx="16.5" cy="10.5" r="1"/></svg></span>
+          <div>
+            <h2>Art</h2>
+            <span class="pill pill-indigo" style="height:20px">Visual Arts · Studio</span>
+          </div>
+        </div>
+        <p class="subj-desc">Seeing, making, and appreciating — from the elements of art to painting, art history, and the beauty of Islamic geometric &amp; arabesque design.</p>
+        <div class="bands">
+          <div class="band">
+            <span class="band-tag b1">Primary · K–2</span>
+            <h4>Elements &amp; Making</h4>
+            <ul>
+              <li><b>Line, shape &amp; color</b> — the building blocks; primary vs. secondary colors</li>
+              <li><b>Drawing from life</b> — my family, a leaf, a favorite fruit</li>
+              <li><b>Cutting &amp; collage</b> — scissors, glue, torn-paper pictures</li>
+              <li><b>Crafts &amp; texture</b> — clay pinch pots, printmaking with sponges</li>
+            </ul>
+          </div>
+          <div class="band">
+            <span class="band-tag b2">Elementary · 3–5</span>
+            <h4>Skills &amp; Color</h4>
+            <ul>
+              <li><b>The color wheel</b> — warm/cool, tints &amp; shades, complementary pairs</li>
+              <li><b>Painting</b> — watercolor washes, tempera, brush control</li>
+              <li><b>Pattern &amp; symmetry</b> — intro to Islamic geometric tiling</li>
+              <li><b>Perspective basics</b> — foreground/background, overlapping</li>
+              <li><b>Craft studio</b> — weaving, paper mosaics, seasonal projects</li>
+            </ul>
+          </div>
+          <div class="band">
+            <span class="band-tag b3">Middle · 6–8</span>
+            <h4>Techniques &amp; History</h4>
+            <ul>
+              <li><b>Shading &amp; form</b> — value scales, cross-hatching, one-point perspective</li>
+              <li><b>Art history survey</b> — cave art to Islamic, Renaissance, and modern eras</li>
+              <li><b>Islamic geometric &amp; arabesque</b> — 6- and 8-fold patterns with compass</li>
+              <li><b>Media exploration</b> — acrylic, pastel, printmaking, mixed media</li>
+              <li><b>Critique &amp; sketchbook</b> — describing and reflecting on artwork</li>
+            </ul>
+          </div>
+          <div class="band">
+            <span class="band-tag b4">High School · 9–12</span>
+            <h4>Studio Art &amp; Portfolio</h4>
+            <ul>
+              <li><b>Composition &amp; design</b> — rule of thirds, balance, focal point</li>
+              <li><b>Painting studio</b> — still life, landscape, portrait in acrylic/oil</li>
+              <li><b>Digital art</b> — vector &amp; raster basics, layers, digital illustration</li>
+              <li><b>Art history &amp; analysis</b> — movements, context, formal analysis essays</li>
+              <li><b>Portfolio</b> — a themed body of work with artist statement</li>
+            </ul>
+          </div>
+        </div>
+        <div class="subj-body">
+          <div class="lesson">
+            <div class="lesson-kicker">Sample lesson · Middle 6–8</div>
+            <h4>Islamic Geometric Patterns: The Six-Fold Rosette</h4>
+            <dl>
+              <dt>Objective</dt>
+              <dd>Construct a six-fold geometric star pattern using only a compass and straightedge, and explain how repetition and symmetry create the endless "infinite" designs found in mosques, tilework, and manuscripts.</dd>
+              <dt>Lesson</dt>
+              <dd>Islamic artists turned to geometry and arabesque (flowing plant forms) as a beautiful, boundless visual language. Every complex pattern begins with a simple circle. We divide a circle into six equal parts by "walking" the compass around its edge at the same radius — each mark becomes a petal. Connecting the points builds a hexagon and a six-pointed star; extending the lines creates an interlaced <b>rosette</b> that can tile forever with no beginning or end.</dd>
+              <dt>Practice activity</dt>
+              <dd>1) Draw a circle. 2) Keeping the compass width the same, step around the edge to make 6 marks. 3) Connect every point to form the star and hexagon. 4) Ink the pattern and add a two-color arabesque fill, then note one place you've seen a similar design. <b>Exit check:</b> Why does keeping the compass the same width guarantee the shape is symmetric?</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ MUSIC ============ -->
+      <section class="subj" id="music">
+        <div class="subj-head">
+          <span class="subj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
+          <div>
+            <h2>Music</h2>
+            <span class="pill pill-indigo" style="height:20px">Performing Arts</span>
+          </div>
+        </div>
+        <p class="subj-desc">Rhythm, singing, and listening — growing into reading notation, playing instruments, music theory, and appreciating vocal traditions including nasheed.</p>
+        <div class="bands">
+          <div class="band">
+            <span class="band-tag b1">Primary · K–2</span>
+            <h4>Rhythm &amp; Voice</h4>
+            <ul>
+              <li><b>Steady beat</b> — clapping, stomping, and marching to the pulse</li>
+              <li><b>Singing games</b> — high/low, loud/soft, call-and-response</li>
+              <li><b>Percussion play</b> — shakers, drums, rhythm sticks</li>
+              <li><b>Fast/slow &amp; long/short</b> — feeling tempo and note length</li>
+            </ul>
+          </div>
+          <div class="band">
+            <span class="band-tag b2">Elementary · 3–5</span>
+            <h4>Reading Notes</h4>
+            <ul>
+              <li><b>Note &amp; rest values</b> — whole, half, quarter, eighth</li>
+              <li><b>The staff &amp; treble clef</b> — lines, spaces, reading pitch</li>
+              <li><b>Recorder / xylophone</b> — first melodies by ear and note</li>
+              <li><b>Time signatures</b> — feeling and counting 4/4 and 3/4</li>
+              <li><b>Vocal traditions</b> — folk songs and nasheed, respectfully explored</li>
+            </ul>
+          </div>
+          <div class="band">
+            <span class="band-tag b3">Middle · 6–8</span>
+            <h4>Theory &amp; Instruments</h4>
+            <ul>
+              <li><b>Scales &amp; keys</b> — major/minor scales, sharps &amp; flats</li>
+              <li><b>Intervals &amp; chords</b> — building triads, ear training</li>
+              <li><b>Instrument focus</b> — guitar, keyboard, or hand percussion</li>
+              <li><b>Music history</b> — eras, world music, the human voice as instrument</li>
+              <li><b>Rhythm reading</b> — syncopation, dotted notes, counting</li>
+            </ul>
+          </div>
+          <div class="band">
+            <span class="band-tag b4">High School · 9–12</span>
+            <h4>Theory &amp; Appreciation</h4>
+            <ul>
+              <li><b>Music theory</b> — key signatures, circle of fifths, harmony</li>
+              <li><b>Composition</b> — writing a melody and simple arrangement</li>
+              <li><b>Appreciation &amp; analysis</b> — form, texture, cultural context</li>
+              <li><b>Performance</b> — solo or ensemble, vocal or instrumental</li>
+              <li><b>Vocal traditions study</b> — a cappella nasheed &amp; global vocal styles</li>
+            </ul>
+          </div>
+        </div>
+        <div class="subj-body">
+          <div class="lesson">
+            <div class="lesson-kicker">Sample lesson · Elementary 3–5</div>
+            <h4>Counting the Beat: Quarter and Eighth Notes</h4>
+            <dl>
+              <dt>Objective</dt>
+              <dd>Read and clap a four-beat rhythm in 4/4 time, correctly performing quarter notes ("ta") and paired eighth notes ("ti-ti").</dd>
+              <dt>Lesson</dt>
+              <dd>Music is organized by a steady <b>beat</b>, like a heartbeat. In 4/4 time there are four beats in each measure. A <b>quarter note</b> gets one beat — we say "ta." Two <b>eighth notes</b> share one beat — we say "ti-ti," twice as fast. When we read left to right and keep the pulse even, the rhythm sings itself. Many songs we love, including simple nasheed, ride on exactly these patterns.</dd>
+              <dt>Practice activity</dt>
+              <dd>Clap and say this line while a steady beat plays: <b>ta &nbsp; ti-ti &nbsp; ta &nbsp; ta</b>. Then try: <b>ti-ti &nbsp; ti-ti &nbsp; ta &nbsp; ta</b>. Finally, compose your own 4-beat measure using two quarters and two pairs of eighths, and perform it. <b>Exit check:</b> How many eighth notes equal one quarter note?</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PE & HEALTH ============ -->
+      <section class="subj" id="pe">
+        <div class="subj-head">
+          <span class="subj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4v16M18 4v16M6 8h12M6 16h12"/><path d="M3 9v6M21 9v6"/></svg></span>
+          <div>
+            <h2>Physical Education &amp; Health</h2>
+            <span class="pill pill-indigo" style="height:20px">Wellness</span>
+          </div>
+        </div>
+        <p class="subj-desc">Movement, fitness, and healthy habits — motor skills and games growing into nutrition, hygiene, first aid, and lifelong wellness. The body is an <i>amanah</i>, a trust to care for.</p>
+        <div class="bands">
+          <div class="band">
+            <span class="band-tag b1">Primary · K–2</span>
+            <h4>Move &amp; Play</h4>
+            <ul>
+              <li><b>Locomotor skills</b> — run, jump, hop, skip, gallop, balance</li>
+              <li><b>Ball skills</b> — throw, catch, roll, kick, bounce</li>
+              <li><b>Cooperative games</b> — tag, relays, taking turns, fair play</li>
+              <li><b>Healthy basics</b> — handwashing, brushing teeth, sleep &amp; water</li>
+            </ul>
+          </div>
+          <div class="band">
+            <span class="band-tag b2">Elementary · 3–5</span>
+            <h4>Fitness &amp; Habits</h4>
+            <ul>
+              <li><b>Fitness components</b> — strength, endurance, flexibility, agility</li>
+              <li><b>Sports intro</b> — soccer, basketball, jump rope, rules &amp; teamwork</li>
+              <li><b>Nutrition basics</b> — food groups, balanced plate, hydration</li>
+              <li><b>Hygiene &amp; safety</b> — germs, personal care, playground safety</li>
+              <li><b>Feelings &amp; kindness</b> — naming emotions, calm breathing</li>
+            </ul>
+          </div>
+          <div class="band">
+            <span class="band-tag b3">Middle · 6–8</span>
+            <h4>Training &amp; Nutrition</h4>
+            <ul>
+              <li><b>Personal fitness plan</b> — warm-up, target heart rate, goal setting</li>
+              <li><b>Team &amp; individual sports</b> — strategy, positions, sportsmanship</li>
+              <li><b>Nutrition &amp; labels</b> — macronutrients, reading food labels</li>
+              <li><b>Body systems</b> — muscular, skeletal, cardiovascular basics</li>
+              <li><b>First aid intro</b> — cuts, sprains, when to get help</li>
+            </ul>
+          </div>
+          <div class="band">
+            <span class="band-tag b4">High School · 9–12</span>
+            <h4>Health &amp; Lifelong Wellness</h4>
+            <ul>
+              <li><b>Fitness &amp; conditioning</b> — designing a balanced weekly program</li>
+              <li><b>Nutrition science</b> — energy balance, meal planning, wholesome choices</li>
+              <li><b>First aid &amp; CPR awareness</b> — emergency response, the recovery position</li>
+              <li><b>Mental &amp; emotional health</b> — stress, sleep, screen balance, resilience</li>
+              <li><b>Lifelong wellness</b> — habits, prevention, healthy relationships</li>
+            </ul>
+          </div>
+        </div>
+        <div class="subj-body">
+          <div class="lesson">
+            <div class="lesson-kicker">Sample lesson · High School 9–12</div>
+            <h4>First Aid: Responding to a Minor Wound</h4>
+            <dl>
+              <dt>Objective</dt>
+              <dd>Demonstrate the correct steps to clean and dress a minor cut, and explain when an injury needs professional medical care.</dd>
+              <dt>Lesson</dt>
+              <dd>Caring for the body is a responsibility we all share. For a minor cut: first <b>ensure the scene is safe</b> and wash your own hands. Apply gentle <b>pressure with a clean cloth</b> to stop bleeding, then <b>rinse the wound</b> under clean running water. Pat dry, apply antiseptic if available, and cover with a sterile <b>bandage</b>. Watch for warning signs — deep or gaping wounds, bleeding that won't stop after 10 minutes of pressure, signs of infection (redness, warmth, pus), or a wound from a dirty or rusty object — all of which need a medical professional.</dd>
+              <dt>Practice activity</dt>
+              <dd>With a partner and a first-aid kit, role-play treating a scraped knee: talk through each step aloud in order, then bandage a (pretend) wound. Afterward, list three signs that would tell you to stop and seek professional help. <b>Exit check:</b> Why do you wash your own hands <i>before</i> touching someone else's wound?</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ COMPUTER SCIENCE ============ -->
+      <section class="subj" id="cs">
+        <div class="subj-head">
+          <span class="subj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M8 9l2 2-2 2M13 13h3"/></svg></span>
+          <div>
+            <h2>Computer Science &amp; Technology</h2>
+            <span class="pill pill-indigo" style="height:20px">STEM · Coding</span>
+          </div>
+        </div>
+        <p class="subj-desc">From mouse and keyboard to Python — typing, block coding, digital literacy and online safety, then real programming, web basics, and computational thinking.</p>
+        <div class="bands">
+          <div class="band">
+            <span class="band-tag b1">Primary · K–2</span>
+            <h4>Getting Started</h4>
+            <ul>
+              <li><b>Mouse &amp; keyboard</b> — click, drag, home-row finger positions</li>
+              <li><b>Typing readiness</b> — letter keys, spacebar, gentle typing games</li>
+              <li><b>Parts of a computer</b> — screen, keyboard, saving your work</li>
+              <li><b>Unplugged coding</b> — sequences &amp; algorithms as step-by-step directions</li>
+            </ul>
+          </div>
+          <div class="band">
+            <span class="band-tag b2">Elementary · 3–5</span>
+            <h4>Block Coding &amp; Safety</h4>
+            <ul>
+              <li><b>Typing fluency</b> — building speed and accuracy</li>
+              <li><b>Scratch block coding</b> — sprites, events, loops, sequences</li>
+              <li><b>Digital literacy</b> — searching, saving files, simple documents</li>
+              <li><b>Online safety</b> — private info, kind messages, telling an adult</li>
+              <li><b>Debugging</b> — finding and fixing a mistake in a program</li>
+            </ul>
+          </div>
+          <div class="band">
+            <span class="band-tag b3">Middle · 6–8</span>
+            <h4>Programming Foundations</h4>
+            <ul>
+              <li><b>Advanced Scratch / intro Python</b> — variables, conditionals, loops</li>
+              <li><b>Computational thinking</b> — decomposition, patterns, abstraction</li>
+              <li><b>Digital citizenship</b> — footprint, credible sources, wholesome media</li>
+              <li><b>Web basics</b> — how the internet works, intro to HTML</li>
+              <li><b>Data &amp; spreadsheets</b> — organizing and charting information</li>
+            </ul>
+          </div>
+          <div class="band">
+            <span class="band-tag b4">High School · 9–12</span>
+            <h4>Python, Web &amp; CS</h4>
+            <ul>
+              <li><b>Python programming</b> — functions, lists, loops, file I/O</li>
+              <li><b>Web development</b> — HTML, CSS, basic JavaScript, a small site</li>
+              <li><b>Algorithms &amp; problem solving</b> — search, sort, efficiency intuition</li>
+              <li><b>Projects</b> — a text game, a data tool, or a personal web page</li>
+              <li><b>Ethics &amp; security</b> — privacy, passwords, responsible technology</li>
+            </ul>
+          </div>
+        </div>
+        <div class="subj-body">
+          <div class="lesson">
+            <div class="lesson-kicker">Sample lesson · High School 9–12</div>
+            <h4>Python: Your First Loop</h4>
+            <dl>
+              <dt>Objective</dt>
+              <dd>Write a Python <code>for</code> loop that repeats an action a set number of times, and explain why loops save us from repeating ourselves.</dd>
+              <dt>Lesson</dt>
+              <dd>Computers are patient with repetition — that's a loop's job. A <b>for loop</b> runs a block of code once for each item in a range. In Python, <code>range(5)</code> counts 0, 1, 2, 3, 4. The indented line beneath the loop is what repeats:
+              <br><br><code>for i in range(5):<br>&nbsp;&nbsp;&nbsp;&nbsp;print("Bismillah — starting task", i)</code>
+              <br><br>This prints five numbered lines instead of us typing <code>print</code> five times. The variable <code>i</code> holds the current count, so we can even use it inside the loop.</dd>
+              <dt>Practice activity</dt>
+              <dd>Write a loop that prints the numbers 1 through 10, then modify it to print only the even numbers (hint: <code>range(2, 11, 2)</code>). As a challenge, use a loop to add the numbers 1–10 and print the total. <b>Exit check:</b> How many times does the body of <code>for i in range(3):</code> run, and what values does <code>i</code> take?</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SPANISH ============ -->
+      <section class="subj" id="spanish">
+        <div class="subj-head">
+          <span class="subj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg></span>
+          <div>
+            <h2>World Languages — Spanish</h2>
+            <span class="pill pill-indigo" style="height:20px">Language · Culture</span>
+          </div>
+        </div>
+        <p class="subj-desc">One of the world's most spoken languages — from first greetings and vocabulary to grammar, conversation, reading, and writing about culture.</p>
+        <div class="bands">
+          <div class="band">
+            <span class="band-tag b1">Primary · K–2</span>
+            <h4>First Words</h4>
+            <ul>
+              <li><b>Greetings</b> — hola, buenos días, adiós, por favor, gracias</li>
+              <li><b>Core vocabulary</b> — colors, numbers 1–20, family, animals</li>
+              <li><b>Songs &amp; games</b> — learning through rhyme and repetition</li>
+              <li><b>Listening</b> — following simple spoken directions</li>
+            </ul>
+          </div>
+          <div class="band">
+            <span class="band-tag b2">Elementary · 3–5</span>
+            <h4>Vocabulary &amp; Phrases</h4>
+            <ul>
+              <li><b>Everyday themes</b> — food, weather, days, school, body</li>
+              <li><b>Simple sentences</b> — "Me gusta…", "Yo tengo…", "¿Cómo estás?"</li>
+              <li><b>Nouns &amp; gender</b> — el / la, singular &amp; plural</li>
+              <li><b>Culture</b> — countries where Spanish is spoken, holidays, foods</li>
+              <li><b>Reading</b> — labeled picture stories and short dialogues</li>
+            </ul>
+          </div>
+          <div class="band">
+            <span class="band-tag b3">Middle · 6–8</span>
+            <h4>Grammar &amp; Conversation</h4>
+            <ul>
+              <li><b>Present-tense verbs</b> — regular -ar, -er, -ir conjugation</li>
+              <li><b>Ser vs. estar</b> — the two "to be" verbs and when to use each</li>
+              <li><b>Conversation</b> — introductions, shopping, asking directions</li>
+              <li><b>Reading passages</b> — short stories with comprehension questions</li>
+              <li><b>Writing</b> — a paragraph about yourself and your family</li>
+            </ul>
+          </div>
+          <div class="band">
+            <span class="band-tag b4">High School · 9–12</span>
+            <h4>Composition &amp; Culture</h4>
+            <ul>
+              <li><b>Past &amp; future tenses</b> — preterite, imperfect, near future</li>
+              <li><b>Conversation fluency</b> — opinions, plans, everyday interactions</li>
+              <li><b>Reading literature</b> — poems, articles, and short fiction</li>
+              <li><b>Composition</b> — structured essays and letters in Spanish</li>
+              <li><b>Culture &amp; history</b> — traditions across the Spanish-speaking world</li>
+            </ul>
+          </div>
+        </div>
+        <div class="subj-body">
+          <div class="lesson">
+            <div class="lesson-kicker">Sample lesson · Middle 6–8</div>
+            <h4>Ser vs. Estar: Two Ways to "Be"</h4>
+            <dl>
+              <dt>Objective</dt>
+              <dd>Choose correctly between <b>ser</b> and <b>estar</b> when describing people and situations, and conjugate each in the present tense.</dd>
+              <dt>Lesson</dt>
+              <dd>English has one verb "to be," but Spanish has two. Use <b>ser</b> for permanent, defining traits — identity, origin, personality: <i>Yo soy estudiante</i> (I am a student), <i>Ella es amable</i> (She is kind). Use <b>estar</b> for temporary states, feelings, and location: <i>Estoy cansado</i> (I am tired), <i>El libro está en la mesa</i> (The book is on the table). A helpful memory hook: <b>ser</b> = who you <i>are</i>, <b>estar</b> = how you <i>are</i> right now and <i>where</i> you are.</dd>
+              <dt>Practice activity</dt>
+              <dd>Fill each blank with the correct form of ser or estar: 1) Nosotros ___ hermanos. 2) María ___ en la escuela. 3) Yo ___ feliz hoy. 4) Tú ___ muy inteligente. Then write two sentences about yourself — one with ser, one with estar. <b>Exit check:</b> Which verb would you use to say "I am happy today," and why?</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ LIFE SKILLS ============ -->
+      <section class="subj" id="life">
+        <div class="subj-head">
+          <span class="subj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c4-3 7-6 7-11a7 7 0 00-14 0c0 5 3 8 7 11z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <div>
+            <h2>Life Skills</h2>
+            <span class="pill pill-indigo" style="height:20px">Character · Readiness</span>
+          </div>
+        </div>
+        <p class="subj-desc">Growing capable, responsible, and kind — manners and chores maturing into time management, personal finance, cooking, and goal-setting rooted in good character.</p>
+        <div class="bands">
+          <div class="band">
+            <span class="band-tag b1">Primary · K–2</span>
+            <h4>Manners &amp; Responsibility</h4>
+            <ul>
+              <li><b>Good manners</b> — please, thank you, sharing, greeting others</li>
+              <li><b>Helping at home</b> — tidying toys, setting the table, making the bed</li>
+              <li><b>Self-care</b> — dressing, washing up, packing a bag</li>
+              <li><b>Kindness &amp; honesty</b> — telling the truth, gentle words</li>
+            </ul>
+          </div>
+          <div class="band">
+            <span class="band-tag b2">Elementary · 3–5</span>
+            <h4>Habits &amp; Money</h4>
+            <ul>
+              <li><b>Chores &amp; routines</b> — a weekly job chart, following through</li>
+              <li><b>Money basics</b> — coins &amp; bills, saving vs. spending, giving (sadaqah)</li>
+              <li><b>Time &amp; organization</b> — using a checklist, keeping a tidy space</li>
+              <li><b>Simple cooking</b> — safe kitchen habits, a no-cook snack</li>
+              <li><b>Respect &amp; teamwork</b> — listening, apologizing, cooperating</li>
+            </ul>
+          </div>
+          <div class="band">
+            <span class="band-tag b3">Middle · 6–8</span>
+            <h4>Study &amp; Home Skills</h4>
+            <ul>
+              <li><b>Time &amp; study skills</b> — planners, note-taking, avoiding procrastination</li>
+              <li><b>Budgeting intro</b> — needs vs. wants, tracking an allowance</li>
+              <li><b>Cooking basics</b> — reading a recipe, measuring, a simple meal</li>
+              <li><b>Goal-setting</b> — SMART goals and breaking them into steps</li>
+              <li><b>Character</b> — responsibility, gratitude, keeping your word</li>
+            </ul>
+          </div>
+          <div class="band">
+            <span class="band-tag b4">High School · 9–12</span>
+            <h4>Finance &amp; Independence</h4>
+            <ul>
+              <li><b>Personal finance</b> — budgeting, saving, banking, avoiding debt</li>
+              <li><b>Cooking &amp; nutrition</b> — planning and preparing balanced meals</li>
+              <li><b>Home &amp; self-management</b> — laundry, basic repairs, appointments</li>
+              <li><b>Goal-setting &amp; planning</b> — long-term goals, resume &amp; interview basics</li>
+              <li><b>Character &amp; service</b> — integrity, community service, stewardship</li>
+            </ul>
+          </div>
+        </div>
+        <div class="subj-body">
+          <div class="lesson">
+            <div class="lesson-kicker">Sample lesson · High School 9–12</div>
+            <h4>Building Your First Monthly Budget</h4>
+            <dl>
+              <dt>Objective</dt>
+              <dd>Create a simple monthly budget that divides income into saving, spending, and giving, and explain why "pay yourself first" builds strong habits.</dd>
+              <dt>Lesson</dt>
+              <dd>A budget is just a plan for your money before you spend it. Start with your <b>income</b> — an allowance, a small job, or a gift. Then sort your money into categories. A helpful starting framework is <b>50 / 30 / 20</b>: about 50% for needs, 30% for wants, and 20% for saving and giving. Wise practice is to <b>"pay yourself first"</b> — set aside savings (and <i>sadaqah</i>, charitable giving) at the top, before spending — so generosity and saving aren't just leftovers. Tracking every dollar keeps the plan honest.</dd>
+              <dt>Practice activity</dt>
+              <dd>Imagine a monthly income of $100. Build a budget table: list at least three categories (e.g., saving, giving, spending, a goal you're saving toward) with a dollar amount each, and make sure the amounts total $100. Then write one sentence naming something you'd save toward and why. <b>Exit check:</b> If you earned $80 this month, how much would go to saving under the 20% rule?</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- MATERIALS & ASSESSMENTS -->
+      <section class="materials">
+        <h2>Materials &amp; assessments</h2>
+        <p class="page-sub" style="margin-bottom:4px">How a learner works through each elective — and how progress is measured.</p>
+        <div class="grid g-2" style="margin-top:16px">
+          <div>
+            <h4 style="margin-bottom:6px">What a learner does</h4>
+            <ul>
+              <li><b>Lessons</b> — short guided lessons with clear objectives (like the samples above).</li>
+              <li><b>Practice</b> — hands-on studio work, movement drills, coding challenges, and language exercises.</li>
+              <li><b>Quizzes</b> — quick checks for understanding (theory, vocabulary, safety, concepts).</li>
+              <li><b>Projects &amp; portfolios</b> — an art piece, a performance, a Python program, a Spanish paragraph, or a budget.</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="margin-bottom:6px">How it's assessed</h4>
+            <ul>
+              <li><b>Skill checklists</b> — mastery of band-level skills, tracked over time.</li>
+              <li><b>Rubrics</b> — for creative, physical, and project work in the Gradebook.</li>
+              <li><b>Reflections</b> — sketchbook notes, self-assessment, exit checks.</li>
+              <li><b>Standards note</b> — objectives aligned in spirit to national arts, PE, CSTA, ACTFL &amp; life-readiness frameworks (described, not officially claimed).</li>
+            </ul>
+          </div>
+        </div>
+        <div class="backlinks">
+          <a href="subjects.html" class="btn btn-ghost">← Back to all Subjects</a>
+          <a href="learn.html" class="btn btn-primary">Go to Learn &amp; start a lesson →</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- ADD TO PLAN MODAL -->
+<div class="modal-wrap" id="planModal" role="dialog" aria-modal="true" aria-labelledby="planTitle">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h3 id="planTitle">Add to a child's plan</h3>
+      <button class="icon-btn" aria-label="Close" onclick="closeModal('planModal')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <p class="page-sub" style="margin-bottom:16px">Choose which learners to add Electives &amp; Specials to. You can fine-tune specific courses later in the Planner.</p>
+    <label class="chk-row"><input type="checkbox" value="Layla"><span class="chk-dot" style="background:var(--child-layla)">LR</span> Layla Rahman <span class="tiny" style="margin-left:auto">11th Grade</span></label>
+    <label class="chk-row"><input type="checkbox" value="Yusuf" checked><span class="chk-dot" style="background:var(--child-yusuf)">YR</span> Yusuf Rahman <span class="tiny" style="margin-left:auto">6th Grade</span></label>
+    <label class="chk-row"><input type="checkbox" value="Zayd" checked><span class="chk-dot" style="background:var(--child-zayd)">ZR</span> Zayd Rahman <span class="tiny" style="margin-left:auto">2nd Grade</span></label>
+    <div class="field" style="margin-top:14px">
+      <label for="planSubj">Focus subject (optional)</label>
+      <select id="planSubj">
+        <option>All Electives &amp; Specials</option>
+        <option>Art</option>
+        <option>Music</option>
+        <option>Physical Education &amp; Health</option>
+        <option>Computer Science &amp; Technology</option>
+        <option>World Languages — Spanish</option>
+        <option>Life Skills</option>
+      </select>
+    </div>
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+      <button class="btn btn-ghost" onclick="closeModal('planModal')">Cancel</button>
+      <button class="btn btn-grad" onclick="addToPlan()">Add to plan</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('backdrop').classList.toggle('show');}
+function openModal(id){document.getElementById(id).classList.add('show');}
+function closeModal(id){document.getElementById(id).classList.remove('show');}
+let _toastT;function showToast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.className='toast';document.body.appendChild(t);}t.textContent=msg;t.classList.add('show');clearTimeout(_toastT);_toastT=setTimeout(()=>t.classList.remove('show'),2500);}
+function initTabs(scope){(scope||document).querySelectorAll('[data-tabs]').forEach(function(group){var tabs=group.querySelectorAll('.tab');tabs.forEach(function(tab){tab.addEventListener('click',function(){var panelId=tab.getAttribute('data-tab');group.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');var host=group.getAttribute('data-panels')?document.getElementById(group.getAttribute('data-panels')):group.parentElement;host.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));var panel=document.getElementById(panelId);if(panel)panel.classList.add('active');});});});}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal-wrap.show').forEach(m=>m.classList.remove('show'));}});
+document.addEventListener('DOMContentLoaded',function(){initTabs();document.querySelectorAll('.progress>span').forEach(function(el){var w=el.style.width;el.style.width='0';setTimeout(()=>el.style.width=w,100);});});
+
+/* ===== PAGE SCRIPT ===== */
+function addToPlan(){
+  var names=Array.prototype.slice.call(document.querySelectorAll('#planModal input[type=checkbox]:checked')).map(c=>c.value);
+  closeModal('planModal');
+  if(!names.length){showToast('Select at least one child to add');return;}
+  var who=names.length===1?names[0]:names.slice(0,-1).join(', ')+' & '+names[names.length-1];
+  showToast('Electives & Specials added to '+who+'’s plan');
+}
+</script>
+</body>
+</html>

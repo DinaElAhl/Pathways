@@ -16,7 +16,7 @@ window.PW_APPS = [
     features: ["E\u00b2 blueprint", "Differentiation tiers", "PDF / Google Docs export", "Bloom\u2019s alignment"],
     tags: ["planning", "e2", "ai", "flagship"],
     relatedFrameworks: ["e2", "blooms-taxonomy", "udl3"], relatedResources: ["e2-template", "e2-guide"],
-    url: DT + "/e2-lesson-planner.html",
+    url: DT + "/index.html",
     demoSteps: ["Enter topic and grade", "AI generates 5-part plan", "Adjust tiers and levers", "Export PDF"] },
 
   { id: "e2-blueprint-planner", name: "E\u00b2 Blueprint Planner", icon: "\ud83d\uddfa\ufe0f", category: "planning", status: "live",
@@ -24,7 +24,7 @@ window.PW_APPS = [
     features: ["Multi-lesson view", "Bloom heatmap", "Modality balance", "Term-level export"],
     tags: ["planning", "e2", "flagship"],
     relatedFrameworks: ["e2", "blooms-taxonomy"], relatedResources: ["e2-guide"],
-    url: DT + "/e2-blueprint-planner.html",
+    url: DT + "/index.html",
     demoSteps: ["Import or create lessons", "View coverage heatmap", "Rebalance modalities", "Export term plan"] },
 
   { id: "e2-rubrics-assessment", name: "E\u00b2 Rubrics & Assessment", icon: "\ud83d\udcca", category: "assessment", status: "live",
@@ -32,7 +32,7 @@ window.PW_APPS = [
     features: ["QTI 2.2 / 3.0 export", "Holistic & analytic", "Standard alignment", "Tiered task templates"],
     tags: ["assessment", "rubric", "qti", "e2", "flagship"],
     relatedFrameworks: ["e2", "blooms-taxonomy"], relatedResources: ["bloom-matrix", "pbl-rubric"],
-    url: DT + "/e2-rubrics-assessment.html",
+    url: DT + "/index.html",
     demoSteps: ["Choose rubric type", "Add criteria and levels", "Align to standards", "Export QTI"] },
 
   { id: "flip-studio", name: "FlipStudio", icon: "\ud83c\udfac", category: "engagement", status: "live",

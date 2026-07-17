@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compliance Center · Pathways Learn</title>
+<style>
+:root{
+  --indigo-600:#4f46e5;--indigo-700:#4338ca;--indigo-500:#6366f1;
+  --violet-600:#7c3aed;--violet-500:#8b5cf6;
+  --grad:linear-gradient(135deg,#4f46e5 0%,#7c3aed 100%);
+  --grad-soft:linear-gradient(135deg,#eef2ff 0%,#f5f3ff 100%);
+  --ink-900:#0f172a;--ink-700:#334155;--ink-500:#64748b;--ink-400:#94a3b8;
+  --line:#e2e8f0;--bg:#f8fafc;--surface:#fff;--surface-2:#f1f5f9;
+  --green-600:#16a34a;--green-50:#f0fdf4;--amber-500:#f59e0b;--amber-50:#fffbeb;
+  --red-600:#dc2626;--red-50:#fef2f2;--sky-600:#0284c7;
+  --child-layla:#db2777;--child-yusuf:#0891b2;--child-zayd:#ea580c;
+  --r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:24px;--r-full:999px;
+  --sh-sm:0 1px 2px rgba(15,23,42,.06);--sh-md:0 4px 12px rgba(15,23,42,.08);--sh-lg:0 12px 32px rgba(15,23,42,.12);
+  --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-8:48px;--maxw:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink-900);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+h1{font-size:28px;font-weight:700;letter-spacing:-.02em}
+h2{font-size:22px;font-weight:700;letter-spacing:-.01em}
+h3{font-size:18px;font-weight:600}h4{font-size:15px;font-weight:600}
+.small{font-size:13px}.tiny{font-size:12px;color:var(--ink-500)}
+a{color:var(--indigo-600);text-decoration:none}
+:focus-visible{outline:2px solid var(--indigo-600);outline-offset:2px;border-radius:6px}
+.display{font-size:clamp(32px,5vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border-radius:var(--r-md);font-size:14px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:.15s;font-family:inherit}
+.btn-primary{background:var(--indigo-600);color:#fff}.btn-primary:hover{background:var(--indigo-700)}
+.btn-grad{background:var(--grad);color:#fff}.btn-grad:hover{filter:brightness(1.05)}
+.btn-ghost{background:var(--surface);color:var(--ink-700);border-color:var(--line)}.btn-ghost:hover{background:var(--surface-2)}
+.btn-sm{height:32px;padding:0 12px;font-size:13px}.btn-lg{height:48px;padding:0 24px;font-size:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-sm);padding:var(--sp-5)}
+.card-hover{transition:.18s}.card-hover:hover{box-shadow:var(--sh-lg);transform:translateY(-2px)}
+.pill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:var(--r-full);font-size:12px;font-weight:600}
+.pill-green{background:var(--green-50);color:var(--green-600)}.pill-amber{background:var(--amber-50);color:var(--amber-500)}
+.pill-red{background:var(--red-50);color:var(--red-600)}.pill-indigo{background:#eef2ff;color:var(--indigo-600)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;padding:12px;color:var(--ink-500);font-size:12px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line)}
+td{padding:12px;border-bottom:1px solid var(--line)}tr:hover td{background:var(--surface-2)}
+.progress{height:8px;background:var(--surface-2);border-radius:var(--r-full);overflow:hidden}
+.progress>span{display:block;height:100%;background:var(--grad);border-radius:var(--r-full);transition:width .8s ease}
+.stat-card .num{font-size:28px;font-weight:700}.stat-card .lbl{font-size:13px;color:var(--ink-500)}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.grid{display:grid;gap:24px}.g-2{grid-template-columns:repeat(2,1fr)}.g-3{grid-template-columns:repeat(3,1fr)}.g-4{grid-template-columns:repeat(4,1fr)}
+.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:24px 0;border-bottom:1px solid var(--line);margin-bottom:24px;flex-wrap:wrap}
+.page-sub{color:var(--ink-500);font-size:14px;margin-top:4px}.page-actions{display:flex;gap:8px;flex-wrap:wrap}
+.app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+.sidebar{background:var(--surface);border-right:1px solid var(--line);padding:20px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:6px;overflow-y:auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;padding:8px}
+.brand .mark{width:32px;height:32px;border-radius:9px;background:var(--grad);flex:none}
+.nav-group-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-500);padding:12px 12px 4px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--r-md);color:var(--ink-700);font-weight:500;font-size:14px}
+.nav-item:hover{background:var(--surface-2)}.nav-item.active{background:#eef2ff;color:var(--indigo-600);font-weight:600}
+.nav-item .ico{width:18px;height:18px;flex:none}.nav-spacer{flex:1}
+.hh-card{margin-top:8px;padding:10px;border:1px solid var(--line);border-radius:var(--r-md);display:flex;align-items:center;gap:8px;font-size:13px}
+.topbar{display:flex;align-items:center;gap:16px;height:64px;padding:0 24px;background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.topbar .search{flex:1;max-width:360px;height:38px;border:1px solid var(--line);border-radius:var(--r-full);padding:0 14px;background:var(--surface-2);font-size:14px;font-family:inherit}
+.avatar{width:34px;height:34px;border-radius:var(--r-full);display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px;background:var(--indigo-600);flex:none}
+.main{min-width:0}.content{max-width:var(--maxw);margin:0 auto;padding:0 24px 48px}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;color:var(--ink-700)}
+.backdrop{position:fixed;inset:0;background:rgba(15,23,42,.4);z-index:40;display:none}.backdrop.show{display:block}
+.modal-wrap{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(15,23,42,.45)}
+.modal-wrap.show{display:flex}
+.modal-card{background:var(--surface);border-radius:var(--r-xl);box-shadow:var(--sh-lg);max-width:480px;width:100%;padding:24px;max-height:90vh;overflow-y:auto}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink-900);color:#fff;padding:12px 20px;border-radius:var(--r-full);font-size:14px;font-weight:500;opacity:0;pointer-events:none;transition:.3s;z-index:80}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:20px;overflow-x:auto}
+.tab{padding:10px 16px;font-size:14px;font-weight:600;color:var(--ink-500);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;font-family:inherit}
+.tab.active{color:var(--indigo-600);border-bottom-color:var(--indigo-600)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.field{margin-bottom:14px}.field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;height:40px;border:1px solid var(--line);border-radius:var(--r-md);padding:0 12px;font-size:14px;font-family:inherit;background:var(--surface)}
+.field textarea{height:auto;padding:10px 12px;min-height:72px}
+@media(max-width:768px){
+  .app{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;z-index:50;transform:translateX(-100%);transition:.25s;width:260px}
+  .sidebar.open{transform:none}.hamburger{display:inline-flex}
+  .g-2,.g-3,.g-4{grid-template-columns:1fr}
+  .page-head{align-items:flex-start}
+  table.responsive{display:block;overflow-x:auto;white-space:nowrap}
+}
+@media print{
+  .sidebar,.topbar,.hamburger,.no-print{display:none!important}
+  .app{display:block}.content{padding:0}body{background:#fff}
+}
+
+/* ===== PAGE STYLES ===== */
+.head-select{height:40px;border:1px solid var(--line);border-radius:var(--r-md);padding:0 34px 0 12px;font-size:14px;font-family:inherit;font-weight:600;background:var(--surface) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>") no-repeat right 10px center;-webkit-appearance:none;appearance:none;cursor:pointer;color:var(--ink-900)}
+
+/* State requirements banner */
+.req-banner{background:var(--grad-soft);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--sp-5);margin-bottom:var(--sp-5);position:relative;overflow:hidden}
+.req-banner::before{content:"";position:absolute;inset:0 auto 0 0;width:5px;background:var(--grad)}
+.req-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.req-state-name{font-size:20px;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+.req-flag{width:30px;height:22px;border-radius:4px;background:var(--grad);display:grid;place-items:center;color:#fff;font-size:11px;font-weight:800;flex:none}
+.reg-pill{height:28px;padding:0 14px;font-size:13px;font-weight:700}
+.reg-high{background:var(--red-50);color:var(--red-600)}
+.reg-moderate{background:var(--amber-50);color:var(--amber-500)}
+.reg-low{background:var(--green-50);color:var(--green-600)}
+.reg-varies{background:#eef2ff;color:var(--indigo-600)}
+.req-desc{font-size:14px;color:var(--ink-700);margin-bottom:18px;max-width:760px}
+.req-checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(max-width:768px){.req-checklist{grid-template-columns:1fr}}
+.req-item{display:flex;align-items:flex-start;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:11px 13px;font-size:14px}
+.req-item .chk{width:22px;height:22px;border-radius:var(--r-full);flex:none;display:grid;place-items:center;margin-top:1px}
+.chk-met{background:var(--green-50);color:var(--green-600)}
+.chk-unmet{background:var(--amber-50);color:var(--amber-500)}
+.chk-na{background:var(--surface-2);color:var(--ink-400)}
+.req-item .req-label{font-weight:600;line-height:1.35}
+.req-item .req-note{font-size:12px;color:var(--ink-500);margin-top:2px;font-weight:400}
+.req-empty{background:var(--green-50);border:1px dashed var(--green-600);color:var(--green-600);border-radius:var(--r-md);padding:16px;font-weight:600;display:flex;align-items:center;gap:10px}
+
+/* layout for record center + rail */
+.rec-layout{display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:start}
+@media(max-width:980px){.rec-layout{grid-template-columns:1fr}}
+
+/* attendance */
+.att-row{display:grid;grid-template-columns:180px 1fr 1fr;gap:20px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.att-row:last-child{border-bottom:none}
+@media(max-width:768px){.att-row{grid-template-columns:1fr;gap:10px}}
+.att-child{display:flex;align-items:center;gap:10px}
+.att-dot{width:34px;height:34px;border-radius:var(--r-full);display:grid;place-items:center;color:#fff;font-weight:700;font-size:12px;flex:none}
+.att-metric .bar-top{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+.att-metric .bar-top b{font-weight:700}
+.hh-total{display:flex;align-items:center;gap:16px;background:var(--surface-2);border-radius:var(--r-md);padding:14px 18px;margin-top:8px;flex-wrap:wrap}
+.hh-total .big{font-size:24px;font-weight:800}
+
+/* heatmap */
+.heat-wrap{margin-top:22px}
+.heat-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--ink-500);margin-top:12px}
+.heat-legend .li{display:flex;align-items:center;gap:6px}
+.heat-legend .sw{width:12px;height:12px;border-radius:3px}
+.heat-months{display:flex;gap:14px;overflow-x:auto;padding-bottom:6px}
+.heat-month{flex:none}
+.heat-month .mlabel{font-size:11px;color:var(--ink-500);font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:.03em}
+.heat-grid{display:grid;grid-template-rows:repeat(7,1fr);grid-auto-flow:column;gap:3px}
+.heat-cell{width:13px;height:13px;border-radius:3px;background:var(--surface-2)}
+.heat-cell[title]{cursor:default}
+
+/* report cards */
+.rc-item{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--line);border-radius:var(--r-md);margin-bottom:10px;background:var(--surface)}
+.rc-item:hover{box-shadow:var(--sh-sm)}
+.rc-icon{width:42px;height:42px;border-radius:var(--r-md);flex:none;display:grid;place-items:center;color:#fff}
+.rc-meta{flex:1;min-width:0}
+.rc-meta .rc-title{font-weight:600}
+.rc-actions{display:flex;gap:8px;flex-wrap:wrap}
+
+/* portfolio */
+.pf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:768px){.pf-grid{grid-template-columns:1fr}}
+.pf-card{border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;background:var(--surface);transition:.18s}
+.pf-card:hover{box-shadow:var(--sh-md);transform:translateY(-2px)}
+.pf-thumb{height:120px;display:grid;place-items:center;color:#fff;position:relative}
+.pf-thumb svg{width:40px;height:40px;opacity:.9}
+.pf-body{padding:12px 14px}
+.pf-tag{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.92);color:var(--green-600);font-size:11px;font-weight:700;padding:3px 8px;border-radius:var(--r-full);display:flex;align-items:center;gap:4px}
+.pf-counts{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.pf-count{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:var(--r-full);padding:6px 14px;font-size:13px;font-weight:600}
+.pf-count .d{width:12px;height:12px;border-radius:var(--r-full)}
+
+/* transcript */
+.transcript-doc{border:1px solid var(--line);border-radius:var(--r-md);padding:36px;background:#fff;box-shadow:var(--sh-sm)}
+.ts-header{text-align:center;border-bottom:3px double var(--ink-900);padding-bottom:18px;margin-bottom:20px}
+.ts-header .seal{width:56px;height:56px;border-radius:var(--r-full);background:var(--grad);margin:0 auto 10px;display:grid;place-items:center;color:#fff}
+.ts-school{font-size:24px;font-weight:800;letter-spacing:-.01em}
+.ts-doc-title{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-500);margin-top:4px;font-weight:600}
+.ts-info{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 40px;margin-bottom:22px;font-size:14px}
+@media(max-width:768px){.ts-info{grid-template-columns:1fr}}
+.ts-info .row{display:flex;justify-content:space-between;border-bottom:1px dotted var(--line);padding:4px 0}
+.ts-info .row .k{color:var(--ink-500)}
+.ts-info .row .v{font-weight:600}
+.ts-year{margin-bottom:20px}
+.ts-year h4{background:var(--surface-2);padding:8px 12px;border-radius:var(--r-sm);display:flex;justify-content:space-between;align-items:center}
+.ts-table{width:100%;font-size:13.5px}
+.ts-table th{padding:8px 10px;font-size:11px}
+.ts-table td{padding:8px 10px}
+.ts-table td.c,.ts-table th.c{text-align:center}
+.ts-year-credits{font-size:12px;font-weight:600;color:var(--ink-500)}
+.ts-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px;padding-top:20px;border-top:2px solid var(--ink-900)}
+@media(max-width:768px){.ts-summary{grid-template-columns:repeat(2,1fr)}}
+.ts-sum-box{text-align:center}
+.ts-sum-box .n{font-size:26px;font-weight:800}
+.ts-sum-box .l{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-500);font-weight:600}
+.ts-foot{margin-top:24px;display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.ts-sign{flex:1;min-width:200px}
+.ts-sign .line{border-top:1px solid var(--ink-900);margin-top:34px;padding-top:6px;font-size:12px;color:var(--ink-500)}
+.badge-honors{display:inline-block;background:#eef2ff;color:var(--indigo-600);font-size:10px;font-weight:700;padding:1px 6px;border-radius:var(--r-full);margin-left:6px;vertical-align:middle}
+.badge-pass{display:inline-block;background:var(--green-50);color:var(--green-600);font-size:10px;font-weight:700;padding:1px 6px;border-radius:var(--r-full);margin-left:6px;vertical-align:middle}
+
+/* state report */
+.sr-doc{border:1px solid var(--line);border-radius:var(--r-md);padding:32px;background:#fff}
+.sr-head{border-bottom:2px solid var(--indigo-600);padding-bottom:14px;margin-bottom:20px}
+.sr-head .kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--indigo-600);font-weight:700}
+.sr-head h3{font-size:20px;margin-top:4px}
+.sr-section{margin-bottom:22px}
+.sr-section h4{margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.sr-attest{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:768px){.sr-attest{grid-template-columns:1fr}}
+.sr-attest .box{border:1px solid var(--line);border-radius:var(--r-md);padding:14px}
+.sr-attest .box .n{font-size:22px;font-weight:800}
+.sr-attest .box .l{font-size:12px;color:var(--ink-500)}
+.sr-subj{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(max-width:768px){.sr-subj{grid-template-columns:1fr}}
+.sr-subj .s{display:flex;align-items:center;gap:8px;font-size:14px;padding:8px 12px;background:var(--surface-2);border-radius:var(--r-sm)}
+.sr-subj .s.add{background:#eef2ff}
+.tick{width:20px;height:20px;border-radius:var(--r-full);background:var(--green-600);color:#fff;display:grid;place-items:center;flex:none}
+.sr-note{background:var(--amber-50);border:1px solid #fde68a;border-radius:var(--r-md);padding:14px 16px;font-size:13.5px;display:flex;gap:12px}
+.sr-note svg{color:var(--amber-500);flex:none}
+.sr-affidavit{background:var(--grad-soft);border:1px solid var(--line);border-radius:var(--r-md);padding:16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.sr-eval{border:1px dashed var(--line);border-radius:var(--r-md);padding:16px}
+.sr-eval .line{border-bottom:1px solid var(--ink-400);height:26px;margin-top:6px}
+
+/* compliance rail */
+.rail-card{position:sticky;top:80px}
+.status-hero{text-align:center;padding:6px 0 14px}
+.status-ring{width:96px;height:96px;margin:0 auto 12px;position:relative}
+.status-ring svg{transform:rotate(-90deg)}
+.status-ring .pct{position:absolute;inset:0;display:grid;place-items:center;font-size:22px;font-weight:800}
+.timeline{list-style:none;margin-top:8px}
+.timeline li{position:relative;padding:0 0 18px 26px;border-left:2px solid var(--line);margin-left:6px}
+.timeline li:last-child{border-left-color:transparent;padding-bottom:0}
+.timeline li .dot{position:absolute;left:-8px;top:1px;width:14px;height:14px;border-radius:var(--r-full);border:3px solid var(--surface);box-shadow:0 0 0 1px var(--line)}
+.timeline li .t-title{font-weight:600;font-size:14px}
+.timeline li .t-date{font-size:12px;color:var(--ink-500)}
+.dot-amber{background:var(--amber-500)}.dot-green{background:var(--green-600)}.dot-indigo{background:var(--indigo-600)}.dot-gray{background:var(--ink-400)}
+
+.modal-list{list-style:none;margin:14px 0}
+.modal-list li{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.modal-list li:last-child{border-bottom:none}
+.modal-list .fi{width:32px;height:32px;border-radius:var(--r-sm);background:var(--surface-2);display:grid;place-items:center;color:var(--indigo-600);flex:none}
+.modal-list .sz{margin-left:auto;font-size:12px;color:var(--ink-400)}
+
+/* print scope: transcript only */
+.print-only{display:none}
+@media print{
+  body *{visibility:hidden!important}
+  #printRegion,#printRegion *{visibility:visible!important}
+  #printRegion{position:absolute;left:0;top:0;width:100%;padding:0!important;border:none!important;box-shadow:none!important;background:#fff!important}
+  .transcript-doc,.sr-doc{border:none!important;box-shadow:none!important;padding:0!important}
+  .no-print{display:none!important}
+  .modal-wrap.show{position:absolute!important;inset:0!important;background:#fff!important;padding:0!important}
+  .modal-wrap.show .modal-card,.modal-wrap.show .modal-card *{visibility:visible!important}
+  .modal-wrap.show .modal-card{position:absolute!important;left:0;top:0;max-width:100%!important;max-height:none!important;overflow:visible!important;box-shadow:none!important;border:none!important}
+  @page{margin:14mm}
+}
+</style>
+</head>
+<body>
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <a href="dashboard.html" class="brand"><span class="mark"></span>Pathways Learn</a>
+    <div class="nav-group-label">Teach</div>
+    <a href="dashboard.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Dashboard</a>
+    <a href="child.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="8" r="2"/></svg>Children</a>
+    <a href="learn.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z M12 5v14"/></svg>Learn</a>
+    <a href="subjects.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Subjects</a>
+    <a href="planner.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>Planner</a>
+    <a href="gradebook.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8M20 12v7H4V5h11"/></svg>Gradebook</a>
+    <div class="nav-group-label">Records</div>
+    <a href="compliance.html" class="nav-item active"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Compliance <span class="pill pill-indigo" style="margin-left:auto;height:18px;padding:0 7px;font-size:10px">PA</span></a>
+    <a href="settings.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>Settings</a>
+    <div class="nav-spacer"></div>
+    <div class="hh-card"><span class="avatar" style="width:28px;height:28px;font-size:11px">RH</span><div><div style="font-weight:600">Rahman Household</div><div class="tiny">Pennsylvania</div></div></div>
+    <a href="index.html" class="nav-item" style="font-size:13px;color:var(--ink-500)">← Back to site</a>
+  </aside>
+  <main class="main">
+    <div class="topbar">
+      <button class="hamburger" aria-label="Open menu" onclick="toggleSidebar()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <input class="search" placeholder="Search lessons, children, records…" aria-label="Search">
+      <span style="flex:1"></span>
+      <button class="btn btn-ghost btn-sm" onclick="showToast('Attendance logged for today')">Log attendance</button>
+      <span class="avatar">AR</span>
+    </div>
+    <div class="content">
+
+      <!-- PAGE HEAD -->
+      <div class="page-head">
+        <div>
+          <h1>Compliance Center</h1>
+          <div class="page-sub">Rahman Household · <span id="headState">Pennsylvania</span></div>
+        </div>
+        <div class="page-actions">
+          <label for="stateSelect" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Home state</label>
+          <select id="stateSelect" class="head-select" onchange="renderRequirements(this.value)" aria-label="Home state">
+            <option value="PA" selected>Pennsylvania</option>
+            <option value="NY">New York</option>
+            <option value="FL">Florida</option>
+            <option value="TX">Texas</option>
+            <option value="CA">California</option>
+          </select>
+          <button class="btn btn-primary" onclick="openModal('exportModal')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M4 19h16"/></svg>
+            Export records
+          </button>
+        </div>
+      </div>
+
+      <!-- STATE REQUIREMENTS BANNER (re-rendered by JS) -->
+      <div id="reqBanner"></div>
+
+      <!-- RECORD CENTER + RAIL -->
+      <div class="rec-layout">
+        <div>
+          <div class="card" style="padding:20px 24px">
+            <div data-tabs data-panels="recPanels">
+              <div class="tabs" style="margin-bottom:0;border-bottom:none">
+                <button class="tab active" data-tab="tab-att">Attendance &amp; Hours</button>
+                <button class="tab" data-tab="tab-rc">Report Cards</button>
+                <button class="tab" data-tab="tab-ts">Transcript</button>
+                <button class="tab" data-tab="tab-pf">Portfolio</button>
+                <button class="tab" data-tab="tab-sr" id="stateReportTab">State Report</button>
+              </div>
+            </div>
+            <div id="recPanels" style="padding-top:20px">
+
+              <!-- ATTENDANCE -->
+              <div class="tab-panel active" id="tab-att">
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:6px">
+                  <h3>Attendance &amp; Instructional Hours</h3>
+                  <button class="btn btn-ghost btn-sm" onclick="showToast('Today logged — 118 → 119 days')">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Log day
+                  </button>
+                </div>
+                <p class="tiny" style="margin-bottom:6px">School year 2025–26 · PA requires 180 days or minimum hours (900 elementary / 990 secondary).</p>
+                <div id="attRows"></div>
+                <div class="hh-total">
+                  <div>
+                    <div class="tiny">Household days logged</div>
+                    <div class="big">118 <span style="font-size:15px;font-weight:600;color:var(--ink-500)">/ 180 days</span></div>
+                  </div>
+                  <div style="flex:1;min-width:180px">
+                    <div class="progress" aria-label="118 of 180 days"><span style="width:65.6%"></span></div>
+                    <div class="tiny" style="margin-top:6px">65.6% complete · 62 instructional days remaining</div>
+                  </div>
+                  <span class="pill pill-green">On pace</span>
+                </div>
+
+                <div class="heat-wrap">
+                  <h4 style="margin-bottom:4px">Attendance calendar · 2025–26</h4>
+                  <p class="tiny" style="margin-bottom:12px">Aug 2025 – Jul 2026 · logged instructional days across the household.</p>
+                  <div class="heat-months" id="heatmap"></div>
+                  <div class="heat-legend">
+                    <span class="li"><span class="sw" style="background:var(--surface-2)"></span>No school</span>
+                    <span class="li"><span class="sw" style="background:#c7d2fe"></span>Light day</span>
+                    <span class="li"><span class="sw" style="background:#6366f1"></span>Present</span>
+                    <span class="li"><span class="sw" style="background:#3730a3"></span>Full day</span>
+                    <span class="li"><span class="sw" style="background:#cbd5e1"></span>Absent</span>
+                    <span class="li"><span class="sw" style="background:var(--amber-500)"></span>Holiday</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- REPORT CARDS -->
+              <div class="tab-panel" id="tab-rc">
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px">
+                  <h3>Report Cards</h3>
+                  <button class="btn btn-ghost btn-sm" onclick="showToast('Generating report cards for Term 3…')">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>New report card
+                  </button>
+                </div>
+                <div id="rcList"></div>
+              </div>
+
+              <!-- TRANSCRIPT -->
+              <div class="tab-panel" id="tab-ts">
+                <div class="no-print" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px">
+                  <div>
+                    <h3>Official High School Transcript</h3>
+                    <p class="tiny">Layla Rahman · college-ready record of secondary coursework.</p>
+                  </div>
+                  <button class="btn btn-primary" onclick="printRegion('transcriptDoc')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4v-6h16v6h-2M8 14h8v8H8z"/></svg>
+                    Print transcript
+                  </button>
+                </div>
+
+                <div class="transcript-doc" id="transcriptDoc">
+                  <div class="ts-header">
+                    <div class="seal"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+                    <div class="ts-school">Rahman Home Academy</div>
+                    <div class="ts-doc-title">Official Academic Transcript</div>
+                    <div class="tiny" style="margin-top:6px">Pennsylvania Home Education Program · Rahman Household</div>
+                  </div>
+                  <div class="ts-info">
+                    <div class="row"><span class="k">Student</span><span class="v">Layla Rahman</span></div>
+                    <div class="row"><span class="k">Date of birth</span><span class="v">Mar 14, 2010</span></div>
+                    <div class="row"><span class="k">Student ID</span><span class="v">RHA-2027-LR</span></div>
+                    <div class="row"><span class="k">Current grade</span><span class="v">11th (Junior)</span></div>
+                    <div class="row"><span class="k">Enrolled</span><span class="v">Sept 2021</span></div>
+                    <div class="row"><span class="k">Expected graduation</span><span class="v">June 2027</span></div>
+                    <div class="row"><span class="k">Guardian / Supervisor</span><span class="v">Aisha Rahman</span></div>
+                    <div class="row"><span class="k">Grading scale</span><span class="v">A=4.0 · 4-point</span></div>
+                  </div>
+                  <div id="transcriptYears"></div>
+                  <div class="ts-summary">
+                    <div class="ts-sum-box"><div class="n">3.86</div><div class="l">Cumulative GPA</div></div>
+                    <div class="ts-sum-box"><div class="n">18.5</div><div class="l">Credits earned</div></div>
+                    <div class="ts-sum-box"><div class="n">24</div><div class="l">Credits to graduate</div></div>
+                    <div class="ts-sum-box"><div class="n">77%</div><div class="l">Progress</div></div>
+                  </div>
+                  <div class="ts-foot">
+                    <div class="ts-sign">
+                      <div class="tiny">This transcript is a true and accurate record of coursework completed under the Pennsylvania Home Education Program (24 P.S. §13-1327.1).</div>
+                      <div class="line">Aisha Rahman · Supervising Parent / Administrator</div>
+                    </div>
+                    <div class="ts-sign">
+                      <div class="tiny">Legend: <b>H</b> = Honors course · <b>P</b> = Pass (elective, 0.5 cr). Faith electives: Arabic I–III, Qur'an Studies.</div>
+                      <div class="line">Date issued: July 16, 2026</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PORTFOLIO -->
+              <div class="tab-panel" id="tab-pf">
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px">
+                  <div>
+                    <h3>Work-Sample Portfolio</h3>
+                    <p class="tiny">Curated samples across children — ready for evaluator review.</p>
+                  </div>
+                  <button class="btn btn-ghost btn-sm" onclick="showToast('Upload a new work sample')">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 8l5-5 5 5M4 19h16"/></svg>Add sample
+                  </button>
+                </div>
+                <div class="pf-counts" id="pfCounts"></div>
+                <div class="pf-grid" id="pfGrid"></div>
+              </div>
+
+              <!-- STATE REPORT -->
+              <div class="tab-panel" id="tab-sr">
+                <div class="no-print" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px">
+                  <div>
+                    <h3>State Report</h3>
+                    <p class="tiny" id="srContextNote">Pennsylvania-formatted year-end portfolio summary.</p>
+                  </div>
+                  <button class="btn btn-primary" onclick="printRegion('stateReportDoc')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M4 19h16"/></svg>
+                    Generate PDF
+                  </button>
+                </div>
+
+                <div class="sr-doc" id="stateReportDoc">
+                  <div class="sr-head">
+                    <div class="kicker">Commonwealth of Pennsylvania · Department of Education</div>
+                    <h3>Pennsylvania Home Education Portfolio Summary 2025–26</h3>
+                    <div class="tiny" style="margin-top:6px">Rahman Home Academy · Supervisor: Aisha Rahman · Students: Layla, Yusuf &amp; Zayd Rahman</div>
+                  </div>
+
+                  <div class="sr-section">
+                    <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--indigo-600)" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg> Attendance &amp; Instructional Time Attestation</h4>
+                    <div class="sr-attest">
+                      <div class="box"><div class="n">118 / 180</div><div class="l">Days of instruction to date</div></div>
+                      <div class="box"><div class="n">742 hrs</div><div class="l">Layla — secondary (min 990)</div></div>
+                      <div class="box"><div class="n">611 / 548</div><div class="l">Yusuf / Zayd — elementary (min 900)</div></div>
+                    </div>
+                    <p class="tiny" style="margin-top:10px">I attest that instruction was provided in accordance with 24 P.S. §13-1327.1, meeting or exceeding 180 days or the applicable minimum hours per student.</p>
+                  </div>
+
+                  <div class="sr-section">
+                    <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--indigo-600)" stroke-width="2"><path d="M9 11l3 3 8-8M20 12v7H4V5h11"/></svg> Required Subjects Covered</h4>
+                    <div class="sr-subj">
+                      <div class="s"><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> English / Language Arts</div>
+                      <div class="s"><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> Mathematics</div>
+                      <div class="s"><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> Science</div>
+                      <div class="s"><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> Social Studies</div>
+                      <div class="s"><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> Art</div>
+                      <div class="s"><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> Music</div>
+                      <div class="s"><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> Health / Physical Education</div>
+                      <div class="s"><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> Safety Education (fire &amp; accident prevention)</div>
+                      <div class="s add"><span class="tick" style="background:var(--indigo-600)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14"/></svg></span> Arabic I–III <span class="tiny" style="margin-left:auto">Additional</span></div>
+                      <div class="s add"><span class="tick" style="background:var(--indigo-600)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14"/></svg></span> Qur'an Studies <span class="tiny" style="margin-left:auto">Additional</span></div>
+                    </div>
+                  </div>
+
+                  <div class="sr-section">
+                    <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--indigo-600)" stroke-width="2"><path d="M9 11l3 3 8-8M20 12v7H4V5h11"/></svg> Standardized Testing</h4>
+                    <div class="sr-note">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+                      <div>Pennsylvania requires a nationally normed standardized test in <b>grades 3, 5, and 8</b>. <b>Zayd (currently 2nd grade)</b> will complete his first assessment in grade 3 (2026–27). Layla and Yusuf have satisfied prior-year testing requirements; results are retained in the portfolio.</div>
+                    </div>
+                  </div>
+
+                  <div class="sr-section">
+                    <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--indigo-600)" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/></svg> Evaluator Review</h4>
+                    <div class="sr-eval">
+                      <div class="small">Portfolio reviewed by a licensed evaluator (certified teacher / licensed psychologist) certifying an appropriate education is occurring, per 24 P.S. §13-1327.1(e). Evaluation due by <b>June 30, 2026</b>.</div>
+                      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px">
+                        <div><div class="line"></div><div class="tiny" style="margin-top:4px">Evaluator signature</div></div>
+                        <div><div class="line"></div><div class="tiny" style="margin-top:4px">Date</div></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="sr-section" style="margin-bottom:0">
+                    <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--indigo-600)" stroke-width="2"><path d="M14 3v5h5M14 3l5 5v11a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1z"/></svg> Affidavit Reminder</h4>
+                    <div class="sr-affidavit">
+                      <span class="pill pill-amber" style="height:28px">Action needed</span>
+                      <div style="flex:1;min-width:220px">
+                        <div style="font-weight:600">Notarized annual affidavit due <b>August 1, 2026</b></div>
+                        <div class="tiny">File with the local superintendent listing each child, supervisor's qualifications, and objectives for the upcoming year.</div>
+                      </div>
+                      <button class="btn btn-ghost btn-sm no-print" onclick="showToast('Affidavit reminder added to Planner')">Add reminder</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- COMPLIANCE STATUS RAIL -->
+        <aside>
+          <div class="card rail-card">
+            <div class="status-hero">
+              <div class="status-ring">
+                <svg width="96" height="96" viewBox="0 0 96 96">
+                  <circle cx="48" cy="48" r="42" fill="none" stroke="var(--surface-2)" stroke-width="10"/>
+                  <circle cx="48" cy="48" r="42" fill="none" stroke="url(#g1)" stroke-width="10" stroke-linecap="round" stroke-dasharray="263.9" stroke-dashoffset="66"/>
+                  <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f46e5"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs>
+                </svg>
+                <div class="pct">75%</div>
+              </div>
+              <span class="pill pill-green" style="height:28px">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>
+                On track
+              </span>
+              <p class="tiny" style="margin-top:8px">All required records current. Year-end tasks approaching.</p>
+            </div>
+
+            <h4 style="margin:8px 0 14px">Upcoming deadlines</h4>
+            <ul class="timeline">
+              <li>
+                <span class="dot dot-green"></span>
+                <div class="t-title">Portfolio evaluation</div>
+                <div class="t-date">By Jun 30, 2026 · evaluator scheduled</div>
+              </li>
+              <li>
+                <span class="dot dot-amber"></span>
+                <div class="t-title">Annual affidavit</div>
+                <div class="t-date">Due Aug 1, 2026 · notarize &amp; file</div>
+              </li>
+              <li>
+                <span class="dot dot-indigo"></span>
+                <div class="t-title">Standardized testing</div>
+                <div class="t-date">Zayd enters grade 3 next · test 2026–27</div>
+              </li>
+              <li>
+                <span class="dot dot-gray"></span>
+                <div class="t-title">Complete 180 days</div>
+                <div class="t-date">62 instructional days remaining</div>
+              </li>
+            </ul>
+
+            <div style="border-top:1px solid var(--line);margin-top:6px;padding-top:14px">
+              <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px"><span class="tiny">Records complete</span><b>4 / 5</b></div>
+              <div class="progress"><span style="width:80%"></span></div>
+              <button class="btn btn-grad btn-sm" style="width:100%;margin-top:14px" onclick="openModal('exportModal')">Export full record</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- EXPORT MODAL -->
+<div class="modal-wrap" id="exportModal">
+  <div class="modal-card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+      <div>
+        <h3>Export records</h3>
+        <p class="tiny" style="margin-top:4px">Compliance-ready documents for the Rahman household, 2025–26.</p>
+      </div>
+      <button class="btn btn-ghost btn-sm no-print" aria-label="Close" onclick="closeModal('exportModal')">✕</button>
+    </div>
+    <ul class="modal-list">
+      <li><span class="fi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3v5h5M14 3l5 5v11a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1z"/></svg></span> Attendance &amp; hours log (all children) <span class="sz">PDF · 3 pp</span></li>
+      <li><span class="fi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3v5h5M14 3l5 5v11a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1z"/></svg></span> Report cards — all terms <span class="sz">PDF · 6 pp</span></li>
+      <li><span class="fi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3v5h5M14 3l5 5v11a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1z"/></svg></span> Layla's official transcript <span class="sz">PDF · 2 pp</span></li>
+      <li><span class="fi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3v5h5M14 3l5 5v11a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1z"/></svg></span> Work-sample portfolio index <span class="sz">PDF · 5 pp</span></li>
+      <li><span class="fi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3v5h5M14 3l5 5v11a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1z"/></svg></span> PA Home Education Portfolio Summary <span class="sz">PDF · 4 pp</span></li>
+    </ul>
+    <div class="no-print" style="display:flex;gap:8px;margin-top:6px">
+      <button class="btn btn-primary" style="flex:1" onclick="window.print()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4v-6h16v6h-2M8 14h8v8H8z"/></svg>
+        Print
+      </button>
+      <button class="btn btn-ghost" onclick="closeModal('exportModal');showToast('Bundle exported to Downloads')">Download bundle</button>
+    </div>
+  </div>
+</div>
+
+<!-- REPORT CARD PRINT MODAL -->
+<div class="modal-wrap" id="rcModal">
+  <div class="modal-card" style="max-width:560px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+      <h3 id="rcModalTitle">Report Card</h3>
+      <button class="btn btn-ghost btn-sm no-print" aria-label="Close" onclick="closeModal('rcModal')">✕</button>
+    </div>
+    <div id="rcModalBody" style="margin-top:14px"></div>
+    <div class="no-print" style="display:flex;gap:8px;margin-top:16px">
+      <button class="btn btn-primary" style="flex:1" onclick="window.print()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4v-6h16v6h-2M8 14h8v8H8z"/></svg>
+        Print report card
+      </button>
+      <button class="btn btn-ghost" onclick="closeModal('rcModal');showToast('Report card downloaded')">Download</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== BLOCK C — shared JS helpers ===== */
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('backdrop').classList.toggle('show');}
+function openModal(id){document.getElementById(id).classList.add('show');}
+function closeModal(id){document.getElementById(id).classList.remove('show');}
+let _toastT;function showToast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.className='toast';document.body.appendChild(t);}t.textContent=msg;t.classList.add('show');clearTimeout(_toastT);_toastT=setTimeout(()=>t.classList.remove('show'),2500);}
+function initTabs(scope){(scope||document).querySelectorAll('[data-tabs]').forEach(function(group){var tabs=group.querySelectorAll('.tab');tabs.forEach(function(tab){tab.addEventListener('click',function(){var panelId=tab.getAttribute('data-tab');group.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');var host=group.getAttribute('data-panels')?document.getElementById(group.getAttribute('data-panels')):group.parentElement;host.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));var panel=document.getElementById(panelId);if(panel)panel.classList.add('active');});});});}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal-wrap.show').forEach(m=>m.classList.remove('show'));}});
+document.addEventListener('DOMContentLoaded',function(){initTabs();document.querySelectorAll('.progress>span').forEach(function(el){var w=el.style.width;el.style.width='0';setTimeout(()=>el.style.width=w,100);});});
+
+/* ===== BLOCK D — FAMILY mock data ===== */
+const TODAY = "Thursday, Jul 16, 2026";
+const FAMILY = {
+  school:"Rahman Home Academy", state:"Pennsylvania", parent:"Aisha Rahman", parentInitials:"AR",
+  plan:"Family — $19/mo", daysLogged:118, daysRequired:180,
+  children:[
+    { id:"layla", name:"Layla Rahman", grade:"11th Grade", age:16, accent:"var(--child-layla)", initials:"LR",
+      avgLabel:"GPA 3.86", gpa:3.86, credits:18.5, creditsNeeded:24, attendance:96, hours:742, hoursReq:990,
+      subjects:["Algebra II (Honors)","English 11: American Literature","Chemistry","U.S. History","Arabic III","Qur'an Studies (Tajweed & Tafsir)","Studio Art"],
+      faith:"Memorizing Surah Ar-Rahman", streak:12, marksStyle:"letter" },
+    { id:"yusuf", name:"Yusuf Rahman", grade:"6th Grade", age:11, accent:"var(--child-yusuf)", initials:"YR",
+      avgLabel:"A- / 91%", attendance:96, hours:611, hoursReq:900,
+      subjects:["Math 6","Language Arts 6","Life Science","World History","Faith & Character","Arabic II","Qur'an Studies"],
+      faith:"6-day Qur'an reading streak", streak:6, marksStyle:"letter",
+      recentGrades:[["Ratios Quiz","Math","Jul 14","88","B+"],["Book Report: Ancient Egypt","Language Arts","Jul 10","95","A"],["Cells Lab","Life Science","Jul 9","90","A-"],["Mesopotamia Map","World History","Jul 7","100","A"],["Vocab Quiz Unit 3","Arabic II","Jul 3","85","B"],["Surah Al-Mulk recitation","Qur'an","Jul 1","—","Excellent"]],
+      today:[["8:30","Qur'an — Surah Al-Mulk review"],["9:15","Math 6 — Understanding Ratios"],["10:30","Language Arts — Descriptive Writing"],["1:00","Life Science — Cells"],["2:00","Arabic II — Vocabulary"]] },
+    { id:"zayd", name:"Zayd Rahman", grade:"2nd Grade", age:7, accent:"var(--child-zayd)", initials:"ZR",
+      avgLabel:"On track", attendance:94, hours:548, hoursReq:900,
+      subjects:["Math 2","Reading & Phonics","Science Explorers","Faith & Character (Stories of the Prophets)","Arabic I (Alphabet)","Qur'an (short surahs)"],
+      faith:"Learning Surah Al-Fatihah & Al-Ikhlas", streak:4, marksStyle:"standards" }
+  ]
+};
+// PA compliance: elementary 900 hrs / secondary 990 hrs, 180 days; affidavit due Aug 1 2026; portfolio eval by Jun 30; testing years 3/5/8.
+
+/* ===== STATE REQUIREMENTS DATA (all 5 states) ===== */
+const STATES = {
+  PA:{ name:"Pennsylvania", level:"High regulation", cls:"reg-high",
+    desc:"One of the most structured home-education laws in the country. Requires a notarized affidavit, a documented portfolio, standardized testing in select grades, and an annual review by a qualified evaluator.",
+    items:[
+      {label:"Annual notarized affidavit", note:"File with superintendent by Aug 1", status:"unmet"},
+      {label:"180 days or minimum hours", note:"900 elem / 990 sec · 118/180 logged", status:"met"},
+      {label:"Portfolio of work samples", note:"Maintained across all children", status:"met"},
+      {label:"Standardized testing (grades 3/5/8)", note:"Zayd tests in grade 3 next year", status:"met"},
+      {label:"Qualified evaluator review", note:"Due by Jun 30 · scheduled", status:"met"},
+      {label:"Required subjects taught", note:"8 core subjects + Arabic & Qur'an", status:"met"}
+    ]},
+  NY:{ name:"New York", level:"High regulation", cls:"reg-high",
+    desc:"New York requires an Individualized Home Instruction Plan (IHIP) filed each year, four quarterly progress reports, and an annual assessment for every student.",
+    items:[
+      {label:"Individualized Home Instruction Plan (IHIP)", note:"Filed annually with the district", status:"unmet"},
+      {label:"Quarterly progress reports", note:"4 per year · Q3 submitted", status:"met"},
+      {label:"Annual assessment / test", note:"Required each school year", status:"unmet"},
+      {label:"Letter of intent", note:"Due by Jul 1", status:"met"},
+      {label:"Required hours of instruction", note:"900 elem / 990 sec", status:"met"}
+    ]},
+  FL:{ name:"Florida", level:"Moderate regulation", cls:"reg-moderate",
+    desc:"Florida asks families to file a notice of intent, keep a portfolio of records and work samples, and complete an annual educational evaluation.",
+    items:[
+      {label:"Notice of intent to home-educate", note:"Filed with district superintendent", status:"met"},
+      {label:"Portfolio of records kept", note:"Retained for 2 years", status:"met"},
+      {label:"Annual educational evaluation", note:"Test or evaluator review", status:"unmet"},
+      {label:"Log of educational activities", note:"Ongoing", status:"met"}
+    ]},
+  TX:{ name:"Texas", level:"No reporting required", cls:"reg-low",
+    desc:"Texas treats home schools as private schools. There is NO notice, registration, testing, or reporting requirement. Simply teach a bona fide curriculum covering the five required areas.",
+    items:[
+      {label:"Reading", note:"Part of a bona fide curriculum", status:"met"},
+      {label:"Spelling &amp; grammar", note:"Part of a bona fide curriculum", status:"met"},
+      {label:"Mathematics", note:"Part of a bona fide curriculum", status:"met"},
+      {label:"Good citizenship", note:"Part of a bona fide curriculum", status:"met"}
+    ],
+    empty:"No notice, registration, standardized testing, or state reporting is required in Texas. Records are kept for your own reference only."},
+  CA:{ name:"California", level:"Requirements vary", cls:"reg-varies",
+    desc:"Requirements depend on the path chosen. Most families operate as a private school by filing a Private School Affidavit (PSA) each fall and maintaining attendance and instructional records.",
+    items:[
+      {label:"Private School Affidavit (PSA)", note:"Filed Oct 1–15 annually", status:"unmet"},
+      {label:"Attendance register kept", note:"Daily record maintained", status:"met"},
+      {label:"Course of study on file", note:"Branches of study offered", status:"met"},
+      {label:"Faculty records", note:"Instructor qualifications listed", status:"met"}
+    ]}
+};
+
+/* ===== RENDER: state requirements banner ===== */
+function renderRequirements(code){
+  const s = STATES[code];
+  const el = document.getElementById('reqBanner');
+  let checklist;
+  if(s.empty){
+    checklist = '<div class="req-empty"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>'+s.empty+'</div>'
+      + '<div class="req-checklist" style="margin-top:14px">'
+      + s.items.map(function(it){
+        return '<div class="req-item"><span class="chk chk-met"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><div><div class="req-label">'+it.label+'</div><div class="req-note">'+it.note+'</div></div></div>';
+      }).join('') + '</div>';
+  } else {
+    checklist = '<div class="req-checklist">' + s.items.map(function(it){
+      var icon, cls;
+      if(it.status==='met'){cls='chk-met';icon='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>';}
+      else if(it.status==='na'){cls='chk-na';icon='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14"/></svg>';}
+      else {cls='chk-unmet';icon='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 8v5M12 16h.01"/></svg>';}
+      return '<div class="req-item"><span class="chk '+cls+'">'+icon+'</span><div><div class="req-label">'+it.label+'</div><div class="req-note">'+it.note+'</div></div></div>';
+    }).join('') + '</div>';
+  }
+  el.innerHTML =
+    '<div class="req-banner">'
+    + '<div class="req-top">'
+    +   '<div class="req-state-name"><span class="req-flag">'+code+'</span>'+s.name+'</div>'
+    +   '<span class="pill reg-pill '+s.cls+'">'+s.level+'</span>'
+    + '</div>'
+    + '<div class="req-desc">'+s.desc+'</div>'
+    + checklist
+    + '</div>';
+
+  // sync header + state report label context
+  document.getElementById('headState').textContent = s.name;
+  document.getElementById('stateReportTab').textContent = code==='PA' ? 'State Report' : (code+' Report');
+  var ctx = document.getElementById('srContextNote');
+  if(ctx){ ctx.textContent = code==='PA'
+      ? 'Pennsylvania-formatted year-end portfolio summary.'
+      : s.name+' selected — the formatted summary below reflects your PA home program of record.'; }
+}
+
+/* ===== RENDER: attendance rows ===== */
+function renderAttendance(){
+  var host = document.getElementById('attRows');
+  host.innerHTML = FAMILY.children.map(function(c){
+    var dayPct = Math.round(c.attendance);
+    var hrPct = Math.round(c.hours / c.hoursReq * 100);
+    return '<div class="att-row">'
+      + '<div class="att-child"><span class="att-dot" style="background:'+c.accent+'">'+c.initials+'</span><div><div style="font-weight:600">'+c.name.split(' ')[0]+'</div><div class="tiny">'+c.grade+'</div></div></div>'
+      + '<div class="att-metric"><div class="bar-top"><span>Days present</span><b>'+dayPct+'%</b></div><div class="progress"><span style="width:'+dayPct+'%"></span></div></div>'
+      + '<div class="att-metric"><div class="bar-top"><span>Hours <span class="tiny">('+c.hours+' / '+c.hoursReq+')</span></span><b>'+hrPct+'%</b></div><div class="progress"><span style="width:'+hrPct+'%"></span></div></div>'
+      + '</div>';
+  }).join('');
+}
+
+/* ===== RENDER: attendance heatmap ===== */
+function renderHeatmap(){
+  var months = [
+    {m:'Aug',n:'Aug 2025',days:31,start:5},{m:'Sep',n:'Sep 2025',days:30,start:1},
+    {m:'Oct',n:'Oct 2025',days:31,start:3},{m:'Nov',n:'Nov 2025',days:30,start:6},
+    {m:'Dec',n:'Dec 2025',days:31,start:1},{m:'Jan',n:'Jan 2026',days:31,start:4},
+    {m:'Feb',n:'Feb 2026',days:28,start:0},{m:'Mar',n:'Mar 2026',days:31,start:0},
+    {m:'Apr',n:'Apr 2026',days:30,start:3},{m:'May',n:'May 2026',days:31,start:5},
+    {m:'Jun',n:'Jun 2026',days:30,start:1},{m:'Jul',n:'Jul 2026',days:31,start:3}
+  ];
+  // deterministic pseudo-random so it looks organic but stable
+  function cellState(mi, d, dow){
+    // weekends: no school
+    if(dow===0 || dow===6) return {c:'var(--surface-2)', t:'No school'};
+    var seed = (mi*37 + d*13) % 100;
+    // known holidays (amber)
+    if((mi===3 && d>=24 && d<=28) || (mi===4 && d>=24 && d<=26) || (mi===7 && d>=15)) return {c:'var(--amber-500)', t:'Holiday break'};
+    // July partial / future days after 16th (mi 11 = Jul)
+    if(mi===11 && d>16) return {c:'var(--surface-2)', t:'Upcoming'};
+    if(seed<8) return {c:'#cbd5e1', t:'Absent'};
+    if(seed<22) return {c:'#c7d2fe', t:'Light day'};
+    if(seed<70) return {c:'#6366f1', t:'Present'};
+    return {c:'#3730a3', t:'Full day'};
+  }
+  var host = document.getElementById('heatmap');
+  host.innerHTML = months.map(function(mo, mi){
+    var cells = '';
+    // leading blanks for weekday offset
+    for(var b=0;b<mo.start;b++){ cells += '<span class="heat-cell" style="background:transparent"></span>'; }
+    for(var d=1; d<=mo.days; d++){
+      var dow = (mo.start + d - 1) % 7;
+      var st = cellState(mi, d, dow);
+      cells += '<span class="heat-cell" style="background:'+st.c+'" title="'+mo.m+' '+d+' · '+st.t+'"></span>';
+    }
+    return '<div class="heat-month"><div class="mlabel">'+mo.m+'</div><div class="heat-grid">'+cells+'</div></div>';
+  }).join('');
+}
+
+/* ===== RENDER: report cards ===== */
+var REPORT_CARDS = [
+  {child:"Layla Rahman", initials:"LR", accent:"var(--child-layla)", term:"Term 2 · 2025–26", gpa:"GPA 3.86", date:"Mar 20, 2026",
+   rows:[["Algebra II (Honors)","A-","3.7"],["English 11: American Literature","A","4.0"],["Chemistry","B+","3.3"],["U.S. History","A","4.0"],["Arabic III","A","4.0"],["Qur'an Studies","Pass","—"],["Studio Art","A","4.0"]]},
+  {child:"Yusuf Rahman", initials:"YR", accent:"var(--child-yusuf)", term:"Term 2 · 2025–26", gpa:"A- / 91%", date:"Mar 20, 2026",
+   rows:[["Math 6","B+","88%"],["Language Arts 6","A","95%"],["Life Science","A-","90%"],["World History","A","96%"],["Arabic II","B","85%"],["Qur'an Studies","Excellent","—"]]},
+  {child:"Zayd Rahman", initials:"ZR", accent:"var(--child-zayd)", term:"Term 2 · 2025–26", gpa:"On track", date:"Mar 20, 2026",
+   rows:[["Math 2","Meeting","—"],["Reading & Phonics","Exceeding","—"],["Science Explorers","Meeting","—"],["Faith & Character","Exceeding","—"],["Arabic I","Developing","—"],["Qur'an (short surahs)","Meeting","—"]]},
+  {child:"Layla Rahman", initials:"LR", accent:"var(--child-layla)", term:"Term 1 · 2025–26", gpa:"GPA 3.84", date:"Nov 21, 2025",
+   rows:[["Algebra II (Honors)","B+","3.3"],["English 11: American Literature","A","4.0"],["Chemistry","A-","3.7"],["U.S. History","A","4.0"],["Arabic III","A","4.0"],["Qur'an Studies","Pass","—"],["Studio Art","A","4.0"]]}
+];
+function renderReportCards(){
+  document.getElementById('rcList').innerHTML = REPORT_CARDS.map(function(rc,i){
+    return '<div class="rc-item">'
+      + '<span class="rc-icon" style="background:'+rc.accent+'">'+rc.initials+'</span>'
+      + '<div class="rc-meta"><div class="rc-title">'+rc.child+'</div><div class="tiny">'+rc.term+' · '+rc.gpa+' · generated '+rc.date+'</div></div>'
+      + '<div class="rc-actions"><button class="btn btn-ghost btn-sm" onclick="openReportCard('+i+')">View</button>'
+      + '<button class="btn btn-ghost btn-sm" onclick="openReportCard('+i+')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M4 19h16"/></svg>Download</button></div>'
+      + '</div>';
+  }).join('');
+}
+function openReportCard(i){
+  var rc = REPORT_CARDS[i];
+  document.getElementById('rcModalTitle').textContent = rc.child + ' — ' + rc.term;
+  document.getElementById('rcModalBody').innerHTML =
+    '<div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">'
+    + '<span class="rc-icon" style="background:'+rc.accent+'">'+rc.initials+'</span>'
+    + '<div><div style="font-weight:700">Rahman Home Academy</div><div class="tiny">'+rc.child+' · '+rc.term+' · '+rc.gpa+'</div></div></div>'
+    + '<table><thead><tr><th>Subject</th><th style="text-align:center">Mark</th><th style="text-align:center">Points</th></tr></thead><tbody>'
+    + rc.rows.map(function(r){return '<tr><td>'+r[0]+'</td><td style="text-align:center;font-weight:600">'+r[1]+'</td><td style="text-align:center">'+r[2]+'</td></tr>';}).join('')
+    + '</tbody></table>';
+  openModal('rcModal');
+}
+
+/* ===== RENDER: transcript years ===== */
+var TRANSCRIPT = [
+  {year:"Grade 9 · 2023–24", credits:"6.0",
+   courses:[["Algebra I","","A","1.0","4.0"],["English 9","","A-","1.0","3.7"],["Biology","","B+","1.0","3.3"],["World History","","A","1.0","4.0"],["Arabic I","elective","A","1.0","4.0"],["Qur'an Studies","pass","Pass","0.5","—"],["Physical Education","","A","0.5","4.0"]]},
+  {year:"Grade 10 · 2024–25", credits:"6.0",
+   courses:[["Geometry","","A-","1.0","3.7"],["English 10","","A","1.0","4.0"],["Physics","","B+","1.0","3.3"],["World Geography","","A","1.0","4.0"],["Arabic II","elective","A","1.0","4.0"],["Qur'an Studies","pass","Pass","0.5","—"],["Health","","A","0.5","4.0"]]},
+  {year:"Grade 11 · 2025–26 (in progress)", credits:"6.0",
+   courses:[["Algebra II","honors","A-","1.0","3.7"],["English 11: American Literature","","A","1.0","4.0"],["Chemistry","","B+","1.0","3.3"],["U.S. History","","A","1.0","4.0"],["Arabic III","elective","A","1.0","4.0"],["Qur'an Studies (Tajweed & Tafsir)","pass","Pass","0.5","—"],["Studio Art","","A","0.5","4.0"]]}
+];
+function renderTranscript(){
+  document.getElementById('transcriptYears').innerHTML = TRANSCRIPT.map(function(y){
+    var rows = y.courses.map(function(c){
+      var name = c[0];
+      if(c[1]==='honors') name += '<span class="badge-honors">H · Honors</span>';
+      if(c[1]==='pass') name += '<span class="badge-pass">P · Elective</span>';
+      if(c[1]==='elective') name += '<span class="tiny" style="color:var(--ink-400);margin-left:6px">Elective</span>';
+      return '<tr><td>'+name+'</td><td class="c" style="font-weight:700">'+c[2]+'</td><td class="c">'+c[3]+'</td><td class="c">'+c[4]+'</td></tr>';
+    }).join('');
+    return '<div class="ts-year"><h4><span>'+y.year+'</span><span class="ts-year-credits">'+y.credits+' credits</span></h4>'
+      + '<table class="ts-table"><thead><tr><th>Course</th><th class="c">Grade</th><th class="c">Credit</th><th class="c">Grade Pts</th></tr></thead><tbody>'
+      + rows + '</tbody></table></div>';
+  }).join('');
+}
+
+/* ===== RENDER: portfolio ===== */
+var PORTFOLIO = [
+  {child:"Layla", accent:"var(--child-layla)", subject:"Chemistry", title:"Titration Lab Report", date:"Jul 9, 2026", icon:"beaker"},
+  {child:"Layla", accent:"var(--child-layla)", subject:"English 11", title:"American Lit Essay: The Crucible", date:"Jun 28, 2026", icon:"doc"},
+  {child:"Layla", accent:"var(--child-layla)", subject:"Studio Art", title:"Charcoal Still-Life Study", date:"Jun 15, 2026", icon:"art"},
+  {child:"Yusuf", accent:"var(--child-yusuf)", subject:"World History", title:"Mesopotamia Map Project", date:"Jul 7, 2026", icon:"map"},
+  {child:"Yusuf", accent:"var(--child-yusuf)", subject:"Life Science", title:"Cells Lab — Microscope Sketches", date:"Jul 9, 2026", icon:"beaker"},
+  {child:"Yusuf", accent:"var(--child-yusuf)", subject:"Language Arts", title:"Book Report: Ancient Egypt", date:"Jul 10, 2026", icon:"doc"},
+  {child:"Zayd", accent:"var(--child-zayd)", subject:"Reading", title:"Phonics Reader — Level 2 Recording", date:"Jul 2, 2026", icon:"book"},
+  {child:"Zayd", accent:"var(--child-zayd)", subject:"Arabic I", title:"Alphabet Tracing Worksheet", date:"Jun 30, 2026", icon:"doc"},
+  {child:"Zayd", accent:"var(--child-zayd)", subject:"Science", title:"Weather Journal Drawings", date:"Jun 22, 2026", icon:"art"}
+];
+var PF_ICONS = {
+  beaker:'<path d="M9 3h6M10 3v6l-5 9a2 2 0 002 3h10a2 2 0 002-3l-5-9V3"/>',
+  doc:'<path d="M14 3v5h5M14 3l5 5v11a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1zM9 13h6M9 17h6"/>',
+  art:'<circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1"/><circle cx="15.5" cy="10" r="1"/><path d="M9 16c1 1.3 5 1.3 6 0"/>',
+  map:'<path d="M9 3L3 6v15l6-3 6 3 6-3V3l-6 3-6-3zM9 3v15M15 6v15"/>',
+  book:'<path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2zM4 19a2 2 0 012-2h13"/>',
+};
+function renderPortfolio(){
+  // counts per child
+  var counts = {};
+  PORTFOLIO.forEach(function(p){counts[p.child]=(counts[p.child]||0)+1;});
+  var accents={Layla:"var(--child-layla)",Yusuf:"var(--child-yusuf)",Zayd:"var(--child-zayd)"};
+  document.getElementById('pfCounts').innerHTML = Object.keys(counts).map(function(k){
+    return '<span class="pf-count"><span class="d" style="background:'+accents[k]+'"></span>'+k+' · '+counts[k]+' samples</span>';
+  }).join('') + '<span class="pf-count" style="border-color:var(--green-600);color:var(--green-600)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>'+PORTFOLIO.length+' compliance-ready</span>';
+  document.getElementById('pfGrid').innerHTML = PORTFOLIO.map(function(p){
+    return '<div class="pf-card"><div class="pf-thumb" style="background:linear-gradient(135deg,'+p.accent+' 0%, rgba(0,0,0,.25) 160%)">'
+      + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">'+PF_ICONS[p.icon]+'</svg>'
+      + '<span class="pf-tag"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Compliance-ready</span></div>'
+      + '<div class="pf-body"><div style="font-weight:600;font-size:14px">'+p.title+'</div>'
+      + '<div class="tiny" style="margin-top:4px">'+p.child+' · '+p.subject+'</div>'
+      + '<div class="tiny">'+p.date+'</div></div></div>';
+  }).join('');
+}
+
+/* ===== print a single region cleanly ===== */
+function printRegion(id){
+  var prev = document.getElementById('printRegion');
+  if(prev) prev.removeAttribute('id');
+  var el = document.getElementById(id);
+  if(el){ el.setAttribute('id','printRegion'); el.dataset.origId=id; }
+  window.print();
+  setTimeout(function(){
+    if(el){ el.setAttribute('id', id); }
+  },300);
+}
+// restore original id after print
+window.addEventListener('afterprint', function(){
+  var el = document.getElementById('printRegion');
+  if(el && el.dataset && el.dataset.origId){ el.setAttribute('id', el.dataset.origId); }
+});
+
+/* ===== init ===== */
+document.addEventListener('DOMContentLoaded', function(){
+  renderRequirements('PA');
+  renderAttendance();
+  renderHeatmap();
+  renderReportCards();
+  renderTranscript();
+  renderPortfolio();
+  // re-run progress animation for dynamically added bars
+  document.querySelectorAll('#attRows .progress>span').forEach(function(el){var w=el.style.width;el.style.width='0';setTimeout(()=>el.style.width=w,150);});
+});
+</script>
+</body>
+</html>

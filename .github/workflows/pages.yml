@@ -30,6 +30,7 @@ jobs:
           cp *.html *.css *.js _site/
           cp robots.txt sitemap.xml vercel.json _site/ 2>/dev/null || true
           cp -r public/* _site/ 2>/dev/null || true
+          cp -r preview browse quote _site/ 2>/dev/null || true
           # Create clean-URL redirect folders for GitHub Pages
           for page in browse quote about pricing compare arabic curriculum-builder path-builder apps frameworks resources; do
             if [ -f "_site/${page}.html" ] || [ "$page" = "browse" ]; then

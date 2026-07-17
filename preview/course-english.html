@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Language Arts · Pathways Academy</title>
+<style>
+:root{
+  --indigo-600:#4f46e5;--indigo-700:#4338ca;--indigo-500:#6366f1;
+  --violet-600:#7c3aed;--violet-500:#8b5cf6;
+  --grad:linear-gradient(135deg,#4f46e5 0%,#7c3aed 100%);
+  --grad-soft:linear-gradient(135deg,#eef2ff 0%,#f5f3ff 100%);
+  --ink-900:#0f172a;--ink-700:#334155;--ink-500:#64748b;--ink-400:#94a3b8;
+  --line:#e2e8f0;--bg:#f8fafc;--surface:#fff;--surface-2:#f1f5f9;
+  --green-600:#16a34a;--green-50:#f0fdf4;--amber-500:#f59e0b;--amber-50:#fffbeb;
+  --red-600:#dc2626;--red-50:#fef2f2;--sky-600:#0284c7;
+  --child-layla:#db2777;--child-yusuf:#0891b2;--child-zayd:#ea580c;
+  --r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:24px;--r-full:999px;
+  --sh-sm:0 1px 2px rgba(15,23,42,.06);--sh-md:0 4px 12px rgba(15,23,42,.08);--sh-lg:0 12px 32px rgba(15,23,42,.12);
+  --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-8:48px;--maxw:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink-900);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+h1{font-size:28px;font-weight:700;letter-spacing:-.02em}
+h2{font-size:22px;font-weight:700;letter-spacing:-.01em}
+h3{font-size:18px;font-weight:600}h4{font-size:15px;font-weight:600}
+.small{font-size:13px}.tiny{font-size:12px;color:var(--ink-500)}
+a{color:var(--indigo-600);text-decoration:none}
+:focus-visible{outline:2px solid var(--indigo-600);outline-offset:2px;border-radius:6px}
+.display{font-size:clamp(32px,5vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border-radius:var(--r-md);font-size:14px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:.15s;font-family:inherit}
+.btn-primary{background:var(--indigo-600);color:#fff}.btn-primary:hover{background:var(--indigo-700)}
+.btn-grad{background:var(--grad);color:#fff}.btn-grad:hover{filter:brightness(1.05)}
+.btn-ghost{background:var(--surface);color:var(--ink-700);border-color:var(--line)}.btn-ghost:hover{background:var(--surface-2)}
+.btn-sm{height:32px;padding:0 12px;font-size:13px}.btn-lg{height:48px;padding:0 24px;font-size:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-sm);padding:var(--sp-5)}
+.card-hover{transition:.18s}.card-hover:hover{box-shadow:var(--sh-lg);transform:translateY(-2px)}
+.pill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:var(--r-full);font-size:12px;font-weight:600}
+.pill-green{background:var(--green-50);color:var(--green-600)}.pill-amber{background:var(--amber-50);color:var(--amber-500)}
+.pill-red{background:var(--red-50);color:var(--red-600)}.pill-indigo{background:#eef2ff;color:var(--indigo-600)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;padding:12px;color:var(--ink-500);font-size:12px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line)}
+td{padding:12px;border-bottom:1px solid var(--line)}tr:hover td{background:var(--surface-2)}
+.progress{height:8px;background:var(--surface-2);border-radius:var(--r-full);overflow:hidden}
+.progress>span{display:block;height:100%;background:var(--grad);border-radius:var(--r-full);transition:width .8s ease}
+.stat-card .num{font-size:28px;font-weight:700}.stat-card .lbl{font-size:13px;color:var(--ink-500)}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.grid{display:grid;gap:24px}.g-2{grid-template-columns:repeat(2,1fr)}.g-3{grid-template-columns:repeat(3,1fr)}.g-4{grid-template-columns:repeat(4,1fr)}
+.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:24px 0;border-bottom:1px solid var(--line);margin-bottom:24px;flex-wrap:wrap}
+.page-sub{color:var(--ink-500);font-size:14px;margin-top:4px}.page-actions{display:flex;gap:8px;flex-wrap:wrap}
+.app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+.sidebar{background:var(--surface);border-right:1px solid var(--line);padding:20px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:6px;overflow-y:auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;padding:8px}
+.brand .mark{width:32px;height:32px;border-radius:9px;background:var(--grad);flex:none}
+.nav-group-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-400);padding:12px 12px 4px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--r-md);color:var(--ink-700);font-weight:500;font-size:14px}
+.nav-item:hover{background:var(--surface-2)}.nav-item.active{background:#eef2ff;color:var(--indigo-600);font-weight:600}
+.nav-item .ico{width:18px;height:18px;flex:none}.nav-spacer{flex:1}
+.hh-card{margin-top:8px;padding:10px;border:1px solid var(--line);border-radius:var(--r-md);display:flex;align-items:center;gap:8px;font-size:13px}
+.topbar{display:flex;align-items:center;gap:16px;height:64px;padding:0 24px;background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.topbar .search{flex:1;max-width:360px;height:38px;border:1px solid var(--line);border-radius:var(--r-full);padding:0 14px;background:var(--surface-2);font-size:14px;font-family:inherit}
+.avatar{width:34px;height:34px;border-radius:var(--r-full);display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px;background:var(--indigo-600);flex:none}
+.main{min-width:0}.content{max-width:var(--maxw);margin:0 auto;padding:0 24px 48px}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;color:var(--ink-700)}
+.backdrop{position:fixed;inset:0;background:rgba(15,23,42,.4);z-index:40;display:none}.backdrop.show{display:block}
+.modal-wrap{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(15,23,42,.45)}
+.modal-wrap.show{display:flex}
+.modal-card{background:var(--surface);border-radius:var(--r-xl);box-shadow:var(--sh-lg);max-width:480px;width:100%;padding:24px;max-height:90vh;overflow-y:auto}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink-900);color:#fff;padding:12px 20px;border-radius:var(--r-full);font-size:14px;font-weight:500;opacity:0;pointer-events:none;transition:.3s;z-index:80}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:20px;overflow-x:auto}
+.tab{padding:10px 16px;font-size:14px;font-weight:600;color:var(--ink-500);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;font-family:inherit}
+.tab.active{color:var(--indigo-600);border-bottom-color:var(--indigo-600)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.field{margin-bottom:14px}.field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;height:40px;border:1px solid var(--line);border-radius:var(--r-md);padding:0 12px;font-size:14px;font-family:inherit;background:var(--surface)}
+.field textarea{height:auto;padding:10px 12px;min-height:72px}
+@media(max-width:768px){
+  .app{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;z-index:50;transform:translateX(-100%);transition:.25s;width:260px}
+  .sidebar.open{transform:none}.hamburger{display:inline-flex}
+  .g-2,.g-3,.g-4{grid-template-columns:1fr}
+  .page-head{align-items:flex-start}
+  table.responsive{display:block;overflow-x:auto;white-space:nowrap}
+}
+@media print{
+  .sidebar,.topbar,.hamburger,.no-print{display:none!important}
+  .app{display:block}.content{padding:0}body{background:#fff}
+}
+/* ===== PAGE STYLES ===== */
+.subject-hero{background:var(--grad-soft);border:1px solid var(--line);border-radius:var(--r-xl);padding:28px;margin-bottom:24px;display:flex;gap:20px;align-items:flex-start}
+.subject-hero .sicon{width:56px;height:56px;border-radius:var(--r-lg);background:var(--grad);display:grid;place-items:center;color:#fff;flex:none}
+.subject-hero .sicon svg{width:30px;height:30px}
+.chain{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+.chain .step{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-full);padding:5px 12px;font-size:12px;font-weight:600;color:var(--ink-700)}
+.chain .arrow{color:var(--ink-400);font-weight:700}
+.band-pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.overview-note{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--violet-500);border-radius:var(--r-md);padding:14px 16px;font-size:14px;color:var(--ink-700);margin-top:16px}
+.section-label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-400);font-weight:700;margin:24px 0 10px}
+.unit{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);padding:18px 20px;margin-bottom:14px;box-shadow:var(--sh-sm)}
+.unit-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.unit-num{width:28px;height:28px;border-radius:var(--r-sm);background:#eef2ff;color:var(--indigo-600);font-weight:700;font-size:13px;display:grid;place-items:center;flex:none}
+.unit p.desc{color:var(--ink-700);font-size:14px;margin:8px 0 10px 40px}
+.skill-tags{display:flex;flex-wrap:wrap;gap:7px;margin-left:40px}
+.skill-tags .tag{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-full);padding:4px 11px;font-size:12px;color:var(--ink-700)}
+.band-intro{background:var(--grad-soft);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px 18px;margin-bottom:20px}
+.band-intro h3{margin-bottom:6px}
+.courses-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.course-chip{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:8px 12px;font-size:13px;font-weight:600;color:var(--ink-900)}
+.course-chip span{display:block;font-weight:400;color:var(--ink-500);font-size:11px}
+.lesson{border:1px solid var(--line);border-radius:var(--r-lg);background:linear-gradient(180deg,#fff, #fbfaff);padding:20px;margin-bottom:16px}
+.lesson-tag{display:inline-flex;align-items:center;gap:6px;background:var(--violet-500);color:#fff;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:4px 10px;border-radius:var(--r-full)}
+.lesson h4.obj{margin:12px 0 6px}
+.lesson .obj-txt{font-size:14px;color:var(--ink-700);margin-bottom:12px}
+.lesson .body-txt{font-size:14px;color:var(--ink-700);margin-bottom:12px}
+.lesson .body-txt p{margin-bottom:8px}
+.activity{background:var(--surface-2);border-radius:var(--r-md);padding:14px 16px;font-size:14px}
+.activity .atitle{font-weight:700;font-size:13px;color:var(--indigo-700);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.activity ol,.activity ul{margin:6px 0 0 20px}.activity li{margin-bottom:4px;color:var(--ink-700)}
+.readlist{list-style:none;margin-top:10px}
+.readlist li{padding:8px 0;border-bottom:1px solid var(--line);font-size:14px;display:flex;gap:10px;align-items:baseline}
+.readlist li:last-child{border-bottom:none}
+.readlist .bk{font-weight:600}.readlist .au{color:var(--ink-500);font-size:13px}
+.assess-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:12px}
+@media(max-width:768px){.assess-grid{grid-template-columns:1fr}.subject-hero{flex-direction:column}}
+.assess-card{border:1px solid var(--line);border-radius:var(--r-lg);padding:16px;background:var(--surface)}
+.assess-card .ah{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;margin-bottom:6px}
+.assess-card p{font-size:13px;color:var(--ink-500)}
+.backlinks{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;padding-top:20px;border-top:1px solid var(--line)}
+.faith-note{display:flex;gap:10px;align-items:flex-start;background:var(--green-50);border:1px solid #bbf7d0;border-radius:var(--r-md);padding:12px 14px;font-size:13px;color:#166534;margin-left:40px;margin-top:12px}
+.faith-note svg{flex:none;margin-top:1px}
+</style>
+</head>
+<body>
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <a href="dashboard.html" class="brand"><span class="mark"></span>Pathways Learn</a>
+    <div class="nav-group-label">Teach</div>
+    <a href="dashboard.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Dashboard</a>
+    <a href="child.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="8" r="2"/></svg>Children</a>
+    <a href="learn.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z M12 5v14"/></svg>Learn</a>
+    <a href="subjects.html" class="nav-item active"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Subjects</a>
+    <a href="planner.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>Planner</a>
+    <a href="gradebook.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8M20 12v7H4V5h11"/></svg>Gradebook</a>
+    <div class="nav-group-label">Records</div>
+    <a href="compliance.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Compliance <span class="pill pill-indigo" style="margin-left:auto;height:18px;padding:0 7px;font-size:10px">PA</span></a>
+    <a href="settings.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>Settings</a>
+    <div class="nav-spacer"></div>
+    <div class="hh-card"><span class="avatar" style="width:28px;height:28px;font-size:11px">RH</span><div><div style="font-weight:600">Rahman Household</div><div class="tiny">Pennsylvania</div></div></div>
+    <a href="index.html" class="nav-item" style="font-size:13px;color:var(--ink-500)">← Back to site</a>
+  </aside>
+  <main class="main">
+    <div class="topbar">
+      <button class="hamburger" aria-label="Open menu" onclick="toggleSidebar()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <input class="search" placeholder="Search lessons, children, records…" aria-label="Search">
+      <span style="flex:1"></span>
+      <button class="btn btn-ghost btn-sm" onclick="showToast('Attendance logged for today')">Log attendance</button>
+      <span class="avatar">AR</span>
+    </div>
+    <div class="content">
+
+      <!-- PAGE HEAD -->
+      <div class="page-head">
+        <div>
+          <div class="tiny" style="margin-bottom:6px"><a href="subjects.html">Subjects</a> <span style="color:var(--ink-400)">/</span> English Language Arts</div>
+          <h1>English Language Arts</h1>
+          <div class="page-sub">From first sounds to skilled rhetoric — reading, writing, speaking, and listening with clarity, imagination, and good character. Grades K–12.</div>
+        </div>
+        <div class="page-actions">
+          <a href="learn.html" class="btn btn-ghost">Open in Learn</a>
+          <button class="btn btn-grad" onclick="openModal('addModal')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            Add to a child's plan
+          </button>
+        </div>
+      </div>
+
+      <!-- HERO -->
+      <div class="subject-hero">
+        <div class="sicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h7a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H4z"/><path d="M20 5h-7a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h7z"/></svg></div>
+        <div style="flex:1">
+          <h2>The through-line: sound → word → sentence → story → argument</h2>
+          <p class="page-sub" style="max-width:70ch;margin-top:8px">Learners begin by hearing and forming the sounds of language, grow into fluent readers and confident writers, then move on to analyze great literature and craft persuasive, well-researched prose. Every level pairs skill-building with worthy reading that quietly models honesty, kindness, courage, and gratitude.</p>
+          <div class="chain">
+            <span class="step">Phonics & Early Reading</span><span class="arrow">→</span>
+            <span class="step">Reading Comprehension</span><span class="arrow">→</span>
+            <span class="step">Grammar & Writing</span><span class="arrow">→</span>
+            <span class="step">Literature & Composition</span><span class="arrow">→</span>
+            <span class="step">American · World · British Lit</span><span class="arrow">→</span>
+            <span class="step">Essay & Rhetoric</span>
+          </div>
+          <div class="band-pills">
+            <span class="pill pill-indigo">K–2 · 3 courses</span>
+            <span class="pill pill-indigo">3–5 · 3 courses</span>
+            <span class="pill pill-indigo">6–8 · 3 courses</span>
+            <span class="pill pill-indigo">9–12 · 4 courses</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- OVERVIEW -->
+      <div class="card">
+        <h3>What this subject builds toward</h3>
+        <div class="grid g-3" style="margin-top:16px">
+          <div>
+            <h4 style="color:var(--indigo-600)">Reading</h4>
+            <p class="small" style="color:var(--ink-700);margin-top:6px">Decoding and fluency in the early years mature into comprehension strategies, literary analysis, and independent critical reading of full-length classics.</p>
+          </div>
+          <div>
+            <h4 style="color:var(--indigo-600)">Writing</h4>
+            <p class="small" style="color:var(--ink-700);margin-top:6px">From letter formation and complete sentences to structured paragraphs, multi-paragraph essays, research papers with citations, and persuasive rhetoric.</p>
+          </div>
+          <div>
+            <h4 style="color:var(--indigo-600)">Language & Speaking</h4>
+            <p class="small" style="color:var(--ink-700);margin-top:6px">Phonemic awareness, vocabulary, grammar mastery, and word roots; plus recitation, discussion, and oral presentation at every band.</p>
+          </div>
+        </div>
+        <div class="overview-note">
+          <strong>Faith &amp; character, woven in naturally.</strong> Reading selections and writing prompts often invite reflection on honesty, patience, mercy, gratitude, and courage — the same virtues families care about — without ever becoming preachy. Literature is chosen to be wholesome and worthy of discussion around the kitchen table.
+        </div>
+        <div class="overview-note" style="border-left-color:var(--indigo-500)">
+          <strong>Standards note.</strong> Units are aligned to Common Core–style English Language Arts objectives for reading (literature &amp; informational text), writing, speaking &amp; listening, and language conventions. Objectives are described for planning and portfolio use; Pathways is an independent curriculum and does not claim official state or Common Core endorsement.
+        </div>
+      </div>
+
+      <!-- GRADE BAND TABS -->
+      <h2 style="margin:32px 0 4px">Scope &amp; sequence by grade band</h2>
+      <p class="page-sub" style="margin-bottom:16px">Select a band to see its courses, units, example skills, and sample lessons.</p>
+
+      <div class="tabs" data-tabs data-panels="bandPanels" role="tablist">
+        <button class="tab active" data-tab="band-k2">Primary · K–2</button>
+        <button class="tab" data-tab="band-35">Elementary · 3–5</button>
+        <button class="tab" data-tab="band-68">Middle · 6–8</button>
+        <button class="tab" data-tab="band-912">High School · 9–12</button>
+      </div>
+
+      <div id="bandPanels">
+
+        <!-- ================= K-2 ================= -->
+        <div class="tab-panel active" id="band-k2">
+          <div class="band-intro">
+            <h3>Primary · Kindergarten to Grade 2</h3>
+            <p class="small" style="color:var(--ink-700)">Learning to read and beginning to write. Every day mixes phonics, read-alouds, and gentle handwriting. The goal by the end of Grade 2 is a confident, fluent early reader who can write a clear sentence and tell a story with a beginning, middle, and end.</p>
+            <div class="courses-row">
+              <span class="course-chip">ELA K — Sounds &amp; Letters<span>Phonemic awareness · handwriting</span></span>
+              <span class="course-chip">ELA 1 — Reading &amp; Sentences<span>Decoding · sight words</span></span>
+              <span class="course-chip">ELA 2 — Fluency &amp; Storytelling<span>Fluent reading · paragraphs</span></span>
+            </div>
+          </div>
+
+          <div class="section-label">Units &amp; skills</div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">1</span><h3>Phonemic Awareness — Hearing Sounds</h3></div>
+            <p class="desc">Before letters, the ear. Learners rhyme, clap syllables, and isolate the first, middle, and last sounds in spoken words.</p>
+            <div class="skill-tags"><span class="tag">Rhyming pairs</span><span class="tag">Syllable clapping</span><span class="tag">Beginning &amp; ending sounds</span><span class="tag">Blending /c/-/a/-/t/</span><span class="tag">Segmenting words</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">2</span><h3>Phonics &amp; the Alphabetic Code</h3></div>
+            <p class="desc">Matching letters to sounds: short vowels, consonants, digraphs (sh, ch, th), and blends (st, bl, tr) to unlock reading.</p>
+            <div class="skill-tags"><span class="tag">Letter-sound match</span><span class="tag">Short vowels a-e-i-o-u</span><span class="tag">Digraphs sh/ch/th</span><span class="tag">Consonant blends</span><span class="tag">CVC words</span><span class="tag">Silent-e / long vowels</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">3</span><h3>Decoding &amp; Sight Words</h3></div>
+            <p class="desc">Sounding out new words letter by letter, plus instant recognition of high-frequency words that don't play by the rules.</p>
+            <div class="skill-tags"><span class="tag">Sound it out</span><span class="tag">Word families (-at, -ig, -op)</span><span class="tag">Sight words: the, was, said</span><span class="tag">Dolch list 1</span><span class="tag">Self-correcting</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">4</span><h3>Early Reading Fluency</h3></div>
+            <p class="desc">Reading short decodable books smoothly, with accuracy and expression, and understanding what was read.</p>
+            <div class="skill-tags"><span class="tag">Decodable readers</span><span class="tag">Reading with expression</span><span class="tag">Retell the story</span><span class="tag">Who/what/where questions</span><span class="tag">Reading pace</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">5</span><h3>Handwriting &amp; Letter Formation</h3></div>
+            <p class="desc">Proper pencil grip and forming each letter top-to-bottom, on the line — building toward neat, readable writing.</p>
+            <div class="skill-tags"><span class="tag">Pencil grip</span><span class="tag">Uppercase &amp; lowercase</span><span class="tag">Letters on the line</span><span class="tag">Spacing between words</span><span class="tag">Copywork</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">6</span><h3>Sentence Basics</h3></div>
+            <p class="desc">A sentence is a complete thought. Capital at the start, punctuation at the end, and a naming part plus a doing part.</p>
+            <div class="skill-tags"><span class="tag">Capital letters</span><span class="tag">End marks . ? !</span><span class="tag">Naming &amp; action words</span><span class="tag">Complete vs. incomplete</span><span class="tag">Writing my own sentence</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">7</span><h3>Storytelling &amp; Listening</h3></div>
+            <p class="desc">Listening to read-alouds and telling stories with a clear beginning, middle, and end — the seed of all later writing.</p>
+            <div class="skill-tags"><span class="tag">Beginning-middle-end</span><span class="tag">Characters &amp; setting</span><span class="tag">Read-aloud comprehension</span><span class="tag">Picture prompts</span><span class="tag">Sequencing events</span></div>
+            <div class="faith-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9-8a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 3.5-9 8-9 8z"/></svg><span>Read-alouds like <em>The Little Red Hen</em> and fables of the ant and the grasshopper spark gentle talks about hard work, honesty, and helping others.</span></div>
+          </div>
+
+          <div class="section-label">Sample lessons</div>
+
+          <div class="lesson">
+            <span class="lesson-tag">Sample Lesson · Grade 1 · Phonics</span>
+            <h4 class="obj">Objective</h4>
+            <p class="obj-txt">Blend three sounds to read and spell short-<em>a</em> CVC words (consonant–vowel–consonant), such as <strong>cat, map, sad, ran</strong>.</p>
+            <h4 class="obj">Lesson</h4>
+            <div class="body-txt">
+              <p>We warm up by "robot talking": the teacher says <em>/m/ … /a/ … /p/</em> slowly and the learner pushes the sounds together into <strong>map</strong>. Then we reverse it — hear the whole word and tap out each sound on three fingers.</p>
+              <p>Using letter tiles a–m–p–c–t–s, we build a word, swap one tile, and read the new word aloud. Changing the first sound turns <strong>cat</strong> into <strong>sat</strong>, then <strong>mat</strong>. This shows that letters carry sounds, and sounds make words.</p>
+            </div>
+            <div class="activity">
+              <div class="atitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M20 12v7H4V5h11"/></svg>Practice — Word-family ladder</div>
+              <ol>
+                <li>Start with <strong>cat</strong>. Read it aloud, tapping each sound.</li>
+                <li>Change just the first letter to make <strong>sat</strong>, <strong>rat</strong>, <strong>bat</strong>.</li>
+                <li>Now change the last letter of <strong>cat</strong> to make <strong>can</strong>, <strong>cap</strong>, <strong>cab</strong>.</li>
+                <li>Write your two favorite words in your notebook and draw a tiny picture for each.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="lesson">
+            <span class="lesson-tag">Sample Lesson · Grade 2 · Sentences</span>
+            <h4 class="obj">Objective</h4>
+            <p class="obj-txt">Write a complete sentence with a capital letter, an end mark, and both a naming part (who or what) and a telling part (what they do).</p>
+            <h4 class="obj">Lesson</h4>
+            <div class="body-txt">
+              <p>Every sentence answers two questions: <em>Who or what?</em> and <em>What happens?</em> In "The bird sings," <strong>the bird</strong> is the naming part and <strong>sings</strong> is the telling part. Take one away and the thought feels unfinished — "The bird" leaves us waiting.</p>
+              <p>We fix "grumpy fragments" together. Given "ran to the door," we ask <em>who ran?</em> and add a naming part: "The puppy ran to the door." Then we check the capital letter at the front and the period at the end.</p>
+            </div>
+            <div class="activity">
+              <div class="atitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Practice — Build &amp; fix</div>
+              <ul>
+                <li>Fix these fragments into full sentences: "jumped over the log" · "my kind sister" · "the warm bread".</li>
+                <li>Write one sentence about something kind you did today. Circle the naming part; underline the telling part.</li>
+                <li>Check: capital at the start? end mark at the finish?</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-label">Wholesome reading at this band</div>
+          <div class="card">
+            <ul class="readlist">
+              <li><span class="bk">Frog and Toad Are Friends</span> <span class="au">— Arnold Lobel · loyalty &amp; patient friendship</span></li>
+              <li><span class="bk">The Little Red Hen</span> <span class="au">— folk tale · the reward of honest work</span></li>
+              <li><span class="bk">Corduroy</span> <span class="au">— Don Freeman · kindness &amp; belonging</span></li>
+              <li><span class="bk">The Tortoise and the Hare</span> <span class="au">— Aesop · patience &amp; perseverance</span></li>
+              <li><span class="bk">Make Way for Ducklings</span> <span class="au">— Robert McCloskey · care for others</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ================= 3-5 ================= -->
+        <div class="tab-panel" id="band-35">
+          <div class="band-intro">
+            <h3>Elementary · Grades 3 to 5</h3>
+            <p class="small" style="color:var(--ink-700)">The shift from <em>learning to read</em> to <em>reading to learn</em>. Learners read longer texts with real comprehension strategies, grow their vocabulary, master the parts of speech, and write organized paragraphs and essays.</p>
+            <div class="courses-row">
+              <span class="course-chip">ELA 3 — Reading &amp; Paragraphs<span>Comprehension · grammar</span></span>
+              <span class="course-chip">ELA 4 — Grammar &amp; Essays<span>Parts of speech · essays</span></span>
+              <span class="course-chip">ELA 5 — Composition &amp; Poetry<span>Book reports · poetry</span></span>
+            </div>
+          </div>
+
+          <div class="section-label">Units &amp; skills</div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">1</span><h3>Reading Comprehension Strategies</h3></div>
+            <p class="desc">Active reading: predicting, questioning, visualizing, inferring, and summarizing to truly understand fiction and nonfiction.</p>
+            <div class="skill-tags"><span class="tag">Main idea &amp; details</span><span class="tag">Making inferences</span><span class="tag">Cause &amp; effect</span><span class="tag">Compare &amp; contrast</span><span class="tag">Summarizing</span><span class="tag">Context clues</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">2</span><h3>Vocabulary Development</h3></div>
+            <p class="desc">Growing word power through context, prefixes and suffixes, synonyms/antonyms, and shades of meaning.</p>
+            <div class="skill-tags"><span class="tag">Prefixes un-, re-, pre-</span><span class="tag">Suffixes -ful, -less, -ly</span><span class="tag">Synonyms &amp; antonyms</span><span class="tag">Multiple-meaning words</span><span class="tag">Dictionary &amp; glossary</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">3</span><h3>Grammar &amp; the Parts of Speech</h3></div>
+            <p class="desc">The building blocks of language: nouns, verbs, adjectives, adverbs, pronouns, and how they work together in sentences.</p>
+            <div class="skill-tags"><span class="tag">Nouns &amp; pronouns</span><span class="tag">Verbs &amp; verb tense</span><span class="tag">Adjectives &amp; adverbs</span><span class="tag">Subject–verb agreement</span><span class="tag">Conjunctions</span><span class="tag">Commas in a series</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">4</span><h3>Paragraph Structure</h3></div>
+            <p class="desc">A strong paragraph has a topic sentence, supporting details, and a closing sentence — one idea, well developed.</p>
+            <div class="skill-tags"><span class="tag">Topic sentence</span><span class="tag">Supporting details</span><span class="tag">Closing sentence</span><span class="tag">Staying on topic</span><span class="tag">Transition words</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">5</span><h3>The Five-Paragraph Essay</h3></div>
+            <p class="desc">Introduction, three body paragraphs, and a conclusion — with a plan (outline) before drafting, and revision after.</p>
+            <div class="skill-tags"><span class="tag">Thesis / big idea</span><span class="tag">Outlining</span><span class="tag">Intro &amp; conclusion</span><span class="tag">Narrative &amp; opinion writing</span><span class="tag">Revise &amp; edit</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">6</span><h3>Spelling &amp; Word Study</h3></div>
+            <p class="desc">Weekly patterns and rules — plurals, homophones, and tricky spellings — reinforced through writing, not just lists.</p>
+            <div class="skill-tags"><span class="tag">Plural rules</span><span class="tag">Homophones (their/there)</span><span class="tag">Doubling &amp; drop-e</span><span class="tag">Commonly misspelled words</span><span class="tag">Proofreading</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">7</span><h3>Book Reports &amp; Response to Reading</h3></div>
+            <p class="desc">Reading a whole chapter book and responding: summarizing plot, describing characters, and sharing an honest opinion with reasons.</p>
+            <div class="skill-tags"><span class="tag">Plot summary</span><span class="tag">Character description</span><span class="tag">Setting &amp; theme</span><span class="tag">Favorite part &amp; why</span><span class="tag">Recommendation</span></div>
+            <div class="faith-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9-8a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 3.5-9 8-9 8z"/></svg><span>Titles like <em>Charlotte's Web</em> and <em>The Trumpet of the Swan</em> open natural conversations about friendship, sacrifice, and quiet courage.</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">8</span><h3>Introduction to Poetry</h3></div>
+            <p class="desc">Reading and writing simple poems — noticing rhyme, rhythm, and imagery, and playing with similes and metaphors.</p>
+            <div class="skill-tags"><span class="tag">Rhyme &amp; rhythm</span><span class="tag">Imagery</span><span class="tag">Simile &amp; metaphor</span><span class="tag">Acrostic &amp; cinquain</span><span class="tag">Reading aloud</span></div>
+          </div>
+
+          <div class="section-label">Sample lessons</div>
+
+          <div class="lesson">
+            <span class="lesson-tag">Sample Lesson · Grade 4 · Comprehension</span>
+            <h4 class="obj">Objective</h4>
+            <p class="obj-txt">Make an <strong>inference</strong> by combining clues in the text with what you already know, and support it with evidence.</p>
+            <h4 class="obj">Lesson</h4>
+            <div class="body-txt">
+              <p>Authors don't tell us everything — good readers "read between the lines." An inference is a smart guess: <em>text clue + my knowledge = inference</em>. If a story says "Maryam pulled her coat tight and her breath made little clouds," the author never wrote "it was cold," yet we know it was.</p>
+              <p>We practice on a short passage about a boy who "kept glancing at the clock and couldn't finish his breakfast." Clues (watching the clock, no appetite) plus what we know (people feel this way before something big) let us infer he was <em>nervous or excited</em> about the day ahead — then we point back to the exact words that told us.</p>
+            </div>
+            <div class="activity">
+              <div class="atitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M20 12v7H4V5h11"/></svg>Practice — Clue + Knowledge = Inference</div>
+              <ol>
+                <li>Read three short scenes provided in the lesson.</li>
+                <li>For each, fill a three-column chart: the <em>text clue</em>, <em>what I know</em>, and my <em>inference</em>.</li>
+                <li>Write one sentence: "I can tell that ___ because the text says ___."</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="lesson">
+            <span class="lesson-tag">Sample Lesson · Grade 5 · Writing</span>
+            <h4 class="obj">Objective</h4>
+            <p class="obj-txt">Plan and draft a strong body paragraph with a clear topic sentence and at least three supporting details.</p>
+            <h4 class="obj">Lesson</h4>
+            <div class="body-txt">
+              <p>Think of a paragraph as a table: the topic sentence is the tabletop (the one big idea), and the supporting details are the legs that hold it up. A wobbly paragraph has too few legs, or legs that belong to a different table.</p>
+              <p>Together we take the topic sentence "Helping at home teaches responsibility." Then we brainstorm legs: <em>you learn to finish what you start; family members can rely on you; you feel proud of a job done well.</em> We arrange them from smallest to strongest and add a closing sentence that echoes the big idea.</p>
+            </div>
+            <div class="activity">
+              <div class="atitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Practice — Table-top &amp; legs</div>
+              <ul>
+                <li>Choose a topic sentence: "A good friend can be trusted" <em>or</em> "Reading before bed is a good habit."</li>
+                <li>Draw a table and write three "legs" (details) that support it.</li>
+                <li>Write the full paragraph: topic sentence, three details, closing sentence. Reread and fix one thing.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-label">Wholesome reading at this band</div>
+          <div class="card">
+            <ul class="readlist">
+              <li><span class="bk">Charlotte's Web</span> <span class="au">— E. B. White · friendship, loyalty, and sacrifice</span></li>
+              <li><span class="bk">Sarah, Plain and Tall</span> <span class="au">— Patricia MacLachlan · family &amp; belonging</span></li>
+              <li><span class="bk">The Boxcar Children</span> <span class="au">— Gertrude Chandler Warner · resourcefulness &amp; togetherness</span></li>
+              <li><span class="bk">Because of Winn-Dixie</span> <span class="au">— Kate DiCamillo · kindness &amp; forgiveness</span></li>
+              <li><span class="bk">Aesop's Fables</span> <span class="au">— classic short tales with a moral to discuss</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ================= 6-8 ================= -->
+        <div class="tab-panel" id="band-68">
+          <div class="band-intro">
+            <h3>Middle · Grades 6 to 8</h3>
+            <p class="small" style="color:var(--ink-700)">Reading becomes analysis and writing becomes argument. Learners study the elements of fiction and nonfiction, defend a claim with evidence, conduct short research with proper citations, and reach grammar and vocabulary mastery.</p>
+            <div class="courses-row">
+              <span class="course-chip">Language Arts 6 — Elements of Literature<span>Fiction elements · paragraphs</span></span>
+              <span class="course-chip">Language Arts 7 — Analysis &amp; Argument<span>Literary analysis · persuasion</span></span>
+              <span class="course-chip">Language Arts 8 — Research &amp; Craft<span>Research paper · grammar mastery</span></span>
+            </div>
+          </div>
+
+          <div class="section-label">Units &amp; skills</div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">1</span><h3>Elements of Fiction</h3></div>
+            <p class="desc">The machinery of story: plot arc, character, setting, point of view, conflict, and theme — and how authors use them.</p>
+            <div class="skill-tags"><span class="tag">Plot &amp; conflict</span><span class="tag">Characterization</span><span class="tag">Point of view</span><span class="tag">Setting &amp; mood</span><span class="tag">Theme</span><span class="tag">Foreshadowing</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">2</span><h3>Literary Analysis</h3></div>
+            <p class="desc">Reading closely to interpret meaning, then writing about it — text evidence, figurative language, and the author's craft.</p>
+            <div class="skill-tags"><span class="tag">Close reading</span><span class="tag">Text evidence (quote &amp; explain)</span><span class="tag">Symbolism</span><span class="tag">Tone &amp; diction</span><span class="tag">Theme statements</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">3</span><h3>Reading Nonfiction &amp; Informational Text</h3></div>
+            <p class="desc">Analyzing structure, author's purpose, and evidence in articles, biographies, and speeches; separating fact from opinion.</p>
+            <div class="skill-tags"><span class="tag">Author's purpose</span><span class="tag">Text structures</span><span class="tag">Fact vs. opinion</span><span class="tag">Central idea</span><span class="tag">Evaluating evidence</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">4</span><h3>Argument &amp; Persuasive Writing</h3></div>
+            <p class="desc">Making a claim and defending it: reasons, evidence, counterclaims, and the rhetorical appeals (ethos, pathos, logos).</p>
+            <div class="skill-tags"><span class="tag">Claim &amp; thesis</span><span class="tag">Reasons &amp; evidence</span><span class="tag">Counterargument</span><span class="tag">Ethos / pathos / logos</span><span class="tag">Persuasive essay</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">5</span><h3>Research &amp; Citations</h3></div>
+            <p class="desc">Finding credible sources, taking notes, quoting and paraphrasing honestly, and citing sources to avoid plagiarism.</p>
+            <div class="skill-tags"><span class="tag">Credible sources</span><span class="tag">Paraphrase vs. quote</span><span class="tag">In-text citation</span><span class="tag">Works Cited (MLA)</span><span class="tag">Avoiding plagiarism</span></div>
+            <div class="faith-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9-8a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 3.5-9 8-9 8z"/></svg><span>Citing others' work fairly is treated as a matter of honesty — giving credit is telling the truth about where ideas came from.</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">6</span><h3>Grammar Mastery</h3></div>
+            <p class="desc">Sentence structure done right: clauses and phrases, sentence types, punctuation, and fixing run-ons and fragments.</p>
+            <div class="skill-tags"><span class="tag">Independent &amp; dependent clauses</span><span class="tag">Simple/compound/complex</span><span class="tag">Semicolons &amp; colons</span><span class="tag">Active vs. passive voice</span><span class="tag">Parallel structure</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">7</span><h3>Vocabulary &amp; Word Roots</h3></div>
+            <p class="desc">Unlocking hundreds of words by learning Greek and Latin roots, prefixes, and suffixes that recur across English.</p>
+            <div class="skill-tags"><span class="tag">Latin roots (port, dict, scrib)</span><span class="tag">Greek roots (bio, geo, phon)</span><span class="tag">Prefix/suffix map</span><span class="tag">Word within the word</span><span class="tag">Academic vocabulary</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">8</span><h3>The Novel Study</h3></div>
+            <p class="desc">Reading a full-length novel over several weeks with discussion, journaling, and a culminating analytical essay.</p>
+            <div class="skill-tags"><span class="tag">Chapter journaling</span><span class="tag">Discussion questions</span><span class="tag">Character map</span><span class="tag">Theme tracking</span><span class="tag">Analytical essay</span></div>
+          </div>
+
+          <div class="section-label">Sample lessons</div>
+
+          <div class="lesson">
+            <span class="lesson-tag">Sample Lesson · Grade 7 · Literary Analysis</span>
+            <h4 class="obj">Objective</h4>
+            <p class="obj-txt">Support an interpretation of a character using the <strong>quote-and-explain</strong> method: cite text evidence, then explain how it proves your point.</p>
+            <h4 class="obj">Lesson</h4>
+            <div class="body-txt">
+              <p>A claim without evidence is just an opinion; evidence without explanation is just a quote. Strong analysis links the two. The pattern is simple: <em>make a point → prove it with a quote → explain how the quote proves it.</em></p>
+              <p>Suppose we claim a character is <em>generous</em>. We hunt the text for a moment that shows it — perhaps he "handed the last of his bread to the shivering traveler without a word." We quote it exactly, then explain: giving away his <em>last</em> food, and doing it quietly, shows generosity that expects nothing back. The explanation is where the thinking happens.</p>
+            </div>
+            <div class="activity">
+              <div class="atitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M20 12v7H4V5h11"/></svg>Practice — Point · Evidence · Explanation</div>
+              <ol>
+                <li>Choose one trait for a character from your current reading (brave, stubborn, loyal…).</li>
+                <li>Find one quotation that shows it. Copy it exactly, with the page number.</li>
+                <li>Write a P-E-E paragraph: state the trait, give the quote, then explain in 2–3 sentences <em>how</em> the quote proves it.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="lesson">
+            <span class="lesson-tag">Sample Lesson · Grade 8 · Argument Writing</span>
+            <h4 class="obj">Objective</h4>
+            <p class="obj-txt">Strengthen a persuasive essay by addressing a <strong>counterargument</strong> and then refuting it.</p>
+            <h4 class="obj">Lesson</h4>
+            <div class="body-txt">
+              <p>The most convincing writers don't pretend the other side doesn't exist — they face it head-on. Naming the strongest objection to your claim (the counterargument) shows fairness and makes your own position sturdier when you answer it (the refutation).</p>
+              <p>Take the claim "Middle schoolers should have daily reading time." A thoughtful opponent might say, "There isn't enough time in the school day." We acknowledge that honestly, then refute: even fifteen minutes replaces low-value filler, and the gains in vocabulary and focus save time elsewhere. Words like <em>Some argue… however… the evidence shows…</em> signal the turn.</p>
+            </div>
+            <div class="activity">
+              <div class="atitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Practice — Steel-man &amp; refute</div>
+              <ul>
+                <li>Write your claim in one sentence.</li>
+                <li>Write the <em>strongest</em> objection an honest opponent could make (steel-man it, don't weaken it).</li>
+                <li>Write a refutation paragraph beginning "Some may argue…" and turning with "However…" backed by a reason or fact.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-label">Wholesome reading at this band</div>
+          <div class="card">
+            <ul class="readlist">
+              <li><span class="bk">The Bronze Bow</span> <span class="au">— Elizabeth George Speare · from vengeance to forgiveness</span></li>
+              <li><span class="bk">A Wrinkle in Time</span> <span class="au">— Madeleine L'Engle · love, courage, self-sacrifice</span></li>
+              <li><span class="bk">The Hobbit</span> <span class="au">— J. R. R. Tolkien · humility &amp; unexpected courage</span></li>
+              <li><span class="bk">Roll of Thunder, Hear My Cry</span> <span class="au">— Mildred D. Taylor · dignity &amp; justice</span></li>
+              <li><span class="bk">The Diary of a Young Girl</span> <span class="au">— Anne Frank · hope &amp; the human spirit</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ================= 9-12 ================= -->
+        <div class="tab-panel" id="band-912">
+          <div class="band-intro">
+            <h3>High School · Grades 9 to 12</h3>
+            <p class="small" style="color:var(--ink-700)">A four-year sequence of composition and literature. Learners write college-ready essays and research papers, apply the tools of literary criticism, and read major works across American, world, and British traditions.</p>
+            <div class="courses-row">
+              <span class="course-chip">English 9 — Composition &amp; World Literature<span>Foundations · global classics</span></span>
+              <span class="course-chip">English 10 — Rhetoric &amp; World Literature<span>Argument · epic &amp; drama</span></span>
+              <span class="course-chip">English 11 — American Literature<span>Colonial → modern</span></span>
+              <span class="course-chip">English 12 — British Literature &amp; Research<span>Beowulf → 20th c. · research</span></span>
+            </div>
+          </div>
+
+          <div class="section-label">Units &amp; skills</div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">1</span><h3>Composition &amp; the Writing Process</h3></div>
+            <p class="desc">Disciplined writing from thesis to final draft: invention, structure, style, and revision toward clear, mature prose.</p>
+            <div class="skill-tags"><span class="tag">Arguable thesis</span><span class="tag">Outlining &amp; drafting</span><span class="tag">Sentence variety &amp; style</span><span class="tag">Peer &amp; self revision</span><span class="tag">Editing for mechanics</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">2</span><h3>Rhetoric &amp; Argument</h3></div>
+            <p class="desc">Analyzing and writing persuasion: the rhetorical situation, appeals, logical fallacies, and the rhetorical-analysis essay.</p>
+            <div class="skill-tags"><span class="tag">Ethos · pathos · logos</span><span class="tag">Rhetorical situation</span><span class="tag">Logical fallacies</span><span class="tag">Rhetorical analysis</span><span class="tag">Synthesis of sources</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">3</span><h3>World Literature (English 9–10)</h3></div>
+            <p class="desc">Great works across cultures and centuries — epic, tragedy, and the novel — read for theme, form, and human insight.</p>
+            <div class="skill-tags"><span class="tag">The Odyssey (epic)</span><span class="tag">Greek tragedy (Antigone)</span><span class="tag">Shakespearean drama</span><span class="tag">Global short fiction</span><span class="tag">Universal themes</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">4</span><h3>American Literature (English 11)</h3></div>
+            <p class="desc">The American voice from the colonial era to the modern, tracing how a nation's ideals, doubts, and dreams shaped its writing.</p>
+            <div class="skill-tags"><span class="tag">Puritan &amp; Revolutionary writing</span><span class="tag">Transcendentalism (Emerson, Thoreau)</span><span class="tag">The American novel</span><span class="tag">Realism &amp; Modernism</span><span class="tag">Poetry: Dickinson, Frost</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">5</span><h3>British Literature (English 12)</h3></div>
+            <p class="desc">A chronological survey of the English tradition from Anglo-Saxon epic through the Romantics to the twentieth century.</p>
+            <div class="skill-tags"><span class="tag">Beowulf &amp; Chaucer</span><span class="tag">Shakespeare &amp; the sonnet</span><span class="tag">Milton &amp; the metaphysicals</span><span class="tag">Romantic poetry</span><span class="tag">Victorian &amp; modern prose</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">6</span><h3>Literary Criticism &amp; Interpretation</h3></div>
+            <p class="desc">Reading through interpretive lenses and building an original, defensible argument about a text with secondary sources.</p>
+            <div class="skill-tags"><span class="tag">Critical lenses (historical, moral, formal)</span><span class="tag">Close reading at depth</span><span class="tag">Motif &amp; symbol analysis</span><span class="tag">Using secondary criticism</span><span class="tag">Thesis-driven lit essay</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">7</span><h3>The Research Paper</h3></div>
+            <p class="desc">A sustained, formal research project: question, source evaluation, thesis, integration of evidence, and MLA documentation.</p>
+            <div class="skill-tags"><span class="tag">Research question</span><span class="tag">Annotated bibliography</span><span class="tag">Integrating quotations</span><span class="tag">MLA format &amp; Works Cited</span><span class="tag">Academic integrity</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="unit-head"><span class="unit-num">8</span><h3>Vocabulary, Grammar &amp; the SAT/ACT Toolkit</h3></div>
+            <p class="desc">Advanced vocabulary in context, refined grammar and usage, and the reading/writing skills that college entrance exams reward.</p>
+            <div class="skill-tags"><span class="tag">Academic &amp; test vocabulary</span><span class="tag">Usage &amp; mechanics review</span><span class="tag">Evidence-based reading</span><span class="tag">Timed essay strategy</span><span class="tag">Concision &amp; clarity</span></div>
+            <div class="faith-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9-8a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 3.5-9 8-9 8z"/></svg><span>Discussion of classics naturally surfaces enduring questions of conscience, mercy, justice, and gratitude — students reflect thoughtfully while reading widely and charitably.</span></div>
+          </div>
+
+          <div class="section-label">Sample lessons</div>
+
+          <div class="lesson">
+            <span class="lesson-tag">Sample Lesson · English 11 · American Literature</span>
+            <h4 class="obj">Objective</h4>
+            <p class="obj-txt">Analyze how the Transcendentalists advanced a central idea, using a passage from Thoreau's <em>Walden</em>, and write a focused analytical paragraph.</p>
+            <h4 class="obj">Lesson</h4>
+            <div class="body-txt">
+              <p>When Thoreau writes, "I went to the woods because I wished to live deliberately… and not, when I came to die, discover that I had not lived," he compresses the whole Transcendentalist project into a sentence: strip life to its essentials and live it with intention. We read the passage twice — once for sense, once for craft.</p>
+              <p>Notice the diction of purpose (<em>deliberately, front only the essential facts</em>) and the stark contrast between living and merely existing. We connect it to Emerson's call for self-reliance and ask what "living deliberately" might cost — and what it might be worth. Analysis means naming a technique and explaining its effect on meaning, not just paraphrasing.</p>
+            </div>
+            <div class="activity">
+              <div class="atitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Practice — Analytical paragraph</div>
+              <ol>
+                <li>Choose one sentence from the excerpt that best captures Thoreau's message.</li>
+                <li>Identify one technique he uses (diction, contrast, metaphor, repetition).</li>
+                <li>Write a paragraph: state the idea, quote the line, name the technique, and explain how it deepens the meaning. End by connecting it to a modern choice a reader might face.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="lesson">
+            <span class="lesson-tag">Sample Lesson · English 9 · Composition</span>
+            <h4 class="obj">Objective</h4>
+            <p class="obj-txt">Craft an <strong>arguable thesis statement</strong> that takes a defensible position rather than stating an obvious fact.</p>
+            <h4 class="obj">Lesson</h4>
+            <div class="body-txt">
+              <p>A thesis is the spine of an essay — everything else stands on it. The test of a good thesis is simple: <em>could a reasonable person disagree?</em> "The Odyssey is an epic poem" fails the test (no one disagrees). "Odysseus's cleverness matters more to his survival than his strength" passes — it stakes a claim you must then defend.</p>
+              <p>We revise weak theses together. A vague "This essay is about honesty in the story" becomes "The character's small lie unravels precisely because honesty, once broken, is nearly impossible to rebuild." Now the essay has a direction, a claim, and a promise to the reader.</p>
+            </div>
+            <div class="activity">
+              <div class="atitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M20 12v7H4V5h11"/></svg>Practice — Fact vs. claim</div>
+              <ul>
+                <li>Sort five given statements into "fact" (not arguable) and "claim" (arguable).</li>
+                <li>Take two of the facts and rewrite each into an arguable thesis.</li>
+                <li>Draft your own thesis for a text you're reading, then apply the test: <em>could someone reasonably disagree?</em> Revise until yes.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-label">Core reading across the four years</div>
+          <div class="card">
+            <ul class="readlist">
+              <li><span class="bk">The Odyssey</span> <span class="au">— Homer · World Lit · perseverance &amp; homecoming</span></li>
+              <li><span class="bk">To Kill a Mockingbird</span> <span class="au">— Harper Lee · American Lit · conscience &amp; justice</span></li>
+              <li><span class="bk">The Adventures of Huckleberry Finn</span> <span class="au">— Mark Twain · American Lit · moral awakening</span></li>
+              <li><span class="bk">Beowulf</span> <span class="au">— Anglo-Saxon epic · British Lit · courage &amp; loyalty</span></li>
+              <li><span class="bk">Macbeth</span> <span class="au">— William Shakespeare · British Lit · ambition &amp; conscience</span></li>
+              <li><span class="bk">Pride and Prejudice</span> <span class="au">— Jane Austen · British Lit · humility &amp; discernment</span></li>
+            </ul>
+          </div>
+        </div>
+
+      </div><!-- /bandPanels -->
+
+      <!-- MATERIALS & ASSESSMENTS -->
+      <h2 style="margin:36px 0 4px">Materials &amp; assessments</h2>
+      <p class="page-sub" style="margin-bottom:8px">What a learner actually does in a typical week of English Language Arts.</p>
+      <div class="assess-grid">
+        <div class="assess-card">
+          <div class="ah"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--indigo-600)" stroke-width="2"><path d="M4 5h16v14H4z M12 5v14"/></svg>Lessons</div>
+          <p>Short guided lessons with read-alouds or model texts, taught in Learn or read together — one core skill at a time.</p>
+        </div>
+        <div class="assess-card">
+          <div class="ah"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--indigo-600)" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Practice</div>
+          <p>Daily reading, spelling/vocabulary work, grammar exercises, and writing in a journal or draft — the reps that build fluency.</p>
+        </div>
+        <div class="assess-card">
+          <div class="ah"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--indigo-600)" stroke-width="2"><path d="M9 11l3 3 8-8M20 12v7H4V5h11"/></svg>Quizzes</div>
+          <p>Auto-graded checks on phonics, vocabulary, grammar, and comprehension, plus spelling assessments — quick feedback for parents.</p>
+        </div>
+        <div class="assess-card">
+          <div class="ah"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--indigo-600)" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>Projects</div>
+          <p>Book reports, essays, poems, research papers, and presentations — kept in the portfolio for evaluations and transcripts.</p>
+        </div>
+      </div>
+      <div class="overview-note" style="margin-top:16px">
+        <strong>Portfolio &amp; grading.</strong> Writing projects and reading responses are saved to each child's portfolio for Pennsylvania's annual evaluator review. Younger learners are assessed against reading/writing standards (developing → secure); older learners earn letter grades and, in high school, full English credits toward the transcript.
+      </div>
+
+      <!-- BACK LINKS -->
+      <div class="backlinks">
+        <a href="subjects.html" class="btn btn-ghost">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          All subjects
+        </a>
+        <a href="learn.html" class="btn btn-primary">
+          Start a lesson in Learn
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div><!-- /content -->
+  </main>
+</div>
+
+<!-- ADD TO PLAN MODAL -->
+<div class="modal-wrap" id="addModal" role="dialog" aria-modal="true" aria-labelledby="addTitle">
+  <div class="modal-card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+      <div>
+        <h3 id="addTitle">Add English Language Arts to a plan</h3>
+        <p class="page-sub" style="margin-top:4px">Choose which children should have this subject added to their weekly plan.</p>
+      </div>
+      <button class="btn btn-ghost btn-sm" aria-label="Close" onclick="closeModal('addModal')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px">
+      <label class="hh-card" style="cursor:pointer;margin:0">
+        <input type="checkbox" value="Layla" checked style="width:18px;height:18px;flex:none;accent-color:var(--indigo-600)">
+        <span class="avatar" style="width:30px;height:30px;font-size:12px;background:var(--child-layla)">LR</span>
+        <div><div style="font-weight:600">Layla Rahman</div><div class="tiny">11th Grade · English 11: American Literature</div></div>
+      </label>
+      <label class="hh-card" style="cursor:pointer;margin:0">
+        <input type="checkbox" value="Yusuf" style="width:18px;height:18px;flex:none;accent-color:var(--indigo-600)">
+        <span class="avatar" style="width:30px;height:30px;font-size:12px;background:var(--child-yusuf)">YR</span>
+        <div><div style="font-weight:600">Yusuf Rahman</div><div class="tiny">6th Grade · Language Arts 6</div></div>
+      </label>
+      <label class="hh-card" style="cursor:pointer;margin:0">
+        <input type="checkbox" value="Zayd" style="width:18px;height:18px;flex:none;accent-color:var(--indigo-600)">
+        <span class="avatar" style="width:30px;height:30px;font-size:12px;background:var(--child-zayd)">ZR</span>
+        <div><div style="font-weight:600">Zayd Rahman</div><div class="tiny">2nd Grade · Reading &amp; Phonics</div></div>
+      </label>
+    </div>
+    <div class="field" style="margin-top:16px">
+      <label for="startTerm">Start</label>
+      <select id="startTerm">
+        <option>This week</option>
+        <option>Next week</option>
+        <option>Next term (Fall 2026)</option>
+      </select>
+    </div>
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+      <button class="btn btn-ghost" onclick="closeModal('addModal')">Cancel</button>
+      <button class="btn btn-grad" onclick="addToPlan()">Add to plan</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('backdrop').classList.toggle('show');}
+function openModal(id){document.getElementById(id).classList.add('show');}
+function closeModal(id){document.getElementById(id).classList.remove('show');}
+let _toastT;function showToast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.className='toast';document.body.appendChild(t);}t.textContent=msg;t.classList.add('show');clearTimeout(_toastT);_toastT=setTimeout(()=>t.classList.remove('show'),2500);}
+function initTabs(scope){(scope||document).querySelectorAll('[data-tabs]').forEach(function(group){var tabs=group.querySelectorAll('.tab');tabs.forEach(function(tab){tab.addEventListener('click',function(){var panelId=tab.getAttribute('data-tab');group.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');var host=group.getAttribute('data-panels')?document.getElementById(group.getAttribute('data-panels')):group.parentElement;host.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));var panel=document.getElementById(panelId);if(panel)panel.classList.add('active');});});});}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal-wrap.show').forEach(m=>m.classList.remove('show'));}});
+document.addEventListener('DOMContentLoaded',function(){initTabs();document.querySelectorAll('.progress>span').forEach(function(el){var w=el.style.width;el.style.width='0';setTimeout(()=>el.style.width=w,100);});});
+
+/* Page-specific */
+function addToPlan(){
+  var names=[].slice.call(document.querySelectorAll('#addModal input[type=checkbox]:checked')).map(c=>c.value);
+  closeModal('addModal');
+  if(names.length===0){showToast('Select at least one child to add');return;}
+  showToast('Added to plan · '+names.join(', '));
+}
+</script>
+</body>
+</html>

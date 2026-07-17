@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Studies · Pathways Academy · Pathways Learn</title>
+<style>
+:root{
+  --indigo-600:#4f46e5;--indigo-700:#4338ca;--indigo-500:#6366f1;
+  --violet-600:#7c3aed;--violet-500:#8b5cf6;
+  --grad:linear-gradient(135deg,#4f46e5 0%,#7c3aed 100%);
+  --grad-soft:linear-gradient(135deg,#eef2ff 0%,#f5f3ff 100%);
+  --ink-900:#0f172a;--ink-700:#334155;--ink-500:#64748b;--ink-400:#94a3b8;
+  --line:#e2e8f0;--bg:#f8fafc;--surface:#fff;--surface-2:#f1f5f9;
+  --green-600:#16a34a;--green-50:#f0fdf4;--amber-500:#f59e0b;--amber-50:#fffbeb;
+  --red-600:#dc2626;--red-50:#fef2f2;--sky-600:#0284c7;
+  --child-layla:#db2777;--child-yusuf:#0891b2;--child-zayd:#ea580c;
+  --r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:24px;--r-full:999px;
+  --sh-sm:0 1px 2px rgba(15,23,42,.06);--sh-md:0 4px 12px rgba(15,23,42,.08);--sh-lg:0 12px 32px rgba(15,23,42,.12);
+  --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-8:48px;--maxw:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink-900);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+h1{font-size:28px;font-weight:700;letter-spacing:-.02em}
+h2{font-size:22px;font-weight:700;letter-spacing:-.01em}
+h3{font-size:18px;font-weight:600}h4{font-size:15px;font-weight:600}
+.small{font-size:13px}.tiny{font-size:12px;color:var(--ink-500)}
+a{color:var(--indigo-600);text-decoration:none}
+:focus-visible{outline:2px solid var(--indigo-600);outline-offset:2px;border-radius:6px}
+.display{font-size:clamp(32px,5vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border-radius:var(--r-md);font-size:14px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:.15s;font-family:inherit}
+.btn-primary{background:var(--indigo-600);color:#fff}.btn-primary:hover{background:var(--indigo-700)}
+.btn-grad{background:var(--grad);color:#fff}.btn-grad:hover{filter:brightness(1.05)}
+.btn-ghost{background:var(--surface);color:var(--ink-700);border-color:var(--line)}.btn-ghost:hover{background:var(--surface-2)}
+.btn-sm{height:32px;padding:0 12px;font-size:13px}.btn-lg{height:48px;padding:0 24px;font-size:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-sm);padding:var(--sp-5)}
+.card-hover{transition:.18s}.card-hover:hover{box-shadow:var(--sh-lg);transform:translateY(-2px)}
+.pill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:var(--r-full);font-size:12px;font-weight:600}
+.pill-green{background:var(--green-50);color:var(--green-600)}.pill-amber{background:var(--amber-50);color:var(--amber-500)}
+.pill-red{background:var(--red-50);color:var(--red-600)}.pill-indigo{background:#eef2ff;color:var(--indigo-600)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;padding:12px;color:var(--ink-500);font-size:12px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line)}
+td{padding:12px;border-bottom:1px solid var(--line)}tr:hover td{background:var(--surface-2)}
+.progress{height:8px;background:var(--surface-2);border-radius:var(--r-full);overflow:hidden}
+.progress>span{display:block;height:100%;background:var(--grad);border-radius:var(--r-full);transition:width .8s ease}
+.stat-card .num{font-size:28px;font-weight:700}.stat-card .lbl{font-size:13px;color:var(--ink-500)}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.grid{display:grid;gap:24px}.g-2{grid-template-columns:repeat(2,1fr)}.g-3{grid-template-columns:repeat(3,1fr)}.g-4{grid-template-columns:repeat(4,1fr)}
+.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:24px 0;border-bottom:1px solid var(--line);margin-bottom:24px;flex-wrap:wrap}
+.page-sub{color:var(--ink-500);font-size:14px;margin-top:4px}.page-actions{display:flex;gap:8px;flex-wrap:wrap}
+.app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+.sidebar{background:var(--surface);border-right:1px solid var(--line);padding:20px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:6px;overflow-y:auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;padding:8px}
+.brand .mark{width:32px;height:32px;border-radius:9px;background:var(--grad);flex:none}
+.nav-group-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-400);padding:12px 12px 4px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--r-md);color:var(--ink-700);font-weight:500;font-size:14px}
+.nav-item:hover{background:var(--surface-2)}.nav-item.active{background:#eef2ff;color:var(--indigo-600);font-weight:600}
+.nav-item .ico{width:18px;height:18px;flex:none}.nav-spacer{flex:1}
+.hh-card{margin-top:8px;padding:10px;border:1px solid var(--line);border-radius:var(--r-md);display:flex;align-items:center;gap:8px;font-size:13px}
+.topbar{display:flex;align-items:center;gap:16px;height:64px;padding:0 24px;background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.topbar .search{flex:1;max-width:360px;height:38px;border:1px solid var(--line);border-radius:var(--r-full);padding:0 14px;background:var(--surface-2);font-size:14px;font-family:inherit}
+.avatar{width:34px;height:34px;border-radius:var(--r-full);display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px;background:var(--indigo-600);flex:none}
+.main{min-width:0}.content{max-width:var(--maxw);margin:0 auto;padding:0 24px 48px}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;color:var(--ink-700)}
+.backdrop{position:fixed;inset:0;background:rgba(15,23,42,.4);z-index:40;display:none}.backdrop.show{display:block}
+.modal-wrap{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(15,23,42,.45)}
+.modal-wrap.show{display:flex}
+.modal-card{background:var(--surface);border-radius:var(--r-xl);box-shadow:var(--sh-lg);max-width:480px;width:100%;padding:24px;max-height:90vh;overflow-y:auto}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink-900);color:#fff;padding:12px 20px;border-radius:var(--r-full);font-size:14px;font-weight:500;opacity:0;pointer-events:none;transition:.3s;z-index:80}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:20px;overflow-x:auto}
+.tab{padding:10px 16px;font-size:14px;font-weight:600;color:var(--ink-500);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;font-family:inherit}
+.tab.active{color:var(--indigo-600);border-bottom-color:var(--indigo-600)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.field{margin-bottom:14px}.field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;height:40px;border:1px solid var(--line);border-radius:var(--r-md);padding:0 12px;font-size:14px;font-family:inherit;background:var(--surface)}
+.field textarea{height:auto;padding:10px 12px;min-height:72px}
+@media(max-width:768px){
+  .app{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;z-index:50;transform:translateX(-100%);transition:.25s;width:260px}
+  .sidebar.open{transform:none}.hamburger{display:inline-flex}
+  .g-2,.g-3,.g-4{grid-template-columns:1fr}
+  .page-head{align-items:flex-start}
+  table.responsive{display:block;overflow-x:auto;white-space:nowrap}
+}
+@media print{
+  .sidebar,.topbar,.hamburger,.no-print{display:none!important}
+  .app{display:block}.content{padding:0}body{background:#fff}
+}
+/* ===== PAGE STYLES ===== */
+.subject-hero{background:var(--grad-soft);border:1px solid var(--line);border-radius:var(--r-xl);padding:28px 28px;margin-bottom:24px;display:flex;gap:20px;align-items:flex-start}
+.subject-hero .icon-badge{width:56px;height:56px;border-radius:var(--r-lg);background:var(--grad);display:grid;place-items:center;flex:none;color:#fff}
+.subject-hero .icon-badge svg{width:30px;height:30px}
+.chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chip{display:inline-flex;align-items:center;height:26px;padding:0 12px;border-radius:var(--r-full);font-size:12px;font-weight:600;background:var(--surface);border:1px solid var(--line);color:var(--ink-700)}
+.band-meta{display:flex;gap:10px;flex-wrap:wrap;margin:4px 0 20px}
+.band-meta .pill{background:var(--surface-2);color:var(--ink-700)}
+.unit{border:1px solid var(--line);border-radius:var(--r-md);padding:16px 18px;background:var(--surface);margin-bottom:12px}
+.unit .u-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.unit .u-num{font-size:12px;font-weight:700;color:var(--indigo-600);background:#eef2ff;border-radius:var(--r-sm);padding:2px 8px;flex:none}
+.unit .u-desc{color:var(--ink-700);font-size:14px;margin:6px 0 10px}
+.skills{display:flex;gap:6px;flex-wrap:wrap}
+.skills .sk{font-size:12px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-full);padding:3px 10px;color:var(--ink-700)}
+.lesson{border-left:3px solid var(--violet-500);background:var(--grad-soft);border-radius:0 var(--r-md) var(--r-md) 0;padding:16px 18px;margin-bottom:12px}
+.lesson .l-tag{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--violet-600)}
+.lesson h4{margin:4px 0 8px}
+.lesson p{font-size:14px;color:var(--ink-700);margin-bottom:8px}
+.lesson .activity{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);padding:10px 12px;font-size:13px;color:var(--ink-700)}
+.lesson .activity b{color:var(--ink-900)}
+.section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-400);margin:22px 0 10px}
+.course-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.course-row .cr{font-size:13px;font-weight:600;background:#eef2ff;color:var(--indigo-700);border-radius:var(--r-full);padding:5px 14px}
+.note-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px 22px}
+.note-card ul{margin:8px 0 0 18px;font-size:14px;color:var(--ink-700)}
+.note-card li{margin-bottom:6px}
+.crumbs{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px}
+.check-list{display:flex;flex-direction:column;gap:10px;margin:8px 0 4px}
+.check-list label{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;cursor:pointer}
+.check-list input{width:18px;height:18px;accent-color:var(--indigo-600)}
+.faith-note{background:var(--amber-50);border:1px solid #fde68a;border-radius:var(--r-md);padding:12px 14px;font-size:13px;color:#92400e;margin-top:14px}
+</style>
+</head>
+<body>
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <a href="dashboard.html" class="brand"><span class="mark"></span>Pathways Learn</a>
+    <div class="nav-group-label">Teach</div>
+    <a href="dashboard.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Dashboard</a>
+    <a href="child.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="8" r="2"/></svg>Children</a>
+    <a href="learn.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z M12 5v14"/></svg>Learn</a>
+    <a href="subjects.html" class="nav-item active"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Subjects</a>
+    <a href="planner.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>Planner</a>
+    <a href="gradebook.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8M20 12v7H4V5h11"/></svg>Gradebook</a>
+    <div class="nav-group-label">Records</div>
+    <a href="compliance.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Compliance <span class="pill pill-indigo" style="margin-left:auto;height:18px;padding:0 7px;font-size:10px">PA</span></a>
+    <a href="settings.html" class="nav-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>Settings</a>
+    <div class="nav-spacer"></div>
+    <div class="hh-card"><span class="avatar" style="width:28px;height:28px;font-size:11px">RH</span><div><div style="font-weight:600">Rahman Household</div><div class="tiny">Pennsylvania</div></div></div>
+    <a href="index.html" class="nav-item" style="font-size:13px;color:var(--ink-500)">← Back to site</a>
+  </aside>
+  <main class="main">
+    <div class="topbar">
+      <button class="hamburger" aria-label="Open menu" onclick="toggleSidebar()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <input class="search" placeholder="Search lessons, children, records…" aria-label="Search">
+      <span style="flex:1"></span>
+      <button class="btn btn-ghost btn-sm" onclick="showToast('Attendance logged for today')">Log attendance</button>
+      <span class="avatar">AR</span>
+    </div>
+    <div class="content">
+
+      <div class="page-head">
+        <div>
+          <div class="tiny" style="margin-bottom:6px"><a href="subjects.html">Subjects</a> · Core</div>
+          <h1>Social Studies</h1>
+          <div class="page-sub">History, geography, civics &amp; economics — raising thoughtful citizens who understand their community, their country, and a wide, God-created world.</div>
+        </div>
+        <div class="page-actions">
+          <a href="subjects.html" class="btn btn-ghost">← All subjects</a>
+          <button class="btn btn-grad" onclick="openModal('planModal')">Add to a child's plan</button>
+        </div>
+      </div>
+
+      <!-- HERO / OVERVIEW BAND -->
+      <div class="subject-hero">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg></div>
+        <div>
+          <h2>What Social Studies builds, K → 12</h2>
+          <p class="page-sub" style="max-width:70ch">Learners begin close to home — family, neighborhood, maps, and community helpers — then widen the circle outward: the United States and its regions, the great world civilizations, and finally the systems that govern nations and economies. Along the way students practice reading maps, weighing evidence, telling cause from effect, comparing sources, and forming reasoned arguments. History is taught honestly and globally: every people and faith is presented respectfully and accurately, including the Islamic Golden Age alongside Greece, Rome, and the wider medieval world.</p>
+          <div class="chip-row">
+            <span class="chip">K–2 · Community &amp; Maps</span>
+            <span class="chip">3–5 · U.S. History &amp; Geography</span>
+            <span class="chip">6–8 · World History &amp; Civilizations</span>
+            <span class="chip">9–12 · History · Geography · Civics · Economics</span>
+          </div>
+          <div class="faith-note"><b>Faith &amp; character, woven in:</b> gratitude for God's provision (needs vs. wants, stewardship of resources), justice and honesty in civics, mercy and hospitality across cultures, and adab (good manners) toward every neighbor. Faith is a lens for character, never a substitute for accurate, balanced history.</div>
+        </div>
+      </div>
+
+      <div class="grid g-4" style="margin-bottom:24px">
+        <div class="card stat-card"><div class="num">18</div><div class="lbl">courses, K–12</div></div>
+        <div class="card stat-card"><div class="num">4</div><div class="lbl">grade bands</div></div>
+        <div class="card stat-card"><div class="num">C3</div><div class="lbl">inquiry-framework aligned</div></div>
+        <div class="card stat-card"><div class="num">200+</div><div class="lbl">lessons &amp; projects</div></div>
+      </div>
+
+      <div class="note-card" style="margin-bottom:24px">
+        <h3>Standards &amp; approach</h3>
+        <p class="page-sub" style="margin-top:6px">Scope and sequence are aligned to widely used state social-studies standards and the C3 Framework for social-studies inquiry (dimensions: developing questions, applying disciplinary concepts in civics/economics/geography/history, evaluating sources, and communicating conclusions). Objectives here describe the intended learning — Pathways is an independent faith-based school and does not claim official state or organizational endorsement.</p>
+      </div>
+
+      <!-- GRADE-BAND TABS -->
+      <div class="tabs" data-tabs data-panels="bandPanels" role="tablist">
+        <button class="tab active" data-tab="band-k2">Primary · K–2</button>
+        <button class="tab" data-tab="band-35">Elementary · 3–5</button>
+        <button class="tab" data-tab="band-68">Middle · 6–8</button>
+        <button class="tab" data-tab="band-912">High School · 9–12</button>
+      </div>
+
+      <div id="bandPanels">
+
+        <!-- ============ PRIMARY K-2 ============ -->
+        <div class="tab-panel active" id="band-k2">
+          <div class="band-meta">
+            <span class="pill">Ages 5–8</span>
+            <span class="pill">3 courses</span>
+            <span class="pill">Me &amp; my world</span>
+          </div>
+          <div class="section-label">Courses in this band</div>
+          <div class="course-row">
+            <span class="cr">Social Studies K · My Family &amp; Me</span>
+            <span class="cr">Social Studies 1 · Our Neighborhood</span>
+            <span class="cr">Social Studies 2 · Communities &amp; Long Ago</span>
+          </div>
+          <p class="page-sub" style="margin-bottom:8px">Young learners start with themselves and expand outward — family, home, school, and neighborhood — using simple maps, calendars, and stories to notice how people live, work, and help one another, now and long ago.</p>
+
+          <div class="section-label">Scope &amp; sequence — 6 units</div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Unit 1</span><h4>My Family &amp; My Community</h4></div>
+            <div class="u-desc">Who is in a family, the roles people play, and how a family is part of a larger neighborhood and community.</div>
+            <div class="skills"><span class="sk">family members &amp; roles</span><span class="sk">home &amp; school</span><span class="sk">rules that keep us safe</span><span class="sk">being a good neighbor</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Unit 2</span><h4>Maps &amp; Globes</h4></div>
+            <div class="u-desc">A map is a picture from above. Learners read simple maps, follow a key/legend, and find land and water on a globe.</div>
+            <div class="skills"><span class="sk">bird's-eye view</span><span class="sk">map key &amp; symbols</span><span class="sk">near/far, left/right</span><span class="sk">land vs. water on a globe</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Unit 3</span><h4>Needs vs. Wants</h4></div>
+            <div class="u-desc">Everyone has needs (food, water, shelter, clothing, love) and wants. An early look at choosing, saving, and being thankful.</div>
+            <div class="skills"><span class="sk">sort needs from wants</span><span class="sk">making a choice</span><span class="sk">saving &amp; sharing</span><span class="sk">gratitude for provision</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Unit 4</span><h4>Community Helpers</h4></div>
+            <div class="u-desc">The people who keep a community running — and the jobs, tools, and places that go with each.</div>
+            <div class="skills"><span class="sk">firefighters &amp; police</span><span class="sk">doctors, teachers, farmers</span><span class="sk">mail &amp; sanitation</span><span class="sk">tools &amp; workplaces</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Unit 5</span><h4>Holidays &amp; Cultures</h4></div>
+            <div class="u-desc">Families celebrate in different ways. Learners share their own traditions and respectfully learn about others', including Eid, Thanksgiving, and national holidays.</div>
+            <div class="skills"><span class="sk">my family's traditions</span><span class="sk">Eid &amp; other celebrations</span><span class="sk">foods, dress &amp; customs</span><span class="sk">respect for differences</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Unit 6</span><h4>Past vs. Present</h4></div>
+            <div class="u-desc">Life changes over time. Comparing "long ago" and "today" — homes, travel, tools, and school — using timelines and old photos.</div>
+            <div class="skills"><span class="sk">then vs. now</span><span class="sk">simple timelines</span><span class="sk">yesterday/today/tomorrow</span><span class="sk">interview an elder</span></div>
+          </div>
+
+          <div class="section-label">Sample lessons</div>
+
+          <div class="lesson">
+            <div class="l-tag">Sample lesson · Unit 2</div>
+            <h4>Reading a Map of My Bedroom</h4>
+            <p><b>Objective:</b> Understand that a map shows a place from above and uses symbols, then make a simple map with a key.</p>
+            <p>Imagine you are a bird flying over your room, looking straight down. Your bed becomes a rectangle, your rug a circle, your door a small line. That is what a map does — it draws places from above and uses little pictures called <b>symbols</b>. A box that tells what each symbol means is called a <b>map key</b>.</p>
+            <div class="activity"><b>Practice:</b> Draw your bedroom or kitchen from above on paper. Use a square for a table, a rectangle for the bed, a triangle for a chair. Make a key at the bottom that explains each symbol. Then use words like <i>next to</i>, <i>above</i>, and <i>below</i> to tell a grown-up where three things are.</div>
+          </div>
+
+          <div class="lesson">
+            <div class="l-tag">Sample lesson · Unit 3</div>
+            <h4>Needs, Wants &amp; Saying Thank You</h4>
+            <p><b>Objective:</b> Sort items into needs and wants and explain why we save and give thanks for what we have.</p>
+            <p>A <b>need</b> is something we must have to live and be safe — food, clean water, a home, clothes, and people who love us. A <b>want</b> is something nice to have but that we can live without, like a new toy or candy. Knowing the difference helps us make good choices and remember to be grateful to God for what He provides.</p>
+            <div class="activity"><b>Practice:</b> Look at picture cards (apple, teddy bear, water, video game, jacket, ice cream, house, sticker). Put each into a <b>Needs</b> pile or a <b>Wants</b> pile. Then name one need you are thankful for today and one way you can share with someone who has less.</div>
+          </div>
+        </div>
+
+        <!-- ============ ELEMENTARY 3-5 ============ -->
+        <div class="tab-panel" id="band-35">
+          <div class="band-meta">
+            <span class="pill">Ages 8–11</span>
+            <span class="pill">3 courses</span>
+            <span class="pill">United States focus</span>
+          </div>
+          <div class="section-label">Courses in this band</div>
+          <div class="course-row">
+            <span class="cr">Social Studies 3 · Communities Near &amp; Far</span>
+            <span class="cr">Social Studies 4 · U.S. Regions &amp; Geography</span>
+            <span class="cr">Social Studies 5 · U.S. History to 1791</span>
+          </div>
+          <p class="page-sub" style="margin-bottom:8px">Students study the land, peoples, and founding story of the United States — from the geography of its regions and the many Native American nations, through European exploration and colonization, to the Revolution and the birth of a new government.</p>
+
+          <div class="section-label">Scope &amp; sequence — 6 units</div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Unit 1</span><h4>U.S. Geography &amp; the Five Regions</h4></div>
+            <div class="u-desc">Reading political and physical maps of the U.S., using latitude/longitude, and comparing the Northeast, Southeast, Midwest, Southwest, and West.</div>
+            <div class="skills"><span class="sk">landforms &amp; waterways</span><span class="sk">latitude &amp; longitude</span><span class="sk">compass rose &amp; scale</span><span class="sk">climate &amp; resources by region</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Unit 2</span><h4>Native American Nations</h4></div>
+            <div class="u-desc">The diverse first peoples of North America and how geography shaped their homes, food, and cultures — before and after European contact.</div>
+            <div class="skills"><span class="sk">Iroquois (Haudenosaunee) &amp; Cherokee</span><span class="sk">Plains nations (Lakota)</span><span class="sk">Pueblo &amp; Southwest peoples</span><span class="sk">Pacific Northwest cultures</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Unit 3</span><h4>Explorers &amp; the Columbian Exchange</h4></div>
+            <div class="u-desc">Why Europeans sailed west, the routes of Columbus, Magellan, and others, and the far-reaching exchange of crops, animals, people, and disease.</div>
+            <div class="skills"><span class="sk">motives: God, gold, glory</span><span class="sk">reading a voyage map</span><span class="sk">Columbian Exchange</span><span class="sk">effects on Indigenous peoples</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Unit 4</span><h4>The Thirteen Colonies</h4></div>
+            <div class="u-desc">How New England, Middle, and Southern colonies differed in geography, work, and daily life — and the hard history of indentured servitude and slavery.</div>
+            <div class="skills"><span class="sk">three colonial regions</span><span class="sk">Jamestown &amp; Plymouth</span><span class="sk">town, farm &amp; trade life</span><span class="sk">slavery in the colonies</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Unit 5</span><h4>The American Revolution</h4></div>
+            <div class="u-desc">From "no taxation without representation" to independence — key causes, events, and people who founded a new nation.</div>
+            <div class="skills"><span class="sk">Stamp Act &amp; Boston Tea Party</span><span class="sk">Declaration of Independence, 1776</span><span class="sk">Washington &amp; key battles</span><span class="sk">cause &amp; effect timeline</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Unit 6</span><h4>A New Government &amp; Basic Economics</h4></div>
+            <div class="u-desc">The Constitution and its three branches, the 50 states and capitals, plus foundational economics — goods/services, producers/consumers, and supply and demand.</div>
+            <div class="skills"><span class="sk">Constitution &amp; three branches</span><span class="sk">50 states &amp; capitals</span><span class="sk">goods, services, trade</span><span class="sk">supply &amp; demand, budgeting</span></div>
+          </div>
+
+          <div class="section-label">Sample lessons</div>
+
+          <div class="lesson">
+            <div class="l-tag">Sample lesson · Unit 1</div>
+            <h4>The Five Regions of the United States</h4>
+            <p><b>Objective:</b> Locate and describe the five U.S. regions and explain how geography shapes how people live and work in each.</p>
+            <p>Geographers group the 50 states into five <b>regions</b> that share land and climate: the <b>Northeast</b> (crowded cities and cold winters), the <b>Southeast</b> (warm, humid, rivers and farmland), the <b>Midwest</b> — America's "breadbasket" of flat plains and wheat and corn — the <b>Southwest</b> (dry deserts and canyons), and the <b>West</b> (mountains, forests, and the Pacific coast). Where people live shapes their jobs: fishing on the coasts, farming on the plains, mining and ranching in the mountains and deserts.</p>
+            <div class="activity"><b>Practice:</b> On a blank U.S. map, color each region a different color and add its name. Pick one region and list two landforms, one crop or industry, and one big city there. Write a sentence: "In the ___ region, geography means people often work as ___."</div>
+          </div>
+
+          <div class="lesson">
+            <div class="l-tag">Sample lesson · Unit 5</div>
+            <h4>Why Did the Colonists Rebel?</h4>
+            <p><b>Objective:</b> Explain the main causes of the American Revolution and connect a cause to its effect.</p>
+            <p>After costly wars, Britain taxed the colonies on paper, tea, and other goods — but the colonists had no representatives in Parliament to vote on those taxes. Their cry became <b>"No taxation without representation."</b> Anger grew after events like the Boston Massacre and the Boston Tea Party of 1773, when colonists dumped British tea into the harbor. In 1776, leaders signed the <b>Declaration of Independence</b>, stating that people have rights and that governments should serve the governed.</p>
+            <div class="activity"><b>Practice:</b> Make a two-column cause-and-effect chart. In the left column write three British actions (Stamp Act, tea tax, closing Boston's port). In the right column write how colonists responded to each. Then answer in one sentence: what did colonists mean by "no taxation without representation"?</div>
+          </div>
+        </div>
+
+        <!-- ============ MIDDLE 6-8 ============ -->
+        <div class="tab-panel" id="band-68">
+          <div class="band-meta">
+            <span class="pill">Ages 11–14</span>
+            <span class="pill">3 courses</span>
+            <span class="pill">World civilizations</span>
+          </div>
+          <div class="section-label">Courses in this band</div>
+          <div class="course-row">
+            <span class="cr">Grade 6 · Ancient World History</span>
+            <span class="cr">Grade 7 · Medieval &amp; Early Modern World</span>
+            <span class="cr">Grade 8 · World Geography &amp; Cultures</span>
+          </div>
+          <p class="page-sub" style="margin-bottom:8px">Middle schoolers travel across the great civilizations of history — from the first cities of Mesopotamia to Egypt, Greece, Rome, the Islamic Golden Age, and the medieval world — then map the modern world's regions, peoples, and connections. Emphasis on sourcing, cause and effect, and cultural respect.</p>
+
+          <div class="section-label">Scope &amp; sequence — 8 units</div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Unit 1</span><h4>Early Humans &amp; the First Civilizations</h4></div>
+            <div class="u-desc">From hunter-gatherers to the Neolithic (Agricultural) Revolution — how farming led to cities, surplus, writing, and government.</div>
+            <div class="skills"><span class="sk">Paleolithic to Neolithic</span><span class="sk">why civilizations start near rivers</span><span class="sk">features of civilization</span><span class="sk">archaeology &amp; evidence</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Unit 2</span><h4>Mesopotamia: The Fertile Crescent</h4></div>
+            <div class="u-desc">Sumer's city-states between the Tigris and Euphrates — cuneiform, ziggurats, and Hammurabi's famous law code.</div>
+            <div class="skills"><span class="sk">Sumer &amp; Babylon</span><span class="sk">cuneiform writing</span><span class="sk">Code of Hammurabi</span><span class="sk">the wheel, math &amp; the calendar</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Unit 3</span><h4>Ancient Egypt &amp; the Nile</h4></div>
+            <div class="u-desc">How the Nile's floods built a lasting kingdom — pharaohs, pyramids, hieroglyphics, and beliefs about the afterlife.</div>
+            <div class="skills"><span class="sk">gift of the Nile</span><span class="sk">pharaohs &amp; dynasties</span><span class="sk">hieroglyphics &amp; papyrus</span><span class="sk">pyramids &amp; mummification</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Unit 4</span><h4>Ancient Greece</h4></div>
+            <div class="u-desc">City-states, the birth of democracy in Athens, Greek philosophy and science, and the empire of Alexander the Great.</div>
+            <div class="skills"><span class="sk">Athens vs. Sparta</span><span class="sk">democracy &amp; citizenship</span><span class="sk">Socrates, Plato, Aristotle</span><span class="sk">Hellenistic spread of ideas</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Unit 5</span><h4>Ancient Rome</h4></div>
+            <div class="u-desc">From republic to empire — Roman law and engineering, the Pax Romana, and the causes of Rome's fall.</div>
+            <div class="skills"><span class="sk">republic &amp; the Senate</span><span class="sk">roads, aqueducts, concrete</span><span class="sk">Roman law &amp; citizenship</span><span class="sk">decline &amp; fall</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Unit 6</span><h4>The Islamic Golden Age</h4></div>
+            <div class="u-desc">The flourishing of learning across the medieval Islamic world — scholars who advanced mathematics, medicine, astronomy, and preserved and expanded classical knowledge.</div>
+            <div class="skills"><span class="sk">Baghdad &amp; the House of Wisdom</span><span class="sk">al-Khwarizmi &amp; algebra</span><span class="sk">Ibn Sina (medicine), Ibn al-Haytham (optics)</span><span class="sk">trade, libraries &amp; translation</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Unit 7</span><h4>The Medieval World</h4></div>
+            <div class="u-desc">Feudal Europe, the Byzantine Empire, West African kingdoms, and imperial China and Japan — a connected world linked by trade routes.</div>
+            <div class="skills"><span class="sk">feudalism &amp; the manor</span><span class="sk">Mali &amp; Mansa Musa; Timbuktu</span><span class="sk">Silk Road trade</span><span class="sk">Tang/Song China &amp; the Black Death</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Unit 8</span><h4>Early Modern World &amp; World Geography</h4></div>
+            <div class="u-desc">Renaissance, the Age of Exploration, and mapping today's continents, climates, and cultures using the five themes of geography.</div>
+            <div class="skills"><span class="sk">Renaissance &amp; humanism</span><span class="sk">global trade &amp; empires</span><span class="sk">five themes of geography</span><span class="sk">reading population &amp; climate maps</span></div>
+          </div>
+
+          <div class="section-label">Sample lessons</div>
+
+          <div class="lesson">
+            <div class="l-tag">Sample lesson · Unit 2</div>
+            <h4>Hammurabi's Code: Written Law in Babylon</h4>
+            <p><b>Objective:</b> Analyze how one of history's earliest written law codes reveals the values and social order of ancient Mesopotamia.</p>
+            <p>Around 1754 BCE, King <b>Hammurabi</b> of Babylon had 282 laws carved onto a tall stone pillar so that everyone could see them. This was one of the first times a society wrote down its laws in public — an important step, because now rulers and ordinary people could be judged by the same known rules. The code covered trade, family, farming, and crime, often using the principle of "an eye for an eye." Yet punishments differed by social class, showing that Babylon was not an equal society.</p>
+            <div class="activity"><b>Practice:</b> Read three sample laws from the code. For each, identify (1) what problem it addresses and (2) what it tells us Babylonians valued. Then write a short paragraph: Why was <i>writing down</i> the law such an important idea, even if the punishments seem harsh to us today?</div>
+          </div>
+
+          <div class="lesson">
+            <div class="l-tag">Sample lesson · Unit 6</div>
+            <h4>The House of Wisdom &amp; the Islamic Golden Age</h4>
+            <p><b>Objective:</b> Explain how scholars of the medieval Islamic world advanced knowledge and connected the learning of many cultures.</p>
+            <p>From roughly the 8th to the 13th centuries, cities like <b>Baghdad</b>, Córdoba, and Cairo became centers of learning. In Baghdad's <b>House of Wisdom</b>, scholars translated Greek, Persian, and Indian texts into Arabic and then built on them. The mathematician <b>al-Khwarizmi</b> developed algebra (the word comes from Arabic <i>al-jabr</i>) and helped spread the number system we still use. <b>Ibn al-Haytham</b> pioneered the study of optics and the scientific method, while <b>Ibn Sina</b> (Avicenna) wrote a medical encyclopedia used for centuries. This knowledge later flowed into Europe, helping spark the Renaissance — a reminder that human progress is shared across cultures.</p>
+            <div class="activity"><b>Practice:</b> Create a "scholar trading card" for one figure (al-Khwarizmi, Ibn Sina, Ibn al-Haytham, or Fatima al-Fihri, who founded one of the world's oldest universities). Include their field, one contribution, and one way that contribution still affects life today. Then explain in a sentence how translation helped ideas travel between civilizations.</div>
+          </div>
+        </div>
+
+        <!-- ============ HIGH SCHOOL 9-12 ============ -->
+        <div class="tab-panel" id="band-912">
+          <div class="band-meta">
+            <span class="pill">Ages 14–18</span>
+            <span class="pill">5 courses · 5 credits</span>
+            <span class="pill">College-prep</span>
+          </div>
+          <div class="section-label">Courses in this band</div>
+          <div class="course-row">
+            <span class="cr">9 · World History</span>
+            <span class="cr">10 · World Geography &amp; Cultures</span>
+            <span class="cr">11 · U.S. History</span>
+            <span class="cr">12 · U.S. Government &amp; Civics <span class="tiny">(½)</span></span>
+            <span class="cr">12 · Economics <span class="tiny">(½)</span></span>
+          </div>
+          <p class="page-sub" style="margin-bottom:8px">Five full-year and half-year courses give a college-preparatory sweep of the modern world: a survey of world history, the geography and cultures of today's regions, the American story, and the twin capstones of government/civics and economics. Each is a documented unit sequence below.</p>
+
+          <div class="section-label">Course sequences</div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Grade 9</span><h4>World History (1450 → Present)</h4></div>
+            <div class="u-desc">A survey from the early modern era to today, tracing how ideas, empires, and technology reshaped the globe.</div>
+            <div class="skills"><span class="sk">1 · Renaissance &amp; Reformation</span><span class="sk">2 · Age of Exploration &amp; empires</span><span class="sk">3 · Scientific Revolution &amp; Enlightenment</span><span class="sk">4 · Revolutions (American, French, Latin American)</span><span class="sk">5 · Industrial Revolution &amp; nationalism</span><span class="sk">6 · Imperialism &amp; WWI</span><span class="sk">7 · WWII &amp; the Holocaust</span><span class="sk">8 · Cold War, decolonization &amp; globalization</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Grade 10</span><h4>World Geography &amp; Cultures</h4></div>
+            <div class="u-desc">Region-by-region study of the physical and human geography of the modern world, using maps, data, and the five themes.</div>
+            <div class="skills"><span class="sk">1 · Physical geography &amp; map skills</span><span class="sk">2 · North &amp; Latin America</span><span class="sk">3 · Europe &amp; Russia</span><span class="sk">4 · Middle East &amp; North Africa</span><span class="sk">5 · Sub-Saharan Africa</span><span class="sk">6 · South &amp; East Asia</span><span class="sk">7 · Oceania &amp; poles</span><span class="sk">8 · Population, urbanization &amp; the environment</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Grade 11</span><h4>U.S. History (Founding → Present)</h4></div>
+            <div class="u-desc">The American story from the founding through the modern era, weighing conflict, reform, and the ongoing pursuit of liberty and justice.</div>
+            <div class="skills"><span class="sk">1 · Founding &amp; the Constitution</span><span class="sk">2 · Expansion &amp; sectionalism</span><span class="sk">3 · Civil War &amp; Reconstruction</span><span class="sk">4 · Industrialization &amp; immigration</span><span class="sk">5 · Progressive Era &amp; WWI</span><span class="sk">6 · Depression, New Deal &amp; WWII</span><span class="sk">7 · Cold War &amp; Civil Rights Movement</span><span class="sk">8 · Modern America</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Grade 12 · ½ credit</span><h4>U.S. Government &amp; Civics</h4></div>
+            <div class="u-desc">How American government works and what active, principled citizenship requires.</div>
+            <div class="skills"><span class="sk">1 · Foundations &amp; political theory</span><span class="sk">2 · The Constitution &amp; federalism</span><span class="sk">3 · Three branches &amp; checks/balances</span><span class="sk">4 · Bill of Rights &amp; civil liberties</span><span class="sk">5 · Elections, parties &amp; media</span><span class="sk">6 · State/local government &amp; civic action</span></div>
+          </div>
+
+          <div class="unit">
+            <div class="u-head"><span class="u-num">Grade 12 · ½ credit</span><h4>Economics</h4></div>
+            <div class="u-desc">Micro and macro foundations plus practical personal finance for adult life.</div>
+            <div class="skills"><span class="sk">1 · Scarcity, choice &amp; incentives</span><span class="sk">2 · Supply, demand &amp; markets</span><span class="sk">3 · Business, labor &amp; competition</span><span class="sk">4 · Money, banking &amp; the Fed</span><span class="sk">5 · GDP, inflation &amp; unemployment</span><span class="sk">6 · Trade &amp; the global economy</span><span class="sk">7 · Personal finance: budgeting, credit, investing</span></div>
+          </div>
+
+          <div class="section-label">Sample lessons</div>
+
+          <div class="lesson">
+            <div class="l-tag">Sample lesson · Government &amp; Civics · Unit 3</div>
+            <h4>Separation of Powers &amp; Checks and Balances</h4>
+            <p><b>Objective:</b> Explain why the framers divided federal power into three branches and analyze how each branch can check the others.</p>
+            <p>Fearing that concentrated power leads to tyranny, the framers of the Constitution split the federal government into three branches: the <b>legislative</b> (Congress) makes laws, the <b>executive</b> (the President) carries them out, and the <b>judicial</b> (the courts) interprets them. To keep any one branch from dominating, each is given powers to <b>check</b> the others — for example, Congress passes a bill, but the President can veto it; Congress can override that veto with a two-thirds vote; and the Supreme Court can rule a law unconstitutional. This system deliberately makes government slower but harder to abuse.</p>
+            <div class="activity"><b>Practice:</b> Draw the three-branch triangle. On each connecting arrow, label one specific check (e.g., "Senate confirms judges," "President vetoes bills," "Court reviews laws"). Then write a paragraph responding to the prompt: Do checks and balances protect freedom, or do they make government too slow to act? Support your position with one historical example.</div>
+          </div>
+
+          <div class="lesson">
+            <div class="l-tag">Sample lesson · Economics · Unit 2</div>
+            <h4>How Supply and Demand Set a Price</h4>
+            <p><b>Objective:</b> Use supply and demand to explain how markets determine prices and predict the effect of a shift in either.</p>
+            <p>In a market, <b>demand</b> shows how much buyers will purchase at each price (usually more when prices are low), and <b>supply</b> shows how much sellers will offer (usually more when prices are high). Where the two curves cross is the <b>equilibrium price</b> — the price at which the amount buyers want equals the amount sellers offer. When something changes — a drought cuts the coffee harvest, or a new trend boosts demand for a phone — the curves shift and the price moves to a new equilibrium.</p>
+            <div class="activity"><b>Practice:</b> Sketch supply and demand curves for concert tickets and mark the equilibrium. Then predict what happens to price and quantity in each case: (1) the band suddenly becomes hugely popular, (2) the venue doubles the number of seats. Explain which curve shifted and why, and connect it to something you have actually bought.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- MATERIALS & ASSESSMENTS -->
+      <div class="section-label" style="margin-top:28px">Materials &amp; assessments</div>
+      <div class="grid g-2">
+        <div class="note-card">
+          <h3>What a learner does</h3>
+          <ul>
+            <li><b>Lessons &amp; readings</b> — short illustrated lessons, primary-source excerpts, maps, and timelines appropriate to each band.</li>
+            <li><b>Practice &amp; skills</b> — map work, vocabulary, cause-and-effect charts, and document analysis.</li>
+            <li><b>Quizzes &amp; checks</b> — auto-graded checks for understanding after each unit (see <a href="learn.html">Learn</a>).</li>
+            <li><b>Projects &amp; DBQs</b> — timelines, region posters, "scholar trading cards," and document-based writing in the upper grades.</li>
+            <li><b>Discussion &amp; narration</b> — oral narration in K–5, seminar-style discussion and structured essays in 6–12.</li>
+          </ul>
+        </div>
+        <div class="note-card">
+          <h3>How progress is measured</h3>
+          <ul>
+            <li><b>K–2</b> — standards-based (developing / on track / secure) via observation and simple tasks.</li>
+            <li><b>3–5</b> — quizzes, projects, and map assessments with letter or percentage marks.</li>
+            <li><b>6–8</b> — unit tests, source analyses, and a research project each term.</li>
+            <li><b>9–12</b> — exams, document-based essays, and a capstone; each course earns high-school credit toward the <a href="compliance.html">transcript</a>.</li>
+            <li><b>Portfolio-ready</b> — work samples export cleanly for Pennsylvania's annual portfolio and evaluator review.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="crumbs" style="margin-top:24px">
+        <a href="subjects.html">← Back to all subjects</a>
+        <a href="learn.html">Go to Learn (lessons &amp; quizzes) →</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- ADD TO PLAN MODAL -->
+<div class="modal-wrap" id="planModal">
+  <div class="modal-card">
+    <h3 style="margin-bottom:4px">Add Social Studies to a child's plan</h3>
+    <p class="page-sub" style="margin-bottom:14px">Choose which learners to enroll. Each child is placed in the grade band matching their level.</p>
+    <div class="check-list">
+      <label><input type="checkbox" checked> <span style="width:22px;height:22px;border-radius:50%;background:var(--child-layla);display:inline-grid;place-items:center;color:#fff;font-size:11px;font-weight:700">LR</span> Layla Rahman <span class="tiny">· 11th · U.S. History</span></label>
+      <label><input type="checkbox" checked> <span style="width:22px;height:22px;border-radius:50%;background:var(--child-yusuf);display:inline-grid;place-items:center;color:#fff;font-size:11px;font-weight:700">YR</span> Yusuf Rahman <span class="tiny">· 6th · Ancient World History</span></label>
+      <label><input type="checkbox"> <span style="width:22px;height:22px;border-radius:50%;background:var(--child-zayd);display:inline-grid;place-items:center;color:#fff;font-size:11px;font-weight:700">ZR</span> Zayd Rahman <span class="tiny">· 2nd · Communities &amp; Long Ago</span></label>
+    </div>
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:18px">
+      <button class="btn btn-ghost" onclick="closeModal('planModal')">Cancel</button>
+      <button class="btn btn-grad" onclick="closeModal('planModal');showToast('Added to plan')">Add to plan</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('backdrop').classList.toggle('show');}
+function openModal(id){document.getElementById(id).classList.add('show');}
+function closeModal(id){document.getElementById(id).classList.remove('show');}
+let _toastT;function showToast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.className='toast';document.body.appendChild(t);}t.textContent=msg;t.classList.add('show');clearTimeout(_toastT);_toastT=setTimeout(()=>t.classList.remove('show'),2500);}
+function initTabs(scope){(scope||document).querySelectorAll('[data-tabs]').forEach(function(group){var tabs=group.querySelectorAll('.tab');tabs.forEach(function(tab){tab.addEventListener('click',function(){var panelId=tab.getAttribute('data-tab');group.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');var host=group.getAttribute('data-panels')?document.getElementById(group.getAttribute('data-panels')):group.parentElement;host.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));var panel=document.getElementById(panelId);if(panel)panel.classList.add('active');});});});}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal-wrap.show').forEach(m=>m.classList.remove('show'));}});
+document.addEventListener('DOMContentLoaded',function(){initTabs();document.querySelectorAll('.progress>span').forEach(function(el){var w=el.style.width;el.style.width='0';setTimeout(()=>el.style.width=w,100);});});
+</script>
+</body>
+</html>
