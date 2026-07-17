@@ -81,7 +81,10 @@
       var item = summary.closest(".fw-item");
       var id = item.getAttribute("data-id");
       if (item.classList.contains("fw-open")) { item.classList.remove("fw-open"); summary.setAttribute("aria-expanded", "false"); item.querySelector(".fw-detail").remove(); expandedId = null; }
-      else { expandedId = id; render(); }
+      else {
+        expandedId = id; render();
+        if (window.PWSidebar) { PWSidebar.track("framework", id); PWSidebar.render("pw-sidebar-mount", "framework", id); }
+      }
       return;
     }
     var addBtn = e.target.closest(".add-path-btn");

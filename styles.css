@@ -472,6 +472,21 @@ button { font:inherit; cursor:pointer; }
 .stage-link:hover { background:var(--grad); color:#fff; border-color:transparent; }
 [data-theme="dark"] .stage-link { color:#bcb1ff; }
 
+/* Sidebar — recently viewed + related */
+.pw-sidebar { padding:16px; background:var(--bg-elev); border:1px solid var(--border);
+  border-radius:var(--radius); box-shadow:var(--shadow-sm); margin-top:24px; }
+.pw-sidebar-section { margin-bottom:14px; }
+.pw-sidebar-section:last-child { margin-bottom:0; }
+.pw-sidebar-section h4 { font-size:12px; font-weight:700; text-transform:uppercase;
+  letter-spacing:.08em; color:var(--text-muted); margin:0 0 8px; }
+.pw-sidebar-item { display:inline-flex; align-items:center; gap:4px; padding:4px 10px;
+  border-radius:8px; font-size:12.5px; font-weight:600; text-decoration:none;
+  background:var(--grad-soft); color:var(--brand-1); border:1px solid var(--border);
+  margin:0 4px 4px 0; transition:background .12s; }
+.pw-sidebar-item:hover { background:var(--grad); color:#fff; border-color:transparent; }
+[data-theme="dark"] .pw-sidebar-item { color:#bcb1ff; }
+@media (max-width: 920px) { .pw-sidebar { display:none; } }
+
 /* Active section nav */
 .nav-list a[aria-current="true"] { color:var(--text); background:var(--grad-soft); }
 
