@@ -4,11 +4,11 @@
 (function () {
   var LINKS = [
     { href: "index.html",              label: "Home" },
-    { href: "path-builder.html",       label: "Builder" },
-    { href: "curriculum-builder.html",  label: "Curriculum" },
+    { href: "curriculum-builder.html",  label: "Curriculum Builder" },
     { href: "apps.html",               label: "Apps" },
     { href: "frameworks.html",          label: "Frameworks" },
-    { href: "resources.html",           label: "Resources" }
+    { href: "resources.html",           label: "Resources" },
+    { href: "path-builder.html",        label: "Quick Path" }
   ];
 
   var page = location.pathname.split("/").pop() || "index.html";
