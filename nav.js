@@ -8,6 +8,8 @@
     { href: "apps.html",               label: "Apps" },
     { href: "frameworks.html",          label: "Frameworks" },
     { href: "resources.html",           label: "Resources" },
+    { href: "arabic.html",              label: "Arabic & Quran" },
+    { href: "about.html",               label: "About" },
     { href: "path-builder.html",        label: "Quick Path" }
   ];
 
