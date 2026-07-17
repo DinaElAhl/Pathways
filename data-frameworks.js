@@ -84,5 +84,65 @@ window.PW_FRAMEWORKS = [
     ],
     relatedApps: ["e2-lesson-planner", "e2-rubrics-assessment", "quiz-forge"],
     externalUrl: "https://www.ibo.org/programmes/diploma-programme/"
-  }
+  },
+  { id: "cambridge-igcse", name: "Cambridge IGCSE / AS & A Level", category: "curricula",
+    shortDesc: "Internationally recognised qualifications, primary through pre-university, 160+ countries.",
+    pillars: [
+      { name: "Primary", desc: "Ages 5\u201311." }, { name: "Lower Secondary", desc: "Ages 11\u201314." },
+      { name: "IGCSE", desc: "Ages 14\u201316." }, { name: "AS & A Level", desc: "Ages 16\u201319." }
+    ],
+    relatedApps: ["e2-lesson-planner", "quiz-forge", "e2-rubrics-assessment"],
+    externalUrl: "https://www.cambridgeinternational.org/" },
+  {
+    id: "cefr-arabic", name: "CEFR (Arabic focus)", category: "arabic",
+    shortDesc: "Common European Framework A1\u2013C2, applied to Arabic as a second language.",
+    pillars: [
+      { name: "A1\u2013A2", desc: "Basic: familiar expressions, simple phrases." },
+      { name: "B1\u2013B2", desc: "Independent: connected text, fluent interaction." },
+      { name: "C1\u2013C2", desc: "Proficient: fluent, spontaneous, near-native." }
+    ],
+    relatedApps: ["arabic-lab", "vocab-vault", "hifz-helper"],
+    externalUrl: "https://www.coe.int/en/web/common-european-framework-reference-languages"
+  },
+  {
+    id: "lti13", name: "LTI 1.3", category: "interoperability",
+    shortDesc: "OAuth2/OpenID-Connect spec for launching tools from Canvas, Moodle, Blackboard, Brightspace, Google Classroom.",
+    pillars: [
+      { name: "Launch", desc: "Secure tool launch via OpenID Connect." },
+      { name: "Deep Linking", desc: "Select and embed specific content." },
+      { name: "AGS", desc: "Assignment & Grade Services \u2014 score passback." },
+      { name: "NRPS", desc: "Names & Role Provisioning \u2014 roster sync." }
+    ],
+    relatedApps: ["path-builder", "quiz-forge", "exit-ticket"],
+    externalUrl: "https://www.1edtech.org/standards/lti"
+  },
+  {
+    id: "xapi", name: "xAPI (Experience API)", category: "interoperability",
+    shortDesc: "Records learning as actor \u2192 verb \u2192 object statements in a Learning Record Store.",
+    pillars: [
+      { name: "Statements", desc: "Actor-verb-object triples for any learning experience." },
+      { name: "LRS", desc: "Learning Record Store \u2014 central data repository." },
+      { name: "Profiles", desc: "Vocabulary sets for specific domains (e.g. cmi5)." }
+    ],
+    relatedApps: ["quiz-forge", "exit-ticket", "data-dash"],
+    externalUrl: "https://xapi.com/"
+  },
+  { id: "scorm", name: "SCORM 1.2 / 2004", category: "interoperability",
+    shortDesc: "Legacy packaging standard for e-learning courses. Use xAPI for new work.",
+    pillars: [], relatedApps: ["flip-studio"], externalUrl: "#" },
+  { id: "wcag22", name: "WCAG 2.2 AA", category: "accessibility",
+    shortDesc: "Baseline for accessible web content \u2014 perceivable, operable, understandable, robust.",
+    pillars: [
+      { name: "Perceivable", desc: "Text alternatives, captions, contrast." },
+      { name: "Operable", desc: "Keyboard, timing, navigation." },
+      { name: "Understandable", desc: "Readable, predictable, input help." },
+      { name: "Robust", desc: "Works with assistive tech." }
+    ],
+    relatedApps: ["read-aloud", "differentiate-it"], externalUrl: "https://www.w3.org/TR/WCAG22/" },
+  { id: "ferpa", name: "FERPA", category: "compliance",
+    shortDesc: "US federal law protecting student education record privacy.",
+    pillars: [], relatedApps: ["data-dash"], externalUrl: "#" },
+  { id: "gdpr-k", name: "GDPR-K", category: "compliance",
+    shortDesc: "EU data-protection plus stricter children\u2019s provisions (age 13\u201316).",
+    pillars: [], relatedApps: ["data-dash"], externalUrl: "#" }
 ];
