@@ -202,6 +202,49 @@
     a.download = "curriculum-plan.json"; a.click(); URL.revokeObjectURL(a.href);
   });
 
+  // ---- Save / Load plans ----
+  var SP_KEY = "pw_saved_plans";
+  function getPlans() { try { return JSON.parse(localStorage.getItem(SP_KEY) || "[]"); } catch (e) { return []; } }
+  function renderPlans() {
+    var plans = getPlans();
+    var wrap = $("saved-plans"); var list = $("saved-plans-list");
+    if (!plans.length) { wrap.style.display = "none"; return; }
+    wrap.style.display = "";
+    list.innerHTML = plans.map(function (p, i) {
+      var org = CD.orgTypes.find(function (t) { return t.id === p.orgType; });
+      var grade = CD.grades.find(function (g) { return g.id === p.grade; });
+      return '<div class="sp-item"><span>' + (org ? org.label : "") + " \u00b7 " + (grade ? grade.label : "") +
+        " \u00b7 " + (p.frameworks || []).length + " fw \u00b7 " + new Date(p.savedAt).toLocaleDateString() +
+        '</span><span><button class="sp-load" data-idx="' + i + '">Load</button><button class="sp-del" data-idx="' + i + '">\u2715</button></span></div>';
+    }).join("");
+  }
+  $("save-plan").addEventListener("click", function () {
+    var plans = getPlans();
+    plans.unshift({ orgType: state.orgType, grade: state.grade, phase: state.phase,
+      outcomes: state.outcomes, frameworks: state.frameworks, apps: state.apps,
+      resources: state.resources, savedAt: Date.now() });
+    if (plans.length > 10) plans = plans.slice(0, 10);
+    localStorage.setItem(SP_KEY, JSON.stringify(plans));
+    renderPlans();
+    var btn = $("save-plan"); btn.textContent = "Saved \u2713"; setTimeout(function () { btn.textContent = "Save Plan"; }, 1500);
+  });
+  $("saved-plans-list").addEventListener("click", function (e) {
+    var btn = e.target.closest("button"); if (!btn) return;
+    var idx = parseInt(btn.dataset.idx, 10); var plans = getPlans();
+    if (btn.classList.contains("sp-del")) {
+      plans.splice(idx, 1); localStorage.setItem(SP_KEY, JSON.stringify(plans)); renderPlans();
+    } else if (btn.classList.contains("sp-load")) {
+      var p = plans[idx]; if (!p) return;
+      state.orgType = p.orgType; state.grade = p.grade; state.phase = p.phase;
+      state.outcomes = p.outcomes || []; state.frameworks = p.frameworks || [];
+      state.apps = p.apps || []; state.resources = p.resources || [];
+      orgSel.value = state.orgType; orgSel.dispatchEvent(new Event("change"));
+      gradeSel.value = state.grade; gradeSel.dispatchEvent(new Event("change"));
+      goTo(7);
+    }
+  });
+  renderPlans();
+
   // ---- Print ----
   $("print-plan").addEventListener("click", function () {
     var org = CD.orgTypes.find(function (t) { return t.id === state.orgType; });
