@@ -10,6 +10,7 @@
     { href: "resources.html",           label: "Resources" },
     { href: "arabic.html",              label: "Arabic & Quran" },
     { href: "about.html",               label: "About" },
+    { href: "pricing.html",             label: "Pricing" },
     { href: "path-builder.html",        label: "Quick Path" }
   ];
 
