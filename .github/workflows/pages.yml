@@ -40,9 +40,7 @@ jobs:
               else
                 dest="${page}.html"
               fi
-              cat > "_site/${page}/index.html" <<REDIR
-<!doctype html><html><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=../${dest}"><link rel="canonical" href="../${dest}"></head><body><a href="../${dest}">Redirecting…</a></body></html>
-REDIR
+              echo "<!doctype html><html><head><meta charset=\"utf-8\"><meta http-equiv=\"refresh\" content=\"0;url=../${dest}\"><link rel=\"canonical\" href=\"../${dest}\"></head><body><a href=\"../${dest}\">Redirecting…</a></body></html>" > "_site/${page}/index.html"
             fi
           done
           touch _site/.nojekyll
@@ -66,22 +64,32 @@ REDIR
   deploy-vercel:
     needs: build
     runs-on: ubuntu-latest
-    if: vars.VERCEL_PROJECT_ID != '' || secrets.VERCEL_TOKEN != ''
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Check for Vercel credentials
+        id: creds
+        run: |
+          if [ -n "$VERCEL_TOKEN" ]; then
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+            echo "VERCEL_TOKEN secret not set — skipping Vercel deploy."
+          fi
+
       - name: Install Vercel CLI
+        if: steps.creds.outputs.ok == 'true'
         run: npm install -g vercel@latest
 
       - name: Pull Vercel environment
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        if: steps.creds.outputs.ok == 'true'
+        run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
 
       - name: Deploy to Vercel (production)
-        run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        if: steps.creds.outputs.ok == 'true'
+        run: vercel deploy --prod --token="$VERCEL_TOKEN"
