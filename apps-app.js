@@ -63,14 +63,23 @@
     }).join('');
     var steps = (a.demoSteps || []).map(function (s, i) { return '<li>' + s + '</li>'; }).join('');
     var feats = a.features.map(function (f) { return '<li>' + f + '</li>'; }).join('');
-    var openBtn = a.url && a.url !== '#' && a.status === 'live'
-      ? '<a class="btn primary" href="' + a.url + '" target="_blank" rel="noopener">Open \u2197</a>' : '';
+    var liveBtn = (a.liveUrl || a.url) && (a.liveUrl || a.url) !== '#' && a.status === 'live'
+      ? '<a class="btn primary" href="' + (a.liveUrl || a.url) + '" target="_blank" rel="noopener">Open \u2197</a>' : '';
+    var stages = (a.stages || []).map(function (st) {
+      var links = (st.resources || []).map(function (r) {
+        return '<a class="stage-link" href="' + r.url + '" target="_blank" rel="noopener">' + r.title + ' \u2197</a>';
+      }).join('');
+      return '<div class="stage-step"><div class="stage-step-num">' + st.stage + '</div>' +
+        '<div class="stage-step-body"><strong>' + st.title + '</strong><p>' + st.desc + '</p>' +
+        (links ? '<div class="stage-step-resources">' + links + '</div>' : '') + '</div></div>';
+    }).join('');
     return '<div class="app-detail">' +
       '<h4>Features</h4><ul class="app-features">' + feats + '</ul>' +
       (steps ? '<h4>How it works</h4><ol class="app-steps">' + steps + '</ol>' : '') +
+      (stages ? '<h4>How to implement</h4><div class="stage-timeline">' + stages + '</div>' : '') +
       (fws ? '<h4>Related frameworks</h4><div class="explore-apps">' + fws + '</div>' : '') +
       (res ? '<h4>Related resources</h4><div class="explore-apps">' + res + '</div>' : '') +
-      '<div class="app-actions">' + openBtn +
+      '<div class="app-actions">' + liveBtn +
       '<button class="btn ghost add-path-btn" data-type="app" data-id="' + a.id + '" data-name="' + a.name + '">+ Add to path</button></div></div>';
   }
 
