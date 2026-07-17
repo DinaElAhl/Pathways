@@ -522,6 +522,25 @@ button { font:inherit; cursor:pointer; }
 /* Active section nav */
 .nav-list a[aria-current="true"] { color:var(--text); background:var(--grad-soft); }
 
+/* Mobile polish */
+@media (max-width: 520px) {
+  .hero-stats { grid-template-columns:repeat(2,1fr); }
+  .persona-grid { grid-template-columns:repeat(2,1fr); }
+  .cb-steps-mini span { width:28px; height:28px; font-size:12px; }
+  .explore-grid { grid-template-columns:1fr; }
+  .e2-feature { padding:20px; }
+  .e2-mini-stats { grid-template-columns:repeat(2,1fr); }
+}
+@media (max-width: 380px) {
+  .nav-list a { padding:8px 8px; font-size:13px; }
+  .gs-input { width:120px; }
+}
+
+/* A11y: forced-colors / high-contrast */
+@media (forced-colors: active) {
+  .btn.primary, .fpill.on, .flow-num, .stage-step-num { forced-color-adjust:none; }
+}
+
 /* Footer */
 .site-footer { border-top:1px solid var(--border); margin-top:64px;
   padding:48px 0 28px; background:linear-gradient(180deg, var(--bg-elev), var(--bg)); }
